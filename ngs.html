@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NGS Education</title>
+  <meta name="description" content="NGS Education — International curricula tutoring, mentorship, and community." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0f19;
+      --card: #11182a;
+      --muted: #93a3b8;
+      --text: #e8eef7;
+      --brand: #5dd3ff;
+      --brand-2:#8fff9f;
+      --accent:#ffd166;
+      --danger:#ff6b6b;
+      --ok:#22c55e;
+      --focus: 0 0 0 3px rgba(93,211,255,0.35);
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text); background:radial-gradient(1200px 800px at 80% -10%, rgba(93,211,255,.08), transparent 60%), radial-gradient(900px 700px at -10% 110%, rgba(143,255,159,.08), transparent 60%), var(--bg);
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1200px; margin:0 auto; padding:0 20px}
+
+    /* Header */
+    header{
+      position:sticky; top:0; backdrop-filter: blur(10px);
+      background: rgba(11,15,25,0.7); border-bottom:1px solid rgba(255,255,255,.06);
+      z-index:50;
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; height:72px}
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{
+      width:40px; height:40px; border-radius:12px;
+      background:linear-gradient(135deg, var(--brand), var(--brand-2));
+      display:grid; place-items:center; color:#00111a; font-weight:800;
+      box-shadow: var(--shadow);
+    }
+    .brand h1{font-size:18px; letter-spacing:.4px; margin:0}
+    nav ul{display:flex; gap:10px; list-style:none; padding:0; margin:0; flex-wrap:wrap}
+    nav a{padding:10px 14px; border-radius:12px; color:var(--muted); font-weight:600}
+    nav a.active, nav a:hover{color:var(--text); background:rgba(255,255,255,.06)}
+    .cta{display:flex; gap:12px; align-items:center}
+    .btn{border:1px solid rgba(255,255,255,.14); background:#121a2f; color:var(--text); padding:10px 14px; border-radius:12px; font-weight:700}
+    .btn.brand{background:linear-gradient(135deg, rgba(93,211,255,.15), rgba(143,255,159,.15)); border-color:rgba(255,255,255,.18)}
+    .btn.sm{padding:8px 12px; font-weight:600}
+    .btn:focus{outline:none; box-shadow:var(--focus)}
+
+    /* Sections */
+    main{padding:40px 0 100px}
+    section[data-page]{display:none; animation:fade .35s ease}
+    section[data-page].active{display:block}
+    @keyframes fade{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:translateY(0)}}
+
+    /* HERO */
+    .hero{display:grid; gap:24px; grid-template-columns:1.1fr .9fr; align-items:center}
+    .hero .card{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); padding:28px; border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .kicker{color:var(--brand); font-weight:800; letter-spacing:.12em; text-transform:uppercase; font-size:12px}
+    h2{margin:8px 0 12px; font-size:36px; line-height:1.15}
+    p.lead{margin:0 0 8px; color:var(--muted); font-size:16px}
+    .hero-cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px}
+    .pill{display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.12); color:var(--muted); font-size:12px}
+
+    .stat-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; margin-top:14px}
+    .stat{background:var(--card); border:1px solid rgba(255,255,255,.08); padding:18px; border-radius:12px; text-align:center}
+    .stat .num{font-size:24px; font-weight:800}
+    .stat .lbl{color:var(--muted); font-size:12px}
+
+    /* Cards */
+    .grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px}
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px}
+    .card h3{margin:8px 0 6px}
+    .card p{margin:0; color:var(--muted)}
+
+    /* Forms */
+    form{display:grid; gap:12px}
+    .row{display:grid; gap:12px; grid-template-columns:1fr 1fr}
+    label{font-size:12px; color:var(--muted)}
+    input, select, textarea{
+      width:100%; background:#0e1527; border:1px solid rgba(255,255,255,.14); color:var(--text);
+      padding:12px 12px; border-radius:12px; font-size:14px; transition:.2s border-color
+    }
+    textarea{min-height:120px; resize:vertical}
+    input:focus, select:focus, textarea:focus{outline:none; box-shadow:var(--focus)}
+    .help{font-size:12px; color:var(--muted)}
+    .inline{display:flex; align-items:center; gap:10px}
+    .inline input[type="checkbox"]{width:auto}
+
+    /* Tables */
+    table{width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:12px; border:1px solid rgba(255,255,255,.08)}
+    th,td{padding:12px 14px; text-align:left}
+    thead th{background:#10172a; color:#c8d4e7; font-size:12px; letter-spacing:.02em}
+    tbody tr:nth-child(odd){background:#0d1426}
+    tbody tr:nth-child(even){background:#0b1120}
+
+    /* Footer */
+    footer{border-top:1px solid rgba(255,255,255,.08); padding:24px 0; color:var(--muted)}
+
+    /* Badges */
+    .badge{display:inline-block; padding:4px 8px; border-radius:999px; font-size:11px; border:1px solid rgba(255,255,255,.14); color:#cde9ff}
+
+    /* Responsive */
+    @media (max-width: 960px){
+      .hero{grid-template-columns:1fr;}
+      .grid{grid-template-columns:1fr 1fr}
+      .row{grid-template-columns:1fr}
+    }
+    @media (max-width: 640px){
+      nav ul{gap:6px}
+      .grid{grid-template-columns:1fr}
+      h2{font-size:28px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand" aria-label="NGS Education">
+        <div class="logo" aria-hidden="true">NGS</div>
+        <h1>NGS Education</h1>
+      </div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#home" data-link>Home</a></li>
+          <li><a href="#partner" data-link>Partner With Us</a></li>
+          <li><a href="#study" data-link>Study With Us</a></li>
+          <li><a href="#community" data-link>Join NGS Community</a></li>
+          <li><a href="#login" data-link class="btn sm">Log In</a></li>
+        </ul>
+      </nav>
+      <div class="cta">
+        <a class="btn sm brand" href="#study">Book a Consultation</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 1: HOMEPAGE -->
+    <section data-page id="home">
+      <div class="hero">
+        <div class="card">
+          <div class="kicker">International curricula • IB • A‑Level • AP • HKDSE</div>
+          <h2>Future‑ready learning for ambitious students.</h2>
+          <p class="lead">NGS Education helps students thrive with structured programs, expert mentors, and a supportive global community.</p>
+          <div class="hero-cta">
+            <a class="btn brand" href="#study">Explore Programs</a>
+            <a class="btn" href="#partner">Partner With Us</a>
+            <span class="pill" aria-label="success rate"><strong>98%</strong> exam success</span>
+            <span class="pill" aria-label="countries served"><strong>12</strong> countries</span>
+          </div>
+          <div class="stat-grid" aria-hidden="true">
+            <div class="stat"><div class="num">5,000+</div><div class="lbl">Students supported</div></div>
+            <div class="stat"><div class="num">300+</div><div class="lbl">Top‑uni offers</div></div>
+            <div class="stat"><div class="num">4.8/5</div><div class="lbl">Parent satisfaction</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Why families choose NGS</h3>
+          <ul>
+            <li>Structured pathways: Foundation → Synchronisation → Acceleration → Exam Prep.</li>
+            <li>College mentorship and high‑school mapping included.</li>
+            <li>Hybrid learning: online + clinic‑style small groups.</li>
+            <li>Transparent reporting and growth plans.</li>
+          </ul>
+          <div style="margin-top:14px" class="help">* Demo site. No real data is collected.</div>
+        </div>
+      </div>
+
+      <h3 style="margin:28px 0 10px">Popular Subjects</h3>
+      <div class="grid" role="list">
+        <div class="card" role="listitem"><span class="badge">IB</span><h3>HL Math AA</h3><p>Concept‑first teaching with problem sets and past papers.</p></div>
+        <div class="card" role="listitem"><span class="badge">A‑Level</span><h3>Physics</h3><p>Exam technique bootcamps and lab‑style clinics.</p></div>
+        <div class="card" role="listitem"><span class="badge">AP</span><h3>Calculus BC</h3><p>Weekly checkpoints and timed drills.</p></div>
+      </div>
+    </section>
+
+    <!-- 2: PARTNER WITH US -->
+    <section data-page id="partner">
+      <h2>Partner With Us</h2>
+      <p class="lead">Schools, agencies, and community groups collaborate with NGS to deliver proven outcomes and transparent growth mapping.</p>
+
+      <div class="grid" style="margin-top:14px">
+        <div class="card">
+          <h3>Collaboration Models</h3>
+          <ul>
+            <li><strong>Hybrid Learning Solution</strong> — on‑campus clinics + online masterclasses.</li>
+            <li><strong>Dual‑Track Solution</strong> — academics + college counseling.</li>
+            <li><strong>Online Certificate Program</strong> — micro‑credentials with capstones.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Benefits</h3>
+          <ul>
+            <li>Quarterly <em>School Reports</em> with cohort analytics.</li>
+            <li>Student <em>Growth Mapping</em> and intervention flags.</li>
+            <li>Parent webinars and career panels.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Request a Partnership</h3>
+          <form id="partnerForm" novalidate>
+            <div class="row">
+              <div>
+                <label for="org">Organization</label>
+                <input id="org" name="org" placeholder="Your school / company" required />
+              </div>
+              <div>
+                <label for="contact">Contact Name</label>
+                <input id="contact" name="contact" placeholder="Jane Doe" required />
+              </div>
+            </div>
+            <div class="row">
+              <div>
+                <label for="email">Work Email</label>
+                <input id="email" name="email" type="email" placeholder="name@org.com" required />
+              </div>
+              <div>
+                <label for="model">Model</label>
+                <select id="model" name="model" required>
+                  <option value="">Select…</option>
+                  <option>Hybrid Learning</option>
+                  <option>Dual‑Track</option>
+                  <option>Online Certificate</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label for="msg">Message</label>
+              <textarea id="msg" name="msg" placeholder="Tell us about your goals…"></textarea>
+            </div>
+            <button class="btn brand" type="submit">Send Request</button>
+            <div class="help">We’ll reply within 2 business days. (Demo only.)</div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3: STUDY WITH US -->
+    <section data-page id="study">
+      <h2>Study With Us</h2>
+      <p class="lead">Choose your pathway and level. Mix and match programs to fit your timeline.</p>
+
+      <div class="grid">
+        <div class="card">
+          <span class="badge">Pathway</span>
+          <h3>Program Packs</h3>
+          <ul>
+            <li><strong>Foundation</strong> — close knowledge gaps with baseline mastery.</li>
+            <li><strong>Synchronisation</strong> — align school pace and homework systems.</li>
+            <li><strong>Acceleration</strong> — stretch goals, olympiad‑style thinking.</li>
+            <li><strong>Exam Prep</strong> — past‑paper marathons and feedback.</li>
+          </ul>
+          <a class="btn" href="#book" data-open-consultation>Book an Online Consultation</a>
+        </div>
+        <div class="card">
+          <span class="badge">Subjects</span>
+          <h3>Curricula</h3>
+          <table aria-label="Curricula and offerings">
+            <thead>
+              <tr><th>Curriculum</th><th>Subjects</th><th>Extras</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>IB</td><td>Math AA/AI, Physics, Chemistry, Economics</td><td>IA Clinic</td></tr>
+              <tr><td>A‑Level</td><td>Math, FM, Physics, Chemistry</td><td>Practical Skills</td></tr>
+              <tr><td>AP</td><td>Calculus AB/BC, Physics, CS</td><td>Portfolio</td></tr>
+              <tr><td>HKDSE</td><td>Core Math, M1/M2, Chem</td><td>Paper‑by‑paper</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <span class="badge">Team</span>
+          <h3>Teacher Profiles</h3>
+          <p>Hand‑picked tutors with top‑tier credentials.</p>
+          <ul>
+            <li><strong>Math & STEM</strong> — trial class available.</li>
+            <li><strong>Liberal Arts</strong> — reading & writing labs.</li>
+            <li><strong>College Counselling</strong> — essay clinics & mock interviews.</li>
+          </ul>
+          <a class="btn" href="#community">Meet the Community</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4: JOIN NGS COMMUNITY -->
+    <section data-page id="community">
+      <h2>Join NGS Community</h2>
+      <p class="lead">Be part of a supportive network: showcases, mentorship, and members‑only clinics.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Community Showcase</h3>
+          <p>Student projects, alumni stories, and webinar replays.</p>
+          <ul>
+            <li>Monthly Demo Day</li>
+            <li>Parent AMA Sessions</li>
+            <li>Career Panels with industry mentors</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Membership Plans</h3>
+          <table aria-label="Membership plans">
+            <thead>
+              <tr><th>Plan</th><th>What’s included</th><th>Price</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>NGS Connects</td><td>Community access, event invites</td><td>Free</td></tr>
+              <tr><td>NGS Inspire</td><td>Mentor circles, clinic priority</td><td>$19/mo</td></tr>
+              <tr><td>NGS Pro</td><td>Unlimited replays, reports</td><td>$49/mo</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Newsletter</h3>
+          <form id="newsletterForm" class="inline" novalidate>
+            <input id="newsletterEmail" type="email" placeholder="you@example.com" aria-label="Email" required />
+            <button class="btn brand" type="submit">Subscribe</button>
+          </form>
+          <div class="help">Action is simulated for this demo.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5: LOG IN -->
+    <section data-page id="login">
+      <h2>Log In</h2>
+      <p class="lead">Welcome back. Please sign in to your NGS account.</p>
+      <form id="loginForm" style="max-width:520px" novalidate>
+        <div class="row">
+          <div>
+            <label for="loginEmail">Email</label>
+            <input id="loginEmail" type="email" placeholder="you@example.com" required />
+          </div>
+          <div>
+            <label for="loginPass">Password</label>
+            <input id="loginPass" type="password" placeholder="••••••••" minlength="6" required />
+          </div>
+        </div>
+        <div class="inline">
+          <input id="remember" type="checkbox" />
+          <label for="remember">Remember me</label>
+        </div>
+        <button class="btn brand" type="submit">Sign In</button>
+        <div class="help">Use any email and at least 6 characters password to simulate login.</div>
+      </form>
+
+      <div id="authState" class="card" style="margin-top:16px; display:none"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> NGS Education. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Toasts -->
+  <div id="toast" aria-live="polite" style="position:fixed; right:20px; bottom:20px; max-width:340px; display:none"></div>
+
+  <script>
+    // --- Simple SPA Router ---
+    const pages = Array.from(document.querySelectorAll('section[data-page]'));
+    const links = Array.from(document.querySelectorAll('[data-link]'));
+
+    function setActive(hash){
+      const target = (hash || location.hash || '#home').replace('#','');
+      pages.forEach(sec=>sec.classList.toggle('active', sec.id === target));
+      links.forEach(a=>a.classList.toggle('active', a.getAttribute('href') === '#' + target));
+      if(!location.hash) history.replaceState(null, '', '#home');
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+    window.addEventListener('hashchange', ()=> setActive(location.hash));
+    setActive(location.hash);
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // --- Toast helper ---
+    const toastEl = document.getElementById('toast');
+    function toast(msg, type='info'){ 
+      toastEl.innerHTML = `<div style="background:${type==='error'?'#2b0f14':'#102315'}; border:1px solid rgba(255,255,255,.14); color:${type==='error'?'#ffb3b3':'#d4ffe1'}; padding:14px 16px; border-radius:12px; box-shadow:var(--shadow)">${msg}</div>`;
+      toastEl.style.display='block';
+      clearTimeout(toastEl._t);
+      toastEl._t = setTimeout(()=> toastEl.style.display='none', 3600);
+    }
+
+    // --- Partner form ---
+    document.getElementById('partnerForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      for (const k of ['org','contact','email','model']){
+        if(!fd.get(k)) return toast('Please complete all required fields.', 'error');
+      }
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(fd.get('email'))) return toast('Please enter a valid email.', 'error');
+      localStorage.setItem('ngs_partner_request', JSON.stringify(Object.fromEntries(fd)));
+      e.target.reset();
+      toast('Thanks! Your partnership request has been recorded (demo).');
+    });
+
+    // --- Newsletter ---
+    document.getElementById('newsletterForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const email = document.getElementById('newsletterEmail').value.trim();
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return toast('Enter a valid email to subscribe.', 'error');
+      localStorage.setItem('ngs_newsletter', email);
+      e.target.reset();
+      toast('Subscribed! Welcome to NGS Community.');
+    });
+
+    // --- Login (demo) ---
+    const loginForm = document.getElementById('loginForm');
+    const authState = document.getElementById('authState');
+    loginForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const pass = document.getElementById('loginPass').value;
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return toast('Please enter a valid email.', 'error');
+      if(pass.length < 6) return toast('Password must be at least 6 characters.', 'error');
+      // simulate auth
+      localStorage.setItem('ngs_user', JSON.stringify({ email, ts: Date.now() }));
+      authState.style.display = 'block';
+      authState.innerHTML = `<h3>Signed in</h3><p>You are signed in as <strong>${email}</strong>. (Demo only — no backend.)</p><button class="btn" id="signOut">Sign Out</button>`;
+      toast('Signed in successfully.');
+      document.getElementById('signOut').addEventListener('click', ()=>{
+        localStorage.removeItem('ngs_user'); authState.style.display='none'; toast('Signed out.');
+      });
+    });
+
+    // CTA open consultation scroll
+    document.querySelectorAll('[data-open-consultation]').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        e.preventDefault(); location.hash = '#community';
+        toast('Scroll down to Newsletter to get updates on consultation slots.');
+      });
+    });
+  </script>
+</body>
+</html>

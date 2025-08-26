@@ -204,8 +204,8 @@
 
   <div class='grid'>
     <div class='card tutor-card' style='text-align:left'>
-      <img src='Scarlet.jpg' alt='Founder 1' class='tutor-photo' style='width:110px;height:110px'>
-      <h4 style='text-align:center;margin-top:10px'>Kim Fung Chiu</h4>
+      <img src='Valerie.jpg' alt='Founder 1' class='tutor-photo' style='width:110px;height:110px'>
+      <h4 style='text-align:center;margin-top:10px'>Valerie Zhou</h4>
       <small style='display:block;text-align:center;margin-bottom:12px'>Co‑Founder · Strategy & Programs</small>
       <ul>
         <li>Built cross‑border mentor network across AU/HK/UK</li>
@@ -225,6 +225,18 @@
         <li>Focus: curriculum design & educator training</li>
       </ul>
       <em style='display:block;text-align:center'>“Every lesson should be clear, measurable, and kind.”</em>
+    </div>
+
+    <div class='card tutor-card' style='text-align:left'>
+      <img src='Scarlet.jpg' alt='Founder 1' class='tutor-photo' style='width:110px;height:110px'>
+      <h4 style='text-align:center;margin-top:10px'>Scarlet Wu</h4>
+      <small style='display:block;text-align:center;margin-bottom:12px'>Co‑Founder · Strategy & Programs</small>
+      <ul>
+        <li>20+ years leading engineering teams</li>
+        <li>Expert interviewer who has hired 500+ graduates </li>
+        <li>Specialized in career coaching, leadership development, mentor wellness</li>
+      </ul>
+      <em style='display:block;text-align:center'>“Great systems make great outcomes repeatable.”</em>
     </div>
 
     <div class='card tutor-card' style='text-align:left'>
@@ -575,10 +587,31 @@
         </div>`
     };
 
-    const communityContentMap={
-      showcase:"<h3>Community Showcase</h3><p>Student projects, alumni stories, and webinar replays.</p>",
-      membership:"<h3>Membership Plans</h3><p>Choose NGS Connects, Inspire, or Pro for exclusive benefits.</p>"
-    };
+  const communityContentMap={
+    showcase:`<h3>Community Showcase</h3><p>Student projects, alumni stories, and webinar replays.</p>`,
+    membership:`<h3>Membership Plans</h3>
+      <p>Choose the subscription that fits your needs.</p>
+      <div class='grid'>
+        <div class='card'>
+          <h4>NGS Connects</h4>
+          <ul>
+            <li>Monthly school reports</li>
+            <li>Growth mapping and diagnostics</li>
+            <li>Exclusive parent webinars</li>
+          </ul>
+          <em>“Stay connected with your child’s journey.”</em>
+        </div>
+        <div class='card'>
+          <h4>NGS Inspires</h4>
+          <ul>
+            <li>Access to global mentor clinics</li>
+            <li>Masterclasses and recorded sessions</li>
+            <li>Community showcase opportunities</li>
+          </ul>
+          <em>“Inspiration and resources at your fingertips.”</em>
+        </div>
+      </div>`
+  };
 
     /* Submenu navigation + content swap */
     document.querySelectorAll('[data-sub]').forEach(link=>{

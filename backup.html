@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NGS Education</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --brand:#e84545; --ink:#222; --muted:#666; --bg:#fafafa; --card-bg:#fff;
+    }
+    *{box-sizing:border-box}
+    body{font-family:'Inter',sans-serif;margin:0;background:var(--bg);color:var(--ink)}
+
+    /* Header + Nav */
+    header{position:sticky;top:0;background:#fff;border-bottom:2px solid var(--brand);
+      display:flex;justify-content:space-between;align-items:center;padding:12px 16px;z-index:100}
+    .logo{font-weight:900;font-size:20px;color:var(--brand)}
+    .nav{display:flex;align-items:center}
+    .nav ul{list-style:none;display:flex;gap:16px;margin:0;padding:0}
+    .nav li{position:relative}
+    .nav a{color:var(--ink);text-decoration:none;padding:8px 12px;border-radius:6px;font-weight:600;display:block;
+      transition:background .2s, transform .15s, color .2s}
+    .nav a:hover,.nav a.active{background:var(--brand);color:#fff;transform:scale(1.05)}
+    .nav ul ul{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid #eee;border-radius:8px;
+      box-shadow:0 4px 12px rgba(0,0,0,.12);min-width:220px;z-index:200}
+    .nav ul ul li a{padding:10px 16px;white-space:nowrap;color:var(--ink);font-weight:500;
+      transition:background .25s, padding-left .25s, color .25s}
+    .nav ul ul li a:hover{background:var(--brand);color:#fff;padding-left:24px}
+    .nav li:hover>ul{display:block}
+
+    /* Mobile hamburger */
+    .hamburger{display:none;gap:6px;flex-direction:column;border:0;background:transparent;padding:6px;cursor:pointer}
+    .hamburger span{width:24px;height:3px;background:var(--ink);border-radius:2px;display:block}
+    .hamburger:focus{outline:2px solid var(--brand)}
+
+    /* Layout */
+    main{max-width:1100px;margin:auto;padding:40px 20px}
+    section[data-page]{display:none}
+    section[data-page].active{display:block}
+
+    .hero{background:#fff;border-left:6px solid var(--brand);padding:30px;border-radius:10px;margin-bottom:30px}
+    .hero h2{margin:0 0 10px;font-size:30px;font-weight:900;color:var(--brand)}
+    .hero p{color:var(--muted)}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+    .card{background:var(--card-bg);border-radius:14px;padding:20px;transition:.3s;
+      box-shadow:0 4px 12px rgba(0,0,0,.1);}
+    .card:hover{transform:translateY(-5px);box-shadow:0 8px 20px rgba(0,0,0,.15)}
+    .card h3,.card h4{margin-top:0}
+
+    /* Tutor cards */
+    .tutor-card{display:flex;flex-direction:column;align-items:center;text-align:center}
+    .tutor-photo{width:92px;height:92px;border-radius:50%;object-fit:cover;margin-bottom:12px;border:3px solid var(--brand)}
+    .avatar{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;margin-bottom:12px;
+      border:3px solid var(--brand);background:#fff0f0;color:var(--brand);font-weight:800;font-size:26px}
+    .tutor-card h4{margin:0;font-size:18px;color:var(--brand)}
+    .tutor-card small{display:block;margin:4px 0 10px;color:var(--muted)}
+    .tutor-card ul{padding:0;margin:0 0 10px;list-style:none;text-align:left;width:100%}
+    .tutor-card ul li{margin:4px 0;padding-left:18px;position:relative;font-size:14px}
+    .tutor-card ul li::before{content:"✔";position:absolute;left:0;color:var(--brand);font-size:12px}
+    .tutor-card em{font-size:13.5px;color:var(--ink)}
+
+    /* Forms */
+    form{display:grid;gap:12px;max-width:600px;margin:0 auto;width:100%}
+    label{font-size:14px;color:var(--muted)}
+    input,textarea{padding:12px;border-radius:8px;border:1px solid #ccc;font-family:'Inter',sans-serif;font-size:15px}
+    input:focus,textarea:focus{outline:none;border-color:var(--brand)}
+    textarea{min-height:120px;resize:vertical}
+    button{padding:12px 16px;border:none;border-radius:8px;background:linear-gradient(90deg,var(--brand),#f6c453);
+      color:#fff;font-weight:700;cursor:pointer;transition:transform .15s, opacity .2s;font-size:15px}
+    button:hover{opacity:.9;transform:scale(1.03)}
+
+    footer{text-align:center;padding:20px;margin-top:40px;color:var(--muted);border-top:1px solid #eee}
+
+    .costar-btn {position: fixed;bottom: 20px;right: 20px;background: var(--brand);color: #fff;padding: 12px 18px;
+      border-radius: 50px;font-weight: 700;text-decoration: none;box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: transform .2s, background .2s;z-index: 9999}
+    .costar-btn:hover {background:#c23434;transform: scale(1.05)}
+
+    /* Responsive nav drawer */
+    @media (max-width: 1000px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width: 720px){
+      .grid{grid-template-columns:1fr}
+      .hamburger{display:flex}
+      .nav{position:fixed;inset:56px 0 auto 0;background:#fff;border-bottom:1px solid #eee;
+        box-shadow:0 6px 18px rgba(0,0,0,.08);transform:translateY(-120%);transition:transform .25s ease;display:block}
+      .nav.open{transform:translateY(0)}
+      .nav ul{flex-direction:column;gap:8px;padding:10px 12px}
+      .nav a{padding:12px 10px;border-radius:8px}
+      .nav li:hover>ul{display:none}
+      .nav li.open>ul{display:block;position:static;border:0;box-shadow:none;border-radius:8px}
+      .nav ul ul li a{padding:10px 14px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">NGS Education</div>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="site-nav" class="nav" role="navigation">
+      <ul>
+        <li><a href="#home" data-link>Home</a></li>
+        <li><a href="#partner" data-link class="has-sub">Partner With Us ▾</a>
+          <ul>
+            <li><a href="#partner" data-sub="founders">NGS Founders</a></li>
+            <li><a href="#partner" data-sub="vision">Vision & Mission</a></li>
+            <li><a href="#partner" data-sub="blueprint">Blue Print</a></li>
+            <li><a href="#partner" data-sub="hybrid">Hybrid Learning Solution</a></li>
+            <li><a href="#partner" data-sub="dual">Dual-Track Learning Solution</a></li>
+            <li><a href="#partner" data-sub="online">Online Certificate Program</a></li>
+          </ul>
+        </li>
+        <li><a href="#study" data-link class="has-sub">Study With Us ▾</a>
+          <ul>
+            <li><a href="#study" data-study="program">Program & Payment</a></li>
+            <li><a href="#study" data-study="mentorship">College Mentorship</a></li>
+            <li><a href="#study" data-study="mapping">High School Mapping</a></li>
+            <li><a href="#study" data-study="teachers">Teacher Profile</a></li>
+          </ul>
+        </li>
+        <li><a href="#community" data-link class="has-sub">Join NGS Community ▾</a>
+          <ul>
+            <li><a href="#community" data-community="showcase">Community Showcase</a></li>
+            <li><a href="#community" data-community="membership">Membership Plans</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section data-page id="home" class="active">
+      <!-- Hero -->
+      <div style="background:linear-gradient(135deg,var(--brand),#f6c453);color:#fff;padding:60px 30px;border-radius:12px;margin-bottom:40px;text-align:center">
+        <h1 style="margin:0;font-size:38px;font-weight:900">NextGen Scholars</h1>
+        <p style="margin:12px auto;max-width:700px;font-size:18px;line-height:1.6">
+          Technology-powered learning + world-class mentors helping ambitious students excel in IB, A-Level, AP, and HKDSE.
+        </p>
+        <div style="margin-top:22px">
+          <a href="#study" data-link style="background:#fff;color:var(--brand);padding:14px 24px;border-radius:8px;font-weight:700;text-decoration:none;margin:4px;display:inline-block">Study With Us</a>
+          <a href="mailto:finance@nextgenscholars.asia?subject=Book%20a%20Clinic%20Class&body=Hi%20NGS%2C%20I%20want%20to%20book%20a%20clinic%20class..." style="background:#222;color:#fff;padding:14px 24px;border-radius:8px;font-weight:700;text-decoration:none;margin:4px;display:inline-block">Book a Clinic</a>
+        </div>
+      </div>
+
+      <!-- Curriculum badges -->
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:30px">
+        <span style="background:#fff;padding:10px 18px;border-radius:50px;border:1px solid #eee;font-weight:600">IB</span>
+        <span style="background:#fff;padding:10px 18px;border-radius:50px;border:1px solid #eee;font-weight:600">A-Level</span>
+        <span style="background:#fff;padding:10px 18px;border-radius:50px;border:1px solid #eee;font-weight:600">AP</span>
+        <span style="background:#fff;padding:10px 18px;border-radius:50px;border:1px solid #eee;font-weight:600">HKDSE</span>
+      </div>
+
+      <!-- Why families choose NGS -->
+      <h3 style="margin-bottom:16px;color:var(--brand)">Why families choose NGS</h3>
+      <div class="grid" style="margin-bottom:30px">
+        <div class="card"><strong>Clarity First</strong><p style="color:var(--muted)">We make complex ideas simple and check understanding quickly.</p></div>
+        <div class="card"><strong>Data-Guided</strong><p style="color:var(--muted)">Plans are evidence-based: diagnostics → goals → results.</p></div>
+        <div class="card"><strong>Human + AI</strong><p style="color:var(--muted)">Mentors lead; smart tools amplify speed and feedback.</p></div>
+        <div class="card"><strong>Kind Accountability</strong><p style="color:var(--muted)">Warm support paired with clear milestones.</p></div>
+      </div>
+
+      <!-- Popular Subjects -->
+      <h3 style="margin-bottom:16px">Popular Subjects</h3>
+      <div class="grid">
+        <div class="card"><h3>IB Mathematics HL</h3><p>Concept-first teaching with problem banks and analytics.</p></div>
+        <div class="card"><h3>A-Level Physics</h3><p>Interactive labs and clinic-style sessions with tech tools.</p></div>
+        <div class="card"><h3>AP Computer Science</h3><p>Hands-on coding, algorithm training, and online evaluation.</p></div>
+      </div>
+    </section>
+
+    <section data-page id="partner"><div id="partnerContent"></div></section>
+    <section data-page id="study"><div id="studyContent"></div></section>
+    <section data-page id="community"><div id="communityContent"></div></section>
+
+    <a href="https://work.weixin.qq.com/kfid/kfc86f854c023857983" target="_blank" class="costar-btn">Customer Service</a>
+  </main>
+
+  <footer>© <span id="year"></span> NGS Education. All rights reserved.</footer>
+
+  <script>
+    /* Page switching */
+    const pages=document.querySelectorAll('section[data-page]');
+    const links=document.querySelectorAll('[data-link]');
+    function setActive(hash){
+      const target=(hash||'#home').replace('#','');
+      pages.forEach(sec=>sec.classList.toggle('active',sec.id===target));
+      links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+target));
+    }
+    window.addEventListener('hashchange',()=>setActive(location.hash));
+    setActive(location.hash);
+    document.getElementById('year').textContent=new Date().getFullYear();
+
+    /* Content Maps */
+    const partnerContentMap={
+      founders: `
+<section>
+  <div class='hero'>
+    <h2>NGS Founders</h2>
+    <p>We are educators, engineers, and builders. NGS was created to blend <strong>world‑class teaching</strong> with <strong>smart technology</strong> so every student can learn with clarity, confidence, and momentum.</p>
+  </div>
+
+  <div class='grid'>
+    <div class='card tutor-card' style='text-align:left'>
+      <img src='Valerie.jpg' alt='Founder 1' class='tutor-photo' style='width:110px;height:110px'>
+      <h4 style='text-align:center;margin-top:10px'>Valerie Zhou</h4>
+      <small style='display:block;text-align:center;margin-bottom:12px'>Co‑Founder · Strategy & Programs</small>
+      <ul>
+        <li>Built cross‑border mentor network across AU/HK/UK</li>
+        <li>Architect of Dual‑Track & Hybrid Learning models</li>
+        <li>Focus: school partnerships & counselor enablement</li>
+      </ul>
+      <em style='display:block;text-align:center'>“Great systems make great outcomes repeatable.”</em>
+    </div>
+
+    <div class='card tutor-card' style='text-align:left'>
+      <img src='Nancy.jpg' alt='Founder 2' class='tutor-photo' style='width:110px;height:110px'>
+      <h4 style='text-align:center;margin-top:10px'>Nancy Wu</h4>
+      <small style='display:block;text-align:center;margin-bottom:12px'>Co‑Founder · Teaching & AI</small>
+      <ul>
+        <li>STEM mentor; leads pedagogy & teacher development</li>
+        <li>Brings classroom‑ready AI tools into daily learning</li>
+        <li>Focus: curriculum design & educator training</li>
+      </ul>
+      <em style='display:block;text-align:center'>“Every lesson should be clear, measurable, and kind.”</em>
+    </div>
+
+    <div class='card tutor-card' style='text-align:left'>
+      <img src='Scarlet.jpg' alt='Founder 1' class='tutor-photo' style='width:110px;height:110px'>
+      <h4 style='text-align:center;margin-top:10px'>Scarlet Wu</h4>
+      <small style='display:block;text-align:center;margin-bottom:12px'>Co‑Founder · Strategy & Programs</small>
+      <ul>
+        <li>20+ years leading engineering teams</li>
+        <li>Expert interviewer who has hired 500+ graduates </li>
+        <li>Specialized in career coaching, leadership development, mentor wellness</li>
+      </ul>
+      <em style='display:block;text-align:center'>“Great systems make great outcomes repeatable.”</em>
+    </div>
+
+    <div class='card tutor-card' style='text-align:left'>
+      <img src='Paul.jpg' alt='Founder 3' class='tutor-photo' style='width:110px;height:110px'>
+      <h4 style='text-align:center;margin-top:10px'>Paul Chiu</h4>
+      <small style='display:block;text-align:center;margin-bottom:12px'>Co‑Founder · Growth & Community</small>
+      <ul>
+        <li>Leads family engagement & school community projects</li>
+        <li>Drives student clinics, masterclasses, and alumni network</li>
+        <li>Focus: parent communications & student success ops</li>
+      </ul>
+      <em style='display:block;text-align:center'>“Students thrive when support is simple and fast.”</em>
+    </div>
+  </div>
+
+  <div class='card' style='margin-top:20px'>
+    <h3 style='margin-top:0;color:var(--brand)'>Our Principles</h3>
+    <div class='grid' style='--gap:12px'>
+      <div class='card' style='padding:14px'><strong>Clarity First</strong><br><small>We make complex ideas simple and test understanding quickly.</small></div>
+      <div class='card' style='padding:14px'><strong>Data‑Guided</strong><br><small>Plans are driven by evidence: diagnostics → goals → results.</small></div>
+      <div class='card' style='padding:14px'><strong>Human + AI</strong><br><small>Mentors lead; smart tools amplify feedback and pace.</small></div>
+      <div class='card' style='padding:14px'><strong>Kind Accountability</strong><br><small>We pair warm support with clear milestones.</small></div>
+    </div>
+  </div>
+
+  <div class='grid' style='margin-top:20px'>
+    <div class='card'>
+      <h4>School Partnerships</h4>
+      <p>Clinic classes, masterclass series, and counselor toolkits for IB/A‑Level/AP.</p>
+    </div>
+    <div class='card'>
+      <h4>Student Success</h4>
+      <p>Subject mentorship + college counseling in a Dual‑Track plan that stays in sync.</p>
+    </div>
+    <div class='card'>
+      <h4>Technology</h4>
+      <p>Progress dashboards, question banks, and AI helpers that keep learning on track.</p>
+    </div>
+  </div>
+
+  <div class='card' style='margin-top:20px'>
+    <h3 style='margin:0 0 10px;color:var(--brand)'>Impact Snapshot</h3>
+    <div class='grid' style='grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px'>
+      <div class='card' style='text-align:center'>
+        <h2 style='margin:0;color:var(--brand)'>10k+</h2>
+        <small>Lesson hours delivered</small>
+      </div>
+      <div class='card' style='text-align:center'>
+        <h2 style='margin:0;color:var(--brand)'>8+ Regions</h2>
+        <small>AU · HK · SG · CN · UK · EU</small>
+      </div>
+      <div class='card' style='text-align:center'>
+        <h2 style='margin:0;color:var(--brand)'>95%</h2>
+        <small>Parent satisfaction</small>
+      </div>
+      <div class='card' style='text-align:center'>
+        <h2 style='margin:0;color:var(--brand)'>Top Offers</h2>
+        <small>Oxbridge · G5 · Go8 · HKU/CUHK/HKUST</small>
+      </div>
+    </div>
+  </div>
+
+  <div class='card' style='margin-top:20px;text-align:center'>
+    <h4 style='margin:0 0 10px'>Partner with the founders</h4>
+    <p style='margin:0 0 12px'>Plan a pilot clinic class or Dual‑Track rollout for your school.</p>
+    <a href='mailto:finance@nextgenscholars.asia?subject=Partner%20with%20NGS%20Founders&body=Hello%20NGS%20team%2C%20we%27d%20like%20to%20discuss%20a%20school%20pilot.' class='costar-btn' style='position:static;box-shadow:none'>Email the team</a>
+  </div>
+</section>
+`,
+  vision: `
+  <section>
+    <div class="hero">
+      <h2>Vision &amp; Mission</h2>
+      <p><strong>Vision:</strong> Every student learns with clarity, confidence, and momentum—no confusion, just progress.</p>
+      <p><strong>Mission:</strong> Combine world‑class teaching with smart, kind technology so schools and families can deliver consistently great learning outcomes.</p>
+    </div>
+
+    <h3 style="color:var(--brand);margin:16px 0 10px">Our Pillars</h3>
+    <div class="grid">
+      <div class="card">
+        <h4 style="color:var(--brand);margin:0 0 6px">Clarity First</h4>
+        <p style="margin:0;color:var(--muted)">Make complex ideas simple. Each lesson targets one core concept with fast checks for understanding.</p>
+      </div>
+      <div class="card">
+        <h4 style="color:var(--brand);margin:0 0 6px">Data‑Guided Plans</h4>
+        <p style="margin:0;color:var(--muted)">Diagnostics → goals → feedback. Evidence shapes pacing, homework, and clinics—never guesswork.</p>
+      </div>
+      <div class="card">
+        <h4 style="color:var(--brand);margin:0 0 6px">Human + AI</h4>
+        <p style="margin:0;color:var(--muted)">Mentors lead. Tools amplify: question banks, progress dashboards, and writing helpers integrated into lessons.</p>
+      </div>
+      <div class="card">
+        <h4 style="color:var(--brand);margin:0 0 6px">Kind Accountability</h4>
+        <p style="margin:0;color:var(--muted)">Warm support with clear milestones. Students know “what good looks like” and how to get there.</p>
+      </div>
+    </div>
+
+    <h3 style="color:var(--brand);margin:24px 0 10px">What Success Looks Like</h3>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <div class="card" style="display:flex;gap:10px;align-items:flex-start">
+        <span style="color:var(--brand);font-weight:900">✔</span>
+        <div><strong>Concept mastery</strong><br><small>Students can teach back the idea, not just repeat steps.</small></div>
+      </div>
+      <div class="card" style="display:flex;gap:10px;align-items:flex-start">
+        <span style="color:var(--brand);font-weight:900">✔</span>
+        <div><strong>Predictable progress</strong><br><small>Goals per week/term with visible growth on dashboards.</small></div>
+      </div>
+      <div class="card" style="display:flex;gap:10px;align-items:flex-start">
+        <span style="color:var(--brand);font-weight:900">✔</span>
+        <div><strong>Confident writing</strong><br><small>Clear structure for TOK/EE/essays; feedback loops are fast.</small></div>
+      </div>
+      <div class="card" style="display:flex;gap:10px;align-items:flex-start">
+        <span style="color:var(--brand);font-weight:900">✔</span>
+        <div><strong>Ready for interviews</strong><br><small>Reasoning, articulation, and evidence—on demand.</small></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px">
+      <h3 style="margin:0 0 12px;color:var(--brand)">Impact Snapshot</h3>
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+        <div class="card" style="text-align:center"><h2 style="margin:0;color:var(--brand)">10k+</h2><small>Lesson hours delivered</small></div>
+        <div class="card" style="text-align:center"><h2 style="margin:0;color:var(--brand)">8+ Regions</h2><small>AU · HK · SG · CN · UK · EU</small></div>
+        <div class="card" style="text-align:center"><h2 style="margin:0;color:var(--brand)">95%</h2><small>Parent satisfaction</small></div>
+        <div class="card" style="text-align:center"><h2 style="margin:0;color:var(--brand)">Top Offers</h2><small>Oxbridge · G5 · Go8 · HKU/CUHK/HKUST</small></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px;text-align:center">
+      <h4 style="margin:0 0 10px">Bring the vision to your school</h4>
+      <p style="margin:0 0 12px">Ask for a pilot clinic class or a Dual‑Track rollout plan.</p>
+      <a href="mailto:finance@nextgenscholars.asia?subject=Vision%20%26%20Mission%20—%20School%20Pilot&body=Hi%20NGS%2C%20we%27d%20love%20to%20explore%20a%20pilot..." class="costar-btn" style="position:static;box-shadow:none">Contact NGS</a>
+    </div>
+  </section>
+  `,
+      blueprint:`<h3>Blue Print</h3><p>Our strategic blueprint for scalable, high-impact learning.</p>
+        <div style='display:flex;justify-content:center;align-items:center;min-height:300px;'>
+          <form id='blueprintForm'>
+            <label for='bpName'>Name</label>
+            <input type='text' id='bpName' name='Name' required>
+            <label for='bpEmail'>Email</label>
+            <input type='email' id='bpEmail' name='Email' required>
+            <label for='bpSchool'>School</label>
+            <input type='text' id='bpSchool' name='School' required>
+            <label for='bpRequest'>Request</label>
+            <textarea id='bpRequest' name='Request' required></textarea>
+            <button type='submit'>Send Request</button>
+          </form>
+        </div>
+        <div id='bpMessage' style='margin-top:15px;font-weight:600;color:green;display:none;text-align:center;'>Request has been sent!</div>`,
+      hybrid:`<h3>Hybrid Learning Solution</h3><p>On-campus clinic classes combined with online masterclasses.</p>
+        <div style='display:flex;justify-content:center;align-items:center;min-height:300px;'>
+          <form id='hybridForm'>
+            <label for='hyName'>Name</label>
+            <input type='text' id='hyName' name='Name' required>
+            <label for='hyEmail'>Email</label>
+            <input type='email' id='hyEmail' name='Email' required>
+            <label for='hySchool'>School</label>
+            <input type='text' id='hySchool' name='School' required>
+            <label for='hyRequest'>Request</label>
+            <textarea id='hyRequest' name='Request' required></textarea>
+            <button type='submit'>Send Request</button>
+          </form>
+        </div>
+        <div id='hyMessage' style='margin-top:15px;font-weight:600;color:green;display:none;text-align:center;'>Request has been sent!</div>`,
+      dual:`<h3>Dual-Track Learning Solution</h3><p>Academic learning and college counseling delivered in sync.</p>
+        <div style='display:flex;justify-content:center;align-items:center;min-height:300px;'>
+          <form id='dualForm'>
+            <label for='duName'>Name</label>
+            <input type='text' id='duName' name='Name' required>
+            <label for='duEmail'>Email</label>
+            <input type='email' id='duEmail' name='Email' required>
+            <label for='duSchool'>School</label>
+            <input type='text' id='duSchool' name='School' required>
+            <label for='duRequest'>Request</label>
+            <textarea id='duRequest' name='Request' required></textarea>
+            <button type='submit'>Send Request</button>
+          </form>
+        </div>
+        <div id='duMessage' style='margin-top:15px;font-weight:600;color:green;display:none;text-align:center;'>Request has been sent!</div>`,
+      online:`<h3>Online Certificate Program</h3><p>Flexible skill-based micro-credentials.</p>
+        <div style='display:flex;justify-content:center;align-items:center;min-height:300px;'>
+          <form id='onlineForm'>
+            <label for='onName'>Name</label>
+            <input type='text' id='onName' name='Name' required>
+            <label for='onEmail'>Email</label>
+            <input type='email' id='onEmail' name='Email' required>
+            <label for='onSchool'>School</label>
+            <input type='text' id='onSchool' name='School' required>
+            <label for='onRequest'>Request</label>
+            <textarea id='onRequest' name='Request' required></textarea>
+            <button type='submit'>Send Request</button>
+          </form>
+        </div>
+        <div id='onMessage' style='margin-top:15px;font-weight:600;color:green;display:none;text-align:center;'>Request has been sent!</div>`
+    };
+
+    const studyContentMap={
+      program:"<h3>Program & Payment</h3><p>Flexible program structures and payment options.</p>",
+      mentorship:"<h3>College Mentorship</h3><p>Application guidance, essay support, and interview prep.</p>",
+      mapping:"<h3>High School Mapping</h3><p>Strategic planning for your high-school journey.</p>",
+      teachers:`<h3>Teacher Profile</h3>
+        <p>Meet our global team of mentors.</p>
+        <div class='grid'>
+
+          <!-- 1. Nicole (with photo) -->
+          <div class='card tutor-card'>
+            <img src="Nicole.jpg" alt="Nicole Wan" class="tutor-photo">
+            <h4>Nicole Wan</h4><small>Law, University of Bristol</small>
+            <ul>
+              <li>Specialises in English, TOK, Extended Essay, and Uni Applications</li>
+              <li>Bilingual (English/Chinese) – makes complex concepts simple</li>
+              <li>Mentored student into Cambridge Law | Strong academic writing support</li>
+            </ul>
+          </div>
+
+          <!-- 2. Jayden -->
+          <div class='card tutor-card'>
+            <img src="Jayden.jpg" alt="Nicole Wan" class="tutor-photo">
+            <h4>Jayden Park</h4><small>AI, Yonsei University</small>
+            <ul>
+              <li>IB/A-Level/AP expert in Math, Physics, Chem, and CS</li>
+              <li>Super responsive – answers all questions and researches tough ones</li>
+              <li>AMC12 1st Place | AP CS A: 5/5 | 3+ years tutoring experience</li>
+            </ul>
+          </div>
+
+          <!-- 3. Scarlett Wu -->
+          <div class='card tutor-card'>
+            <img src="Scarlet.jpg" alt="Nicole Wan" class="tutor-photo">
+            <h4>Scarlett Wu</h4><small>MBA, University of Texas</small>
+            <ul>
+              <li>Fortune 500 Executive & Silicon Valley Tech Leader</li>
+              <li>20+ years leading engineering teams</li>
+              <li>Expert interviewer who has hired 500+ graduates</li>
+            </ul>
+          </div>
+
+          <!-- 4. Daisy Chung -->
+          <div class='card tutor-card'>
+             <img src="Daisy.jpg" alt="Nicole Wan" class="tutor-photo">
+            <h4>Daisy Chung</h4><small>IT, Moansh University</small>
+            <ul>
+              <li>Makes IT & Math easy with real-world analogies</li>
+              <li>Patient and empathetic – great with beginners and practical learners</li>
+              <li>Builds strong student trust and learning confidence</li>
+            </ul>
+          </div>
+
+          <!-- 5. Sophie -->
+          <div class='card tutor-card'>
+             <img src="Sophie.jpg" alt="Nicole Wan" class="tutor-photo">
+            <h4>Sophie Beerens</h4><small>Fine Arts, KABK The Hague</small>
+            <ul>
+              <li>History specialist (French, Russian, American Revolutions + Ancient World)</li>
+              <li>Adapts to all ages and learning styles – engaging and clear</li>
+              <li>Highly rated for her interactive, question-led approach</li>
+            </ul>
+          </div>
+
+          <!-- 6. Hannah -->
+          <div class='card tutor-card'>
+            <img src="Hannah.jpg" alt="Nicole Wan" class="tutor-photo">
+            <h4>Hannah Harms</h4><small>Archaeology, University of Melbourne</small>
+            <ul>
+              <li>History specialist (French, Russian, American Revolutions + Ancient World)</li>
+              <li>Adapts to all ages and learning styles – engaging and clear</li>
+              <li>Highly rated for her interactive, question-led approach</li>
+            </ul>
+          </div>
+
+          <!-- 7. Philip -->
+          <div class='card tutor-card'>
+            <img src="Philip.jpg" alt="Nicole Wan" class="tutor-photo">
+            <h4>Philip Wong</h4><small>Econ, Moansh University</small>
+            <ul>
+              <li>Teaches IB, A-Level, VCE, HKDSE Economics, Accounting, and Japanese</li>
+              <li>JLPT N1 certified – also supports Japanese studies</li>
+              <li>Experienced with global students | Adapts teaching to fit your pace</li>
+            </ul>
+            <em>“Data‑driven, engaging, and bilingual.”</em>
+          </div>
+
+          <!-- 8. Rayna Chan -->
+          <div class='card tutor-card'>
+            <img src="Rayna.jpg" alt="Nicole Wan" class="tutor-photo">
+            <h4>Rayna Chan</h4><small>Actuarial, Moansh University</small>
+            <ul>
+              <li>Maths, Econ, and Finance made clear with real-world applications</li>
+              <li>Strong in data analysis, exam prep, and breaking down tough topics</li>
+              <li>Treasurer experience = real leadership + money management skills</li>
+            </ul>
+          </div>
+
+          <!-- 9. Leonore Li -->
+          <div class='card tutor-card'>
+            <img src="Leonore.jpg" alt="Nicole Wan" class="tutor-photo">
+            <h4>Leonore Li</h4><small>Biomedical Science, KCL</small>
+            <ul>
+              <li>HL Bio specialist – helped student go from 3 → 6 in 2 weeks</li>
+              <li>Flexible, calm teaching style with strong parent communication</li>
+              <li>Medaled in British Bio & Chem Olympiads</li>
+            </ul>
+          </div>
+
+          <!-- 10. Jasmine Harris -->
+          <div class='card tutor-card'>
+            <img src="Jasmine.jpg" alt="Nicole Wan" class="tutor-photo">
+            <h4>Jasmine Harris</h4><small>English Lit, University of Warwick</small>
+            <ul>
+              <li>Teaches students aged 3–adult across Asia & remotely</li>
+              <li>Fun, discussion-based English classes with flexible goals</li>
+              <li>Background in editing, creative writing, and cultural storytelling</li>
+            </ul>
+          </div>
+
+          <!-- 11. Alexa -->
+          <div class='card tutor-card'>
+            <img src="Alexa.jpg" alt="Nicole Wan" class="tutor-photo">
+            <h4>Alexa Meng</h4><small>Doctor of Music Arts, Illinois University</small>
+            <ul>
+              <li>Associate Professor at a renowned music conservatory</li>
+              <li>Expert in guiding students to gain admission to top-tier global music schools</li>
+            </ul>
+          </div>
+
+          <!-- 12. Valerie -->
+          <div class='card tutor-card'>
+            <img src="Valerie.jpg" alt="Nicole Wan" class="tutor-photo">
+            <h4>Valerie Zhou</h4><small>Business Management, Essex University</small>
+            <ul>
+              <li>Senior college advisor for top-tier international schools. IELTS perfect score mentor.</li>
+              <li>Counselor accredited by Bitish Council and American School Counselor Associations</li>
+              <li>15 years of experience working in leading international schools in China</li>
+            </ul>
+          </div>
+
+          <!-- 13. Nancy Wu -->
+          <div class='card tutor-card'>
+            <img src="Nancy.jpg" alt="Nicole Wan" class="tutor-photo">
+            <h4>Nancy Wu</h4><small>Mechanical Engineering, University of Melborune</small>
+            <ul>
+              <li>Co-founder of Zeta Technology, focused on delivering AI and Web3-powered education for future-ready students</li>
+              <li>Former engineer on ACRUX, Australia’s first student-built satellite project</li>
+              <li>Experienced in hands-on, project-based STEM education & College Guidance to Singaporean and Australian Universities </li>
+            </ul>
+          </div>
+
+        </div>`
+    };
+
+  const communityContentMap={
+    showcase:`<h3>Community Showcase</h3><p>Student projects, alumni stories, and webinar replays.</p>`,
+    membership:`<h3>Membership Plans</h3>
+      <p>Choose the subscription that fits your needs.</p>
+      <div class='grid'>
+        <div class='card'>
+          <h4>NGS Connects</h4>
+          <ul>
+            <li>Monthly school reports</li>
+            <li>Growth mapping and diagnostics</li>
+            <li>Exclusive parent webinars</li>
+          </ul>
+          <em>“Stay connected with your child’s journey.”</em>
+        </div>
+        <div class='card'>
+          <h4>NGS Inspires</h4>
+          <ul>
+            <li>Access to global mentor clinics</li>
+            <li>Masterclasses and recorded sessions</li>
+            <li>Community showcase opportunities</li>
+          </ul>
+          <em>“Inspiration and resources at your fingertips.”</em>
+        </div>
+      </div>`
+  };
+
+    /* Submenu navigation + content swap */
+    document.querySelectorAll('[data-sub]').forEach(link=>{
+      link.addEventListener('click',e=>{
+        e.preventDefault();
+        location.hash='#partner';
+        document.getElementById('partnerContent').innerHTML=partnerContentMap[link.dataset.sub];
+        attachFormHandler();
+        closeNav();
+      });
+    });
+    document.querySelectorAll('[data-study]').forEach(link=>{
+      link.addEventListener('click',e=>{
+        e.preventDefault();
+        location.hash='#study';
+        document.getElementById('studyContent').innerHTML=studyContentMap[link.dataset.study];
+        closeNav();
+      });
+    });
+    document.querySelectorAll('[data-community]').forEach(link=>{
+      link.addEventListener('click',e=>{
+        e.preventDefault();
+        location.hash='#community';
+        document.getElementById('communityContent').innerHTML=communityContentMap[link.dataset.community];
+        closeNav();
+      });
+    });
+
+    /* Mobile nav */
+    const burger=document.querySelector('.hamburger');
+    const nav=document.querySelector('.nav');
+    function closeNav(){nav.classList.remove('open');burger.setAttribute('aria-expanded','false');}
+    burger.addEventListener('click',()=>{const open=nav.classList.toggle('open');burger.setAttribute('aria-expanded',open?'true':'false');});
+    function isMobile(){return window.matchMedia('(max-width: 720px)').matches}
+    document.querySelectorAll('.nav > ul > li > a.has-sub').forEach(a=>{
+      a.addEventListener('click',e=>{
+        if(isMobile()){e.preventDefault();a.parentElement.classList.toggle('open');}
+      })
+    });
+    window.addEventListener('resize',()=>{ if(!isMobile()) closeNav(); });
+
+    /* Ensure top links work even without hashchange */
+    document.querySelectorAll('[data-link]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        const href=a.getAttribute('href')||'#home';
+        if(location.hash!==href){ location.hash=href; }
+        setActive(href);
+        closeNav();
+      })
+    });
+
+    /* Forms: mailto + success message + auto‑home */
+    function buildMailto(name,email,school,req,subjectPrefix){
+      const subject=encodeURIComponent(`${subjectPrefix} from ${name}`);
+      const body=encodeURIComponent(`Name: ${name}\nEmail: ${email}\nSchool: ${school}\n\nRequest:\n${req}`);
+      return `mailto:finance@nextgenscholars.asia?subject=${subject}&body=${body}`;
+    }
+    function attachFormHandler(){
+      const map = [
+        {id:'blueprint', prefix:'Blue Print Request'},
+        {id:'hybrid',    prefix:'Hybrid Learning Request'},
+        {id:'dual',      prefix:'Dual-Track Request'},
+        {id:'online',    prefix:'Online Certificate Request'}
+      ];
+      map.forEach(({id,prefix})=>{
+        const form=document.getElementById(id+'Form');
+        if(!form) return;
+        form.addEventListener('submit',ev=>{
+          ev.preventDefault();
+          const name   = document.getElementById(id.slice(0,2)+'Name').value.trim();
+          const email  = document.getElementById(id.slice(0,2)+'Email').value.trim();
+          const school = document.getElementById(id.slice(0,2)+'School').value.trim();
+          const req    = document.getElementById(id.slice(0,2)+'Request').value.trim();
+          window.location.href = buildMailto(name,email,school,req,prefix);
+          const msg = document.getElementById(id+'Message'); if(msg) msg.style.display='block';
+          setTimeout(()=>{location.hash='#home';setActive('#home');},2000);
+        },{once:true});
+      });
+    }
+  </script>
+</body>
+</html>

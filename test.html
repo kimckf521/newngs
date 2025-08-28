@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NGS — NextGen Scholars</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --brand:#e84545; --brand2:#7c4dff; --ink:#222; --muted:#666; --bg:#fafafa;
+      --card:#ffffff; --line:#eeeeee;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,'Noto Sans',sans-serif}
+    img{max-width:100%;display:block}
+    h1,h2,h3,h4{margin:0 0 8px}
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:1180px;margin:auto;padding:28px 20px}
+    .grid{display:grid;gap:20px}
+    .btn{display:inline-block;padding:12px 18px;border-radius:10px;font-weight:800}
+    .btn-primary{background:#fff;color:var(--brand);box-shadow:0 4px 14px rgba(0,0,0,.12)}
+    .btn-dark{background:#111;color:#fff}
+    .badge{display:inline-block;border:1px solid var(--line);padding:8px 14px;border-radius:999px;font-weight:700;background:#fff}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+    .pill{border-radius:20px}
+
+    /* HERO */
+    .hero{
+      position:relative;color:#111;text-align:center;overflow:hidden;
+      background:#fff;
+    }
+    .hero .cap{position:relative;height:56vh;min-height:380px;border-radius:0 0 24px 24px;overflow:hidden}
+    .hero .cap::before{
+      content:"";position:absolute;inset:0;background:
+      linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.05));
+    }
+    .hero .cap img{width:100%;height:100%;object-fit:cover}
+    .hero .headline{
+      position:absolute;inset:0;display:grid;place-items:center;color:#fff;
+      padding:0 16px;text-shadow:0 6px 18px rgba(0,0,0,.35)
+    }
+    .hero h1{font-size:40px;font-weight:900;letter-spacing:.3px}
+    .hero p{max-width:720px;margin:10px auto 0;font-size:17px;line-height:1.6}
+
+    /* PROGRAMS */
+    .programs h2{font-weight:900;font-size:28px;margin-bottom:14px}
+    .programs .grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .program-card{display:grid;grid-template-rows:160px auto;padding:12px;transition:transform .2s}
+    .program-card:hover{transform:translateY(-4px)}
+    .program-thumb{border-radius:12px;overflow:hidden}
+    .program-thumb img{width:100%;height:100%;object-fit:cover}
+    .program-card h4{font-size:18px;font-weight:800;color:var(--brand);margin:10px 0 6px}
+    .program-card p{color:var(--muted);font-size:14px;margin:0 0 10px}
+
+    /* FOUNDER STORY */
+    .founder h2{font-weight:900;font-size:28px;margin-bottom:16px}
+    .founder .text{color:var(--muted);line-height:1.7}
+    .founder .people{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:16px}
+    .person{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+    .avatar{width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid var(--brand)}
+    .person b{display:block}
+    .person small{display:block;color:var(--muted)}
+
+    /* PARTNER WITH US STRIP */
+    .partner-band{
+      background:linear-gradient(135deg,#fef6f5 0%, #f1ecff 50%, #f0fff6 100%);
+      border-radius:16px;padding:24px;border:1px solid var(--line)
+    }
+    .partner-list{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .partner-card{padding:16px;border-radius:12px;border:1px dashed #e7e7e7;background:#fff}
+    .partner-card h4{color:var(--brand);margin-bottom:6px}
+
+    /* MEET + FORM */
+    .meet{grid-template-columns:1.1fr .9fr;align-items:center}
+    .meet img{border-radius:16px}
+    form{display:grid;gap:10px}
+    label{font-weight:700;font-size:13px;color:var(--muted)}
+    input,select,textarea{padding:11px 12px;border-radius:10px;border:1px solid #dcdcdc;font-family:inherit}
+    textarea{min-height:110px}
+    .form-card{padding:18px}
+    .hint{font-size:12px;color:var(--muted)}
+
+    /* GLOBAL COMMUNITY */
+    .world{
+      background:radial-gradient(1200px 400px at 30% 50%, #b0fff3 0%, rgba(176,255,243,0) 60%),
+                 radial-gradient(1200px 420px at 80% 40%, #d1c3ff 0%, rgba(209,195,255,0) 60%),
+                 linear-gradient(135deg,#e7fff6 0%,#f3eaff 100%);
+      border-radius:16px;padding:28px;border:1px solid var(--line)
+    }
+    .world h3{color:#0b6;letter-spacing:.2px}
+    .world small{color:var(--muted)}
+
+    /* INSPIRES */
+    .inspires{
+      background:radial-gradient(900px 300px at 20% 30%, #ffe2ef 0%, rgba(255,226,239,0) 60%),
+                 radial-gradient(900px 300px at 80% 70%, #e2fff3 0%, rgba(226,255,243,0) 60%),
+                 linear-gradient(135deg,#fff 0%,#f9f9ff 100%);
+      border-radius:16px;padding:26px;border:1px solid var(--line)
+    }
+    .inspires .grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .inspires h4{color:var(--brand)}
+
+    /* BIG CTA */
+    .cta{
+      display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center
+    }
+    .cta .blob{
+      aspect-ratio:1/1;border-radius:50%;
+      background:radial-gradient(circle at 30% 30%, #ff8dc1 0%, #b068ff 35%, #6dcfff 65%, #ffe68d 100%);
+      filter:saturate(110%);box-shadow:0 10px 26px rgba(0,0,0,.12)
+    }
+    .cta .nlogo{font-weight:900;font-size:44px;letter-spacing:.4px;color:#111}
+    .cta .links{display:flex;gap:10px;flex-wrap:wrap}
+    .cta .links a{padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;font-weight:700}
+
+    /* UTIL */
+    .sp-24{height:24px}
+    .sp-34{height:34px}
+    @media (max-width:980px){
+      .meet,.cta{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="cap">
+      <img src="https://images.unsplash.com/photo-1462536943532-57a629f6cc60?q=80&w=1600&auto=format&fit=crop" alt="Graduates throwing caps">
+      <div class="headline">
+        <div>
+          <h1>PARTNER WITH <br> NEXTGEN SCHOLARS</h1>
+          <p>We help schools and families run clinic classes, masterclasses, and Dual-Track programs across IB / A-Level / AP / HKDSE.</p>
+          <div style="margin-top:14px">
+            <a class="btn btn-primary" href="#programs">Explore Programs</a>
+            <a class="btn btn-dark" href="mailto:finance@nextgenscholars.asia?subject=Partner%20with%20NGS">Partner With Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+
+    <!-- PROGRAMS -->
+    <section id="programs" class="programs">
+      <h2>Our Programs</h2>
+      <div class="grid">
+        <article class="card program-card">
+          <div class="program-thumb">
+            <img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?q=80&w=1400&auto=format&fit=crop" alt="Partner With Us">
+          </div>
+          <div>
+            <h4>PARTNER WITH US</h4>
+            <p>Clinic classes, masterclass series, and counselor enablement for schools.</p>
+            <a class="badge" href="#partner">Learn more</a>
+          </div>
+        </article>
+        <article class="card program-card">
+          <div class="program-thumb">
+            <img src="https://images.unsplash.com/photo-1610484826967-09c5720778d0?q=80&w=1400&auto=format&fit=crop" alt="Study With Us">
+          </div>
+          <div>
+            <h4>STUDY WITH US</h4>
+            <p>Subject mentorship + college counseling in sync with your goals.</p>
+            <a class="badge" href="#study">See options</a>
+          </div>
+        </article>
+        <article class="card program-card">
+          <div class="program-thumb">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1400&auto=format&fit=crop" alt="Join NGS">
+          </div>
+          <div>
+            <h4>JOIN US</h4>
+            <p>Become part of our global community—webinars, showcases, and more.</p>
+            <a class="badge" href="#community">Membership</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="sp-34"></div>
+
+    <!-- FOUNDER STORY -->
+    <section class="founder">
+      <h2>Founder Story</h2>
+      <p class="text">
+        NextGen Scholars is a founder-led education & technology organization dedicated to
+        <strong>clarity-first teaching</strong> and <strong>kind accountability</strong>. We combine global mentoring with
+        data-guided tools so students move from confusion to confidence—fast.
+      </p>
+
+      <div class="people">
+        <!-- Replace images when ready -->
+        <div class="person">
+          <img class="avatar" src="https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=400&auto=format&fit=crop" alt="Kim">
+          <div><b>Kim Fung Chiu</b><small>Strategy & Programs</small></div>
+        </div>
+        <div class="person">
+          <img class="avatar" src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=400&auto=format&fit=crop" alt="Paul">
+          <div><b>Paul Chiu</b><small>Growth & Community</small></div>
+        </div>
+        <div class="person">
+          <img class="avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop" alt="Scarlett">
+          <div><b>Scarlett Wu</b><small>Operations & Outreach</small></div>
+        </div>
+        <div class="person">
+          <img class="avatar" src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=400&auto=format&fit=crop" alt="Nancy">
+          <div><b>Nancy Wu</b><small>Teaching & AI</small></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="sp-34"></div>
+
+    <!-- PARTNER WITH US STRIP -->
+    <section class="partner-band">
+      <h3 style="margin:0 0 14px;font-size:24px">Partner with Us</h3>
+      <div class="grid partner-list">
+        <div class="partner-card">
+          <h4>Clinic Classes</h4>
+          <p class="hint">Progress check-ins · mastery sessions · clear homework</p>
+        </div>
+        <div class="partner-card">
+          <h4>Partnership Programs</h4>
+          <p class="hint">School playbooks · staff training · data dashboards</p>
+        </div>
+        <div class="partner-card">
+          <h4>NGS Inspires</h4>
+          <p class="hint">Industry talks · competitions · alumni sessions</p>
+        </div>
+        <div class="partner-card">
+          <h4>Counselor Toolkits</h4>
+          <p class="hint">Interview prep · essay clinics · resource library</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="sp-34"></div>
+
+    <!-- MEET + FORM -->
+    <section class="grid meet">
+      <div>
+        <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=1400&auto=format&fit=crop" alt="Online meeting">
+      </div>
+      <div class="card form-card">
+        <h3 style="margin-bottom:6px;color:var(--brand)">Looking to Partner with NGS</h3>
+        <form onsubmit="event.preventDefault(); alert('Thanks! We will contact you shortly.');">
+          <div>
+            <label>Name</label>
+            <input placeholder="Your name" required>
+          </div>
+          <div>
+            <label>Email</label>
+            <input type="email" placeholder="you@example.com" required>
+          </div>
+          <div>
+            <label>School</label>
+            <input placeholder="School / Organization" required>
+          </div>
+          <div>
+            <label>Interest</label>
+            <select required>
+              <option value="">Select…</option>
+              <option>Clinic Classes</option>
+              <option>Partnership Program</option>
+              <option>NGS Inspires</option>
+              <option>Counselor Toolkit</option>
+            </select>
+          </div>
+          <div>
+            <label>Message</label>
+            <textarea placeholder="Tell us your goals…"></textarea>
+          </div>
+          <button class="btn btn-dark" type="submit">Send Enquiry</button>
+        </form>
+      </div>
+    </section>
+
+    <div class="sp-34"></div>
+
+    <!-- GLOBAL COMMUNITY -->
+    <section class="world">
+      <h3 style="margin-bottom:6px">NextGen Global Community</h3>
+      <small>Core & Partner Hubs: Melbourne · Hong Kong · Taiwan · Shenzhen · Bay Area · China</small>
+      <div class="sp-24"></div>
+      <img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?q=80&w=1600&auto=format&fit=crop" alt="World map">
+    </section>
+
+    <div class="sp-34"></div>
+
+    <!-- INSPIRES -->
+    <section class="inspires">
+      <h3 style="margin-bottom:10px">NextGen Inspires</h3>
+      <div class="grid">
+        <div class="card">
+          <h4>Global Industry Leaders</h4>
+          <p class="hint">Talks from founders, researchers, and creators.</p>
+        </div>
+        <div class="card">
+          <h4>Global Universities</h4>
+          <p class="hint">Admissions insights and student panels.</p>
+        </div>
+        <div class="card">
+          <h4>SPARK Labs</h4>
+          <p class="hint">Mini-projects that turn curiosity into skill.</p>
+        </div>
+        <div class="card">
+          <h4>Global Alumni</h4>
+          <p class="hint">Stories and mentorship from our community.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="sp-34"></div>
+
+    <!-- BIG CTA -->
+    <section class="cta">
+      <div>
+        <div class="nlogo">GET IN<br>TOUCH<br>WITH US</div>
+        <div class="sp-24"></div>
+        <div class="links">
+          <a href="mailto:finance@nextgenscholars.asia">Email</a>
+          <a href="#">WeChat</a>
+          <a href="#">Instagram</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">YouTube</a>
+        </div>
+      </div>
+      <div class="blob"></div>
+    </section>
+
+    <div class="sp-34"></div>
+
+  </div><!-- /wrap -->
+</body>
+</html>

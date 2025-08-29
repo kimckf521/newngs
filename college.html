@@ -1,4 +1,3 @@
-<h1>College</h1>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
   <style>
+    /* HERO */
+    .hero{position:relative;height:70vh;min-height:420px;border-radius:0 0 24px 24px;overflow:hidden}
+    .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.55),rgba(0,0,0,.15))}
+    .hero__content{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fff;padding:0 16px}
+    .hero__content h1{font-size:40px;letter-spacing:.3px;font-weight:900}
+    .hero__content p{max-width:760px;margin:10px auto 0;font-size:18px;line-height:1.6}
+  
     :root{--brand:#e84545;--ink:#222;--muted:#666;--bg:#fafafa;--card:#fff;--line:#eee}
     *{box-sizing:border-box}
     body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;margin:0;background:var(--bg);color:var(--ink)}
@@ -77,6 +84,395 @@
       </nav>
     </div>
   </header>
+
+    <!-- HERO -->
+    <section class="hero">
+    <img src="https://images.unsplash.com/photo-1462536943532-57a629f6cc60?q=80&w=1600&auto=format&fit=crop" alt="Graduates throwing caps">
+    </section>
+
+    <!-- NGS COLLEGE COUNSELING TEAM -->
+    <section style="padding:60px 20px;background:#fff;width:100%">
+      <div style="max-width:1180px;margin:auto">
+        <!-- Title -->
+        <h2 style="text-align:center;font-size:32px;font-weight:900;margin-bottom:10px">
+          NGS College Counseling Team
+        </h2>
+        <!-- Flags -->
+        <div style="text-align:center;margin-bottom:40px;font-size:28px">
+          🇺🇸 🇬🇧 🇨🇦 🇦🇺 🇭🇰 🇸🇬
+        </div>
+
+        <!-- Team Grid -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start">
+
+          <!-- Scarlett -->
+          <div style="display:flex;gap:16px">
+            <img src="https://via.placeholder.com/90" alt="Scarlett" style="width:90px;height:90px;border-radius:50%;object-fit:cover">
+            <div>
+              <h3 style="margin:0 0 6px;font-size:16px">
+                Scarlett Sampson | MBA @ University of Texas
+              </h3>
+              <p style="margin:0;font-size:14px;line-height:1.6">
+                Fortune 500 Executive & Silicon Valley Tech Leader<br>
+                20+ years leading engineering teams<br>
+                Expert interviewer who has hired 500+ graduates<br>
+                🌟 Industry Insider: Deep connections in tech/business sectors<br>
+                🌟 Specialized in career coaching, leadership development, mentor wellness, and academic mentoring
+              </p>
+            </div>
+          </div>
+
+          <!-- Alexa -->
+          <div style="display:flex;gap:16px">
+            <img src="https://via.placeholder.com/90" alt="Alexa" style="width:90px;height:90px;border-radius:50%;object-fit:cover">
+            <div>
+              <h3 style="margin:0 0 6px;font-size:16px">
+                Alexa Meng | Doctor of Music Arts @ Illinois University
+              </h3>
+              <p style="margin:0;font-size:14px;line-height:1.6">
+                MA from Eastman School of Music, BA from Central Conservatory of Music<br>
+                Associate Professor at a renowned music conservatory<br>
+                Expert in guiding students to gain admission to top-tier global music schools<br>
+                🌟 Extensive frontline teaching experience, specializing in music portfolio preparation and admissions counseling
+              </p>
+            </div>
+          </div>
+
+          <!-- Nancy -->
+          <div style="display:flex;gap:16px">
+            <img src="https://via.placeholder.com/90" alt="Nancy" style="width:90px;height:90px;border-radius:50%;object-fit:cover">
+            <div>
+              <h3 style="margin:0 0 6px;font-size:16px">
+                Nancy Wu | Mechanical Engineering @ Melbourne U
+              </h3>
+              <p style="margin:0;font-size:14px;line-height:1.6">
+                Top IB graduate from Singapore; Expert in multiple curriculums<br>
+                Co-founder of Zeta Technology, focused on delivering AI and Web3-powered education<br>
+                Former engineer on ACRUX, Australia’s first student-built satellite project<br>
+                🌟 Experienced in STEM education & College Guidance to Singaporean and Australian Universities
+              </p>
+            </div>
+          </div>
+
+          <!-- Nicole -->
+          <div style="display:flex;gap:16px">
+            <img src="https://via.placeholder.com/90" alt="Nicole" style="width:90px;height:90px;border-radius:50%;object-fit:cover">
+            <div>
+              <h3 style="margin:0 0 6px;font-size:16px">
+                Nicole Wen | Law @ University of Bristol | IB 40
+              </h3>
+              <p style="margin:0;font-size:14px;line-height:1.6">
+                Specialises in English, TOK, Extended Essay, and Uni Applications<br>
+                Bilingual (English/Chinese) – makes complex concepts simple<br>
+                Mentored student into Cambridge Law<br>
+                🌟 Strong academic writing support
+              </p>
+            </div>
+          </div>
+
+          <!-- Valerie -->
+          <div style="display:flex;gap:16px">
+            <img src="https://via.placeholder.com/90" alt="Valerie" style="width:90px;height:90px;border-radius:50%;object-fit:cover">
+            <div>
+              <h3 style="margin:0 0 6px;font-size:16px">
+                Valerie Zhou | Business Management @ Essex University
+              </h3>
+              <p style="margin:0;font-size:14px;line-height:1.6">
+                IELTS perfect score mentor. Independent Artist.<br>
+                🌟 15 years of experience working in tier-one international schools<br>
+                Native level proficiency in English, Mandarin, Cantonese.<br>
+                Contemporary Art Curator. Visual Artist.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- NGS COLLEGE MENTORSHIP PROGRAM -->
+    <section style="width:100%;background:#fff">
+      <div style="display:grid;grid-template-columns:1fr 1fr;min-height:420px">
+
+        <!-- Left: Image + Button -->
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px">
+          <img src="https://images.unsplash.com/photo-1505739775895-9f61c76d7a8c?q=80&w=1200&auto=format&fit=crop"
+              alt="Bridge City" 
+              style="max-width:90%;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.15);margin-bottom:20px">
+          <a href="contact.html" 
+            style="display:inline-block;background:linear-gradient(90deg,#6a11cb,#2575fc);
+                    color:#fff;font-weight:700;padding:12px 28px;border-radius:40px;
+                    font-size:15px;text-decoration:none">
+            Free Consultation
+          </a>
+        </div>
+
+        <!-- Right: Content -->
+        <div style="background:#3ddad7;color:#000;padding:50px;display:flex;align-items:center">
+          <div>
+            <h2 style="font-size:30px;font-weight:900;margin-bottom:20px">NGS College Mentorship Program</h2>
+            <p style="line-height:1.7;margin-bottom:18px">
+              The <strong>NGS College Mentorship Program</strong> is a personalized guidance initiative designed to 
+              empower students in navigating the complex journey of college admissions. 
+              Through Four-on-one mentorship, students receive tailored support in identifying their passions, 
+              refining their academic and extracurricular profiles, and building a strategic plan for university applications.
+            </p>
+            <p style="line-height:1.7">
+              The program emphasizes informed decision-making, helping students select the right colleges and programs 
+              while meeting application requirements and deadlines. With expert mentorship, students are equipped to 
+              confidently pursue their higher education goals and thrive in their academic future.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  <!-- GLOBAL APPLICATION -->
+  <section style="padding:60px 20px;width:100%;
+    background:linear-gradient(135deg,#d7b6ff 0%,#a9f1ff 35%,#b8ffcf 65%,#ffb3e6 100%)">
+    <div style="max-width:1180px;margin:auto">
+
+      <!-- Title -->
+      <h2 style="text-align:center;font-size:36px;font-weight:900;margin:0 0 12px">
+        Global Application
+      </h2>
+
+      <!-- Flags -->
+      <div style="text-align:center;font-size:28px;margin-bottom:26px">
+        🇺🇸 🇬🇧 🇨🇦 🇦🇺 🇭🇰 🇸🇬
+      </div>
+
+      <!-- 4 cards -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px">
+
+        <!-- Card 1 -->
+        <div style="background:rgba(255,255,255,.65);backdrop-filter:blur(4px);
+                    border:1px solid rgba(0,0,0,.15);border-radius:20px;padding:24px">
+          <h3 style="margin:0 0 14px;font-size:18px;font-weight:900;line-height:1.3">
+            Comprehensive<br>College Plan
+          </h3>
+          <ul style="margin:0;padding-left:18px;line-height:1.8">
+            <li>Academic Planning</li>
+            <li>College List</li>
+            <li>PS/CV Writing</li>
+            <li>Reference Letter</li>
+            <li>Interview Prep</li>
+            <li>Meet Industry Mentors</li>
+            <li>Find Your Tribe</li>
+          </ul>
+        </div>
+
+        <!-- Card 2 -->
+        <div style="background:rgba(255,255,255,.65);backdrop-filter:blur(4px);
+                    border:1px solid rgba(0,0,0,.15);border-radius:20px;padding:24px">
+          <h3 style="margin:0 0 14px;font-size:18px;font-weight:900">Portfolio<br>Preparation</h3>
+          <ul style="margin:0;padding-left:18px;line-height:1.8">
+            <li>Visual Arts Portfolio</li>
+            <li>Music Portfolio</li>
+          </ul>
+        </div>
+
+        <!-- Card 3 -->
+        <div style="background:rgba(255,255,255,.65);backdrop-filter:blur(4px);
+                    border:1px solid rgba(0,0,0,.15);border-radius:20px;padding:24px">
+          <h3 style="margin:0 0 14px;font-size:18px;font-weight:900">Exam Preparation</h3>
+          <ul style="margin:0;padding-left:18px;line-height:1.8">
+            <li>SAT/IELTS prep</li>
+            <li>Essay Writing Clinic</li>
+            <li>Subject Tutoring</li>
+            <li>Competition Tutoring</li>
+          </ul>
+        </div>
+
+        <!-- Card 4 -->
+        <div style="background:rgba(255,255,255,.65);backdrop-filter:blur(4px);
+                    border:1px solid rgba(0,0,0,.15);border-radius:20px;padding:24px">
+          <h3 style="margin:0 0 14px;font-size:18px;font-weight:900">Diploma (optional)</h3>
+          <ul style="margin:0;padding-left:18px;line-height:1.8">
+            <li>Distant Learning</li>
+            <li>Hybrid Learning</li>
+            <li>Dual-track Learning</li>
+            <li>On-campus Exams</li>
+            <li>Highschool Diploma</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+    <!-- GLOBAL COMMUNITY -->
+    <section class="global-community" style="
+    padding:60px 20px;
+    border-radius:16px;
+    background:linear-gradient(90deg,#7f4dff 0%, #4cc3ff 40%, #3ad19f 100%);
+    color:#fff;
+    margin:40px 0;">
+    
+    <div class="wrap" style="text-align:left">
+        <h2 style="font-size:34px;font-weight:900;margin-bottom:20px">
+        NextGen Global<br>Community
+        </h2>
+
+        <!-- World Map -->
+        <div style="display:flex;justify-content:flex-start;align-items:center;gap:40px;flex-wrap:wrap">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1200px-World_map_-_low_resolution.svg.png" 
+            alt="World map" 
+            style="max-width:500px;width:100%;height:auto;filter:brightness(0) invert(1)">
+        </div>
+
+        <!-- Locations -->
+        <p style="margin-top:20px;font-size:16px;font-weight:500;color:#000;text-align:center;background:#fff;padding:10px 16px;border-radius:8px;display:inline-block">
+        San Francisco · Melbourne · Hong Kong · Taiwan · Greater Bay Area China
+        </p>
+    </div>
+    </section>
+
+    <!-- NEXTGEN INSPIRES -->
+    <section style="padding:60px 20px;
+      background:linear-gradient(135deg,#d7b6ff 0%,#a9f1ff 35%,#b8ffcf 65%,#ffb3e6 100%);
+      width:100%">
+      <div style="max-width:1180px;margin:auto">
+
+        <!-- Title -->
+        <h2 style="text-align:center;font-size:36px;font-weight:900;margin-bottom:40px">
+          NextGen Inspires
+        </h2>
+
+        <!-- 4 Columns -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px;text-align:center">
+
+          <!-- Global Industry Leaders -->
+          <div>
+            <img src="https://via.placeholder.com/120" alt="Global Industry Leaders" 
+                style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:16px">
+            <h3 style="font-size:18px;font-weight:800;margin-bottom:10px">Global Industry Leaders</h3>
+            <p style="font-size:14px;line-height:1.6;color:#333;text-align:left">
+              Connect with leaders at the forefront of innovation and excellence across diverse industries. 
+              Through expert-led webinars, mentorship programs, and career-focused workshops, students gain 
+              first-hand insights into emerging trends, career pathways, and the real-world skills required 
+              to succeed in a competitive global market.
+            </p>
+          </div>
+
+          <!-- Global Universities -->
+          <div>
+            <img src="https://via.placeholder.com/120" alt="Global Universities" 
+                style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:16px">
+            <h3 style="font-size:18px;font-weight:800;margin-bottom:10px">Global Universities</h3>
+            <p style="font-size:14px;line-height:1.6;color:#333;text-align:left">
+              Explore partnerships with renowned universities worldwide, offering students exclusive access 
+              to admissions guidance, campus tours, and networking opportunities.
+            </p>
+          </div>
+
+          <!-- SPARK LAB -->
+          <div>
+            <img src="https://via.placeholder.com/120" alt="SPARK LAB" 
+                style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:16px">
+            <h3 style="font-size:18px;font-weight:800;margin-bottom:10px">SPARK LAB</h3>
+            <p style="font-size:14px;line-height:1.6;color:#333;text-align:left">
+              The SPARK LAB is an interactive platform connecting Global K-12 students to collaborate, innovate, 
+              and create. By fostering a global network of young minds, the SPARK LAB inspires students to think 
+              boldly, develop a global perspective, and take the lead in shaping the future.
+            </p>
+          </div>
+
+          <!-- Global Alumni -->
+          <div>
+            <img src="https://via.placeholder.com/120" alt="Global Alumni" 
+                style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:16px">
+            <h3 style="font-size:18px;font-weight:800;margin-bottom:10px">Global Alumni</h3>
+            <p style="font-size:14px;line-height:1.6;color:#333;text-align:left">
+              Leverage a thriving network of international alumni who have successfully pursued their 
+              academic and professional goals. This domain offers students opportunities to learn from 
+              the experiences of those who have walked similar paths, providing mentorship, guidance, 
+              and inspiration.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- BIG CTA -->
+    <section style="margin:0;width:100%">
+    <div style="display:grid;grid-template-columns:50% 50%;width:100%;min-height:500px">
+
+        <!-- Left: Contact Info -->
+        <div style="background:#000;color:#fff;display:flex;flex-direction:column;
+                    justify-content:center;align-items:flex-start;padding:60px;gap:24px">
+        <!-- Logo -->
+        <div style="font-size:52px;font-weight:900;
+                    background:linear-gradient(135deg,#00f0ff,#ff2ea1);
+                    -webkit-background-clip:text;
+                    -webkit-text-fill-color:transparent;
+                    margin-bottom:20px">
+            N
+        </div>
+        <!-- Title -->
+        <h2 style="font-size:56px;font-weight:900;line-height:1.1;margin:0">
+            GET IN<br>TOUCH<br>WITH US
+        </h2>
+        <!-- Email -->
+        <p style="margin:0;font-size:18px">info@nextgenscholars.asia</p>
+        <!-- Social icons -->
+        <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:12px">
+            <div style="text-align:center">
+            <a href="https://work.weixin.qq.com/kfid/kfc86f854c023857983">
+                <img src="https://via.placeholder.com/60" alt="WeChat" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
+            </a>
+            <div style="font-size:13px;color:#aaa">WeChat</div>
+            </div>
+            <div style="text-align:center">
+            <a href="https://work.weixin.qq.com/kfid/kfc86f854c023857983">
+                <img src="https://via.placeholder.com/60" alt="视频号" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
+            </a>
+            <div style="font-size:13px;color:#aaa">视频号</div>
+            </div>
+            <div style="text-align:center">
+            <a href="https://xhslink.com/m/ARVy7jFyzLd">
+                <img src="https://via.placeholder.com/60" alt="小红书" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
+            </a>
+            <div style="font-size:13px;color:#aaa">小红书</div>
+            </div>
+            <div style="text-align:center">
+            <a href="https://www.linkedin.com/company/nextgenscholarsasia">
+                <img src="https://via.placeholder.com/60" alt="LinkedIn" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
+            </a>
+            <div style="font-size:13px;color:#aaa">LinkedIn</div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Right: Graphic -->
+        <div style="background:radial-gradient(circle at center,#3020ff 0%,#2b2a86 100%);
+                    display:flex;justify-content:center;align-items:center">
+        <div style="position:relative;width:340px;height:340px">
+            <!-- Four blobs -->
+            <div style="width:230px;height:230px;border-radius:50%;
+                        background:radial-gradient(circle,#ff8dc1 0%,#c068ff 100%);
+                        position:absolute;top:0;left:55px;opacity:.85"></div>
+            <div style="width:230px;height:230px;border-radius:50%;
+                        background:radial-gradient(circle,#ff8dc1 0%,#c068ff 100%);
+                        position:absolute;bottom:0;left:55px;opacity:.85"></div>
+            <div style="width:230px;height:230px;border-radius:50%;
+                        background:radial-gradient(circle,#ff8dc1 0%,#c068ff 100%);
+                        position:absolute;top:55px;left:0;opacity:.85"></div>
+            <div style="width:230px;height:230px;border-radius:50%;
+                        background:radial-gradient(circle,#ff8dc1 0%,#c068ff 100%);
+                        position:absolute;top:55px;right:0;opacity:.85"></div>
+            <!-- Center Label -->
+            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+                        background:#fff;padding:10px 20px;border-radius:24px;font-weight:900;color:#000;text-align:center">
+            NextGen<br>Scholars
+            </div>
+        </div>
+        </div>
+
+    </div>
+    </section>
 
 </body>
 </html>

@@ -1,4 +1,3 @@
-<h1>Programs</h1>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
   <style>
+    /* HERO */
+    .hero{position:relative;height:70vh;min-height:420px;border-radius:0 0 24px 24px;overflow:hidden}
+    .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.55),rgba(0,0,0,.15))}
+    .hero__content{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fff;padding:0 16px}
+    .hero__content h1{font-size:40px;letter-spacing:.3px;font-weight:900}
+    .hero__content p{max-width:760px;margin:10px auto 0;font-size:18px;line-height:1.6}
+  
     :root{--brand:#e84545;--ink:#222;--muted:#666;--bg:#fafafa;--card:#fff;--line:#eee}
     *{box-sizing:border-box}
     body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;margin:0;background:var(--bg);color:var(--ink)}
@@ -77,6 +84,392 @@
       </nav>
     </div>
   </header>
+
+    <!-- HERO -->
+    <section class="hero">
+    <img src="https://images.unsplash.com/photo-1462536943532-57a629f6cc60?q=80&w=1600&auto=format&fit=crop" alt="Graduates throwing caps">
+    </section>
+
+    <!-- PROGRAMMES -->
+    <section style="padding:60px 20px;background:#fff;width:100%">
+      <div style="max-width:1180px;margin:auto;text-align:center">
+        <h2 style="font-size:32px;font-weight:900;margin-bottom:20px">PROGRAMMES</h2>
+        <p style="max-width:780px;margin:0 auto 40px;line-height:1.6;color:#444;font-size:15px">
+          The class contents are closely aligned with the exam syllabus, systematically covering 90% of the key knowledge points. 
+          It ensures that students can understand, learn effectively, and improve quickly.
+        </p>
+
+        <!-- Image -->
+        <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=1200&auto=format&fit=crop" 
+            alt="Online class" 
+            style="max-width:720px;width:100%;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.1);margin-bottom:30px">
+
+        <!-- Buttons -->
+        <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap">
+          <span style="background:linear-gradient(90deg,#2ecc71,#27ae60);color:#000;font-weight:700;padding:12px 22px;border-radius:40px;font-size:15px">
+            Foundation
+          </span>
+          <span style="background:linear-gradient(90deg,#56ccf2,#2f80ed);color:#000;font-weight:700;padding:12px 22px;border-radius:40px;font-size:15px">
+            Synchronization
+          </span>
+          <span style="background:linear-gradient(90deg,#f2994a,#f2c94c);color:#000;font-weight:700;padding:12px 22px;border-radius:40px;font-size:15px">
+            Acceleration
+          </span>
+          <span style="background:linear-gradient(90deg,#eb5757,#ff0080);color:#000;font-weight:700;padding:12px 22px;border-radius:40px;font-size:15px">
+            Exam Prep
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAM OPTIONS: IB / A-LEVEL IGCSE / AP -->
+    <section style="padding:60px 20px;background:#fff;width:100%">
+      <div style="max-width:1180px;margin:auto">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px">
+
+          <!-- IB Card -->
+          <div style="background:#fff;border:1px solid #ccc;border-radius:20px;padding:24px;line-height:1.6;box-shadow:0 4px 12px rgba(0,0,0,.08)">
+            <h3 style="font-size:20px;font-weight:800;margin-bottom:12px">IB</h3>
+            <p style="margin:0 0 12px">
+              English<br>
+              Math<br>
+              Physics | Biology | Chemistry | CS<br>
+              Economy | Business | Geography | History<br>
+              Visual Art | Theatre<br>
+              HL | SL
+            </p>
+            <ul style="margin:0;padding-left:18px;color:#222">
+              <li>Comprehensive tutoring across all subjects</li>
+              <li>Tutors with average IB score of 42+</li>
+              <li>Over 1000+ hours of teaching experience</li>
+              <li>Mock exams and past papers practice</li>
+              <li>Tailored to diverse learning needs</li>
+            </ul>
+          </div>
+
+          <!-- A-LEVEL IGCSE Card -->
+          <div style="background:#fff;border:1px solid #ccc;border-radius:20px;padding:24px;line-height:1.6;box-shadow:0 4px 12px rgba(0,0,0,.08)">
+            <h3 style="font-size:20px;font-weight:800;margin-bottom:12px">A-LEVEL<br>IGCSE</h3>
+            <p style="margin:0 0 12px">
+              English | English Literature<br>
+              Math | Further Math | Computer Science<br>
+              Physics | Biology | Chemistry<br>
+              Economy | Business | Accounting<br>
+              Geography | History | Art History
+            </p>
+            <ul style="margin:0;padding-left:18px;color:#222">
+              <li>Excellent homeschool options</li>
+              <li>Expert tutoring for all A-Level subjects</li>
+              <li>Covering major exam boards such as AQA, CIE and Edexcel</li>
+              <li>Fast-track and personalised learning</li>
+              <li>Strong track record of helping students achieve A/A* grades</li>
+            </ul>
+          </div>
+
+          <!-- AP Card -->
+          <div style="background:#fff;border:1px solid #ccc;border-radius:20px;padding:24px;line-height:1.6;box-shadow:0 4px 12px rgba(0,0,0,.08)">
+            <h3 style="font-size:20px;font-weight:800;margin-bottom:12px">AP</h3>
+            <p style="margin:0 0 12px">
+              English Language | English Literature<br>
+              Math | Calculus | Statistics<br>
+              Micro Economy | Biology | Chemistry<br>
+              Human Geography | World History | Art History
+            </p>
+            <ul style="margin:0;padding-left:18px;color:#222">
+              <li>Tutors from Top 50 universities worldwide</li>
+              <li>Focusing on helping students achieve top scores (4s and 5s) in their AP exams</li>
+              <li>Practice with College Board–style questions to enhance exam readiness</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TAKE CHARGE SECTION -->
+    <section style="padding:60px 20px;background:#fff;width:100%;text-align:center">
+      <div style="max-width:980px;margin:auto">
+        
+        <!-- Title -->
+        <h2 style="font-size:32px;font-weight:900;margin-bottom:30px">
+          Take charge of Your Own Learning
+        </h2>
+
+        <!-- Image -->
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop" 
+            alt="Online Learning" 
+            style="max-width:700px;width:100%;margin-bottom:30px;box-shadow:0 6px 18px rgba(0,0,0,.1);border-radius:10px">
+        
+        <br>
+        <!-- Button -->
+        <a href="contact.html" 
+          style="display:inline-block;background:linear-gradient(90deg,#2ecc71,#27ae60);color:#000;
+                  font-weight:700;padding:14px 28px;border-radius:40px;font-size:16px;text-decoration:none">
+          Book a Trial Class
+        </a>
+      </div>
+    </section>
+
+    <!-- A COMPREHENSIVE AND TAILORED CURRICULUM -->
+    <section style="padding:60px 20px;background:linear-gradient(135deg,#a1c4fd,#c2e9fb,#d4fc79,#96e6a1);width:100%">
+      <div style="max-width:1180px;margin:auto">
+        <h2 style="text-align:center;font-size:32px;font-weight:900;margin-bottom:30px">
+          A Comprehensive and Tailored Curriculum
+        </h2>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center">
+          
+          <!-- Left: Student image -->
+          <div style="text-align:center">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop"
+                alt="Student"
+                style="max-width:320px;width:100%;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.15)">
+          </div>
+
+          <!-- Right: Text Content -->
+          <div style="background:#27ae60;color:#fff;padding:30px;border-radius:12px">
+            <h3 style="font-size:18px;font-weight:800;margin-bottom:10px">Personalize Tutoring</h3>
+            <p style="margin-bottom:18px;font-size:14px;line-height:1.6">
+              No cookie-cutter teaching or one-size-fits-all courses. Every student is a unique learner. 
+              At NGS, we provide an entry assessment, design a personalized study plan, offer real-time tracking, 
+              and give periodic feedback to support your growth every step of the way.
+            </p>
+
+            <h3 style="font-size:18px;font-weight:800;margin-bottom:10px">Clear Learning Goals</h3>
+            <p style="margin-bottom:18px;font-size:14px;line-height:1.6">
+              Whether you aim to prepare in advance, achieve a short-term score boost, or excel in exam preparation, 
+              NGS tutors will create a study plan tailored to your specific goals.
+            </p>
+
+            <h3 style="font-size:18px;font-weight:800;margin-bottom:10px">Popular-Subjects Covered</h3>
+            <p style="margin-bottom:24px;font-size:14px;line-height:1.6">
+              NGS offers 1-on-1 tutoring for most subjects across IB, A-Level, AP, and IGCSE curriculums.
+            </p>
+
+            <div style="text-align:center">
+              <a href="contact.html"
+                style="display:inline-block;background:#000;color:#fff;
+                        font-weight:700;padding:12px 28px;border-radius:40px;
+                        font-size:15px;text-decoration:none">
+                Book a Trial Class
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES + TESTIMONIALS -->
+    <section style="padding:60px 20px;background:#fff;width:100%">
+      <div style="max-width:1180px;margin:auto">
+        
+        <!-- Top Row: Features -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;margin-bottom:60px;text-align:center">
+          <div>
+            <h3 style="font-size:20px;font-weight:800;margin-bottom:12px">Classes Recorded<br>on ClassIn</h3>
+            <p style="color:#444;line-height:1.6;font-size:15px">
+              Classes are fully recorded on ClassIn: All you need is a computer or a tablet to attend classes, 
+              and you can review key points from the lessons anytime.
+            </p>
+          </div>
+          <div>
+            <h3 style="font-size:20px;font-weight:800;margin-bottom:12px">Parental<br>Monitoring</h3>
+            <p style="color:#444;line-height:1.6;font-size:15px">
+              During the lessons, parents can sit in to ensure peace of mind 
+              and comprehensively track their child's learning progress.
+            </p>
+          </div>
+          <div>
+            <h3 style="font-size:20px;font-weight:800;margin-bottom:12px">100% Satisfaction</h3>
+            <p style="color:#444;line-height:1.6;font-size:15px">
+              High-quality teaching and personalized learning that saves study time, 
+              with students spanning across Asia.
+            </p>
+          </div>
+        </div>
+
+        <!-- Bottom Row: Testimonials -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;text-align:center">
+          
+          <!-- Testimonial 1 -->
+          <div>
+            <img src="https://via.placeholder.com/100" alt="Noah" 
+                style="width:100px;height:100px;border-radius:50%;object-fit:cover;margin-bottom:10px">
+            <h4 style="margin:0;font-weight:600">Noah</h4>
+            <p style="font-style:italic;color:#444;font-size:14px;line-height:1.6;margin-top:8px">
+              "I have been studying A-level Math and Physics with NGS for about a year now, 
+              and I couldn’t be happier with my experience. The teaching quality is simply outstanding. 
+              The tutors are not only highly knowledgeable but also genuinely passionate about helping students succeed."
+            </p>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div>
+            <img src="https://via.placeholder.com/100" alt="Sarah" 
+                style="width:100px;height:100px;border-radius:50%;object-fit:cover;margin-bottom:10px">
+            <h4 style="margin:0;font-weight:600">Sarah</h4>
+            <p style="font-style:italic;color:#444;font-size:14px;line-height:1.6;margin-top:8px">
+              “I enjoy learning flexibly with NGS. Not only I’m able to learn while traveling with family, 
+              but am able to learn at my own pace and preferences. I’m able to finish my 3 main course study 
+              at NGS and am looking forward to complete my finals.”
+            </p>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div>
+            <img src="https://via.placeholder.com/100" alt="Noah" 
+                style="width:100px;height:100px;border-radius:50%;object-fit:cover;margin-bottom:10px">
+            <h4 style="margin:0;font-weight:600">Noah</h4>
+            <p style="font-style:italic;color:#444;font-size:14px;line-height:1.6;margin-top:8px">
+              “Thanks to NGS, I’ve seen significant improvement in my understanding of IB Math and Computer Science, 
+              and I feel well-prepared for my upcoming exams. I highly recommend NGS to anyone looking for a supportive 
+              and effective learning environment!”
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- GLOBAL COMMUNITY -->
+    <section class="global-community" style="
+    padding:60px 20px;
+    border-radius:16px;
+    background:linear-gradient(90deg,#7f4dff 0%, #4cc3ff 40%, #3ad19f 100%);
+    color:#fff;
+    margin:40px 0;">
+    
+    <div class="wrap" style="text-align:left">
+        <h2 style="font-size:34px;font-weight:900;margin-bottom:20px">
+        NextGen Global<br>Community
+        </h2>
+
+        <!-- World Map -->
+        <div style="display:flex;justify-content:flex-start;align-items:center;gap:40px;flex-wrap:wrap">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1200px-World_map_-_low_resolution.svg.png" 
+            alt="World map" 
+            style="max-width:500px;width:100%;height:auto;filter:brightness(0) invert(1)">
+        </div>
+
+        <!-- Locations -->
+        <p style="margin-top:20px;font-size:16px;font-weight:500;color:#000;text-align:center;background:#fff;padding:10px 16px;border-radius:8px;display:inline-block">
+        San Francisco · Melbourne · Hong Kong · Taiwan · Greater Bay Area China
+        </p>
+    </div>
+    </section>
+
+    <!-- OUR PROGRAMS -->
+    <section class="programs wrap" style="background:#f0f0f0;padding:60px 0px;">
+    <h2 style="text-align:center;font-size:32px;font-weight:900;margin-bottom:40px">Our Programs</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;align-items:start">
+        
+        <!-- Partner With Us -->
+        <div style="text-align:center">
+        <img src="https://via.placeholder.com/400x280" alt="Partner With Us" style="width:100%;border-radius:10px;margin-bottom:18px">
+        <h3 style="font-size:16px;font-weight:900;color:#3c21a1;margin-bottom:10px;letter-spacing:1px">PARTNER WITH US</h3>
+        <p style="font-size:14px;line-height:1.6;color:#444">
+            We offer expert online international programs, admissions coaching, and personalized tutoring services designed to empower educators and students to achieve academic excellence and unlock their full potential.
+        </p>
+        </div>
+
+        <!-- Study With Us -->
+        <div style="text-align:center">
+        <img src="https://via.placeholder.com/400x280" alt="Study With Us" style="width:100%;border-radius:10px;margin-bottom:18px">
+        <h3 style="font-size:16px;font-weight:900;color:#c2185b;margin-bottom:10px;letter-spacing:1px">STUDY WITH US</h3>
+        <p style="font-size:14px;line-height:1.6;color:#444">
+            Perhaps you’re dreaming of gaining admission to your dream university but unsure how to get there. Our personalized mentoring services are here to guide you every step of the way.
+        </p>
+        </div>
+
+        <!-- Join Us -->
+        <div style="text-align:center">
+        <img src="https://via.placeholder.com/400x280" alt="Join Us" style="width:100%;border-radius:10px;margin-bottom:18px">
+        <h3 style="font-size:16px;font-weight:900;color:#2e7d32;margin-bottom:10px;letter-spacing:1px">JOIN US</h3>
+        <p style="font-size:14px;line-height:1.6;color:#444">
+            Connect global industry leaders, global universities, and global learners at NextGen Scholars!
+        </p>
+        </div>
+
+    </div>
+    </section>
+
+    <!-- BIG CTA -->
+    <section style="margin:0;width:100%">
+    <div style="display:grid;grid-template-columns:50% 50%;width:100%;min-height:500px">
+
+        <!-- Left: Contact Info -->
+        <div style="background:#000;color:#fff;display:flex;flex-direction:column;
+                    justify-content:center;align-items:flex-start;padding:60px;gap:24px">
+        <!-- Logo -->
+        <div style="font-size:52px;font-weight:900;
+                    background:linear-gradient(135deg,#00f0ff,#ff2ea1);
+                    -webkit-background-clip:text;
+                    -webkit-text-fill-color:transparent;
+                    margin-bottom:20px">
+            N
+        </div>
+        <!-- Title -->
+        <h2 style="font-size:56px;font-weight:900;line-height:1.1;margin:0">
+            GET IN<br>TOUCH<br>WITH US
+        </h2>
+        <!-- Email -->
+        <p style="margin:0;font-size:18px">info@nextgenscholars.asia</p>
+        <!-- Social icons -->
+        <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:12px">
+            <div style="text-align:center">
+            <a href="https://work.weixin.qq.com/kfid/kfc86f854c023857983">
+                <img src="https://via.placeholder.com/60" alt="WeChat" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
+            </a>
+            <div style="font-size:13px;color:#aaa">WeChat</div>
+            </div>
+            <div style="text-align:center">
+            <a href="https://work.weixin.qq.com/kfid/kfc86f854c023857983">
+                <img src="https://via.placeholder.com/60" alt="视频号" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
+            </a>
+            <div style="font-size:13px;color:#aaa">视频号</div>
+            </div>
+            <div style="text-align:center">
+            <a href="https://xhslink.com/m/ARVy7jFyzLd">
+                <img src="https://via.placeholder.com/60" alt="小红书" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
+            </a>
+            <div style="font-size:13px;color:#aaa">小红书</div>
+            </div>
+            <div style="text-align:center">
+            <a href="https://www.linkedin.com/company/nextgenscholarsasia">
+                <img src="https://via.placeholder.com/60" alt="LinkedIn" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
+            </a>
+            <div style="font-size:13px;color:#aaa">LinkedIn</div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Right: Graphic -->
+        <div style="background:radial-gradient(circle at center,#3020ff 0%,#2b2a86 100%);
+                    display:flex;justify-content:center;align-items:center">
+        <div style="position:relative;width:340px;height:340px">
+            <!-- Four blobs -->
+            <div style="width:230px;height:230px;border-radius:50%;
+                        background:radial-gradient(circle,#ff8dc1 0%,#c068ff 100%);
+                        position:absolute;top:0;left:55px;opacity:.85"></div>
+            <div style="width:230px;height:230px;border-radius:50%;
+                        background:radial-gradient(circle,#ff8dc1 0%,#c068ff 100%);
+                        position:absolute;bottom:0;left:55px;opacity:.85"></div>
+            <div style="width:230px;height:230px;border-radius:50%;
+                        background:radial-gradient(circle,#ff8dc1 0%,#c068ff 100%);
+                        position:absolute;top:55px;left:0;opacity:.85"></div>
+            <div style="width:230px;height:230px;border-radius:50%;
+                        background:radial-gradient(circle,#ff8dc1 0%,#c068ff 100%);
+                        position:absolute;top:55px;right:0;opacity:.85"></div>
+            <!-- Center Label -->
+            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+                        background:#fff;padding:10px 20px;border-radius:24px;font-weight:900;color:#000;text-align:center">
+            NextGen<br>Scholars
+            </div>
+        </div>
+        </div>
+
+    </div>
+    </section>
 
 </body>
 </html>

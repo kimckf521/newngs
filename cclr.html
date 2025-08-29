@@ -1,4 +1,3 @@
-<h1>CCLR</h1>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
   <style>
+
+    /* HERO */
+    .hero{position:relative;height:70vh;min-height:420px;border-radius:0 0 24px 24px;overflow:hidden}
+    .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.55),rgba(0,0,0,.15))}
+    .hero__content{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fff;padding:0 16px}
+    .hero__content h1{font-size:40px;letter-spacing:.3px;font-weight:900}
+    .hero__content p{max-width:760px;margin:10px auto 0;font-size:18px;line-height:1.6}
+
+    /* MEET + FORM */
+    .meet{grid-template-columns:1.1fr .9fr;align-items:center}
+    .meet img{border-radius:16px}
+    form{display:grid;gap:10px}
+    label{font-weight:700;font-size:13px;color:var(--muted)}
+    input,select,textarea{padding:11px;border-radius:10px;border:1px solid #dcdcdc;font-family:inherit}
+    textarea{min-height:110px}
+    .btn{display:inline-block;padding:12px 16px;border-radius:10px;font-weight:800;cursor:pointer;border:0}
+    .btn-dark{background:#111;color:#fff}
+
+    /* GLOBAL COMMUNITY */
+    .world{background:linear-gradient(135deg,#e7fff6,#f3eaff);border-radius:16px;padding:28px;border:1px solid var(--line);text-align:center}
+    .world img{margin-top:16px;border-radius:0}
+
+    /* NAVIGATION */
     :root{--brand:#e84545;--ink:#222;--muted:#666;--bg:#fafafa;--card:#fff;--line:#eee}
     *{box-sizing:border-box}
     body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;margin:0;background:var(--bg);color:var(--ink)}
@@ -77,6 +100,426 @@
       </nav>
     </div>
   </header>
+
+    <!-- HERO -->
+    <section class="hero">
+    <img src="https://images.unsplash.com/photo-1462536943532-57a629f6cc60?q=80&w=1600&auto=format&fit=crop" alt="Graduates throwing caps">
+    </section>
+
+    <!-- PARTNER WITH NEXTGEN SCHOLARS -->
+    <section style="padding:60px 20px;width:100%;background:#fff">
+    <div style="max-width:1180px;margin:auto">
+        
+        <!-- Title -->
+        <h2 style="font-size:32px;font-weight:900;margin-bottom:30px;text-align:center">
+        PARTNER WITH NEXTGEN SCHOLARS
+        </h2>
+        
+        <!-- Two Column Layout -->
+        <div style="display:grid;grid-template-columns:1fr 2fr;gap:40px;align-items:start">
+        
+        <!-- Left: Card -->
+        <div style="border:1px solid #ccc;border-radius:16px;padding:24px;line-height:1.6;background:#fafafa">
+            <h3 style="font-size:18px;font-weight:800;margin-bottom:12px">
+            Career College<br>Life Readiness Programme
+            </h3>
+            <ul style="margin:0;padding-left:18px;color:#222">
+            <li>Career Readiness</li>
+            <li>College Readiness</li>
+            <li>Life Readiness</li>
+            <li>Global Competency</li>
+            </ul>
+        </div>
+
+        <!-- Right: Text -->
+        <div style="color:#222;font-size:15px;line-height:1.7">
+            <p>
+            The NGS CCLR (College, Career, and Life Readiness) course is designed to provide 
+            a comprehensive framework for defining, guiding, and assessing students' critical 
+            competencies essential for academic success, career development, and social engagement.
+            </p>
+            <p>
+            Beyond academic achievements, the CCLR curriculum equips students with the skills 
+            and knowledge necessary to navigate university admissions, achieve career goals, 
+            and thrive in society. By empowering students, families, educators, and schools with 
+            reliable insights, CCLR ensures that every decision made for the student is 
+            well-informed, fostering success at every stage of their educational and 
+            professional journey.
+            </p>
+            <p>
+            Through its focus on college readiness, career competencies, and life skills, 
+            the CCLR course prepares students to seamlessly transition into higher education, 
+            the workforce, and society with confidence and capability.
+            </p>
+        </div>
+
+        </div>
+    </div>
+    </section>
+
+    <!-- CCLR Diagram — text inside circles & full circles visible -->
+    <section style="padding:40px 16px;width:100%;background:#fff">
+    <div style="max-width:980px;margin:auto;text-align:center">
+        <h2 style="font-weight:900;font-size:36px;line-height:1.15;margin:0 0 24px">
+        CAREER COLLEGE LIFE READINESS<br>PROGRAMME
+        </h2>
+
+        <!-- Wider viewBox + a little padding so every circle is fully visible -->
+        <svg viewBox="0 0 900 620" width="100%" height="auto" aria-label="Career College Life Readiness Programme">
+
+        <!-- Top: Life Readiness (blue) -->
+        <circle cx="450" cy="220" r="170" fill="none" stroke="#5DB3E6" stroke-width="26"/>
+        <!-- Bottom-left: College Readiness (gold) -->
+        <circle cx="330" cy="430" r="180" fill="none" stroke="#F0B310" stroke-width="26"/>
+        <!-- Bottom-right: Career Readiness (gold) -->
+        <circle cx="570" cy="430" r="180" fill="none" stroke="#F0B310" stroke-width="26"/>
+
+        <!-- Labels placed INSIDE each circle -->
+        <!-- Life Readiness -->
+        <text x="450" y="215" text-anchor="middle" font-family="Inter, Arial, sans-serif" fill="#6A36D6">
+            <tspan x="450" dy="-4" font-size="24">人生胜任力</tspan>
+            <tspan x="450" dy="28" font-size="22">Life Readiness</tspan>
+        </text>
+
+        <!-- College Readiness -->
+        <text x="330" y="430" text-anchor="middle" font-family="Inter, Arial, sans-serif" fill="#27AE60">
+            <tspan x="330" dy="-4" font-size="22">大学胜任力</tspan>
+            <tspan x="330" dy="26" font-size="20">College Readiness</tspan>
+        </text>
+
+        <!-- Career Readiness -->
+        <text x="570" y="430" text-anchor="middle" font-family="Inter, Arial, sans-serif" fill="#2D9CDB">
+            <tspan x="570" dy="-4" font-size="22">职业胜任力</tspan>
+            <tspan x="570" dy="26" font-size="20">Career Readiness</tspan>
+        </text>
+        </svg>
+    </div>
+    </section>
+
+    <!-- PARTNER WITH US -->
+    <section class="partner-with-us" style="padding:60px 20px;
+    background:linear-gradient(135deg,#dce9ff 0%,#f7f4ff 30%,#f8fff2 70%,#fffbdc 100%);
+    border-radius:16px;margin:40px 0">
+    <div class="wrap">
+        <h2 style="text-align:center;font-size:32px;font-weight:900;margin-bottom:40px">
+        Partner with Us
+        </h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px">
+        
+        <!-- CCLR -->
+        <div style="background:#fff;border:1px solid #e0e0e0;border-radius:14px;padding:24px">
+            <h3 style="font-size:18px;font-weight:800;margin-bottom:14px">
+            Career College<br>Life Readiness Programme
+            </h3>
+            <ul style="margin:0;padding-left:18px;line-height:1.6;color:#444">
+            <li>Career Readiness</li>
+            <li>College Readiness</li>
+            <li>Life Readiness</li>
+            <li>Global Competency</li>
+            </ul>
+        </div>
+        
+        <!-- Partnership Programmes -->
+        <div style="background:#fff;border:1px solid #e0e0e0;border-radius:14px;padding:24px">
+            <h3 style="font-size:18px;font-weight:800;margin-bottom:14px">
+            Partnership<br>Programmes
+            </h3>
+            <ul style="margin:0;padding-left:18px;line-height:1.6;color:#444">
+            <li>Hybrid Program</li>
+            <li>Dual-track Program</li>
+            <li>Online Diploma Program</li>
+            </ul>
+        </div>
+        
+        <!-- Inspires -->
+        <div style="background:#fff;border:1px solid #e0e0e0;border-radius:14px;padding:24px">
+            <h3 style="font-size:18px;font-weight:800;margin-bottom:14px">
+            NextGen Inspires
+            </h3>
+            <ul style="margin:0;padding-left:18px;line-height:1.6;color:#444">
+            <li>Global Industry Leaders</li>
+            <li>Global Universities</li>
+            <li>SPARK LAB</li>
+            <li>Global Alumni</li>
+            </ul>
+        </div>
+        
+        <!-- Connects -->
+        <div style="background:#fff;border:1px solid #e0e0e0;border-radius:14px;padding:24px">
+            <h3 style="font-size:18px;font-weight:800;margin-bottom:14px">
+            NextGen Connects
+            </h3>
+            <ul style="margin:0;padding-left:18px;line-height:1.6;color:#444">
+            <li>School Visits</li>
+            <li>School Reports</li>
+            <li>Growth Mapping</li>
+            <li>Academic Clinics</li>
+            </ul>
+        </div>
+        
+        </div>
+    </div>
+    </section>
+
+    <!-- PARTNER WITH NEXTGEN SCHOLARS -->
+    <section style="padding:60px 20px;width:100%;background:#fff">
+    <div style="max-width:1180px;margin:auto">
+        
+        <!-- Title -->
+        <h2 style="font-size:32px;font-weight:900;margin-bottom:30px;text-align:center">
+        PARTNER WITH NEXTGEN SCHOLARS
+        </h2>
+        
+        <!-- Two Column Layout -->
+        <div style="display:grid;grid-template-columns:1fr 2fr;gap:40px;align-items:start">
+        
+        <!-- Left: Card -->
+        <div style="border:1px solid #ccc;border-radius:16px;padding:24px;background:#fafafa;box-shadow:0 4px 12px rgba(0,0,0,.08)">
+            <h3 style="font-size:18px;font-weight:800;margin-bottom:12px;line-height:1.4">
+            Career College<br>Life Readiness Programme
+            </h3>
+            <ul style="margin:0;padding-left:18px;color:#222;line-height:1.8">
+            <li>Career Readiness</li>
+            <li>College Readiness</li>
+            <li>Life Readiness</li>
+            <li>Global Competency</li>
+            </ul>
+        </div>
+
+        <!-- Right: Text -->
+        <div style="color:#222;font-size:15px;line-height:1.7">
+            <p>
+            The NGS CCLR (College, Career, and Life Readiness) course is designed to provide 
+            a comprehensive framework for defining, guiding, and assessing students' critical 
+            competencies essential for academic success, career development, and social engagement.
+            </p>
+            <p>
+            Beyond academic achievements, the CCLR curriculum equips students with the skills 
+            and knowledge necessary to navigate university admissions, achieve career goals, 
+            and thrive in society. By empowering students, families, educators, and schools with 
+            reliable insights, CCLR ensures that every decision made for the student is 
+            well-informed, fostering success at every stage of their educational and 
+            professional journey.
+            </p>
+            <p>
+            Through its focus on college readiness, career competencies, and life skills, 
+            the CCLR course prepares students to seamlessly transition into higher education, 
+            the workforce, and society with confidence and capability.
+            </p>
+        </div>
+
+        </div>
+    </div>
+    </section>
+
+    <!-- OUR PROGRAMS -->
+    <section class="programs wrap" style="background:#f0f0f0;padding:60px 0px;">
+    <h2 style="text-align:center;font-size:32px;font-weight:900;margin-bottom:40px">Our Programs</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;align-items:start">
+        
+        <!-- Partner With Us -->
+        <div style="text-align:center">
+        <img src="https://via.placeholder.com/400x280" alt="Partner With Us" style="width:100%;border-radius:10px;margin-bottom:18px">
+        <h3 style="font-size:16px;font-weight:900;color:#3c21a1;margin-bottom:10px;letter-spacing:1px">PARTNER WITH US</h3>
+        <p style="font-size:14px;line-height:1.6;color:#444">
+            We offer expert online international programs, admissions coaching, and personalized tutoring services designed to empower educators and students to achieve academic excellence and unlock their full potential.
+        </p>
+        </div>
+
+        <!-- Study With Us -->
+        <div style="text-align:center">
+        <img src="https://via.placeholder.com/400x280" alt="Study With Us" style="width:100%;border-radius:10px;margin-bottom:18px">
+        <h3 style="font-size:16px;font-weight:900;color:#c2185b;margin-bottom:10px;letter-spacing:1px">STUDY WITH US</h3>
+        <p style="font-size:14px;line-height:1.6;color:#444">
+            Perhaps you’re dreaming of gaining admission to your dream university but unsure how to get there. Our personalized mentoring services are here to guide you every step of the way.
+        </p>
+        </div>
+
+        <!-- Join Us -->
+        <div style="text-align:center">
+        <img src="https://via.placeholder.com/400x280" alt="Join Us" style="width:100%;border-radius:10px;margin-bottom:18px">
+        <h3 style="font-size:16px;font-weight:900;color:#2e7d32;margin-bottom:10px;letter-spacing:1px">JOIN US</h3>
+        <p style="font-size:14px;line-height:1.6;color:#444">
+            Connect global industry leaders, global universities, and global learners at NextGen Scholars!
+        </p>
+        </div>
+
+    </div>
+    </section>
+
+    <!-- MEETING + FORM -->
+    <section class="wrap" style="padding:40px 20px 10px">
+    <div class="ngs-enquiry" style="
+        display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start">
+        
+        <!-- Left: image/video -->
+        <div>
+        <img
+            src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=1400&auto=format&fit=crop"
+            alt="Online meeting" style="width:100%;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.08)">
+        </div>
+
+        <!-- Right: form card -->
+        <form class="ngs-form" onsubmit="event.preventDefault(); alert('Thanks! We will contact you shortly.');"
+        style="border:1px solid #e4e4e4;border-radius:6px;overflow:hidden;background:#fff">
+
+        <!-- Title bar -->
+        <div style="
+            background:#2f54eb;          /* deep blue */
+            color:#ff2ea1;               /* magenta title like screenshot */
+            font-weight:900;
+            padding:12px 16px;
+            letter-spacing:.3px;">
+            Looking to Partner with NGS
+        </div>
+
+        <!-- Field stack -->
+        <div style="display:grid;gap:10px;padding:14px 16px;">
+            <div>
+            <label style="display:block;font-size:14px;color:#444;margin:4px 0 6px">Name</label>
+            <input type="text" required placeholder="Your name"
+                    style="width:100%;padding:11px;border:1px solid #e0e0e0;border-radius:4px;background:#f5f5f5;">
+            </div>
+
+            <div>
+            <label style="display:block;font-size:14px;color:#444;margin:4px 0 6px">School</label>
+            <input type="text" required placeholder="School / Organization"
+                    style="width:100%;padding:11px;border:1px solid #e0e0e0;border-radius:4px;background:#f5f5f5;">
+            </div>
+
+            <div>
+            <label style="display:block;font-size:14px;color:#444;margin:4px 0 6px">Email</label>
+            <input type="email" required placeholder="you@example.com"
+                    style="width:100%;padding:11px;border:1px solid #e0e0e0;border-radius:4px;background:#f5f5f5;">
+            </div>
+
+            <div>
+            <label style="display:block;font-size:14px;color:#444;margin:4px 0 6px">Mobile / WeChat</label>
+            <input type="text" placeholder="+61 … / your WeChat ID"
+                    style="width:100%;padding:11px;border:1px solid #e0e0e0;border-radius:4px;background:#f5f5f5;">
+            </div>
+
+            <div>
+            <label style="display:block;font-size:14px;color:#444;margin:4px 0 6px">Inquiries</label>
+            <textarea rows="5" placeholder="Tell us a bit about your goals…"
+                        style="width:100%;padding:11px;border:1px solid #e0e0e0;border-radius:4px;background:#f5f5f5;resize:vertical"></textarea>
+            </div>
+
+            <!-- optional submit -->
+            <button type="submit"
+                    style="margin-top:2px;align-self:start;background:#111;color:#fff;
+                        padding:10px 16px;border:0;border-radius:8px;font-weight:800;cursor:pointer">
+            Send
+            </button>
+        </div>
+        </form>
+    </div>
+    </section>
+
+    <!-- GLOBAL COMMUNITY -->
+    <section class="global-community" style="
+    padding:60px 20px;
+    border-radius:16px;
+    background:linear-gradient(90deg,#7f4dff 0%, #4cc3ff 40%, #3ad19f 100%);
+    color:#fff;
+    margin:40px 0;">
+    
+    <div class="wrap" style="text-align:left">
+        <h2 style="font-size:34px;font-weight:900;margin-bottom:20px">
+        NextGen Global<br>Community
+        </h2>
+
+        <!-- World Map -->
+        <div style="display:flex;justify-content:flex-start;align-items:center;gap:40px;flex-wrap:wrap">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1200px-World_map_-_low_resolution.svg.png" 
+            alt="World map" 
+            style="max-width:500px;width:100%;height:auto;filter:brightness(0) invert(1)">
+        </div>
+
+        <!-- Locations -->
+        <p style="margin-top:20px;font-size:16px;font-weight:500;color:#000;text-align:center;background:#fff;padding:10px 16px;border-radius:8px;display:inline-block">
+        San Francisco · Melbourne · Hong Kong · Taiwan · Greater Bay Area China
+        </p>
+    </div>
+    </section>
+
+    <!-- BIG CTA -->
+    <section style="margin:0;width:100%">
+    <div style="display:grid;grid-template-columns:50% 50%;width:100%;min-height:500px">
+
+        <!-- Left: Contact Info -->
+        <div style="background:#000;color:#fff;display:flex;flex-direction:column;
+                    justify-content:center;align-items:flex-start;padding:60px;gap:24px">
+        <!-- Logo -->
+        <div style="font-size:52px;font-weight:900;
+                    background:linear-gradient(135deg,#00f0ff,#ff2ea1);
+                    -webkit-background-clip:text;
+                    -webkit-text-fill-color:transparent;
+                    margin-bottom:20px">
+            N
+        </div>
+        <!-- Title -->
+        <h2 style="font-size:56px;font-weight:900;line-height:1.1;margin:0">
+            GET IN<br>TOUCH<br>WITH US
+        </h2>
+        <!-- Email -->
+        <p style="margin:0;font-size:18px">info@nextgenscholars.asia</p>
+        <!-- Social icons -->
+        <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:12px">
+            <div style="text-align:center">
+            <a href="https://work.weixin.qq.com/kfid/kfc86f854c023857983">
+                <img src="https://via.placeholder.com/60" alt="WeChat" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
+            </a>
+            <div style="font-size:13px;color:#aaa">WeChat</div>
+            </div>
+            <div style="text-align:center">
+            <a href="https://work.weixin.qq.com/kfid/kfc86f854c023857983">
+                <img src="https://via.placeholder.com/60" alt="视频号" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
+            </a>
+            <div style="font-size:13px;color:#aaa">视频号</div>
+            </div>
+            <div style="text-align:center">
+            <a href="https://xhslink.com/m/ARVy7jFyzLd">
+                <img src="https://via.placeholder.com/60" alt="小红书" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
+            </a>
+            <div style="font-size:13px;color:#aaa">小红书</div>
+            </div>
+            <div style="text-align:center">
+            <a href="https://www.linkedin.com/company/nextgenscholarsasia">
+                <img src="https://via.placeholder.com/60" alt="LinkedIn" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
+            </a>
+            <div style="font-size:13px;color:#aaa">LinkedIn</div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Right: Graphic -->
+        <div style="background:radial-gradient(circle at center,#3020ff 0%,#2b2a86 100%);
+                    display:flex;justify-content:center;align-items:center">
+        <div style="position:relative;width:340px;height:340px">
+            <!-- Four blobs -->
+            <div style="width:230px;height:230px;border-radius:50%;
+                        background:radial-gradient(circle,#ff8dc1 0%,#c068ff 100%);
+                        position:absolute;top:0;left:55px;opacity:.85"></div>
+            <div style="width:230px;height:230px;border-radius:50%;
+                        background:radial-gradient(circle,#ff8dc1 0%,#c068ff 100%);
+                        position:absolute;bottom:0;left:55px;opacity:.85"></div>
+            <div style="width:230px;height:230px;border-radius:50%;
+                        background:radial-gradient(circle,#ff8dc1 0%,#c068ff 100%);
+                        position:absolute;top:55px;left:0;opacity:.85"></div>
+            <div style="width:230px;height:230px;border-radius:50%;
+                        background:radial-gradient(circle,#ff8dc1 0%,#c068ff 100%);
+                        position:absolute;top:55px;right:0;opacity:.85"></div>
+            <!-- Center Label -->
+            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+                        background:#fff;padding:10px 20px;border-radius:24px;font-weight:900;color:#000;text-align:center">
+            NextGen<br>Scholars
+            </div>
+        </div>
+        </div>
+
+    </div>
+    </section>
 
 </body>
 </html>

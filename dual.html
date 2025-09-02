@@ -19,7 +19,7 @@
     body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;margin:0;background:var(--bg);color:var(--ink)}
 
     header{position:sticky;top:0;background:#fff;border-bottom:2px solid var(--brand);z-index:50}
-    .navwrap{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
+    .navwrap{display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
     .logo{font-weight:900;font-size:22px;color:var(--brand);letter-spacing:.4px;cursor:pointer;text-decoration:none}
     nav ul{list-style:none;display:flex;gap:14px;margin:0;padding:0}
     nav li{position:relative}
@@ -45,47 +45,55 @@
 </head>
 <body>
 
-  <header>
-    <div class="navwrap">
-      <a class="logo" href="home.html" data-link id="logo">NGS</a>
-      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
-      <nav id="site-nav">
-        <ul>
-          <li>
-            <a href="home.html" data-link>Partner With NGS ▾</a>
-            <ul>
-              <li><a href="cclr.html" data-link>CCLR Program</a></li>
-              <li><a href="hybrid.html" data-link>Hybrid Learning</a></li>
-              <li><a href="dual.html" data-link>Dual-track Learning</a></li>
-              <li><a href="diploma.html" data-link>Online Diploma Program</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="home.html" data-link>Study With Us ▾</a>
-            <ul>
-              <li><a href="programs.html" data-link>Programs</a></li>
-              <li><a href="college.html" data-link>College Mentorship</a></li>
-              <li><a href="highschool.html" data-link>Highschool Mapping</a></li>
-              <li><a href="faculty.html" data-link>Faculty</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="admissions.html" data-link>Admissions</a>
-          </li>
-          <li>
-            <a href="home.html" data-link>Join NGS Community ▾</a>
-            <ul>
-              <li><a href="inspires.html" data-link>NGS Inspires</a></li>
-              <li><a href="connects.html" data-link>NGS Connects</a></li>
-              <li><a href="#" data-link>Membership SignIn</a></li>
-            </ul>
-          </li>
-          <li><a href="#login" data-link>Log In</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <header style="background:#000;">
+    <div class="navwrap" style="display:flex;align-items:center;justify-content:space-between;">
+        
+        <!-- Logo on far left -->
+        <a class="logo" href="home.html" id="logo" style="margin-right:auto">
+        <img src="newlogo.png" alt="logo" style="height:50px">
+        </a>
 
+        <!-- Nav links in the middle -->
+        <nav id="site-nav" style="margin-left:auto;margin-right:auto">
+        <ul style="display:flex;gap:20px;list-style:none;margin:0;padding:0;align-items:center">
+            <li>
+            <a href="home.html" style="color:#fff;text-decoration:none">Partner With NGS ▾</a>
+            <ul>
+                <li><a href="cclr.html">CCLR Program</a></li>
+                <li><a href="hybrid.html">Hybrid Learning</a></li>
+                <li><a href="dual.html">Dual-track Learning</a></li>
+                <li><a href="diploma.html">Online Diploma Program</a></li>
+            </ul>
+            </li>
+            <li>
+            <a href="home.html" style="color:#fff;text-decoration:none">Study With Us ▾</a>
+            <ul>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="college.html">College Mentorship</a></li>
+                <li><a href="highschool.html">Highschool Mapping</a></li>
+                <li><a href="faculty.html">Faculty</a></li>
+            </ul>
+            </li>
+            <li><a href="admissions.html" style="color:#fff;text-decoration:none">Admissions</a></li>
+            <li>
+            <a href="home.html" style="color:#fff;text-decoration:none">Join NGS Community ▾</a>
+            <ul>
+                <li><a href="inspires.html">NGS Inspires</a></li>
+                <li><a href="connects.html">NGS Connects</a></li>
+                <li><a href="#">Membership SignIn</a></li>
+            </ul>
+            </li>
+        </ul>
+        </nav>
+
+        <!-- Log In on far right -->
+        <div style="margin-left:auto">
+        <a href="login.html" style="color:#fff;font-weight:700;text-decoration:none;padding:9px 14px;border-radius:6px;border:1px solid #fff">
+            Log In
+        </a>
+        </div>
+    </div>
+    </header>
 
     <!-- HERO -->
     <section class="hero">
@@ -333,7 +341,7 @@
         <div style="background:#000;color:#fff;display:flex;flex-direction:column;
                     justify-content:center;align-items:flex-start;padding:60px;gap:24px">
         <!-- Logo -->
-        <div style="font-size:52px;font-weight:900;
+        <div style="font-size:150px;font-weight:900;
                     background:linear-gradient(135deg,#00f0ff,#ff2ea1);
                     -webkit-background-clip:text;
                     -webkit-text-fill-color:transparent;
@@ -341,34 +349,34 @@
             N
         </div>
         <!-- Title -->
-        <h2 style="font-size:56px;font-weight:900;line-height:1.1;margin:0">
+        <h2 style="font-size:70px;font-weight:900;line-height:1.1;margin:0; align-self:center">
             GET IN<br>TOUCH<br>WITH US
         </h2>
         <!-- Email -->
-        <p style="margin:0;font-size:18px">info@nextgenscholars.asia</p>
+        <p style="margin:0;font-size:18px;align-self:center">info@nextgenscholars.asia</p>
         <!-- Social icons -->
-        <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:12px">
+        <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:12px; align-self:center">
             <div style="text-align:center">
             <a href="https://work.weixin.qq.com/kfid/kfc86f854c023857983">
-                <img src="https://via.placeholder.com/60" alt="WeChat" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
+                <img src="WeChat.png" alt="WeChat" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
             </a>
             <div style="font-size:13px;color:#aaa">WeChat</div>
             </div>
             <div style="text-align:center">
             <a href="https://work.weixin.qq.com/kfid/kfc86f854c023857983">
-                <img src="https://via.placeholder.com/60" alt="视频号" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
+                <img src="WeClass.png" alt="视频号" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
             </a>
             <div style="font-size:13px;color:#aaa">视频号</div>
             </div>
             <div style="text-align:center">
             <a href="https://xhslink.com/m/ARVy7jFyzLd">
-                <img src="https://via.placeholder.com/60" alt="小红书" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
+                <img src="RedNote.png" alt="小红书" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
             </a>
             <div style="font-size:13px;color:#aaa">小红书</div>
             </div>
             <div style="text-align:center">
             <a href="https://www.linkedin.com/company/nextgenscholarsasia">
-                <img src="https://via.placeholder.com/60" alt="LinkedIn" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
+                <img src="LinkedIn.png" alt="LinkedIn" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
             </a>
             <div style="font-size:13px;color:#aaa">LinkedIn</div>
             </div>
@@ -402,6 +410,56 @@
 
     </div>
     </section>
+
+    <!-- FOOTER -->
+    <footer style="background:#000;color:#fff;padding:40px 20px;font-family:Arial, sans-serif;">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:30px">
+        
+        <!-- Column 1: Menu -->
+        <div>
+            <ul style="list-style:none;margin:0;padding:0;font-size: larger;">
+                <li><a href="cclr.html" style="color:#fff;text-decoration:none;font-size: larger;margin: 0 10;">Partner with NGS</a></li>
+                <li><a href="programs.html" style="color:#fff;text-decoration:none;font-size: larger;">Study with NGS</a></li>
+                <li><a href="cclr.html" style="color:#fff;text-decoration:none;font-size: larger;">Partner with NGS</a></li>
+                <li><a href="cclr.html" style="color:#fff;text-decoration:none;font-size: larger;">Partner with NGS</a></li>
+            </ul>
+        </div>
+
+        <!-- Column 2: Locations 1 -->
+        <div>
+        <p style="margin:0 0 10px;font-weight:600">San Francisco</p>
+        <p style="margin:0 0 20px">xxx</p>
+
+        <p style="margin:0 0 10px;font-weight:600">Melbourne</p>
+        <p style="margin:0">262 Queen St, Melbourne VIC 3000</p>
+        </div>
+
+        <!-- Column 3: Locations 2 -->
+        <div>
+        <p style="margin:0 0 10px;font-weight:600">Hong Kong</p>
+        <p style="margin:0 0 20px">xxx</p>
+
+        <p style="margin:0 0 10px;font-weight:600">Shenzhen</p>
+        <p style="margin:0">深圳市南山区望海路南<br>海玫瑰花园二期4栋4C</p>
+        </div>
+
+        <!-- Column 4: Contact -->
+        <div style="text-align:right">
+        <p style="margin:0;font-weight:600">info@nextgenscholars.org</p>
+        </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div style="border-top:1px solid #333;margin-top:30px;padding-top:20px;font-size:13px;line-height:1.6;text-align:center;color:#aaa">
+        <p style="margin:0 0 8px">
+        <a href="#" style="color:#aaa;text-decoration:none">Privacy Policy</a> | 
+        <a href="#" style="color:#aaa;text-decoration:none">Terms of Service</a>
+        </p>
+        <p style="margin:0 0 4px">深圳市千瞳空间文化艺术有限公司版权所有 © 2025</p>
+        <p style="margin:0">粤ICP备2025400078号 粤公网安备 4403002025xxx</p>
+    </div>
+    </footer>
 
 
 </body>

@@ -41,6 +41,7 @@
       .hamburger{display:flex}
     }
   </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
 
@@ -217,23 +218,42 @@
       <div style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:30px;align-items:center">
         
         <!-- Left: Video / Image -->
-        <div style="position:relative">
-          <img src="https://via.placeholder.com/800x450.png?text=Video+Placeholder" 
-              alt="Global Leaders" 
-              style="width:100%;border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,.15)">
-          <!-- Play button overlay -->
-          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-                      width:80px;height:80px;background:#fff;border-radius:50%;
-                      display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(0,0,0,.3)">
-            <div style="width:0;height:0;border-top:14px solid transparent;border-bottom:14px solid transparent;
-                        border-left:22px solid #e74c3c;margin-left:6px"></div>
-          </div>
-          <!-- Bottom bar -->
-          <div style="background:#777;height:28px;width:100%;border-radius:0 0 8px 8px;
-                      margin-top:-6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px">
-            Video Controls
-          </div>
+    <div id="carouselexperts" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="leader1.jpg" alt="" style="width: 100%; height: 500px;">
         </div>
+        <div class="carousel-item">
+          <img src="leader2.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="leader3.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="leader4.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="leader5.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="leader6.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="leader7.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="leader8.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselexperts" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselexperts" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
 
         <!-- Right: Text -->
         <div style="background:linear-gradient(135deg,#ff512f,#f09819);color:#fff;
@@ -262,25 +282,42 @@
       <div style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:30px;align-items:center">
 
         <!-- Left: Video Placeholder -->
-        <div style="position:relative;text-align:center">
-          <img src="https://via.placeholder.com/800x450.png?text=Video+Placeholder" 
-              alt="SPARK LAB Video" 
-              style="width:100%;border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,.2)">
-          <!-- Play Button Overlay -->
-          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-                      width:80px;height:80px;background:#fff;border-radius:50%;
-                      display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(0,0,0,.3)">
-            <div style="width:0;height:0;border-top:14px solid transparent;
-                        border-bottom:14px solid transparent;
-                        border-left:22px solid #f39c12;margin-left:6px"></div>
-          </div>
-          <!-- Bottom Control Bar -->
-          <div style="background:#555;height:28px;width:100%;border-radius:0 0 8px 8px;
-                      margin-top:-6px;display:flex;align-items:center;justify-content:center;
-                      color:#eee;font-size:12px">
-            Video Controls
-          </div>
+    <div id="carousellab" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="lab1.png" alt="" style="width: 100%; height: 500px;">
         </div>
+        <div class="carousel-item">
+          <img src="lab2.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="lab3.png" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="lab4.png" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="lab5.png" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="lab6.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="lab7.png" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="lab8.png" alt="" style="width: 100%; height: 500px;">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousellab" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carousellab" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
 
         <!-- Right: Text -->
         <div style="text-align:left;color:#000;font-size:16px;line-height:1.7">
@@ -289,48 +326,6 @@
       </div>
     </div>
   </section>  
-
-  <!-- GLOBAL INDUSTRY LEADERS -->
-  <section style="padding:60px 20px;background:#fff;width:100%">
-    <div style="max-width:1180px;margin:auto">
-      <!-- Title -->
-      <h2 style="text-align:center;font-size:32px;font-weight:900;margin-bottom:30px">
-        Global Industry Leaders
-      </h2>
-
-      <!-- Two-column layout -->
-      <div style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:30px;align-items:center">
-        
-        <!-- Left: Video / Image -->
-        <div style="position:relative">
-          <img src="https://via.placeholder.com/800x450.png?text=Video+Placeholder" 
-              alt="Global Leaders" 
-              style="width:100%;border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,.15)">
-          <!-- Play button overlay -->
-          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-                      width:80px;height:80px;background:#fff;border-radius:50%;
-                      display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(0,0,0,.3)">
-            <div style="width:0;height:0;border-top:14px solid transparent;border-bottom:14px solid transparent;
-                        border-left:22px solid #e74c3c;margin-left:6px"></div>
-          </div>
-          <!-- Bottom bar -->
-          <div style="background:#777;height:28px;width:100%;border-radius:0 0 8px 8px;
-                      margin-top:-6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px">
-            Video Controls
-          </div>
-        </div>
-
-        <!-- Right: Text -->
-        <div style="background:linear-gradient(135deg,#ff512f,#f09819);color:#fff;
-                    padding:28px;border-radius:12px;font-size:15px;line-height:1.7">
-          <p style="margin:0">
-            <strong>Empower</strong> students and schools to achieve greater heights by fostering 
-            connections, offering bespoke learning opportunities, and cultivating a global perspective.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- GLOBAL UNIVERSITIES -->
   <section style="padding:60px 20px;background:#fff;width:100%">
@@ -342,26 +337,45 @@
       </h2>
 
       <!-- Video Placeholder -->
-      <div style="position:relative;display:inline-block;width:100%;max-width:780px">
-        <img src="https://via.placeholder.com/800x450.png?text=University+Video" 
-            alt="Global Universities Video"
-            style="width:100%;border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,.15)">
-
-        <!-- Play Button Overlay -->
-        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-                    width:80px;height:80px;background:#fff;border-radius:50%;
-                    display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(0,0,0,.3)">
-          <div style="width:0;height:0;border-top:14px solid transparent;
-                      border-bottom:14px solid transparent;
-                      border-left:22px solid #e74c3c;margin-left:6px"></div>
+    <div id="carouseluni" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="uni1.jpg" alt="" style="width: 100%; height: 500px;">
         </div>
-
-        <!-- Control Bar -->
-        <div style="background:#777;height:28px;width:100%;border-radius:0 0 8px 8px;
-                    margin-top:-6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px">
-          Video Controls
+        <div class="carousel-item">
+          <img src="uni2.jpeg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="uni3" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="uni4.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item active">
+          <img src="uni5.jpeg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item active">
+          <img src="uni6.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item active">
+          <img src="uni7.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item active">
+          <img src="uni8.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item active">
+          <img src="uni9.jpg" alt="" style="width: 100%; height: 500px;">
         </div>
       </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouseluni" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouseluni" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
 
     </div>
   </section>  
@@ -551,6 +565,8 @@
         <p style="margin:0">粤ICP备2025400078号 粤公网安备 4403002025xxx</p>
     </div>
     </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>    
 
 </body>
 </html>

@@ -41,6 +41,7 @@
       .hamburger{display:flex}
     }
   </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
 
@@ -307,26 +308,27 @@
         <div style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:30px;align-items:center">
           
           <!-- Left: Video Placeholder -->
-          <div style="position:relative">
-            <img src="https://via.placeholder.com/800x450.png?text=Video+Placeholder" 
-                alt="Connect to Schools Video" 
-                style="width:100%;border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,.15)">
-            <!-- Play Button Overlay -->
-            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-                        width:80px;height:80px;background:#fff;border-radius:50%;
-                        display:flex;align-items:center;justify-content:center;
-                        box-shadow:0 4px 10px rgba(0,0,0,.3)">
-              <div style="width:0;height:0;border-top:14px solid transparent;
-                          border-bottom:14px solid transparent;
-                          border-left:22px solid #e74c3c;margin-left:6px"></div>
-            </div>
-            <!-- Control Bar -->
-            <div style="background:#777;height:28px;width:100%;border-radius:0 0 8px 8px;
-                        margin-top:-6px;display:flex;align-items:center;justify-content:center;
-                        color:#fff;font-size:12px">
-              Video Controls
-            </div>
-          </div>
+    <div id="carouselExample" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="school.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="school2.png" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="school3.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
 
           <!-- Right: Text Card -->
           <div style="background:linear-gradient(135deg,#ff512f,#f09819);color:#fff;
@@ -356,24 +358,30 @@
         <div style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:30px;align-items:center">
 
           <!-- Left: Video placeholder -->
-          <div style="position:relative;text-align:center">
-            <img src="https://via.placeholder.com/800x450.png?text=Parent+Community+Video"
-                alt="Parents community video" 
-                style="width:100%;border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,.2)">
-            <!-- Play button -->
-            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-                        width:86px;height:86px;background:#fff;border-radius:50%;
-                        display:flex;align-items:center;justify-content:center;
-                        box-shadow:0 6px 16px rgba(0,0,0,.25)">
-              <div style="width:0;height:0;border-top:16px solid transparent;border-bottom:16px solid transparent;
-                          border-left:26px solid #e74c3c;margin-left:6px"></div>
-            </div>
-            <!-- Control bar -->
-            <div style="background:#6b6b6b;height:30px;width:100%;border-radius:0 0 8px 8px;
-                        margin-top:-6px;display:flex;align-items:center;justify-content:center;color:#eee;font-size:12px">
-              Video Controls
-            </div>
-          </div>
+    <div id="carouselparents" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="parent.jpeg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="parent1.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="parent2.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="parent3.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselparents" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselparents" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
 
           <!-- Right: Copy -->
           <div style="text-align:left;color:#000;font-size:16px;line-height:1.8">
@@ -400,26 +408,31 @@
         <div style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:30px;align-items:center">
           
           <!-- Left: Video Placeholder -->
-          <div style="position:relative">
-            <img src="https://via.placeholder.com/800x450.png?text=Educational+Experts+Video" 
-                alt="Connect to Educational Experts Video"
-                style="width:100%;border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,.15)">
-            <!-- Play Button Overlay -->
-            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-                        width:80px;height:80px;background:#fff;border-radius:50%;
-                        display:flex;align-items:center;justify-content:center;
-                        box-shadow:0 4px 10px rgba(0,0,0,.3)">
-              <div style="width:0;height:0;border-top:14px solid transparent;
-                          border-bottom:14px solid transparent;
-                          border-left:22px solid #e74c3c;margin-left:6px"></div>
-            </div>
-            <!-- Control Bar -->
-            <div style="background:#777;height:28px;width:100%;border-radius:0 0 8px 8px;
-                        margin-top:-6px;display:flex;align-items:center;justify-content:center;
-                        color:#fff;font-size:12px">
-              Video Controls
-            </div>
-          </div>
+    <div id="carouselexperts" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="vanke.JPG" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="expert1.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="expert2.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+        <div class="carousel-item">
+          <img src="expert3.jpg" alt="" style="width: 100%; height: 500px;">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselexperts" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselexperts" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
 
           <!-- Right: Description -->
           <div style="font-size:16px;line-height:1.7;color:#000">
@@ -617,5 +630,6 @@
     </div>
     </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

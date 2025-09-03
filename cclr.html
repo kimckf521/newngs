@@ -29,7 +29,6 @@
     .world img{margin-top:16px;border-radius:0}
 
     /* NAVIGATION */
-    :root{--brand:#e84545;--ink:#222;--muted:#666;--bg:#fafafa;--card:#fff;--line:#eee}
     *{box-sizing:border-box}
     body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;margin:0;background:var(--bg);color:var(--ink)}
 
@@ -359,23 +358,29 @@
     <!-- MEETING + FORM -->
     <section class="wrap" style="padding:40px 20px 10px">
     <div class="ngs-enquiry" style="
-        display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start">
+        display:grid;
+        grid-template-columns:1.1fr .9fr;
+        gap:28px;
+        align-items:stretch;   /* stretch both columns to equal height */
+    ">
         
-        <!-- Left: image/video -->
-        <div>
+        <!-- Left: image -->
+        <div style="height:100%">
         <img
             src="studying.jpg"
-            alt="Online meeting" style="width:100%;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.08)">
+            alt="Online meeting"
+            style="width:100%;height:100%;object-fit:cover;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.08)">
         </div>
 
         <!-- Right: form card -->
         <form class="ngs-form" onsubmit="event.preventDefault(); alert('Thanks! We will contact you shortly.');"
-        style="border:1px solid #e4e4e4;border-radius:6px;overflow:hidden;background:#fff">
-
+        style="border:1px solid #e4e4e4;border-radius:6px;overflow:hidden;background:#fff;
+                display:flex;flex-direction:column;height:100%">
+        
         <!-- Title bar -->
         <div style="
-            background:#2f54eb;          /* deep blue */
-            color:#ff2ea1;               /* magenta title like screenshot */
+            background:#000000;
+            color:#ffffff;
             font-weight:900;
             padding:12px 16px;
             letter-spacing:.3px;">
@@ -383,41 +388,40 @@
         </div>
 
         <!-- Field stack -->
-        <div style="display:grid;gap:10px;padding:14px 16px;">
+        <div style="display:grid;gap:10px;padding:14px 16px;flex:1">
             <div>
             <label style="display:block;font-size:14px;color:#444;margin:4px 0 6px">Your Full Name</label>
             <input type="text" required placeholder="Your Full Name"
-                    style="width:100%;padding:11px;border:1px solid #e0e0e0;border-radius:4px;background:#f5f5f5;">
+                style="width:100%;padding:11px;border:1px solid #e0e0e0;border-radius:4px;background:#f5f5f5;">
             </div>
 
             <div>
             <label style="display:block;font-size:14px;color:#444;margin:4px 0 6px">Name of Your School</label>
             <input type="text" required placeholder="School / Organization"
-                    style="width:100%;padding:11px;border:1px solid #e0e0e0;border-radius:4px;background:#f5f5f5;">
+                style="width:100%;padding:11px;border:1px solid #e0e0e0;border-radius:4px;background:#f5f5f5;">
             </div>
 
             <div>
             <label style="display:block;font-size:14px;color:#444;margin:4px 0 6px">Email</label>
             <input type="email" required placeholder="you@example.com"
-                    style="width:100%;padding:11px;border:1px solid #e0e0e0;border-radius:4px;background:#f5f5f5;">
+                style="width:100%;padding:11px;border:1px solid #e0e0e0;border-radius:4px;background:#f5f5f5;">
             </div>
 
             <div>
             <label style="display:block;font-size:14px;color:#444;margin:4px 0 6px">Mobile / WeChat</label>
             <input type="text" placeholder="+61 … / your WeChat ID"
-                    style="width:100%;padding:11px;border:1px solid #e0e0e0;border-radius:4px;background:#f5f5f5;">
+                style="width:100%;padding:11px;border:1px solid #e0e0e0;border-radius:4px;background:#f5f5f5;">
             </div>
 
-            <div>
+            <div style="flex:1;display:flex;flex-direction:column">
             <label style="display:block;font-size:14px;color:#444;margin:4px 0 6px">How Can We Help You?</label>
-            <textarea rows="5" placeholder=""
-                        style="width:100%;padding:11px;border:1px solid #e0e0e0;border-radius:4px;background:#f5f5f5;resize:vertical"></textarea>
+            <textarea rows="5"
+                style="flex:1;width:100%;padding:11px;border:1px solid #e0e0e0;border-radius:4px;background:#f5f5f5;resize:none"></textarea>
             </div>
 
-            <!-- optional submit -->
             <button type="submit"
-                    style="margin-top:2px;align-self:start;background:#111;color:#fff;
-                        padding:10px 16px;border:0;border-radius:8px;font-weight:800;cursor:pointer">
+            style="margin-top:auto;background:#111;color:#fff;
+                    padding:10px 16px;border:0;border-radius:8px;font-weight:800;cursor:pointer">
             Send
             </button>
         </div>
@@ -482,25 +486,21 @@
             <a href="https://work.weixin.qq.com/kfid/kfc86f854c023857983">
                 <img src="WeChat.png" alt="WeChat" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
             </a>
-            <div style="font-size:13px;color:#aaa">WeChat</div>
             </div>
             <div style="text-align:center">
             <a href="https://work.weixin.qq.com/kfid/kfc86f854c023857983">
                 <img src="WeClass.png" alt="视频号" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
             </a>
-            <div style="font-size:13px;color:#aaa">视频号</div>
             </div>
             <div style="text-align:center">
             <a href="https://xhslink.com/m/ARVy7jFyzLd">
                 <img src="RedNote.png" alt="小红书" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
             </a>
-            <div style="font-size:13px;color:#aaa">小红书</div>
             </div>
             <div style="text-align:center">
             <a href="https://www.linkedin.com/company/nextgenscholarsasia">
                 <img src="LinkedIn.png" alt="LinkedIn" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
             </a>
-            <div style="font-size:13px;color:#aaa">LinkedIn</div>
             </div>
         </div>
         </div>
@@ -533,8 +533,19 @@
     </div>
     </section>
 
+    <!-- Customer Service Button -->
+    <a href="https://work.weixin.qq.com/kfid/kfc86f854c023857983"
+    style="position:fixed;bottom:20px;right:20px;
+            background:#e84545;color:#fff;
+            padding:14px 20px;border-radius:50px;
+            font-weight:700;font-size:14px;
+            text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.2);
+            z-index:9999;">
+    💬 Customer Service
+    </a>
+
     <!-- FOOTER -->
-    <footer style="background:#000;color:#fff;padding:40px 20px;font-family:Arial, sans-serif;">
+    <footer style="border-top:2px solid #333; background:#000;color:#fff;padding:40px 20px;font-family:Arial, sans-serif;">
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:30px">
         
         <!-- Column 1: Menu -->
@@ -550,7 +561,7 @@
         <!-- Column 2: Locations 1 -->
         <div>
         <p style="margin:0 0 10px;font-weight:600">San Francisco</p>
-        <p style="margin:0 0 20px">xxx</p>
+        <p style="margin:0 0 20px">600 California St 11th floor, San Francisco, CA 94108</p>
 
         <p style="margin:0 0 10px;font-weight:600">Melbourne</p>
         <p style="margin:0">262 Queen St, Melbourne VIC 3000</p>
@@ -559,7 +570,7 @@
         <!-- Column 3: Locations 2 -->
         <div>
         <p style="margin:0 0 10px;font-weight:600">Hong Kong</p>
-        <p style="margin:0 0 20px">xxx</p>
+        <p style="margin:0 0 20px">27/F China Resources Bldg 26, Harbour RD Wanchai</p>
 
         <p style="margin:0 0 10px;font-weight:600">Shenzhen</p>
         <p style="margin:0">深圳市南山区望海路南<br>海玫瑰花园二期4栋4C</p>
@@ -573,13 +584,18 @@
     </div>
 
     <!-- Bottom bar -->
-    <div style="border-top:1px solid #333;margin-top:30px;padding-top:20px;font-size:13px;line-height:1.6;text-align:center;color:#aaa">
-        <p style="margin:0 0 8px">
-        <a href="#" style="color:#aaa;text-decoration:none">Privacy Policy</a> | 
-        <a href="#" style="color:#aaa;text-decoration:none">Terms of Service</a>
-        </p>
-        <p style="margin:0 0 4px">深圳市千瞳空间文化艺术有限公司版权所有 © 2025</p>
-        <p style="margin:0">粤ICP备2025400078号 粤公网安备 4403002025xxx</p>
+    <div style="border-top:0px solid #333;margin-top:30px;padding-top:20px;font-size:13px;line-height:1.6;color:#aaa; display:grid;grid-template-columns:1fr 1fr 1fr;gap:30px">
+        <div><a href="#" style="color:#aaa;text-decoration:none">Privacy Policy</a> | 
+        <a href="#" style="color:#aaa;text-decoration:none">Terms of Service</a></div>
+        
+        <div style="text-align:center">
+            <p style="margin:0 0 4px">深圳市千瞳空间文化艺术有限公司版权所有 © 2025</p>
+        </div>
+        
+        <div style="text-align:right">
+            <p style="margin:0">粤ICP备2025400078号 粤公网安备 4403002025xxx</p>
+        </div>
+        
     </div>
     </footer>
 

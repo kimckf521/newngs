@@ -13,7 +13,6 @@
     .hero__content h1{font-size:40px;letter-spacing:.3px;font-weight:900}
     .hero__content p{max-width:760px;margin:10px auto 0;font-size:18px;line-height:1.6}
 
-    :root{--brand:#e84545;--ink:#222;--muted:#666;--bg:#fafafa;--card:#fff;--line:#eee}
     *{box-sizing:border-box}
     body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;margin:0;background:var(--bg);color:var(--ink)}
 
@@ -105,9 +104,7 @@
     <div style="max-width:1180px;margin:auto;text-align:center">
 
       <!-- Title -->
-      <h2 style="font-size:32px;font-weight:900;margin-bottom:18px">
-        Select a Tutoring Plan
-      </h2>
+      <h2 style="font-size:32px;font-weight:900;margin-bottom:18px">Select a Tutoring Plan</h2>
 
       <!-- Category chips -->
       <div style="display:flex;gap:16px;justify-content:center;margin-bottom:28px;flex-wrap:wrap">
@@ -117,233 +114,306 @@
         <span style="background:linear-gradient(90deg,#eb5757,#ff0080);color:#fff;font-weight:800;padding:8px 18px;border-radius:999px">Exam Prep</span>
       </div>
 
-      <!-- Plans -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;text-align:left">
+      <!-- Plans grid -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;text-align:left;align-items:stretch">
 
         <!-- Trial Lesson -->
-        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff">
-          <h3 style="margin:0 0 6px;font-size:18px;font-weight:900">Trial Lesson</h3>
-          <p style="margin:0 0 12px;color:#111"><strong>$40/Lesson</strong></p>
-          <p style="margin:0 0 14px;color:#444;line-height:1.7">
-            1 hour of 1-to-1 class<br>
-            Elite Tutors from Top 50 Global U<br>
-            Experienced in IB/A-Level/AP/HKDSE<br>
-            Customised study plan and advice
-          </p>
-          <button type="button" class="btn btn-primary">Purchase</button>
+        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff;display:flex;flex-direction:column">
+          <div>
+            <h3 style="margin:0 0 6px;font-size:18px;font-weight:900">Trial Lesson</h3>
+            <p style="margin:0 0 6px;color:#666">$40/Lesson</p>
+            <ul style="margin:0 0 14px 18px;line-height:1.8;color:#333">
+              <li>1 hour of 1-to-1 class</li>
+              <li>Elite Tutors from Top 50 Global U</li>
+              <li>Experienced in IB/A-Level/AP/HKDSE</li>
+              <li>Customised study plan and advice</li>
+            </ul>
+          </div>
+          <div style="margin-top:auto">
+            <a href="https://buy.stripe.com/7sI6pH8Pc4U013O3cv" target="_blank" style="text-decoration:none">
+              <button type="button" style="width:100%;padding:10px 16px;background:#007bff;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:700">
+                Purchase
+              </button>
+            </a>
+          </div>
         </div>
 
         <!-- Lesson Packages -->
-        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff">
-          <h3 style="margin:0 0 6px;font-size:18px;font-weight:900">Lesson Packages</h3>
-          <p style="margin:0 0 6px;color:#666">Package based</p>
-          <ul style="margin:0 0 14px 18px;line-height:1.8;color:#333">
-            <li>Personalised Study Plan</li>
-            <li>4v1 Comprehensive Mentor Support</li>
-            <li>Premium Study Materials</li>
-            <li>Goal Setting and Study Report</li>
-            <li>Elite Tutors from Top 50 Global U</li>
-            <li>IB/A-Level/AP/HKDSE</li>
-          </ul>
-          <p style="margin:0;color:#000;font-weight:700">Purchase Order:</p>
-          <ul style="margin:8px 0 0 18px;line-height:1.8;color:#333">
-            <li>Taster: 10 hours</li>
-            <li>Foundation: 20 hours</li>
-            <li>Synchronization: 30 hours</li>
-            <li>Acceleration: 30 hours</li>
-            <li>Course Bundles: 40 hours</li>
-          </ul>
+        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff;display:flex;flex-direction:column">
+          <div>
+            <h3 style="margin:0 0 6px;font-size:18px;font-weight:900">Lesson Packages</h3>
+            <p style="margin:0 0 6px;color:#666">Package based</p>
+            <ul style="margin:0 0 14px 18px;line-height:1.8;color:#333">
+              <li>Personalised Study Plan</li>
+              <li>4v1 Comprehensive Mentor Support</li>
+              <li>Premium Study Materials</li>
+              <li>Goal Setting and Study Report</li>
+              <li>Elite Tutors from Top 50 Global U</li>
+              <li>IB/A-Level/AP/HKDSE</li>
+            </ul>
+
+            <!-- Dropdown -->
+            <label for="package-order" style="font-weight:700;display:block;margin-bottom:6px">Purchase Order:</label>
+            <select id="package-order" style="width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;margin-bottom:12px">
+              <option value="10">Taster: 10 hours</option>
+              <option value="20">Foundation: 20 hours</option>
+              <option value="30-sync">Synchronization: 30 hours</option>
+              <option value="30-acc">Acceleration: 30 hours</option>
+              <option value="40">Course Bundles: 40 hours</option>
+            </select>
+          </div>
+          <div style="margin-top:auto">
+            <a href="https://buy.stripe.com/7sI6pH8Pc4U013O3cv" target="_blank" style="text-decoration:none">
+              <button type="button" style="width:100%;padding:10px 16px;background:#007bff;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:700">
+                Purchase
+              </button>
+            </a>
+          </div>
         </div>
 
         <!-- Exam Preparation -->
-        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff">
-          <h3 style="margin:0 0 6px;font-size:18px;font-weight:900">Exam Preparation</h3>
-          <p style="margin:0 0 12px;color:#666">
-            Package: <strong>10 Lessons (1.5 hour/session)</strong>
-          </p>
-          <ul style="margin:0 0 14px 18px;line-height:1.8;color:#333">
-            <li>Expert mentors in given disciplines</li>
-            <li>Academic subjects across IB/A-Level/AP/HKDSE</li>
-            <li>Standardised exams: IELTS/TOEFL/SAT</li>
-            <li>University entrance exams (Ivy Leagues/G5)</li>
-          </ul>
-          <p style="margin:0;color:#000;font-weight:700">Purchase Order: 1</p>
+        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff;display:flex;flex-direction:column">
+          <div>
+            <h3 style="margin:0 0 6px;font-size:18px;font-weight:900">Exam Preparation</h3>
+            <p style="margin:0 0 12px;color:#666">
+              Package: <strong>10 Lessons (1.5 hour/session)</strong>
+            </p>
+            <ul style="margin:0 0 14px 18px;line-height:1.8;color:#333">
+              <li>Expert mentors in given disciplines</li>
+              <li>Academic subjects across IB/A-Level/AP/HKDSE</li>
+              <li>Standardised exams: IELTS/TOEFL/SAT</li>
+              <li>University entrance exams (Ivy Leagues/G5)</li>
+            </ul>
+          </div>
+          <div style="margin-top:auto">
+            <a href="https://buy.stripe.com/7sI6pH8Pc4U013O3cv" target="_blank" style="text-decoration:none">
+              <button type="button" style="width:100%;padding:10px 16px;background:#007bff;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:700">
+                Purchase
+              </button>
+            </a>
+          </div>
         </div>
 
       </div>
     </div>
-  </section>    
+  </section>
 
   <!-- CHOOSE A MENTORSHIP PROGRAM -->
   <section style="padding:60px 20px;background:#fff;width:100%">
-    <div style="max-width:1180px;margin:auto;text-align:center">
-      
-      <!-- Title -->
-      <h2 style="font-size:32px;font-weight:900;margin-bottom:18px">
-        Choose a Mentorship Program
-      </h2>
+    <div style="max-width:1180px;margin:auto;">
+      <h2 style="font-size:32px;font-weight:900;margin-bottom:18px;text-align: center;">Choose a Mentorship Program</h2>
+      <div style="text-align:center;margin-bottom:28px;font-size:80px">🇺🇸 🇬🇧 🇨🇦 🇦🇺 🇭🇰 🇸🇬</div>
 
-      <!-- Flags -->
-      <div style="text-align:center;margin-bottom:28px;font-size:32px">
-        🇺🇸 🇬🇧 🇨🇦 🇦🇺 🇭🇰 🇸🇬
-      </div>
-
-      <!-- Program Cards -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;text-align:left">
+      <!-- Cards Grid -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:stretch">
 
         <!-- Free Consultation -->
-        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff">
-          <h3 style="margin:0 0 12px;font-size:18px;font-weight:900">Free Consultation</h3>
-          <p style="margin:0 0 12px;color:#444;line-height:1.6">
-            Free Online Chat with NGS mentors<br>
-            Personal Career Roadmap<br>
-            Book a time slot to suit you<br>
-            Parents are welcome
-          </p>
-          <p style="margin:0;color:#000;font-weight:700">Purchase Order: 1</p>
+        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff;display:flex;flex-direction:column">
+          <div>
+            <h3 style="margin:0 0 12px;font-size:18px;font-weight:900">Free Consultation</h3>
+            <ul style="margin:0 0 12px 18px;line-height:1.8;color:#333">
+              <li>Free Online Chat with NGS mentors</li>
+              <li>Personal Career Roadmap</li>
+              <li>Book a time slot to suit you</li>
+              <li>Parents are welcome</li>
+            </ul>
+          </div>
+          <div style="margin-top:auto">
+            <label for="order-consult" style="font-weight:700;display:block;margin-bottom:6px">Purchase Order</label>
+            <select id="order-consult" style="width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;margin-bottom:12px">
+              <option value="1">1 Session (Free)</option>
+            </select>
+            <a href="https://buy.stripe.com/7sI6pH8Pc4U013O3cv">
+              <button type="button"
+                style="width:100%;padding:10px 16px;background:#007bff;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:700">
+                Purchase
+              </button>
+            </a>
+          </div>
         </div>
 
         <!-- College Counseling -->
-        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff">
-          <h3 style="margin:0 0 12px;font-size:18px;font-weight:900">College Counseling</h3>
-          <p style="margin:0 0 12px;color:#444;line-height:1.6">
-            Annual Plan & Comprehensive Plan
-          </p>
-          <ul style="margin:0 0 12px 18px;line-height:1.8;color:#333">
-            <li>Academic Plan</li>
-            <li>College List</li>
-            <li>Personal Statement Writing</li>
-            <li>Activity List & Resume</li>
-            <li>Reference Letter</li>
-            <li>Interview</li>
-            <li>Portfolio Preparing</li>
-          </ul>
-          <p style="margin:0;color:#000;font-weight:700">
-            Purchase Order: Annual Plan<br>
-            3-Year Plan<br>
-            4-Year Plan
-          </p>
+        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff;display:flex;flex-direction:column">
+          <div>
+            <h3 style="margin:0 0 12px;font-size:18px;font-weight:900">College Counseling</h3>
+            <p style="margin:0 0 6px;color:#666">Annual Plan &amp; Comprehensive Plan</p>
+            <ul style="margin:0 0 12px 18px;line-height:1.8;color:#333">
+              <li>Academic Plan</li><li>College List</li><li>Personal Statement Writing</li>
+              <li>Activity List &amp; Resume</li><li>Reference Letter</li><li>Interview</li><li>Portfolio Preparing</li>
+            </ul>
+          </div>
+          <div style="margin-top:auto">
+            <label for="order-college" style="font-weight:700;display:block;margin-bottom:6px">Purchase Order</label>
+            <select id="order-college" style="width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;margin-bottom:12px">
+              <option value="annual">Annual Plan</option>
+              <option value="3yr">3-Year Plan</option>
+              <option value="4yr">4-Year Plan</option>
+            </select>
+            <a href="https://buy.stripe.com/7sI6pH8Pc4U013O3cv">
+              <button type="button"
+                style="width:100%;padding:10px 16px;background:#007bff;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:700">
+                Purchase
+              </button>
+            </a>
+          </div>
         </div>
 
         <!-- K12 Placement Service -->
-        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff">
-          <h3 style="margin:0 0 12px;font-size:18px;font-weight:900">K12 Placement Service</h3>
-          <p style="margin:0 0 12px;color:#444;line-height:1.6">
-            Per Case
-          </p>
-          <ul style="margin:0 0 12px 18px;line-height:1.8;color:#333">
-            <li>Student Assessment & Strategy</li>
-            <li>School List</li>
-            <li>School Visit Scheduling</li>
-            <li>School Report</li>
-            <li>Application Support</li>
-            <li>Entry Exams & Interview</li>
-          </ul>
-          <p style="margin:0;color:#000;font-weight:700">Purchase Order: 1</p>
+        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff;display:flex;flex-direction:column">
+          <div>
+            <h3 style="margin:0 0 12px;font-size:18px;font-weight:900">K12 Placement Service</h3>
+            <p style="margin:0 0 6px;color:#666">Per Case</p>
+            <ul style="margin:0 0 12px 18px;line-height:1.8;color:#333">
+              <li>Student Assessment &amp; Strategy</li>
+              <li>School List</li>
+              <li>School Visit Scheduling</li>
+              <li>School Report</li>
+              <li>Application Support</li>
+              <li>Entry Exams &amp; Interview</li>
+            </ul>
+          </div>
+          <div style="margin-top:auto">
+            <label for="order-k12" style="font-weight:700;display:block;margin-bottom:6px">Purchase Order</label>
+            <select id="order-k12" style="width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;margin-bottom:12px">
+              <option value="1">1 Case</option>
+            </select>
+            <a href="https://buy.stripe.com/7sI6pH8Pc4U013O3cv">
+              <button type="button"
+                style="width:100%;padding:10px 16px;background:#007bff;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:700">
+                Purchase
+              </button>
+            </a>
+          </div>
         </div>
 
       </div>
     </div>
-  </section>    
+  </section>
 
   <!-- SELECT A DIPLOMA PROGRAM -->
   <section style="padding:60px 20px;background:#fff;width:100%">
     <div style="max-width:1180px;margin:auto;text-align:center">
-      
-      <!-- Title -->
-      <h2 style="font-size:32px;font-weight:900;margin-bottom:18px">
-        Select a Diploma Program
-      </h2>
+      <h2 style="font-size:32px;font-weight:900;margin-bottom:18px">Select a Diploma Program</h2>
 
       <!-- Program Tags -->
       <div style="display:flex;gap:16px;justify-content:center;margin-bottom:28px;flex-wrap:wrap">
-        <span style="background:linear-gradient(90deg,#42e695,#3bb2b8);
-                    color:#fff;font-weight:800;padding:8px 16px;border-radius:999px">
-          IGCSE
-        </span>
-        <span style="background:linear-gradient(90deg,#56ccf2,#2f80ed);
-                    color:#fff;font-weight:800;padding:8px 16px;border-radius:999px">
-          A-Level
-        </span>
-        <span style="background:linear-gradient(90deg,#f7971e,#ffd200);
-                    color:#fff;font-weight:800;padding:8px 16px;border-radius:999px">
-          AP
-        </span>
-        <span style="background:linear-gradient(90deg,#eb3349,#f45c43);
-                    color:#fff;font-weight:800;padding:8px 16px;border-radius:999px">
-          HKDSE
-        </span>
+        <span style="background:linear-gradient(90deg,#42e695,#3bb2b8);color:#fff;font-weight:800;padding:8px 16px;border-radius:999px">IGCSE</span>
+        <span style="background:linear-gradient(90deg,#56ccf2,#2f80ed);color:#fff;font-weight:800;padding:8px 16px;border-radius:999px">A-Level</span>
+        <span style="background:linear-gradient(90deg,#f7971e,#ffd200);color:#fff;font-weight:800;padding:8px 16px;border-radius:999px">AP</span>
+        <span style="background:linear-gradient(90deg,#eb3349,#f45c43);color:#fff;font-weight:800;padding:8px 16px;border-radius:999px">HKDSE</span>
       </div>
 
-      <!-- Program Cards -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;text-align:left">
+      <!-- Equal-height Cards -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:stretch">
 
         <!-- Hybrid Program -->
-        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff">
-          <h3 style="margin:0 0 12px;font-size:18px;font-weight:900">Hybrid Program</h3>
-          <p style="margin:0 0 14px;color:#444;line-height:1.6">
-            Choose a Program: IGCSE, A-Level, AP, HKDSE
-          </p>
-          <p style="margin:0 0 14px;color:#444;line-height:1.6">
-            Flexible Learning Pace<br>
-            Flexible Location: Online + On Campus<br>
-            Expanded Course Offerings<br>
-            Tailored curriculum adaptive to student’s own pace
-          </p>
-          <p style="margin:0;color:#111;line-height:1.6">
-            <strong>Choose a plan:</strong><br>
-            SY2025-2026<br>
-            Semester 1 SY2526<br>
-            Semester 2 SY2526<br>
-            Per Subject
-          </p>
+        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff;display:flex;flex-direction:column">
+          <div>
+            <h3 style="margin:0 0 12px;font-size:18px;font-weight:900">Hybrid Program</h3>
+            <ul style="margin:0 0 12px 18px;line-height:1.8;color:#333;text-align:left">
+              <li>Flexible Learning Pace</li>
+              <li>Flexible Location: Online + On Campus</li>
+              <li>Expanded Course Offerings</li>
+              <li>Expanded Course Offerings</li>
+            </ul>
+
+            <label for="hybrid-program" style="font-weight:700;display:block;margin:6px 0">Choose a Program</label>
+            <select id="hybrid-program" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:10px">
+              <option>IGCSE</option>
+              <option>A-Level</option>
+              <option>AP</option>
+              <option>HKDSE</option>
+            </select>
+
+            <label for="hybrid-plan" style="font-weight:700;display:block;margin:6px 0">Choose a Plan</label>
+            <select id="hybrid-plan" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:10px">
+              <option>SY2025-2026</option>
+              <option>Semester 1 SY2526</option>
+              <option>Semester 2 SY2526</option>
+              <option>Per Subject</option>
+            </select>
+          </div>
+          <a href="https://buy.stripe.com/7sI6pH8Pc4U013O3cv">
+              <button type="button"
+                style="width:100%;padding:10px 16px;background:#007bff;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:700">
+                Purchase
+              </button>
+            </a>
         </div>
 
         <!-- Dual-Track Program -->
-        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff">
-          <h3 style="margin:0 0 12px;font-size:18px;font-weight:900">Dual-Track Program</h3>
-          <p style="margin:0 0 14px;color:#444;line-height:1.6">
-            Choose a Program: IGCSE, A-Level, AP, HKDSE
-          </p>
-          <p style="margin:0 0 14px;color:#444;line-height:1.6">
-            Gao-kao and International Pathways<br>
-            Dual-track Enrollment<br>
-            Tailored curriculum adaptive to student’s own pacing<br>
-            Dual Diploma upon completion
-          </p>
-          <p style="margin:0;color:#111;line-height:1.6">
-            <strong>Choose a plan:</strong><br>
-            SY2025-2026<br>
-            Semester 1 SY2526<br>
-            Semester 2 SY2526<br>
-            Per Subject
-          </p>
+        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff;display:flex;flex-direction:column">
+          <div>
+            <h3 style="margin:0 0 12px;font-size:18px;font-weight:900">Dual-Track Program</h3>
+            <ul style="margin:0 0 12px 18px;line-height:1.8;color:#333;text-align:left">
+              <li>Gao-kao and International Pathways</li>
+              <li>Dual-track Enrollment</li>
+              <li>Tailored curriculum adaptive</li>
+              <li>Dual Diploma upon completion</li>
+            </ul>
+
+            <label for="dual-program" style="font-weight:700;display:block;margin:6px 0">Choose a Program</label>
+            <select id="dual-program" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:10px">
+              <option>IGCSE</option>
+              <option>A-Level</option>
+              <option>AP</option>
+              <option>HKDSE</option>
+            </select>
+
+            <label for="dual-plan" style="font-weight:700;display:block;margin:6px 0">Choose a Plan</label>
+            <select id="dual-plan" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:10px">
+              <option>SY2025-2026</option>
+              <option>Semester 1 SY2526</option>
+              <option>Semester 2 SY2526</option>
+              <option>Per Subject</option>
+            </select>
+          </div>
+          <a href="https://buy.stripe.com/7sI6pH8Pc4U013O3cv">
+              <button type="button"
+                style="width:100%;padding:10px 16px;background:#007bff;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:700">
+                Purchase
+              </button>
+            </a>
         </div>
 
         <!-- Online Diploma Program -->
-        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff">
-          <h3 style="margin:0 0 12px;font-size:18px;font-weight:900">Online Diploma Program</h3>
-          <p style="margin:0 0 14px;color:#444;line-height:1.6">
-            Choose a Program: IGCSE, A-Level, AP, HKDSE
-          </p>
-          <p style="margin:0 0 14px;color:#444;line-height:1.6">
-            Flexible Learning at your own pace<br>
-            Flexible Locations: Remote Learning<br>
-            Accredited School Enrolment & Transcript<br>
-            High-school Diploma upon completion
-          </p>
-          <p style="margin:0;color:#111;line-height:1.6">
-            <strong>Choose a plan:</strong><br>
-            SY2025-2026<br>
-            Semester 1 SY2526<br>
-            Semester 2 SY2526<br>
-            Per Subject
-          </p>
+        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff;display:flex;flex-direction:column">
+          <div>
+            <h3 style="margin:0 0 12px;font-size:18px;font-weight:900">Online Diploma Program</h3>
+            <ul style="margin:0 0 12px 18px;line-height:1.8;color:#333;text-align:left">
+              <li>Flexible Learning at your own pace</li>
+              <li>Flexible Locations: Remote Learning</li>
+              <li>School Enrolment & Transcript</li>
+              <li>High school Diploma upon completion</li>
+            </ul>
+
+            <label for="online-program" style="font-weight:700;display:block;margin:6px 0">Choose a Program</label>
+            <select id="online-program" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:10px">
+              <option>IGCSE</option>
+              <option>A-Level</option>
+              <option>AP</option>
+              <option>HKDSE</option>
+            </select>
+
+            <label for="online-plan" style="font-weight:700;display:block;margin:6px 0">Choose a Plan</label>
+            <select id="online-plan" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:10px">
+              <option>SY2025-2026</option>
+              <option>Semester 1 SY2526</option>
+              <option>Semester 2 SY2526</option>
+              <option>Per Subject</option>
+            </select>
+          </div>
+          <a href="https://buy.stripe.com/7sI6pH8Pc4U013O3cv">
+              <button type="button"
+                style="width:100%;padding:10px 16px;background:#007bff;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:700">
+                Purchase
+              </button>
+            </a>
         </div>
 
       </div>
     </div>
-  </section>    
+  </section>
 
   <!-- SUBSCRIPTION PLAN -->
   <section style="padding:60px 20px;background:#fff;width:100%">
@@ -353,57 +423,83 @@
 
       <!-- Product tags -->
       <div style="display:flex;gap:16px;justify-content:center;margin-bottom:28px;flex-wrap:wrap">
-        <span style="display:inline-block;background:linear-gradient(90deg,#9b5cff,#ff7f66);
-                    color:#fff;font-weight:800;padding:8px 16px;border-radius:999px">
-          NextGen Inspires
-        </span>
-        <span style="display:inline-block;background:linear-gradient(90deg,#42e695,#3bb2b8);
-                    color:#fff;font-weight:800;padding:8px 16px;border-radius:999px">
-          NextGen Connects
-        </span>
+        <span style="display:inline-block;background:linear-gradient(90deg,#9b5cff,#ff7f66);color:#fff;font-weight:800;padding:8px 16px;border-radius:999px">NextGen Inspires</span>
+        <span style="display:inline-block;background:linear-gradient(90deg,#42e695,#3bb2b8);color:#fff;font-weight:800;padding:8px 16px;border-radius:999px">NextGen Connects</span>
       </div>
 
-      <!-- Plans -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;text-align:left">
+      <!-- Cards grid (equal height) -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;text-align:left;align-items:stretch">
 
         <!-- Family Plan -->
-        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff">
-          <h3 style="margin:0 0 10px;font-size:18px;font-weight:900">Family Plan</h3>
-          <p style="margin:0 0 16px;color:#444;line-height:1.6">Access to <strong>NextGen Connects</strong></p>
-          <div style="font-size:14px;color:#111;margin-top:12px;font-weight:700">Choose a plan:</div>
-          <ul style="margin:8px 0 0 18px;line-height:1.8;color:#333">
-            <li>Monthly</li>
-            <li>Half Year</li>
-            <li>Annual</li>
-          </ul>
+        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff;display:flex;flex-direction:column">
+          <!-- top content -->
+          <div>
+            <h3 style="margin:0 0 10px;font-size:18px;font-weight:900">Family Plan</h3>
+            <p style="margin:0 0 16px;color:#444;line-height:1.6">Access to <strong>NextGen Connects</strong></p>
+          </div>
+          <!-- bottom controls (pinned) -->
+          <div style="margin-top:auto">
+            <label for="family-plan" style="font-size:14px;color:#111;font-weight:700;display:block;margin:0 0 6px">Choose a plan</label>
+            <select id="family-plan" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin:0 0 12px">
+              <option value="monthly">Monthly</option>
+              <option value="halfyear">Half Year</option>
+              <option value="annual">Annual</option>
+            </select>
+            <a href="https://buy.stripe.com/7sI6pH8Pc4U013O3cv">
+              <button type="button"
+                style="width:100%;padding:10px 16px;background:#007bff;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:700">
+                Purchase
+              </button>
+            </a>
+          </div>
         </div>
 
         <!-- Premium Plan -->
-        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff">
-          <h3 style="margin:0 0 10px;font-size:18px;font-weight:900">Premium Plan</h3>
-          <p style="margin:0 0 16px;color:#444;line-height:1.6">Access to <strong>NextGen Inspires</strong></p>
-          <div style="font-size:14px;color:#111;margin-top:12px;font-weight:700">Choose a plan:</div>
-          <ul style="margin:8px 0 0 18px;line-height:1.8;color:#333">
-            <li>Monthly</li>
-            <li>Half Year</li>
-            <li>Annual</li>
-          </ul>
+        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff;display:flex;flex-direction:column">
+          <div>
+            <h3 style="margin:0 0 10px;font-size:18px;font-weight:900">Premium Plan</h3>
+            <p style="margin:0 0 16px;color:#444;line-height:1.6">Access to <strong>NextGen Inspires</strong></p>
+          </div>
+          <div style="margin-top:auto">
+            <label for="premium-plan" style="font-size:14px;color:#111;font-weight:700;display:block;margin:0 0 6px">Choose a plan</label>
+            <select id="premium-plan" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin:0 0 12px">
+              <option value="monthly">Monthly</option>
+              <option value="halfyear">Half Year</option>
+              <option value="annual">Annual</option>
+            </select>
+            <a href="https://buy.stripe.com/7sI6pH8Pc4U013O3cv">
+              <button type="button"
+                style="width:100%;padding:10px 16px;background:#007bff;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:700">
+                Purchase
+              </button>
+            </a>
+          </div>
         </div>
 
         <!-- Elite Membership -->
-        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff">
-          <h3 style="margin:0 0 10px;font-size:18px;font-weight:900">Elite Membership</h3>
-          <p style="margin:0 0 10px;color:#444;line-height:1.6">Access to</p>
-          <ul style="margin:0 0 16px 18px;line-height:1.8;color:#333">
-            <li>NextGen Inspires</li>
-            <li>NextGen Connects</li>
-          </ul>
-          <div style="font-size:14px;color:#111;margin-top:6px;font-weight:700">Choose a plan:</div>
-          <ul style="margin:8px 0 0 18px;line-height:1.8;color:#333">
-            <li>Monthly</li>
-            <li>Half Year</li>
-            <li>Annual</li>
-          </ul>
+        <div style="border:1px solid #dcdcdc;border-radius:18px;padding:22px;background:#fff;display:flex;flex-direction:column">
+          <div>
+            <h3 style="margin:0 0 10px;font-size:18px;font-weight:900">Elite Membership</h3>
+            <p style="margin:0 0 10px;color:#444;line-height:1.6">Access to</p>
+            <ul style="margin:0 0 16px 18px;line-height:1.8;color:#333">
+              <li>NextGen Inspires</li>
+              <li>NextGen Connects</li>
+            </ul>
+          </div>
+          <div style="margin-top:auto">
+            <label for="elite-plan" style="font-size:14px;color:#111;font-weight:700;display:block;margin:0 0 6px">Choose a plan</label>
+            <select id="elite-plan" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin:0 0 12px">
+              <option value="monthly">Monthly</option>
+              <option value="halfyear">Half Year</option>
+              <option value="annual">Annual</option>
+            </select>
+            <a href="https://buy.stripe.com/7sI6pH8Pc4U013O3cv">
+              <button type="button"
+                style="width:100%;padding:10px 16px;background:#007bff;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:700">
+                Purchase
+              </button>
+            </a>
+          </div>
         </div>
 
       </div>
@@ -598,25 +694,21 @@
             <a href="https://work.weixin.qq.com/kfid/kfc86f854c023857983">
                 <img src="WeChat.png" alt="WeChat" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
             </a>
-            <div style="font-size:13px;color:#aaa">WeChat</div>
             </div>
             <div style="text-align:center">
             <a href="https://work.weixin.qq.com/kfid/kfc86f854c023857983">
                 <img src="WeClass.png" alt="视频号" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
             </a>
-            <div style="font-size:13px;color:#aaa">视频号</div>
             </div>
             <div style="text-align:center">
             <a href="https://xhslink.com/m/ARVy7jFyzLd">
                 <img src="RedNote.png" alt="小红书" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
             </a>
-            <div style="font-size:13px;color:#aaa">小红书</div>
             </div>
             <div style="text-align:center">
             <a href="https://www.linkedin.com/company/nextgenscholarsasia">
                 <img src="LinkedIn.png" alt="LinkedIn" style="width:60px;height:60px;border-radius:8px;margin-bottom:6px">
             </a>
-            <div style="font-size:13px;color:#aaa">LinkedIn</div>
             </div>
         </div>
         </div>
@@ -649,8 +741,19 @@
     </div>
     </section>
 
+    <!-- Customer Service Button -->
+    <a href="https://work.weixin.qq.com/kfid/kfc86f854c023857983"
+    style="position:fixed;bottom:20px;right:20px;
+            background:#e84545;color:#fff;
+            padding:14px 20px;border-radius:50px;
+            font-weight:700;font-size:14px;
+            text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.2);
+            z-index:9999;">
+    💬 Customer Service
+    </a>
+
     <!-- FOOTER -->
-    <footer style="background:#000;color:#fff;padding:40px 20px;font-family:Arial, sans-serif;">
+    <footer style="border-top:2px solid #333; background:#000;color:#fff;padding:40px 20px;font-family:Arial, sans-serif;">
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:30px">
         
         <!-- Column 1: Menu -->
@@ -666,7 +769,7 @@
         <!-- Column 2: Locations 1 -->
         <div>
         <p style="margin:0 0 10px;font-weight:600">San Francisco</p>
-        <p style="margin:0 0 20px">xxx</p>
+        <p style="margin:0 0 20px">600 California St 11th floor, San Francisco, CA 94108</p>
 
         <p style="margin:0 0 10px;font-weight:600">Melbourne</p>
         <p style="margin:0">262 Queen St, Melbourne VIC 3000</p>
@@ -675,7 +778,7 @@
         <!-- Column 3: Locations 2 -->
         <div>
         <p style="margin:0 0 10px;font-weight:600">Hong Kong</p>
-        <p style="margin:0 0 20px">xxx</p>
+        <p style="margin:0 0 20px">27/F China Resources Bldg 26, Harbour RD Wanchai</p>
 
         <p style="margin:0 0 10px;font-weight:600">Shenzhen</p>
         <p style="margin:0">深圳市南山区望海路南<br>海玫瑰花园二期4栋4C</p>
@@ -689,13 +792,18 @@
     </div>
 
     <!-- Bottom bar -->
-    <div style="border-top:1px solid #333;margin-top:30px;padding-top:20px;font-size:13px;line-height:1.6;text-align:center;color:#aaa">
-        <p style="margin:0 0 8px">
-        <a href="#" style="color:#aaa;text-decoration:none">Privacy Policy</a> | 
-        <a href="#" style="color:#aaa;text-decoration:none">Terms of Service</a>
-        </p>
-        <p style="margin:0 0 4px">深圳市千瞳空间文化艺术有限公司版权所有 © 2025</p>
-        <p style="margin:0">粤ICP备2025400078号 粤公网安备 4403002025xxx</p>
+    <div style="border-top:0px solid #333;margin-top:30px;padding-top:20px;font-size:13px;line-height:1.6;color:#aaa; display:grid;grid-template-columns:1fr 1fr 1fr;gap:30px">
+        <div><a href="#" style="color:#aaa;text-decoration:none">Privacy Policy</a> | 
+        <a href="#" style="color:#aaa;text-decoration:none">Terms of Service</a></div>
+        
+        <div style="text-align:center">
+            <p style="margin:0 0 4px">深圳市千瞳空间文化艺术有限公司版权所有 © 2025</p>
+        </div>
+        
+        <div style="text-align:right">
+            <p style="margin:0">粤ICP备2025400078号 粤公网安备 4403002025xxx</p>
+        </div>
+        
     </div>
     </footer>
 

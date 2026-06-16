@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# Next.js / build output
+.next/
+/out/
+/build
+*.tsbuildinfo
+next-env.d.ts
+
+# Testing
+/coverage
+
+# Local env files (secrets)
+.env*.local
+.env.production
+*.pem
+
+# OS / editor
+.DS_Store
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Source archive snapshot (redundant with tracked source; too large for git)
+ngs-redesign-source.zip
+
+# Vercel
+.vercel

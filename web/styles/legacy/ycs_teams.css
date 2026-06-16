@@ -1,0 +1,283 @@
+/* ============================================
+   YCS Teams Section
+   ============================================ */
+
+.ycs_teams_section {
+    background-color: #d3d3d3;
+    padding: 80px 50px;
+}
+
+.ycs_teams_section__container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Section Title */
+.ycs_teams_section__title {
+    text-align: center;
+    font-size: 48px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 70px;
+    letter-spacing: 2px;
+}
+
+/* Team Grid */
+.ycs_teams_section__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px 40px;
+}
+
+/* Team Member Card */
+.ycs_teams_section__member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Photo Container */
+.ycs_teams_section__photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background-color: #4a5d6f;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
+}
+
+.ycs_teams_section__photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Member Info */
+.ycs_teams_section__info {
+    margin-bottom: 18px;
+}
+
+.ycs_teams_section__name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+}
+
+.ycs_teams_section__position {
+    font-size: 14px;
+    font-weight: 500;
+    color: #2c2c2c;
+    letter-spacing: 0.5px;
+}
+
+/* Biography */
+.ycs_teams_section__bio {
+    font-size: 12.5px;
+    line-height: 1.85;
+    color: #2c2c2c;
+    text-align: justify;
+    padding: 0 5px;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+/* Large Desktop */
+@media (max-width: 1400px) {
+    .ycs_teams_section {
+        padding: 70px 40px;
+    }
+
+    .ycs_teams_section__grid {
+        gap: 45px 35px;
+    }
+}
+
+/* Desktop to Tablet */
+@media (max-width: 1200px) {
+    .ycs_teams_section {
+        padding: 60px 30px;
+    }
+
+    .ycs_teams_section__title {
+        font-size: 44px;
+        margin-bottom: 60px;
+    }
+
+    .ycs_teams_section__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 50px 40px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .ycs_teams_section__photo {
+        width: 190px;
+        height: 190px;
+    }
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .ycs_teams_section {
+        padding: 50px 25px;
+    }
+
+    .ycs_teams_section__title {
+        font-size: 40px;
+        margin-bottom: 50px;
+    }
+
+    .ycs_teams_section__grid {
+        gap: 45px 35px;
+    }
+
+    .ycs_teams_section__photo {
+        width: 180px;
+        height: 180px;
+    }
+
+    .ycs_teams_section__name {
+        font-size: 14.5px;
+    }
+
+    .ycs_teams_section__position {
+        font-size: 13.5px;
+    }
+
+    .ycs_teams_section__bio {
+        font-size: 12px;
+    }
+}
+
+/* Mobile Large */
+@media (max-width: 768px) {
+    .ycs_teams_section {
+        padding: 50px 20px;
+    }
+
+    .ycs_teams_section__title {
+        font-size: 36px;
+        margin-bottom: 45px;
+    }
+
+    .ycs_teams_section__grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+        max-width: 450px;
+    }
+
+    .ycs_teams_section__photo {
+        width: 180px;
+        height: 180px;
+    }
+
+    .ycs_teams_section__name {
+        font-size: 14px;
+    }
+
+    .ycs_teams_section__position {
+        font-size: 13px;
+    }
+
+    .ycs_teams_section__bio {
+        font-size: 12px;
+        padding: 0 10px;
+    }
+}
+
+/* Mobile Medium */
+@media (max-width: 600px) {
+    .ycs_teams_section {
+        padding: 40px 20px;
+    }
+
+    .ycs_teams_section__title {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+
+    .ycs_teams_section__grid {
+        gap: 40px;
+    }
+
+    .ycs_teams_section__photo {
+        width: 170px;
+        height: 170px;
+    }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+    .ycs_teams_section {
+        padding: 35px 15px;
+    }
+
+    .ycs_teams_section__title {
+        font-size: 28px;
+        margin-bottom: 35px;
+        letter-spacing: 1px;
+    }
+
+    .ycs_teams_section__grid {
+        gap: 35px;
+        max-width: 100%;
+    }
+
+    .ycs_teams_section__photo {
+        width: 160px;
+        height: 160px;
+    }
+
+    .ycs_teams_section__name {
+        font-size: 13px;
+    }
+
+    .ycs_teams_section__position {
+        font-size: 12px;
+    }
+
+    .ycs_teams_section__bio {
+        font-size: 11.5px;
+        padding: 0 5px;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 360px) {
+    .ycs_teams_section {
+        padding: 30px 10px;
+    }
+
+    .ycs_teams_section__title {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+
+    .ycs_teams_section__grid {
+        gap: 30px;
+    }
+
+    .ycs_teams_section__photo {
+        width: 140px;
+        height: 140px;
+    }
+
+    .ycs_teams_section__name {
+        font-size: 12.5px;
+    }
+
+    .ycs_teams_section__position {
+        font-size: 11.5px;
+    }
+
+    .ycs_teams_section__bio {
+        font-size: 11px;
+    }
+}

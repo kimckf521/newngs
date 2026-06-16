@@ -1,0 +1,135 @@
+/* Tailwind layers */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Map next/font CSS variables to the literal family names the legacy CSS
+   expects. Once everything migrates to Tailwind utilities these aliases can
+   go away. */
+@layer base {
+  :root {
+    --font-cal-sans: var(--font-josefin-sans);
+  }
+  body {
+    font-family: var(--font-albert-sans), system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Legacy NGS stylesheets — being progressively migrated to Tailwind.
+   Loaded AFTER Tailwind so existing BEM classes win specificity ties. */
+@import '../../styles/legacy/styles.css';
+@import '../../styles/legacy/site.css';
+@import '../../styles/legacy/progress.css';
+@import '../../styles/legacy/policy.css';
+@import '../../styles/legacy/partnership_lists.css';
+@import '../../styles/legacy/ycs_intro.css';
+@import '../../styles/legacy/ycs_teams.css';
+@import '../../styles/legacy/test.css';
+
+/* Body defaults from the original head.html body class */
+body {
+  color: #1f2937;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f9fafb;
+}
+
+/* Honeypot field for the contact form — visually hidden, but still focusable
+   for bots that ignore display:none. Real users never see or tab into it. */
+.ngs-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Minimal carousel CSS — replaces Bootstrap. The legacy markup uses these
+   class names, so we keep them. ImageCarousel.tsx drives the .active state
+   from React state instead of Bootstrap's data attributes. */
+.carousel { position: relative; }
+.carousel-inner { position: relative; width: 100%; overflow: hidden; }
+.carousel-item {
+  position: relative;
+  display: none;
+  width: 100%;
+  backface-visibility: hidden;
+  transition: opacity 0.4s ease-in-out;
+}
+.carousel-item.active { display: block; }
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+  background: none;
+  border: 0;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+  cursor: pointer;
+}
+.carousel-control-prev { left: 0; }
+.carousel-control-next { right: 0; }
+.carousel-control-prev:hover,
+.carousel-control-next:hover { opacity: 1; }
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 100% 100%;
+}
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
+}
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* ── Redesign scope guard ───────────────────────────────────────────
+   The legacy stylesheets (imported above) style bare elements like
+   `h1 span` / `h2 em` down to 14px Albert Sans — relics of the old logo
+   and section markup. Inside the redesigned homepage we want emphasis
+   inside a heading to inherit the heading's size/family/weight. Scoped to
+   `.ngs-redesign` so legacy pages are untouched; !important defeats the
+   late-loaded legacy rules without a specificity arms race. */
+.ngs-redesign :is(h1, h2, h3, h4) :is(span, em, i, strong) {
+  font-size: inherit !important;
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit;
+  letter-spacing: inherit;
+}
+
+/* Form submit feedback */
+.ngs-form-status {
+  margin-top: 0.75rem;
+  text-align: center;
+}
+.ngs-form-status--ok {
+  color: #059669;
+}
+.ngs-form-status--err {
+  color: #dc2626;
+}

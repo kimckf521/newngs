@@ -1,0 +1,556 @@
+/* Faculty Section Styles */
+.tutors_profile__flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+}
+
+.tutors_profile__flex-col {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1400px;
+}
+
+/* Section Title */
+.section_title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.faculties__text-center {
+    text-align: center;
+}
+
+.section-font-style {
+    font-family: Arial, sans-serif;
+}
+
+/* Flags styling for college counseling section */
+.college-counseling__flags {
+    text-align: center;
+    font-size: 4rem;
+    margin-bottom: 40px;
+    letter-spacing: 10px;
+    line-height: 1.5;
+}
+
+/* Grid Layout */
+.tutors_profile__grid-cols {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    width: 100%;
+    overflow: visible;
+}
+
+/* Profile Card */
+.tutors_profile__flex-gap {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: visible;
+    z-index: 1;
+}
+
+.tutors_profile__flex-gap:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Profile Image */
+.tutors_profile__circle {
+    width: 120px;
+    height: 120px;
+    min-width: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #f0f0f0;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.tutors_profile__flex-gap:hover .tutors_profile__circle {
+    transform: scale(1.05);
+    border-color: #4a90e2;
+}
+
+/* Profile Content */
+.tutors_profile__style-1 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.tutors_profile__style-2 {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Tutor Demo Button - Hidden on Desktop */
+.tutor-demo-btn {
+    display: none;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tutor-demo-btn:hover {
+    background-color: #357abd;
+}
+
+.tutor-demo-btn:active {
+    background-color: #2868a8;
+}
+
+/* Video Popup */
+.popup_video {
+    position: absolute;
+    right: -520px;
+    top: -20px; /* Extend upward to cover more area */
+    width: 480px;
+    max-width: 90vw;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-20px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    /* transition-delay: 1.5s, 1.5s, 1.5s; */
+    z-index: 2;
+    pointer-events: none;
+}
+
+.tutors_profile__flex-gap:hover .popup_video {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    pointer-events: auto;
+    transition-delay: 0.3s, 0.3s, 0.3s; /* 300ms delay before showing */
+}
+
+.popup_video:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    pointer-events: auto;
+    transition-delay: 0s, 0s, 0s; /* No delay when hovering popup itself */
+}
+
+/* Add an invisible overlay behind the popup to block hover events */
+.popup_video::before {
+    content: '';
+    position: absolute;
+    right: 100%;
+    top: -50px;
+    bottom: -50px;
+    width: 200px; /* Wide enough to cover gap between popup and other cards */
+    z-index: 2;
+    pointer-events: auto; /* Block hover events from reaching cards behind */
+}
+
+/* Force hide class for immediate closing when switching profiles */
+.popup_video.force-hide {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition-delay: 0s !important;
+    transition: opacity 0.1s ease, visibility 0.1s ease, transform 0.1s ease !important;
+}
+
+.popup_video video,
+.popup_video iframe {
+    width: 100%;
+    height: 270px;
+    border-radius: 8px;
+    background: #000;
+    border: none;
+    display: block;
+}
+
+.video-title {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.video-description {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Tablet Styles */
+@media (max-width: 1200px) {
+    .tutors_profile__grid-cols {
+        gap: 30px;
+    }
+
+    .popup_video {
+        right: -420px;
+        width: 380px;
+    }
+
+    .popup_video video,
+    .popup_video iframe {
+        height: 250px;
+    }
+
+    .college-counseling__flags {
+        font-size: 3rem;
+        letter-spacing: 8px;
+        margin-bottom: 35px;
+    }
+}
+
+/* Small Tablet */
+@media (max-width: 1024px) {
+    .tutors_profile__grid-cols {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    /* Show Tutor Demo button on tablet */
+    .tutor-demo-btn {
+        display: inline-block;
+    }
+
+    .college-counseling__flags {
+        font-size: 2rem;
+        letter-spacing: 7px;
+        margin-bottom: 30px;
+    }
+
+    /* Disable hover effect, use button instead */
+    .popup_video {
+        position: relative;
+        right: auto;
+        left: 0;
+        transform: none;
+        top: auto;
+        bottom: auto;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 15px;
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease, max-height 0.3s ease;
+        padding: 0;
+        transition-delay: 0s;
+    }
+
+    .popup_video.active {
+        opacity: 1;
+        visibility: visible;
+        max-height: 1000px;
+        padding: 20px;
+    }
+
+    /* Disable hover on tablet */
+    .tutors_profile__flex-gap:hover .popup_video {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .tutors_profile__flex-gap:hover .popup_video.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .popup_video video,
+    .popup_video iframe {
+        height: 250px;
+    }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .tutors_profile__flex-center {
+        padding: 40px 15px;
+    }
+
+    .section_title {
+        margin-bottom: 30px;
+    }
+
+    .tutors_profile__grid-cols {
+        gap: 25px;
+    }
+
+    .college-counseling__flags {
+        font-size: 3rem;
+        letter-spacing: 5px;
+        margin-bottom: 25px;
+    }
+
+    .tutors_profile__flex-gap {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px 15px;
+        gap: 15px;
+    }
+
+    .tutors_profile__circle {
+        width: 100px;
+        height: 100px;
+        min-width: 100px;
+    }
+
+    .tutors_profile__style-1 {
+        font-size: 15px;
+    }
+
+    .tutors_profile__style-2 {
+        font-size: 13px;
+    }
+
+    /* Show Tutor Demo button on mobile */
+    .tutor-demo-btn {
+        display: inline-block;
+    }
+
+    /* Video appears below profile on mobile with button control */
+    .popup_video {
+        position: relative;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 15px;
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease, max-height 0.3s ease;
+        padding: 0;
+    }
+
+    .popup_video.active {
+        opacity: 1;
+        visibility: visible;
+        max-height: 1000px;
+        padding: 15px;
+    }
+
+    /* Disable hover on mobile */
+    .tutors_profile__flex-gap:hover .popup_video {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .tutors_profile__flex-gap:hover .popup_video.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .video-title {
+        font-size: 16px;
+        margin-top: 12px;
+    }
+
+    .video-description {
+        font-size: 13px;
+    }
+
+    .popup_video video,
+    .popup_video iframe {
+        height: 200px;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .tutors_profile__flex-center {
+        padding: 30px 10px;
+    }
+
+    .tutors_profile__grid-cols {
+        gap: 20px;
+    }
+
+    .college-counseling__flags {
+        font-size: 3rem;
+        letter-spacing: 4px;
+        margin-bottom: 20px;
+    }
+
+    .tutors_profile__flex-gap {
+        padding: 15px 10px;
+    }
+
+    .tutors_profile__circle {
+        width: 80px;
+        height: 80px;
+        min-width: 80px;
+    }
+
+    .tutors_profile__style-1 {
+        font-size: 14px;
+    }
+
+    .tutors_profile__style-2 {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .video-title {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .video-description {
+        font-size: 12px;
+    }
+
+    .popup_video video,
+    .popup_video iframe {
+        height: 180px;
+    }
+}
+
+/* Large Desktop - Adjust video position for right-side cards */
+@media (min-width: 1400px) {
+    .tutors_profile__grid-cols {
+        gap: 50px;
+    }
+
+    .college-counseling__flags {
+        font-size: 5rem;
+        letter-spacing: 12px;
+        margin-bottom: 45px;
+    }
+
+    .popup_video {
+        right: -540px;
+        width: 500px;
+    }
+
+    .popup_video video,
+    .popup_video iframe {
+        height: 280px;
+    }
+
+    /* For cards in the right column, show video on the left */
+    .tutors_profile__grid-cols > .tutors_profile__flex-gap:nth-child(even) .popup_video {
+        right: auto;
+        left: -540px;
+    }
+
+    .tutors_profile__grid-cols > .tutors_profile__flex-gap:nth-child(even):hover .popup_video {
+        transform: translateX(0);
+    }
+
+    /* Adjust blocking overlay for left-side popups */
+    .tutors_profile__grid-cols > .tutors_profile__flex-gap:nth-child(even) .popup_video::before {
+        right: auto;
+        left: 100%;
+    }
+}
+
+/* ============================================
+   Global Responsive Safeguards
+   ============================================ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+iframe {
+    max-width: 100%;
+}
+
+/* Prevent layout overflow around fixed-width card grids on small desktops */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .addmissions-plans__grid-cols,
+    .addmissions-plans__grid-cols-0823,
+    .addmissions-plans__grid-cols-e7af,
+    .addmissions-plans__grid-cols-fc0f {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .addmissions-plans__flex-col-2e0a {
+        width: 100%;
+        max-width: 340px;
+        flex: 1 1 320px;
+    }
+}
+
+/* Tap targets and controls on mobile */
+@media (max-width: 768px) {
+    .navbar__hamburger {
+        width: 44px;
+        height: 44px;
+        padding: 10px;
+    }
+
+    .navbar__lang-btn,
+    .navbar__login-btn {
+        min-height: 44px;
+        padding: 10px 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .index__bg-dark-d1b8,
+    .connects-cards__gradient-bg,
+    .partnership_lists__cta-button,
+    .addmissions-plans__rounded,
+    .addmissions-plans__rounded-b4a7,
+    .addmissions-plans__rounded-03a8 {
+        min-height: 44px;
+    }
+
+    .ngs-form input,
+    .ngs-form textarea,
+    .ngs-form button {
+        min-height: 44px;
+    }
+
+    .ngs-form textarea {
+        min-height: 120px;
+    }
+}

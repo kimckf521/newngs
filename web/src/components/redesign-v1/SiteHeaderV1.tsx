@@ -2,8 +2,9 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { externalLinks } from '@/lib/siteLinks';
+import { externalLinks, siteLinks, counterpartPath } from '@/lib/siteLinks';
 import { navbar, type NavGroup } from '@/content/navbar';
 import type { Locale } from '@/i18n/types';
 import { ArrowRight } from './ui';
@@ -16,10 +17,11 @@ import { ArrowRight } from './ui';
  */
 export function SiteHeaderV1({ locale, langHref }: { locale: Locale; langHref?: string }) {
   const t = navbar[locale];
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const homeHref = locale === 'zh' ? '/redesign-v1' : '/redesign-v1?lang=en';
-  const langSwitchHref = langHref ?? t.langSwitchHref;
+  const homeHref = siteLinks[locale].home;
+  const langSwitchHref = langHref ?? counterpartPath(pathname ?? siteLinks[locale].home, locale === 'zh' ? 'en' : 'zh');
   const groups: NavGroup[] = [t.studyWithUs, t.partner, t.admissions, t.community];
 
   useEffect(() => {

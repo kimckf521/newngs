@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import Link from 'next/link';
 
 export default function GlobalError({
   error,
@@ -14,28 +15,26 @@ export default function GlobalError({
   }, [error]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-6 text-center">
-      <h1 className="text-4xl font-bold text-gray-900 mb-4">
-        Something went wrong
-      </h1>
-      <p className="text-gray-600 mb-8 max-w-md">
-        We hit an unexpected error while loading this page. Please try again, or
-        go back to the home page.
+    <div className="ngs-redesign relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-night px-6 text-center font-sans text-white antialiased">
+      <div aria-hidden className="pointer-events-none absolute -top-24 left-1/2 h-[460px] w-[460px] -translate-x-1/2 rounded-full bg-ngs-magenta/20 blur-[150px]" />
+      <h1 className="relative font-grotesk text-4xl font-bold">Something went wrong</h1>
+      <p className="relative mt-4 max-w-md text-white/60">
+        We hit an unexpected error while loading this page. Please try again, or go back to the home page.
       </p>
-      <div className="flex gap-3">
+      <div className="relative mt-8 flex gap-3">
         <button
           type="button"
           onClick={reset}
-          className="px-5 py-2.5 rounded-md bg-gray-900 text-white font-medium hover:bg-gray-800 transition"
+          className="inline-flex items-center justify-center rounded-full bg-ngs-gradient px-7 py-3.5 text-sm font-semibold text-white shadow-[0_10px_40px_-10px_rgba(236,28,139,0.7)] transition-transform hover:-translate-y-0.5"
         >
           Try again
         </button>
-        <a
+        <Link
           href="/"
-          className="px-5 py-2.5 rounded-md border border-gray-300 text-gray-700 font-medium hover:bg-gray-100 transition"
+          className="inline-flex items-center justify-center rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white/40 hover:bg-white/5"
         >
           Go home
-        </a>
+        </Link>
       </div>
     </div>
   );

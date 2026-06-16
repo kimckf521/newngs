@@ -1,9 +1,9 @@
 export default function Loading() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="ngs-redesign flex min-h-screen items-center justify-center bg-night font-sans antialiased">
       <div className="flex flex-col items-center gap-4">
-        <div className="w-12 h-12 border-4 border-gray-200 border-t-gray-900 rounded-full animate-spin" />
-        <p className="text-gray-500 text-sm">Loading…</p>
+        <div className="h-12 w-12 animate-spin rounded-full border-4 border-white/15 border-t-ngs-violet" />
+        <p className="text-sm text-white/50">Loading…</p>
       </div>
     </div>
   );

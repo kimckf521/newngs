@@ -1,7 +1,11 @@
-import { OnlineDiplomaEn } from '@/components/pages/OnlineDiplomaEn';
+import { OnlineDiplomaPageV1 } from '@/components/redesign-v1/pages/OnlineDiplomaPageV1';
 
-export const metadata = { title: 'NGS - Online Diploma Program' };
+export const metadata = {
+  title: 'Online Diploma Program — NextGen Scholars',
+  description:
+    'The NGS Online Diploma Program (ODP) lets students learn online at their own pace, sit official exams on campus, and earn an accredited high-school diploma and transcript.',
+};
 
 export default function Page() {
-  return <OnlineDiplomaEn />;
+  return <OnlineDiplomaPageV1 locale="en" />;
 }

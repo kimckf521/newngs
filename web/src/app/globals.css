@@ -26,12 +26,15 @@
 @import '../../styles/legacy/ycs_teams.css';
 @import '../../styles/legacy/test.css';
 
-/* Body defaults from the original head.html body class */
+/* Body defaults. The site is now the bold "v1" dark design end-to-end, so the
+   base canvas is the near-black "night" ink — this also keeps the overscroll
+   gutter dark instead of flashing white. Individual self-contained preview
+   routes (/redesign) set their own light background on their wrapper. */
 body {
-  color: #1f2937;
+  color: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f9fafb;
+  background-color: #0a0a12;
 }
 
 /* Honeypot field for the contact form — visually hidden, but still focusable

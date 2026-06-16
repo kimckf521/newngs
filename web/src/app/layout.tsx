@@ -42,10 +42,27 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: 'NGS - NextGen Scholars',
-  description: 'NextGen Scholars - 未来学者教育',
+  metadataBase: new URL('https://nextgenscholars.asia'),
+  title: 'NextGen Scholars — International Education Parents Trust',
+  description:
+    'NextGen Scholars (未来学者) connects ambitious students with mentors from the world’s leading universities and global industry leaders — a trustworthy, world-class international education without borders.',
+  applicationName: 'NextGen Scholars',
   icons: {
     icon: '/favicon.ico',
+  },
+  openGraph: {
+    type: 'website',
+    siteName: 'NextGen Scholars',
+    title: 'NextGen Scholars — International Education Parents Trust',
+    description:
+      'A trustworthy, world-class international education — connecting ambitious students with mentors from the world’s leading universities.',
+    url: 'https://nextgenscholars.asia',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NextGen Scholars — International Education Parents Trust',
+    description:
+      'A trustworthy, world-class international education — connecting ambitious students with mentors from the world’s leading universities.',
   },
 };
 
@@ -59,7 +76,7 @@ export default function RootLayout({
       lang="zh"
       className={`${albertSans.variable} ${josefinSans.variable} ${fraunces.variable} ${spaceGrotesk.variable}`}
     >
-      <body className="font-sans text-gray-800 antialiased bg-gray-50">
+      <body className="font-sans antialiased">
         {children}
       </body>
     </html>

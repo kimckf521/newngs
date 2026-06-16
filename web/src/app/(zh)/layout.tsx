@@ -1,15 +1,15 @@
 import { HtmlLang } from '@/components/layout/HtmlLang';
+import { SiteShellV1 } from '@/components/redesign-v1/SiteShellV1';
 
 /**
- * Chinese-locale layout. Sets document.documentElement.lang = "zh".
- * The root <html> already defaults to "zh" so this is mostly a safety net
- * for in-app navigation between locales.
+ * Chinese-locale layout. Sets document.documentElement.lang = "zh" and wraps
+ * every Chinese page in the site-wide v1 dark chrome (header / footer / FAB).
  */
 export default function ZhLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <HtmlLang lang="zh" />
-      {children}
+      <SiteShellV1 locale="zh">{children}</SiteShellV1>
     </>
   );
 }

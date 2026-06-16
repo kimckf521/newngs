@@ -1,16 +1,15 @@
 import { HtmlLang } from '@/components/layout/HtmlLang';
+import { SiteShellV1 } from '@/components/redesign-v1/SiteShellV1';
 
 /**
- * English-locale layout. Sets document.documentElement.lang = "en" so screen
- * readers and search engines see the right language. The root <html> still
- * defaults to lang="zh" but this layout overrides it for every page under
- * /(en)/.
+ * English-locale layout. Sets document.documentElement.lang = "en" and wraps
+ * every English page in the site-wide v1 dark chrome (header / footer / FAB).
  */
 export default function EnLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <HtmlLang lang="en" />
-      {children}
+      <SiteShellV1 locale="en">{children}</SiteShellV1>
     </>
   );
 }

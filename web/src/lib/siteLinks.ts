@@ -53,3 +53,22 @@ export const externalLinks = {
 } as const;
 
 export type Locale = 'en' | 'zh';
+
+type LinkKey = keyof typeof siteLinks.en;
+const linkKeys = Object.keys(siteLinks.en) as LinkKey[];
+
+/**
+ * Map the current pathname to its equivalent page in the other locale.
+ * Falls back to that locale's home if there is no 1:1 counterpart.
+ * Used by the site-wide language switcher so switching language keeps
+ * the visitor on the same page.
+ */
+export function counterpartPath(pathname: string, toLocale: Locale): string {
+  const clean = pathname.split('#')[0].split('?')[0].replace(/\/$/, '') || '/';
+  const fromLocale: Locale = toLocale === 'en' ? 'zh' : 'en';
+  const key = linkKeys.find((k) => {
+    const v = siteLinks[fromLocale][k];
+    return v === clean || (v === '/' && clean === '/');
+  });
+  return key ? siteLinks[toLocale][key] : siteLinks[toLocale].home;
+}

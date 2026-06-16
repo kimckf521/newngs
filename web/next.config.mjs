@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+  // `standalone` is for self-hosting (Tencent Cloud / PM2 — see deploy/ and the
+  // README). On Vercel we must NOT emit standalone: Vercel's own Next.js build
+  // pipeline produces the serverless/edge output and standalone can interfere.
+  // Vercel sets VERCEL=1 during builds, so we drop standalone there and keep it
+  // for every other (self-hosted) build.
+  output: process.env.VERCEL ? undefined : 'standalone',
   reactStrictMode: true,
   images: {
     // Self-hosted Next.js image optimizer (sharp). Required by next/image

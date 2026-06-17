@@ -13,7 +13,7 @@ import { ContactFabV1 } from './ContactFabV1';
  */
 export function SiteShellV1({ locale, children }: { locale: Locale; children: ReactNode }) {
   return (
-    <div className="ngs-redesign flex min-h-screen flex-col bg-night font-sans text-white antialiased">
+    <div className="ngs-redesign flex min-h-screen flex-col bg-night font-inter text-white antialiased">
       <SiteHeaderV1 locale={locale} />
       <main className="flex-1">{children}</main>
       <FooterV1 locale={locale} />

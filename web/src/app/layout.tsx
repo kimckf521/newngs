@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Albert_Sans, Josefin_Sans, Fraunces, Space_Grotesk, Playfair_Display } from 'next/font/google';
+import { Albert_Sans, Josefin_Sans, Fraunces, Inter, Playfair_Display } from 'next/font/google';
 import './globals.css';
 
 // Albert Sans — body text. Multiple weights so we can pick what we need.
@@ -32,12 +32,12 @@ const fraunces = Fraunces({
   display: 'swap',
 });
 
-// Space Grotesk — geometric display sans for the bold "v1" alternate design.
-// Exposed as a CSS variable; only the redesign-v1 components consume it.
-const spaceGrotesk = Space_Grotesk({
+// Inter — the unified sans for the v1 design system (homepage, inner pages,
+// auth, error pages). Headings, sub-headings and body all use Inter for a
+// clean, minimalist single-family type system. Variable font = all weights.
+const inter = Inter({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-space-grotesk',
+  variable: '--font-inter',
   display: 'swap',
 });
 
@@ -86,7 +86,7 @@ export default function RootLayout({
     <html
       lang="zh"
       suppressHydrationWarning
-      className={`${albertSans.variable} ${josefinSans.variable} ${fraunces.variable} ${spaceGrotesk.variable} ${playfair.variable}`}
+      className={`${albertSans.variable} ${josefinSans.variable} ${fraunces.variable} ${inter.variable} ${playfair.variable}`}
     >
       <body className="font-sans antialiased">
         {/* Apply the saved light/dark choice before paint to avoid a flash.

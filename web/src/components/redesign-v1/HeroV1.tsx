@@ -2,14 +2,23 @@ import { siteLinks } from '@/lib/siteLinks';
 import type { Locale } from '@/i18n/types';
 import { Aurora, Badge, Button, Container, GradientText } from './ui';
 
-const content = {
+/** Editable content for the hero. The title is split into a plain first line
+ *  + a gradient-highlighted second line so it stays editable as text. */
+export type HeroData = {
+  badge: string;
+  titleLine1: string;
+  titleAccent: string;
+  sub: string;
+  primary: { label: string; href: string };
+  secondary: { label: string; href: string };
+  stats: { value: string; label: string }[];
+};
+
+const content: Record<Locale, HeroData> = {
   en: {
     badge: 'International education · K-12 to university',
-    title: (
-      <>
-        Where ambitious students become <GradientText>global scholars.</GradientText>
-      </>
-    ),
+    titleLine1: 'Where ambitious students become',
+    titleAccent: 'global scholars',
     sub: 'We connect the next generation with mentors from the world’s leading universities and global industry leaders — building an international education without borders.',
     primary: { label: 'Explore Programs', href: siteLinks.en.programs },
     secondary: { label: 'Partner With Us', href: siteLinks.en.cclr },
@@ -21,11 +30,8 @@ const content = {
   },
   zh: {
     badge: '国际教育 · 从 K-12 到大学',
-    title: (
-      <>
-        让有志学子，成为<GradientText>全球学者。</GradientText>
-      </>
-    ),
+    titleLine1: '让有志学子成为',
+    titleAccent: '全球学者',
     sub: '我们连接全球顶尖大学导师与各行业领袖，为下一代打造没有边界的国际教育。',
     primary: { label: '探索课程', href: siteLinks.zh.programs },
     secondary: { label: '成为 NGS 伙伴', href: siteLinks.zh.cclr },
@@ -35,10 +41,10 @@ const content = {
       { value: '100%', label: '个性化辅导' },
     ],
   },
-} as const;
+};
 
-export function HeroV1({ locale }: { locale: Locale }) {
-  const t = content[locale];
+export function HeroV1({ locale, data }: { locale: Locale; data?: HeroData }) {
+  const t = data ?? content[locale];
   return (
     <section className="relative isolate overflow-hidden bg-night">
       <Aurora />
@@ -59,8 +65,9 @@ export function HeroV1({ locale }: { locale: Locale }) {
         <div className="animate-fade-up">
           <Badge>{t.badge}</Badge>
         </div>
-        <h1 className="mt-7 max-w-4xl font-grotesk text-[2.7rem] font-bold leading-[1.04] tracking-[-0.02em] text-white animate-fade-up sm:text-6xl lg:text-[4.75rem]">
-          {t.title}
+        <h1 className="mt-7 max-w-6xl font-grotesk text-[2.25rem] font-bold leading-[1.08] tracking-[-0.02em] text-white animate-fade-up sm:text-[2.9rem] lg:text-[3.375rem] xl:text-[4.25rem]">
+          <span className="block text-balance">{t.titleLine1}</span>
+          <GradientText className="block">{t.titleAccent}</GradientText>
         </h1>
         <p className="mt-7 max-w-2xl text-lg leading-relaxed text-white/70 animate-fade-up">{t.sub}</p>
 
@@ -82,4 +89,9 @@ export function HeroV1({ locale }: { locale: Locale }) {
       </Container>
     </section>
   );
+}
+
+/** Today's content, used to seed the page builder. */
+export function heroDefaults(locale: Locale): HeroData {
+  return content[locale];
 }

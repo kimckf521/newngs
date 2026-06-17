@@ -73,8 +73,12 @@ const config: Config = {
         ],
         // Editorial serif for redesigned display headings.
         display: ['var(--font-fraunces)', 'Georgia', 'Cambria', 'serif'],
-        // Geometric display sans for the bold "v1" alternate design.
-        grotesk: ['var(--font-space-grotesk)', 'var(--font-albert-sans)', 'system-ui', 'sans-serif'],
+        // Unified Inter sans for the v1 design system. `inter` is the body/UI
+        // token; `grotesk` is kept as the v1 heading token but now also resolves
+        // to Inter (Space Grotesk was retired for a cleaner, minimalist single-
+        // family system). Both carry a CJK fallback so Chinese stays sans-serif.
+        inter: ['var(--font-inter)', 'system-ui', '-apple-system', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', 'sans-serif'],
+        grotesk: ['var(--font-inter)', 'system-ui', '-apple-system', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', 'sans-serif'],
       },
       borderRadius: {
         lg: '18px',

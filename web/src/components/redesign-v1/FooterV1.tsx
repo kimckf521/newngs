@@ -114,8 +114,24 @@ export function FooterV1({ locale }: { locale: Locale }) {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-14 flex flex-col gap-6 border-t border-white/10 pt-8 text-xs text-white/45 lg:flex-row lg:justify-between">
-          <div className="flex flex-wrap gap-x-6 gap-y-2">
+        <div className="mt-14 border-t border-white/10 pt-8 text-xs text-white/45">
+          {/* Copyright + policy links — balanced across the width */}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p>{f.copyright}</p>
+            <div className="flex items-center gap-2">
+              <Link href={f.privacyHref} className="transition hover:text-white/80">
+                {f.privacyLabel}
+              </Link>
+              <span aria-hidden>·</span>
+              <Link href={f.termsHref} className="transition hover:text-white/80">
+                {f.termsLabel}
+              </Link>
+            </div>
+          </div>
+
+          {/* China compliance records — kept together on their own line so they
+              never orphan mid-layout; wraps left-aligned on narrow screens. */}
+          <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-white/40">
             <a
               href="https://beian.miit.gov.cn/"
               target="_blank"
@@ -129,19 +145,6 @@ export function FooterV1({ locale }: { locale: Locale }) {
               <Image src="/static/img/police.png" alt="" width={14} height={14} className="h-3.5 w-3.5" />
               粤公网安备 44030002008307号
             </span>
-          </div>
-
-          <div className="flex flex-col gap-2 lg:items-end">
-            <div className="flex items-center gap-2">
-              <Link href={f.privacyHref} className="transition hover:text-white/80">
-                {f.privacyLabel}
-              </Link>
-              <span aria-hidden>·</span>
-              <Link href={f.termsHref} className="transition hover:text-white/80">
-                {f.termsLabel}
-              </Link>
-            </div>
-            <p>{f.copyright}</p>
           </div>
         </div>
       </Container>

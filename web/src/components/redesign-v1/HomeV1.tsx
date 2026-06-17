@@ -12,7 +12,7 @@ import { HomeContentV1 } from './HomeContentV1';
  */
 export function HomeV1({ locale, langHref }: { locale: Locale; langHref: string }) {
   return (
-    <div className="ngs-redesign bg-night font-sans text-white antialiased">
+    <div className="ngs-redesign bg-night font-inter text-white antialiased">
       <SiteHeaderV1 locale={locale} langHref={langHref} />
       <main>
         <HomeContentV1 locale={locale} />

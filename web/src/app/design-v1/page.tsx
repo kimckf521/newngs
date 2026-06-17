@@ -1,6 +1,17 @@
 import type { Metadata } from 'next';
+import { Playfair_Display } from 'next/font/google';
 import { HeritageHome } from '@/components/design-v1/HeritageHome';
 import type { Locale } from '@/i18n/types';
+
+// High-contrast display serif scoped to THIS preview route only (moved out of
+// the root layout so the live site and all other routes no longer preload it).
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+  variable: '--font-playfair',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'NextGen Scholars — Heritage Prestige (design-v1)',
@@ -21,5 +32,9 @@ export default function DesignV1Preview({
 }) {
   const locale: Locale = searchParams?.lang === 'zh' ? 'zh' : 'en';
   const langHref = locale === 'en' ? '/design-v1?lang=zh' : '/design-v1?lang=en';
-  return <HeritageHome locale={locale} langHref={langHref} />;
+  return (
+    <div className={playfair.variable}>
+      <HeritageHome locale={locale} langHref={langHref} />
+    </div>
+  );
 }

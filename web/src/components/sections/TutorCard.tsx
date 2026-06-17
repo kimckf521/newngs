@@ -147,7 +147,7 @@ export function TutorCard({ tutor, locale = 'en' }: { tutor: TutorCardData; loca
           ref={popupRef}
           className={`popup_video section-font-style ${active ? 'active' : ''}`}
         >
-          <video ref={videoRef} controls loop>
+          <video ref={videoRef} controls loop preload="none" poster={tutor.avatar}>
             <source src={tutor.video.src} type="video/mp4" />
             Your browser does not support the video tag.
           </video>

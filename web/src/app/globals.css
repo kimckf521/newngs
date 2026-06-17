@@ -15,16 +15,11 @@
   }
 }
 
-/* Legacy NGS stylesheets — being progressively migrated to Tailwind.
-   Loaded AFTER Tailwind so existing BEM classes win specificity ties. */
-@import '../../styles/legacy/styles.css';
-@import '../../styles/legacy/site.css';
-@import '../../styles/legacy/progress.css';
-@import '../../styles/legacy/policy.css';
-@import '../../styles/legacy/partnership_lists.css';
-@import '../../styles/legacy/ycs_intro.css';
-@import '../../styles/legacy/ycs_teams.css';
-@import '../../styles/legacy/test.css';
+/* Legacy NGS stylesheets removed for performance: ~163 KB raw / 21 KB gzip of
+   render-blocking BEM CSS that loaded on EVERY route but styled only the
+   unrouted components/pages + components/sections trees (the live v1 design and
+   all live routes use Tailwind + redesign-v1 components only). The source files
+   remain under styles/legacy/ — re-add an @import here if a legacy page returns. */
 
 /* Body defaults. The site is now the bold "v1" dark design end-to-end, so the
    base canvas is the near-black "night" ink — this also keeps the overscroll

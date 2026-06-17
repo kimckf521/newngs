@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Albert_Sans, Josefin_Sans, Fraunces, Inter, Playfair_Display } from 'next/font/google';
+import { Albert_Sans, Josefin_Sans, Inter } from 'next/font/google';
 import './globals.css';
 
 // Albert Sans — body text. Multiple weights so we can pick what we need.
@@ -20,35 +20,12 @@ const josefinSans = Josefin_Sans({
   display: 'swap',
 });
 
-// Fraunces — editorial serif for the redesigned display headings. Gives the
-// site the established, premium feel a tech-gradient sans alone can't. Exposed
-// as a CSS variable and only consumed by the redesigned components, so legacy
-// pages are unaffected.
-const fraunces = Fraunces({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-fraunces',
-  display: 'swap',
-});
-
 // Inter — the unified sans for the v1 design system (homepage, inner pages,
 // auth, error pages). Headings, sub-headings and body all use Inter for a
 // clean, minimalist single-family type system. Variable font = all weights.
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
-  display: 'swap',
-});
-
-// Playfair Display — high-contrast display serif for the "Heritage Prestige"
-// alternate design at /design-v1. Exposed as a CSS variable; only the
-// design-v1 components consume it, so the rest of the site is unaffected.
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
-  style: ['normal', 'italic'],
-  variable: '--font-playfair',
   display: 'swap',
 });
 
@@ -86,7 +63,7 @@ export default function RootLayout({
     <html
       lang="zh"
       suppressHydrationWarning
-      className={`${albertSans.variable} ${josefinSans.variable} ${fraunces.variable} ${inter.variable} ${playfair.variable}`}
+      className={`${albertSans.variable} ${josefinSans.variable} ${inter.variable}`}
     >
       <body className="font-sans antialiased">
         {/* Apply the saved light/dark choice before paint to avoid a flash.

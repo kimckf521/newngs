@@ -12,7 +12,15 @@ export default function AdminHome() {
         Unpublished work is kept as a draft.
       </p>
 
-      <ul style={{ marginTop: 28, display: 'grid', gap: 12, listStyle: 'none', padding: 0 }}>
+      <Link
+        href="/admin/inbox"
+        style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 20, padding: '11px 18px', border: '1px solid #e6e6e6', borderRadius: 10, fontSize: 14, fontWeight: 600, color: '#111', textDecoration: 'none' }}
+      >
+        <span style={{ width: 8, height: 8, borderRadius: 999, background: '#10b981', display: 'inline-block' }} aria-hidden />
+        Live chat inbox →
+      </Link>
+
+      <ul style={{ marginTop: 20, display: 'grid', gap: 12, listStyle: 'none', padding: 0 }}>
         {editablePages.map((p) => (
           <li
             key={`${p.route}_${p.locale}`}

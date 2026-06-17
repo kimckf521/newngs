@@ -31,7 +31,10 @@ const content = {
     confirmPh: 'Re-enter your password',
     show: 'Show password',
     hide: 'Hide password',
-    terms: 'I agree to the Terms of Service and Privacy Policy',
+    agreePre: 'I agree to the ',
+    tosLabel: 'Terms of Service',
+    agreeMid: ' and ',
+    privacyLabel: 'Privacy Policy',
     create: 'Create account',
     sendingCode: 'Sending code…',
     mismatch: 'Passwords do not match.',
@@ -67,7 +70,10 @@ const content = {
     confirmPh: '请再次输入密码',
     show: '显示密码',
     hide: '隐藏密码',
-    terms: '我已阅读并同意《服务协议》与《隐私政策》',
+    agreePre: '我已阅读并同意',
+    tosLabel: '《服务协议》',
+    agreeMid: '与',
+    privacyLabel: '《隐私政策》',
     create: '创建账户',
     sendingCode: '发送验证码中…',
     mismatch: '两次输入的密码不一致。',
@@ -235,7 +241,16 @@ export function RegisterPageV1({ locale }: { locale: Locale }) {
 
         <label className="flex items-start gap-2.5 text-sm leading-relaxed text-white/65">
           <input type="checkbox" name="terms" className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/25 bg-white/5 accent-[#8b2fd6]" />
-          {t.terms}
+          <span>
+            {t.agreePre}
+            <Link href={links.terms} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="font-medium text-white underline underline-offset-2 transition-colors hover:text-ngs-cyan">
+              {t.tosLabel}
+            </Link>
+            {t.agreeMid}
+            <Link href={links.privacy} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="font-medium text-white underline underline-offset-2 transition-colors hover:text-ngs-cyan">
+              {t.privacyLabel}
+            </Link>
+          </span>
         </label>
 
         <SubmitButton loading={status === 'sending'} loadingLabel={t.sendingCode}>{t.create}</SubmitButton>

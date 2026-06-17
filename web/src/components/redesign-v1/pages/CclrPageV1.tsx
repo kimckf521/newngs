@@ -408,7 +408,7 @@ export function CclrPageV1({ locale }: { locale: Locale }) {
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10">
             <Image
-              src="/static/img/harvard.png"
+              src="/static/img/harvard.jpg"
               alt=""
               fill
               sizes="(min-width:1024px) 45vw, 100vw"

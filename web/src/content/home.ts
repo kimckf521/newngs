@@ -42,7 +42,7 @@ export const home: Localized<HomeStrings> = {
         {
           key: 'study',
           href: '#our-programs',
-          img: '/static/img/Studywithus.png',
+          img: '/static/img/Studywithus.jpg',
           title: '成为NGS学生',
           description:
             '或许你梦想进入理想的大学，但不确定如何实现。我们的个性化辅导服务将全程为你指引方向。',
@@ -107,7 +107,7 @@ export const home: Localized<HomeStrings> = {
         {
           key: 'study',
           href: '#our-programs',
-          img: '/static/img/Studywithus.png',
+          img: '/static/img/Studywithus.jpg',
           title: 'Study With Us',
           description:
             "Perhaps you're dreaming of gaining admission to your dream university but unsure how to get there. Our personalized mentoring services are here to guide you every step of the way.",

@@ -74,9 +74,9 @@ export default function EditorPage() {
         setStatus('Publishing…');
         try {
           await publishPage(route, locale, d);
-          // The public homepage is ISR (revalidate=300), so a publish appears
-          // within the revalidate window unless on-demand revalidatePath is wired.
-          setStatus('Published ✓ — live within ~5 min');
+          // publishPage triggers on-demand revalidation (/api/revalidate), so the
+          // change is live on the next request rather than after the ISR window.
+          setStatus('Published ✓ — live now');
         } catch {
           setStatus('Publish failed — check CloudBase setup');
         }

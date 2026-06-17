@@ -65,7 +65,7 @@ const content: Record<Locale, {
       },
       {
         name: 'School Reports',
-        img: '/static/img/connects/schoolreports.png',
+        img: '/static/img/connects/schoolreports.jpg',
         alt: 'School reports',
         body: 'In-depth school reports for students and parents with future-goal matching analysis, providing insider information beyond what websites offer.',
       },
@@ -77,7 +77,7 @@ const content: Record<Locale, {
       },
       {
         name: 'Academic Clinics',
-        img: '/static/img/connects/academic.png',
+        img: '/static/img/connects/academic.jpg',
         alt: 'Academic clinics',
         body: 'Help students adapt to international-school environments through language and academic bridging plus social-expectations preparation.',
       },
@@ -204,7 +204,7 @@ const content: Record<Locale, {
       },
       {
         name: '学校报告',
-        img: '/static/img/connects/schoolreports.png',
+        img: '/static/img/connects/schoolreports.jpg',
         alt: '学校报告',
         body: '为学生和家长出具学校深度报告，结合学生未来目标进行深度匹配度分析，帮家长掌握官网上无法获得的内幕信息。',
       },
@@ -216,7 +216,7 @@ const content: Record<Locale, {
       },
       {
         name: '学术诊所',
-        img: '/static/img/connects/academic.png',
+        img: '/static/img/connects/academic.jpg',
         alt: '学术诊所',
         body: '帮助学生提前适应国际学校全英文学习环境，通过强化语言及学术衔接与社交期待，为顺利过渡新课程与新文化打好准备。',
       },

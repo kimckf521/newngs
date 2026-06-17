@@ -50,7 +50,7 @@ export function GlobalCommunity({ locale }: { locale: Locale }) {
         <div className="global-community__flex-center">
           <Image
             alt="NGS Global Community"
-            src="/static/img/harvard.png"
+            src="/static/img/harvard.jpg"
             width={600}
             height={400}
             className="global-community__rounded"

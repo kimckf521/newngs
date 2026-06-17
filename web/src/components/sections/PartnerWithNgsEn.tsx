@@ -19,7 +19,7 @@ export function PartnerWithNgsEn() {
         <a href={siteLinks.en.hybrid} className="partner-with-us__style-1">
           <div className="our-programs__style-1">
             <div className="our-programs__style-4">
-              <img alt="Study With Us" src="/static/img/Studywithus.png" className="our-programs__full-size" />
+              <img alt="Study With Us" src="/static/img/Studywithus.jpg" className="our-programs__full-size" />
             </div>
             <h3 className="section_subtitle our-programs__text-center-8988">Study With Us</h3>
             <p className="section_paragraph our-programs__style-3">

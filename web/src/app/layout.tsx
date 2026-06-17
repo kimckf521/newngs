@@ -8,6 +8,10 @@ const albertSans = Albert_Sans({
   weight: ['400', '500', '600', '700', '800'],
   variable: '--font-albert-sans',
   display: 'swap',
+  // The live v1 site uses Inter only; Albert is consumed solely by the /redesign
+  // & /design-v1 preview routes (+ dead legacy). preload:false keeps it available
+  // there but drops it from the render-blocking <link rel=preload> on every page.
+  preload: false,
 });
 
 // Josefin Sans — secondary headings (the legacy CSS uses it for h3 in
@@ -18,6 +22,8 @@ const josefinSans = Josefin_Sans({
   weight: ['500', '600', '700'],
   variable: '--font-josefin-sans',
   display: 'swap',
+  // Only the /redesign preview (+ dead legacy) uses it — don't preload on live.
+  preload: false,
 });
 
 // Inter — the unified sans for the v1 design system (homepage, inner pages,

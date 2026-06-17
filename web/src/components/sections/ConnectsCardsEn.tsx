@@ -17,7 +17,7 @@ export function ConnectsCardsEn() {
             </p>
           </div>
           <div className="connects-cards__flex-col-9b69">
-            <img alt="School Reports" src="/static/img/connects/schoolreports.png" className="connects-cards__circle" />
+            <img alt="School Reports" src="/static/img/connects/schoolreports.jpg" className="connects-cards__circle" />
             <h3 className="section_subtitle connects-cards__style-3">School Reports</h3>
             <p className="section_paragraph connects-cards__style-4">
               In-depth school reports for students and parents with future-goal matching analysis, providing insider information beyond what websites offer.
@@ -31,7 +31,7 @@ export function ConnectsCardsEn() {
             </p>
           </div>
           <div className="connects-cards__flex-col-9b69">
-            <img alt="Academic Clinics" src="/static/img/connects/academic.png" className="connects-cards__circle" />
+            <img alt="Academic Clinics" src="/static/img/connects/academic.jpg" className="connects-cards__circle" />
             <h3 className="section_subtitle connects-cards__style-3">Academic Clinics</h3>
             <p className="section_paragraph connects-cards__style-4">
               Help students adapt to international school environments through language and academic bridging plus social expectations preparation.

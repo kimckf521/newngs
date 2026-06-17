@@ -439,7 +439,7 @@ export function CollegeMentorshipPageV1({ locale }: { locale: Locale }) {
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10">
             <Image
-              src="/static/img/bridgecity.png"
+              src="/static/img/bridgecity.jpg"
               alt=""
               fill
               sizes="(min-width:1024px) 45vw, 100vw"
@@ -550,7 +550,7 @@ export function CollegeMentorshipPageV1({ locale }: { locale: Locale }) {
           </div>
           <div className="relative aspect-[3/2] overflow-hidden rounded-3xl border border-white/10">
             <Image
-              src="/static/img/harvard.png"
+              src="/static/img/harvard.jpg"
               alt=""
               fill
               sizes="(min-width:1024px) 45vw, 100vw"

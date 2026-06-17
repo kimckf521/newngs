@@ -23,7 +23,7 @@ export function ConnectsCardsZh() {
           <div className="connects-cards__flex-col-9b69">
             <img
               alt="School Reports"
-              src="/static/img/connects/schoolreports.png"
+              src="/static/img/connects/schoolreports.jpg"
               className="connects-cards__circle"
             />
             <h3 className="section_subtitle connects-cards__style-3">学校报告</h3>
@@ -45,7 +45,7 @@ export function ConnectsCardsZh() {
           <div className="connects-cards__flex-col-9b69">
             <img
               alt="Academic Clinics"
-              src="/static/img/connects/academic.png"
+              src="/static/img/connects/academic.jpg"
               className="connects-cards__circle"
             />
             <h3 className="section_subtitle connects-cards__style-3">学术诊所</h3>

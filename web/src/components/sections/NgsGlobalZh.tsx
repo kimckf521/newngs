@@ -25,7 +25,7 @@ export function NgsGlobalZh() {
             <div className="our-programs__style-4">
               <img
                 alt="Study With Us"
-                src="/static/img/Studywithus.png"
+                src="/static/img/Studywithus.jpg"
                 className="our-programs__full-size"
               />
             </div>

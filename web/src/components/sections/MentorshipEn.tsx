@@ -5,7 +5,7 @@ export function MentorshipEn() {
     <section className="mentorship__bg-white section-font-style">
       <div className="mentorship__grid-cols">
         <div className="mentorship__flex-col">
-          <img alt="Bridge City" src="/static/img/bridgecity.png" className="mentorship__rounded" />
+          <img alt="Bridge City" src="/static/img/bridgecity.jpg" className="mentorship__rounded" />
           <a href={externalLinks.customerServiceWeChat} className="mentorship__gradient-bg">
             Free Consultation
           </a>

@@ -49,4 +49,11 @@ export async function saveDraft(route: string, locale: Locale, data: PuckData): 
 
 export async function publishPage(route: string, locale: Locale, data: PuckData): Promise<void> {
   await writePage(route, locale, { draft: data, published: data, publishedAt: Date.now() });
+  // Invalidate the ISR cache so the publish goes live immediately instead of
+  // waiting for the homepages' revalidate window. Non-fatal if it fails.
+  try {
+    await fetch('/api/revalidate', { method: 'POST' });
+  } catch {
+    /* content still appears within the revalidate window */
+  }
 }

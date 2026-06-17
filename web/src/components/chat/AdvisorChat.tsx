@@ -1,11 +1,30 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from 'react';
+import { Fragment, useEffect, useRef, useState, type FormEvent, type KeyboardEvent, type ReactNode } from 'react';
 import { externalLinks } from '@/lib/siteLinks';
 import type { Locale } from '@/i18n/types';
 
 type Msg = { role: 'user' | 'assistant'; content: string };
+
+/**
+ * Minimal, dependency-free Markdown-lite renderer for assistant replies:
+ * normalises "- "/"* " bullets to "• ", renders **bold**, and leaves newlines
+ * to the bubble's whitespace-pre-wrap. The model tends to emit Markdown; this
+ * keeps it from showing literal asterisks without pulling in a parser. React
+ * escapes all text, so there's no HTML-injection surface.
+ */
+function renderRich(text: string): ReactNode {
+  const normalized = text.replace(/^[ \t]*[-*•][ \t]+/gm, '• ');
+  return normalized.split(/(\*\*[^*\n]+\*\*)/g).map((seg, i) => {
+    const bold = /^\*\*([^*\n]+)\*\*$/.exec(seg);
+    return bold ? (
+      <strong key={i} className="font-semibold text-white">{bold[1]}</strong>
+    ) : (
+      <Fragment key={i}>{seg}</Fragment>
+    );
+  });
+}
 
 const content = {
   en: {
@@ -151,7 +170,7 @@ export function AdvisorChat({ locale = 'zh' }: { locale?: Locale }) {
                       : 'max-w-[85%] whitespace-pre-wrap rounded-2xl rounded-bl-sm border border-white/10 bg-white/[0.05] px-3.5 py-2.5 text-sm text-white/90'
                   }
                 >
-                  {m.content}
+                  {m.role === 'assistant' ? renderRich(m.content) : m.content}
                 </div>
               </div>
             ))}
@@ -205,24 +224,49 @@ export function AdvisorChat({ locale = 'zh' }: { locale?: Locale }) {
       )}
 
       {/* Floating button */}
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        aria-label={t.fab}
-        aria-expanded={open}
-        className="group fixed bottom-6 right-6 z-40 inline-flex items-center gap-2.5 rounded-full bg-ngs-gradient py-3 pl-3 pr-5 text-sm font-semibold text-white shadow-[0_12px_40px_-10px_rgba(236,28,139,0.7)] ring-1 ring-white/15 transition-transform duration-300 hover:-translate-y-0.5 sm:bottom-8 sm:right-8"
-      >
-        <span className="grid h-7 w-7 place-items-center rounded-full bg-white/15">
-          {open ? (
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden><path d="M6 6l12 12M18 6L6 18" /></svg>
-          ) : (
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-            </svg>
-          )}
-        </span>
-        <span className="hidden sm:inline">{t.fab}</span>
-      </button>
+      <div className="fixed bottom-6 right-6 z-40 sm:bottom-8 sm:right-8">
+        {/* Soft breathing halo behind the closed button to draw the eye.
+            Paused when the panel is open and for reduced-motion users. */}
+        {!open && (
+          <span
+            aria-hidden
+            className="pointer-events-none absolute -inset-1 -z-10 rounded-full bg-ngs-gradient opacity-50 blur-lg motion-safe:animate-pulse"
+          />
+        )}
+        <button
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          aria-label={open ? t.close : t.fab}
+          aria-expanded={open}
+          className={`group relative flex items-center overflow-hidden rounded-full bg-ngs-gradient py-2.5 pl-2.5 font-semibold text-white shadow-[0_10px_30px_-8px_rgba(236,28,139,0.65)] ring-1 ring-white/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_46px_-10px_rgba(236,28,139,0.85)] active:translate-y-0 active:scale-[0.97] ${open ? 'gap-0 pr-2.5' : 'gap-2.5 pr-2.5 sm:pr-5'}`}
+        >
+          {/* Glossy top sheen for a premium, dimensional feel */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/35 to-transparent"
+          />
+          {/* Icon disc + live-status dot */}
+          <span className="relative grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white/20 ring-1 ring-inset ring-white/25 transition-colors duration-300 group-hover:bg-white/30">
+            {open ? (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden><path d="M6 6l12 12M18 6L6 18" /></svg>
+            ) : (
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                <path d="M8.5 10h7M8.5 13h4" />
+              </svg>
+            )}
+            {!open && (
+              <span aria-hidden className="absolute -right-0.5 -top-0.5 flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-80 motion-safe:animate-ping" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400 ring-2 ring-night" />
+              </span>
+            )}
+          </span>
+          <span className={`relative whitespace-nowrap text-sm tracking-tight ${open ? 'hidden' : 'hidden sm:inline'}`}>
+            {t.fab}
+          </span>
+        </button>
+      </div>
     </>
   );
 }

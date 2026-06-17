@@ -15,6 +15,8 @@ export interface LiveMessage {
 
 export interface LiveConversation {
   id: string;
+  /** Short human code (e.g. "K3F9") shown to WeCom agents for routing replies. */
+  code?: string;
   status: 'open' | 'closed';
   locale: string;
   page?: string;

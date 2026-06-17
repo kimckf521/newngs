@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { addMessage, ensureConversation, getConversation, getMessages } from '@/lib/livechat/store';
 import { MAX_MESSAGE_LEN } from '@/lib/livechat/types';
+import { pushVisitorMessage } from '@/lib/wecom/relay';
 
 // CloudBase node-sdk (when configured) needs Node APIs — pin the runtime.
 export const runtime = 'nodejs';
@@ -33,8 +34,9 @@ export async function POST(req: NextRequest) {
   if (text.length > MAX_MESSAGE_LEN) return NextResponse.json({ error: 'too_long' }, { status: 400 });
 
   try {
-    await ensureConversation(id, locale, page);
+    const conv = await ensureConversation(id, locale, page);
     const message = await addMessage(id, 'visitor', text);
+    void pushVisitorMessage(conv, text); // notify staff in WeCom (no-op unless configured)
     return NextResponse.json({ ok: true, message });
   } catch {
     return NextResponse.json({ error: 'unavailable' }, { status: 503 });

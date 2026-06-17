@@ -68,6 +68,11 @@ function genId(prefix: string): string {
   return `${prefix}_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`;
 }
 
+function genCode(): string {
+  // Short, human-friendly code shown to WeCom agents (e.g. "K3F9") for reply routing.
+  return Math.random().toString(36).slice(2, 6).toUpperCase();
+}
+
 /** Create the conversation if it doesn't exist; return it. */
 export async function ensureConversation(
   id: string,
@@ -77,6 +82,7 @@ export async function ensureConversation(
   const now = Date.now();
   const fresh: LiveConversation = {
     id,
+    code: genCode(),
     status: 'open',
     locale,
     page,
@@ -109,6 +115,16 @@ export async function getConversation(id: string): Promise<LiveConversation | nu
     return ((await db.collection(CONVERSATIONS).doc(id).get())?.data?.[0] as LiveConversation) ?? null;
   }
   return mem.conversations.get(id) ?? null;
+}
+
+export async function getConversationByCode(code: string): Promise<LiveConversation | null> {
+  const db = await getDb();
+  if (db) {
+    const res = await db.collection(CONVERSATIONS).where({ code }).limit(1).get();
+    return ((res?.data ?? [])[0] as LiveConversation) ?? null;
+  }
+  for (const c of mem.conversations.values()) if (c.code === code) return c;
+  return null;
 }
 
 export async function addMessage(

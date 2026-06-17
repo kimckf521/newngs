@@ -14,7 +14,7 @@ export const revalidate = 300;
 export const metadata = pageSeo({
   page: 'home',
   locale: 'en',
-  title: "International Education Mentorship for Ambitious Students",
+  title: "International Education & University Mentorship",
   description:
     "Connect with mentors from Harvard and the world's leading universities. Personalised college admissions support, high-school programs and global pathways.",
 });
@@ -29,7 +29,7 @@ export default async function Page() {
         data={pageJsonLd({
           page: 'home',
           locale: 'en',
-          name: "International Education Mentorship for Ambitious Students",
+          name: "International Education & University Mentorship",
           description:
             "Connect with mentors from Harvard and the world's leading universities. Personalised college admissions support, high-school programs and global pathways.",
           type: 'WebPage',

@@ -11,7 +11,25 @@ export const env = {
   SMTP_HOST: process.env.SMTP_HOST ?? 'smtp.exmail.qq.com',
   SMTP_PORT: Number(process.env.SMTP_PORT ?? '465'),
   EMAIL_RECEIVER: process.env.EMAIL_RECEIVER ?? 'info@nextgenscholars.asia',
+  // DeepSeek (China-hosted LLM) — powers the on-site AI advisor chat.
+  // Non-secret; the API key is validated lazily via requireDeepSeekKey().
+  DEEPSEEK_BASE_URL: process.env.DEEPSEEK_BASE_URL ?? 'https://api.deepseek.com',
+  DEEPSEEK_MODEL: process.env.DEEPSEEK_MODEL ?? 'deepseek-chat',
 } as const;
+
+/**
+ * Returns the DeepSeek API key, throwing if it's missing. Call at request time
+ * (inside the /api/chat handler), never at module scope — so a deploy without
+ * the key fails the first chat request (handled gracefully → WeChat handoff)
+ * rather than failing `next build`. Get a key at https://platform.deepseek.com.
+ */
+export function requireDeepSeekKey(): string {
+  const key = process.env.DEEPSEEK_API_KEY;
+  if (!key || key.trim() === '') {
+    throw new Error('Missing required environment variable: DEEPSEEK_API_KEY');
+  }
+  return key;
+}
 
 /**
  * Returns the SMTP credentials, throwing if they are missing. Call this at

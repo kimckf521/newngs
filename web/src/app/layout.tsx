@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     title: 'NextGen Scholars — International Education Parents Trust',
     description:
       'A trustworthy, world-class international education — connecting ambitious students with mentors from the world’s leading universities.',
-    images: [DEFAULT_OG_IMAGE],
+    images: [{ url: DEFAULT_OG_IMAGE, alt: 'NextGen Scholars 未来学者' }],
   },
 };
 

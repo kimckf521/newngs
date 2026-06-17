@@ -8,7 +8,7 @@ export const metadata = pageSeo({
   locale: 'en',
   title: "College Admissions Mentorship: 4-on-1 Guidance",
   description:
-    "Personalized 4-on-1 college mentorship for top universities in the US, UK, Canada, Australia, Hong Kong and Singapore — academic planning, essays, interviews and portfolios.",
+    "Personalized 4-on-1 college mentorship for top universities in the US, UK, Canada, Australia, Hong Kong & Singapore — essays, interviews & portfolios.",
 });
 
 export default function Page() {
@@ -20,7 +20,7 @@ export default function Page() {
           locale: 'en',
           name: "College Admissions Mentorship: 4-on-1 Guidance",
           description:
-            "Personalized 4-on-1 college mentorship for top universities in the US, UK, Canada, Australia, Hong Kong and Singapore — academic planning, essays, interviews and portfolios.",
+            "Personalized 4-on-1 college mentorship for top universities in the US, UK, Canada, Australia, Hong Kong & Singapore — essays, interviews & portfolios.",
           type: 'WebPage',
         })}
       />

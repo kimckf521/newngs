@@ -8,7 +8,7 @@ export const metadata = pageSeo({
   locale: 'en',
   title: "CCLR Program: College, Career & Life Readiness",
   description:
-    "NGS CCLR is a four-year high-school framework building college, career, life readiness and global competency — partner with us to prepare students for a global future.",
+    "NGS CCLR is a four-year high-school framework building college, career, life readiness and global competency to prepare students for a global future.",
 });
 
 export default function Page() {
@@ -20,7 +20,7 @@ export default function Page() {
           locale: 'en',
           name: "CCLR Program: College, Career & Life Readiness",
           description:
-            "NGS CCLR is a four-year high-school framework building college, career, life readiness and global competency — partner with us to prepare students for a global future.",
+            "NGS CCLR is a four-year high-school framework building college, career, life readiness and global competency to prepare students for a global future.",
           type: 'Course',
         })}
       />

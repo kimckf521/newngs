@@ -90,7 +90,7 @@ export function pageSeo({
       card: 'summary_large_image',
       title: fullTitle,
       description,
-      images: [image],
+      images: [{ url: image, alt: fullTitle }],
     },
     ...(noindex
       ? {

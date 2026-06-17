@@ -6,7 +6,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 export const metadata = pageSeo({
   page: 'yinghuaOnline',
   locale: 'en',
-  title: "Oriental Yinghua Cambridge School (YCS) + Online A-Level",
+  title: "Yinghua Cambridge School (YCS) + Online A-Level",
   description:
     "Zhuhai Yinghua Cambridge School (YCS): an Edexcel/AQA/CIE-authorised, UCAS-accredited A-Level school blending campus and NGS online learning for top universities.",
 });
@@ -18,7 +18,7 @@ export default function Page() {
         data={pageJsonLd({
           page: 'yinghuaOnline',
           locale: 'en',
-          name: "Oriental Yinghua Cambridge School (YCS) + Online A-Level",
+          name: "Yinghua Cambridge School (YCS) + Online A-Level",
           description:
             "Zhuhai Yinghua Cambridge School (YCS): an Edexcel/AQA/CIE-authorised, UCAS-accredited A-Level school blending campus and NGS online learning for top universities.",
           type: 'WebPage',

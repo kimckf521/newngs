@@ -6,7 +6,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 export const metadata = pageSeo({
   page: 'onlineDiploma',
   locale: 'en',
-  title: "Online Diploma Program | Accredited High-School Diploma",
+  title: "Accredited Online High-School Diploma Program",
   description:
     "Earn an accredited high-school diploma with our Online Diploma Program (ODP): study A-Level, HKDSE or AP online at your own pace, then sit official exams on campus.",
 });
@@ -18,7 +18,7 @@ export default function Page() {
         data={pageJsonLd({
           page: 'onlineDiploma',
           locale: 'en',
-          name: "Online Diploma Program | Accredited High-School Diploma",
+          name: "Accredited Online High-School Diploma Program",
           description:
             "Earn an accredited high-school diploma with our Online Diploma Program (ODP): study A-Level, HKDSE or AP online at your own pace, then sit official exams on campus.",
           type: 'Course',

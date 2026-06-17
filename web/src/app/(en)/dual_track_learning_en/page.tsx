@@ -8,7 +8,7 @@ export const metadata = pageSeo({
   locale: 'en',
   title: 'Dual-Track Program: Earn Two High School Diplomas',
   description:
-    "Transition into IB, A-Level, AP & HKDSE without disrupting Gaokao studies. NGS Dual-Track helps local-school students earn both public-school and international diplomas.",
+    "Transition into IB, A-Level, AP & HKDSE without disrupting Gaokao studies. NGS Dual-Track students earn both public-school and international diplomas.",
 });
 
 export default function Page() {
@@ -20,7 +20,7 @@ export default function Page() {
           locale: 'en',
           name: 'Dual-Track Program: Earn Two High School Diplomas',
           description:
-            "Transition into IB, A-Level, AP & HKDSE without disrupting Gaokao studies. NGS Dual-Track helps local-school students earn both public-school and international diplomas.",
+            "Transition into IB, A-Level, AP & HKDSE without disrupting Gaokao studies. NGS Dual-Track students earn both public-school and international diplomas.",
           type: 'Course',
         })}
       />

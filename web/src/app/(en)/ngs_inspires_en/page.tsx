@@ -6,7 +6,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 export const metadata = pageSeo({
   page: 'ngsInspires',
   locale: 'en',
-  title: 'NextGen Inspires: Global Learning Community for Schools',
+  title: 'NextGen Inspires: Global Learning Community',
   description:
     "NextGen Inspires is an exclusive subscription for NGS partner schools, connecting students to global industry leaders, top universities, SPARK LAB and alumni.",
 });
@@ -18,7 +18,7 @@ export default function Page() {
         data={pageJsonLd({
           page: 'ngsInspires',
           locale: 'en',
-          name: 'NextGen Inspires: Global Learning Community for Schools',
+          name: 'NextGen Inspires: Global Learning Community',
           description:
             "NextGen Inspires is an exclusive subscription for NGS partner schools, connecting students to global industry leaders, top universities, SPARK LAB and alumni.",
           type: 'WebPage',

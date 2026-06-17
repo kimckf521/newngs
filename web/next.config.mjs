@@ -14,6 +14,13 @@ const nextConfig = {
     formats: ['image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // Allow images uploaded to CloudBase storage (page builder) through
+    // next/image. Covers the COS + CloudBase temp-file URL hosts.
+    remotePatterns: [
+      { protocol: 'https', hostname: '**.myqcloud.com' },
+      { protocol: 'https', hostname: '**.tcb.qcloud.la' },
+      { protocol: 'https', hostname: '**.tcloudbaseapp.com' },
+    ],
   },
   experimental: {},
 };

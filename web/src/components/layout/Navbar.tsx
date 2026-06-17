@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { externalLinks } from '@/lib/siteLinks';
+import { siteLinks } from '@/lib/siteLinks';
 import { navbar } from '@/content/navbar';
 import type { Locale } from '@/i18n/types';
 
@@ -76,14 +76,9 @@ export function Navbar({ locale }: { locale: Locale }) {
             </li>
             <NavDropdown group={t.community} onLinkClick={closeMenu} />
             <li className="navbar__mobile-only">
-              <a
-                href={externalLinks.classportalLogin}
-                className="navbar__style-4"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link href={siteLinks[locale].login} className="navbar__style-4" onClick={closeMenu}>
                 {t.loginLabel}
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
@@ -91,14 +86,9 @@ export function Navbar({ locale }: { locale: Locale }) {
           <Link href={t.langSwitchHref} className="navbar__lang-btn">
             {t.langSwitchLabel}
           </Link>
-          <a
-            href={externalLinks.classportalLogin}
-            className="navbar__login-btn"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link href={siteLinks[locale].login} className="navbar__login-btn">
             {t.loginLabel}
-          </a>
+          </Link>
         </div>
       </div>
     </header>

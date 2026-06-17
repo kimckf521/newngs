@@ -1,0 +1,13 @@
+# Keep the Docker build context lean — the builder reinstalls deps and rebuilds.
+node_modules
+.next
+.git
+# Exclude ALL env files from the build context — the env id arrives via
+# --build-arg, never via a file. (Keeps secrets out of the builder layer.)
+.env
+.env.*
+npm-debug.log*
+.DS_Store
+Dockerfile
+.dockerignore
+README.md

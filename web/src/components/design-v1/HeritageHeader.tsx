@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { externalLinks } from '@/lib/siteLinks';
+import { siteLinks } from '@/lib/siteLinks';
 import { navbar, type NavGroup } from '@/content/navbar';
 import type { Locale } from '@/i18n/types';
 
@@ -56,14 +56,12 @@ export function HeritageHeader({ locale, langHref }: { locale: Locale; langHref:
               {t.langSwitchLabel}
             </Link>
             <span aria-hidden className="h-4 w-px bg-[#14253f]/15" />
-            <a
-              href={externalLinks.classportalLogin}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={siteLinks[locale].login}
               className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#14253f] transition-colors hover:text-[#a8843a]"
             >
               {t.loginLabel}
-            </a>
+            </Link>
           </div>
 
           <button
@@ -104,14 +102,13 @@ export function HeritageHeader({ locale, langHref }: { locale: Locale; langHref:
             ))}
           </nav>
           <div className="mt-8 flex items-center gap-4">
-            <a
-              href={externalLinks.classportalLogin}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={siteLinks[locale].login}
+              onClick={() => setOpen(false)}
               className="flex-1 bg-[#14253f] px-5 py-4 text-center text-[12px] font-semibold uppercase tracking-[0.18em] text-[#f7f4ec]"
             >
               {t.loginLabel}
-            </a>
+            </Link>
             <Link href={langHref} onClick={() => setOpen(false)} className="border border-[#14253f]/25 px-5 py-4 text-[12px] font-semibold uppercase tracking-[0.18em] text-[#14253f]">
               {t.langSwitchLabel}
             </Link>

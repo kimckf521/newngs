@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { externalLinks } from '@/lib/siteLinks';
+import { siteLinks } from '@/lib/siteLinks';
 import { navbar, type NavGroup } from '@/content/navbar';
 import type { Locale } from '@/i18n/types';
 import { ArrowRight } from './ui';
@@ -94,15 +94,13 @@ export function SiteHeader({ locale, langHref }: { locale: Locale; langHref?: st
           >
             {t.langSwitchLabel}
           </Link>
-          <a
-            href={externalLinks.classportalLogin}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={siteLinks[locale].login}
             className="group inline-flex items-center gap-2 rounded-full bg-ngs-gradient px-5 py-2.5 text-xs font-semibold text-white shadow-[0_8px_24px_-8px_rgba(236,28,139,0.6)] transition-transform hover:-translate-y-0.5"
           >
             {t.loginLabel}
             <ArrowRight className="transition-transform duration-300 group-hover:translate-x-0.5" />
-          </a>
+          </Link>
         </div>
 
         {/* Mobile toggle */}
@@ -172,15 +170,14 @@ export function SiteHeader({ locale, langHref }: { locale: Locale; langHref?: st
             ))}
           </nav>
           <div className="mt-8 flex items-center gap-3">
-            <a
-              href={externalLinks.classportalLogin}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={siteLinks[locale].login}
+              onClick={() => setOpen(false)}
               className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-ngs-gradient px-5 py-3.5 text-sm font-semibold text-white"
             >
               {t.loginLabel}
               <ArrowRight />
-            </a>
+            </Link>
             <Link
               href={langSwitchHref}
               onClick={() => setOpen(false)}

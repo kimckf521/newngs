@@ -7,7 +7,15 @@ import { Section, SectionHeading, Testimonials } from './ui';
  * attributed testimonials before launch.
  * ------------------------------------------------------------------ */
 
-const content = {
+export type TestimonialsData = {
+  eyebrow: string;
+  title: string;
+  sub: string;
+  note: string;
+  quotes: { quote: string; name: string; role: string }[];
+};
+
+const content: Record<Locale, TestimonialsData> = {
   en: {
     eyebrow: 'In their words',
     title: 'Trusted by families and schools',
@@ -60,10 +68,10 @@ const content = {
       },
     ],
   },
-} as const;
+};
 
-export function TestimonialsV1({ locale }: { locale: Locale }) {
-  const t = content[locale];
+export function TestimonialsV1({ locale, data }: { locale: Locale; data?: TestimonialsData }) {
+  const t = data ?? content[locale];
   return (
     <Section tone="night" glow="violet" glowPosition="left">
       <SectionHeading eyebrow={t.eyebrow} title={t.title} sub={t.sub} />
@@ -72,4 +80,9 @@ export function TestimonialsV1({ locale }: { locale: Locale }) {
       </div>
     </Section>
   );
+}
+
+/** Today's content, used to seed the page builder. */
+export function testimonialsDefaults(locale: Locale): TestimonialsData {
+  return content[locale];
 }

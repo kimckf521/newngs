@@ -6,7 +6,14 @@ import { Section, SectionHeading, FAQ } from './ui';
  * families most often ask. Uses the no-JS <details> accordion.
  * ------------------------------------------------------------------ */
 
-const content = {
+export type FaqData = {
+  eyebrow: string;
+  title: string;
+  sub: string;
+  items: { q: string; a: string }[];
+};
+
+const content: Record<Locale, FaqData> = {
   en: {
     eyebrow: 'Questions parents ask',
     title: 'Everything you need to feel confident',
@@ -69,10 +76,10 @@ const content = {
       },
     ],
   },
-} as const;
+};
 
-export function FaqV1({ locale }: { locale: Locale }) {
-  const t = content[locale];
+export function FaqV1({ locale, data }: { locale: Locale; data?: FaqData }) {
+  const t = data ?? content[locale];
   return (
     <Section tone="night-800" glow="cyan" glowPosition="right">
       <div className="grid gap-x-12 gap-y-10 lg:grid-cols-12">
@@ -85,4 +92,9 @@ export function FaqV1({ locale }: { locale: Locale }) {
       </div>
     </Section>
   );
+}
+
+/** Today's content, used to seed the page builder. */
+export function faqDefaults(locale: Locale): FaqData {
+  return content[locale];
 }

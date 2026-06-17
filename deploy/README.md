@@ -1,5 +1,11 @@
 # NGS Web Deployment Guide
 
+This guide covers the **VM target** (Tencent Cloud Lighthouse + PM2 + nginx).
+For the **containerized CloudBase 云托管 (CloudBase Run)** target — the
+China-hosted path that also runs the CloudBase auth + WeChat login — see
+[`cloudbase/README.md`](cloudbase/README.md). Vercel remains a third target
+(global, but laggy from mainland China).
+
 Deployment target: Tencent Cloud Lighthouse Ubuntu 22.04 (2 CPU, 2 GB RAM)
 Domain: nextgenscholars.asia (`43.139.195.82`)
 

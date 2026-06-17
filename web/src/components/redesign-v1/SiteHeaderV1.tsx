@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { externalLinks, siteLinks, counterpartPath } from '@/lib/siteLinks';
+import { siteLinks, counterpartPath } from '@/lib/siteLinks';
 import { navbar, type NavGroup } from '@/content/navbar';
 import type { Locale } from '@/i18n/types';
 import { ArrowRight } from './ui';
@@ -86,10 +86,10 @@ export function SiteHeaderV1({ locale, langHref }: { locale: Locale; langHref?: 
             <Link href={langSwitchHref} className="rounded-full border border-white/20 px-3.5 py-1.5 text-xs font-semibold text-white/85 transition-colors hover:border-white/50 hover:text-white">
               {t.langSwitchLabel}
             </Link>
-            <a href={externalLinks.classportalLogin} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 rounded-full bg-ngs-gradient px-5 py-2.5 text-xs font-semibold text-white shadow-[0_8px_28px_-8px_rgba(236,28,139,0.7)] transition-transform hover:-translate-y-0.5">
+            <Link href={siteLinks[locale].login} className="group inline-flex items-center gap-2 rounded-full bg-ngs-gradient px-5 py-2.5 text-xs font-semibold text-white shadow-[0_8px_28px_-8px_rgba(236,28,139,0.7)] transition-transform hover:-translate-y-0.5">
               {t.loginLabel}
               <ArrowRight className="transition-transform duration-300 group-hover:translate-x-0.5" />
-            </a>
+            </Link>
           </div>
 
           <button type="button" aria-label={locale === 'zh' ? '菜单' : 'Menu'} aria-expanded={open} onClick={() => setOpen((v) => !v)} className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-[5px] text-white lg:hidden">
@@ -120,10 +120,10 @@ export function SiteHeaderV1({ locale, langHref }: { locale: Locale; langHref?: 
             ))}
           </nav>
           <div className="mt-8 flex items-center gap-3">
-            <a href={externalLinks.classportalLogin} target="_blank" rel="noopener noreferrer" className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-ngs-gradient px-5 py-3.5 text-sm font-semibold text-white">
+            <Link href={siteLinks[locale].login} onClick={() => setOpen(false)} className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-ngs-gradient px-5 py-3.5 text-sm font-semibold text-white">
               {t.loginLabel}
               <ArrowRight />
-            </a>
+            </Link>
             <Link href={langSwitchHref} onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-full border border-white/25 px-5 py-3.5 text-sm font-semibold text-white">{t.langSwitchLabel}</Link>
             <button
               type="button"

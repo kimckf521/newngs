@@ -52,7 +52,7 @@ export const navbar: Localized<NavbarStrings> = {
       items: [
         { label: 'NGS Inspires', href: siteLinks.zh.ngsInspires },
         { label: 'NGS Connects', href: siteLinks.zh.ngsConnects },
-        { label: '会员登录', href: siteLinks.zh.inProgress },
+        { label: '会员登录', href: siteLinks.zh.login },
       ],
     },
     loginLabel: '登陆',
@@ -88,7 +88,7 @@ export const navbar: Localized<NavbarStrings> = {
       items: [
         { label: 'NGS Inspires', href: siteLinks.en.ngsInspires },
         { label: 'NGS Connects', href: siteLinks.en.ngsConnects },
-        { label: 'Membership SignIn', href: siteLinks.en.inProgress },
+        { label: 'Membership SignIn', href: siteLinks.en.login },
       ],
     },
     loginLabel: 'Log In',

@@ -4,32 +4,54 @@ import { home } from '@/content/home';
 import type { Locale } from '@/i18n/types';
 import { ArrowRight, Container, GradientText, GlassCard, Kicker } from './ui';
 
+export type ProgramsCard = {
+  key: string;
+  href: string;
+  img: string;
+  title: string;
+  description: string;
+};
+
+export type ProgramsData = {
+  eyebrow: string;
+  headingLead: string;
+  headingAccent: string;
+  headingTail: string;
+  sub: string;
+  learnMore: string;
+  cards: ProgramsCard[];
+};
+
 const copy = {
   en: {
     eyebrow: 'Where you fit in',
-    heading: (
-      <>
-        Three ways to grow with <GradientText>NextGen Scholars</GradientText>
-      </>
-    ),
+    headingLead: 'Three ways to grow with ',
+    headingAccent: 'NextGen Scholars',
+    headingTail: '',
     sub: 'Whether you lead a school, guide a student, or want to join our global community — there is a path built for you.',
     learnMore: 'Learn more',
   },
   zh: {
     eyebrow: '找到你的位置',
-    heading: (
-      <>
-        与 <GradientText>NextGen Scholars</GradientText> 同行的三种方式
-      </>
-    ),
+    headingLead: '与 ',
+    headingAccent: 'NextGen Scholars',
+    headingTail: ' 同行的三种方式',
     sub: '无论您是学校管理者、陪伴学生成长的家长，还是希望加入我们的全球社区 —— 这里都有为您而设的路径。',
     learnMore: '了解更多',
   },
 } as const;
 
-export function ProgramsV1({ locale }: { locale: Locale }) {
-  const t = copy[locale];
-  const cards = home[locale].ourPrograms.cards;
+function defaults(locale: Locale): ProgramsData {
+  return { ...copy[locale], cards: home[locale].ourPrograms.cards };
+}
+
+/** Today's content, used to seed the page builder. */
+export function programsDefaults(locale: Locale): ProgramsData {
+  return defaults(locale);
+}
+
+export function ProgramsV1({ locale, data }: { locale: Locale; data?: ProgramsData }) {
+  const t = data ?? defaults(locale);
 
   return (
     <section className="relative overflow-hidden bg-night-800">
@@ -41,16 +63,18 @@ export function ProgramsV1({ locale }: { locale: Locale }) {
       <Container className="relative py-24 lg:py-28">
         <Kicker>{t.eyebrow}</Kicker>
         <h2 className="mt-5 max-w-2xl font-grotesk text-[2rem] font-bold leading-tight tracking-[-0.01em] text-white sm:text-[2.6rem]">
-          {t.heading}
+          {t.headingLead}
+          <GradientText>{t.headingAccent}</GradientText>
+          {t.headingTail}
         </h2>
         <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/60">{t.sub}</p>
 
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:mt-14 lg:grid-cols-3">
-          {cards.map((card, i) => {
+          {t.cards.map((card, i) => {
             const featured = i === 0;
             return (
               <Link
-                key={card.key}
+                key={card.key || card.title}
                 href={card.href}
                 className={`group block ${featured ? 'md:col-span-2 lg:row-span-2' : ''}`}
               >

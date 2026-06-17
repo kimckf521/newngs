@@ -23,6 +23,11 @@ export const siteLinks = {
     inProgress: '/in_progress_en',
     yinghuaOnline: '/yinghua_online_en',
     ibHeros: '/ib_heros_en',
+    login: '/login_en',
+    register: '/register_en',
+    forgotPassword: '/forgot-password_en',
+    member: '/member_en',
+    oauthCallback: '/auth/callback_en',
   },
   zh: {
     home: '/',
@@ -42,11 +47,15 @@ export const siteLinks = {
     inProgress: '/in_progress',
     yinghuaOnline: '/yinghua_online',
     ibHeros: '/ib_heros',
+    login: '/login',
+    register: '/register',
+    forgotPassword: '/forgot-password',
+    member: '/member',
+    oauthCallback: '/auth/callback',
   },
 } as const;
 
 export const externalLinks = {
-  classportalLogin: 'https://ngs.classportal.online/',
   customerServiceWeChat: 'https://work.weixin.qq.com/kfid/kfc86f854c023857983',
   xiaohongshu: 'https://xhslink.com/m/FqQfX14laH',
   linkedin: 'https://www.linkedin.com/company/nextgenscholarsasia',

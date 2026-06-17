@@ -62,7 +62,7 @@ const content: Record<Locale, {
         'The result is a highly personalised learning schedule that adapts to each student’s individual needs, interests and circumstances — without giving up the experience of campus life.',
       ],
       pillars: ['Flexible learning architecture', 'Expanded course catalog', 'Enhanced educational innovation'],
-      imageAlt: 'Student learning online',
+      imageAlt: 'Student studying NGS hybrid international courses online',
       caption: 'Enjoy the flexibility of learning anywhere, at your own pace.',
     },
     model: {
@@ -116,7 +116,8 @@ const content: Record<Locale, {
         { title: 'Asia-Pacific', body: 'Hong Kong · Taiwan · Greater Bay Area China' },
         { title: 'Oceania', body: 'Melbourne' },
       ],
-      imageAlt: 'NextGen Scholars global community',
+      imageAlt:
+        'World map of NGS partner campuses — San Francisco, Hong Kong, Taiwan, the Greater Bay Area of China, and Melbourne',
     },
   },
   zh: {
@@ -144,7 +145,7 @@ const content: Record<Locale, {
         '由此形成高度定制化的学习方案，全面匹配学生的个人需求、学术兴趣与生活安排 —— 同时不放弃传统校园的学习生活体验。',
       ],
       pillars: ['灵活的学习架构', '扩展课程体系', '创新性混合式学习体验'],
-      imageAlt: '在线学习的学生',
+      imageAlt: '学生通过 NGS 在线平台修读混合式国际课程',
       caption: '享受随时随地、按自己节奏学习的灵活性。',
     },
     model: {
@@ -198,7 +199,7 @@ const content: Record<Locale, {
         { title: '亚太', body: '中国香港 · 中国台湾 · 中国大湾区' },
         { title: '大洋洲', body: '澳大利亚墨尔本' },
       ],
-      imageAlt: 'NextGen Scholars 全球社区',
+      imageAlt: 'NGS 合作校园全球分布地图 —— 美国三藩市、中国香港、中国台湾、中国大湾区及澳大利亚墨尔本',
     },
   },
 };

@@ -326,7 +326,7 @@ export function IbHerosPageV1({ locale }: { locale: Locale }) {
             <div className="inline-flex rounded-2xl bg-white/5 p-5">
               <Image
                 src={LOGO}
-                alt="IB Heros"
+                alt={locale === 'en' ? 'IB Heros logo — NextGen Scholars tutoring partner' : 'IB Heros 标志 —— NextGen Scholars 辅导伙伴'}
                 width={260}
                 height={72}
                 className="h-16 w-auto object-contain"

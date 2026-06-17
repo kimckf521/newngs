@@ -60,6 +60,7 @@ const content: Record<Locale, {
     sub: string;
     locations: React.ReactNode;
   };
+  imageAlt: { bridge: string; worldMap: string; harvard: string };
 }> = {
   en: {
     hero: {
@@ -243,6 +244,11 @@ const content: Record<Locale, {
         </>
       ),
     },
+    imageAlt: {
+      bridge: 'City skyline representing the journey to top universities',
+      worldMap: "World map highlighting NextGen Scholars' global mentor and university network",
+      harvard: 'Harvard University campus, one of the top universities NGS students target',
+    },
   },
   zh: {
     hero: {
@@ -409,6 +415,11 @@ const content: Record<Locale, {
         </>
       ),
     },
+    imageAlt: {
+      bridge: '城市天际线，象征通往世界顶尖大学的升学之路',
+      worldMap: '世界地图，展示未来学者 NextGen Scholars 遍布全球的导师与大学网络',
+      harvard: '哈佛大学校园，NGS 学生冲击的世界顶尖大学之一',
+    },
   },
 };
 
@@ -440,7 +451,7 @@ export function CollegeMentorshipPageV1({ locale }: { locale: Locale }) {
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10">
             <Image
               src="/static/img/bridgecity.jpg"
-              alt=""
+              alt={t.imageAlt.bridge}
               fill
               sizes="(min-width:1024px) 45vw, 100vw"
               className="object-cover"
@@ -541,7 +552,7 @@ export function CollegeMentorshipPageV1({ locale }: { locale: Locale }) {
             <div className="relative mt-8 aspect-[2/1] w-full overflow-hidden">
               <Image
                 src="/static/img/world-map.png"
-                alt=""
+                alt={t.imageAlt.worldMap}
                 fill
                 sizes="(min-width:1024px) 45vw, 100vw"
                 className="object-contain object-left"
@@ -551,7 +562,7 @@ export function CollegeMentorshipPageV1({ locale }: { locale: Locale }) {
           <div className="relative aspect-[3/2] overflow-hidden rounded-3xl border border-white/10">
             <Image
               src="/static/img/harvard.jpg"
-              alt=""
+              alt={t.imageAlt.harvard}
               fill
               sizes="(min-width:1024px) 45vw, 100vw"
               className="object-cover"

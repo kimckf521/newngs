@@ -1,11 +1,30 @@
 import { PrivacyPageV1 } from '@/components/redesign-v1/pages/PrivacyPageV1';
+import { pageSeo } from '@/lib/seo';
+import { pageJsonLd } from '@/lib/jsonLd';
+import { JsonLd } from '@/components/seo/JsonLd';
 
-export const metadata = {
-  title: 'Privacy Policy — NextGen Scholars',
+export const metadata = pageSeo({
+  page: 'privacy',
+  locale: 'en',
+  title: "Privacy Policy | Your Data Protection & Rights",
   description:
-    'NextGen Scholars Privacy Policy: how we collect, use, and protect the personal information you share with us.',
-};
+    "Read the NextGen Scholars Privacy Policy: how we collect, use, share, and protect your personal data, plus your rights and how to contact us about privacy.",
+});
 
 export default function Page() {
-  return <PrivacyPageV1 locale="en" />;
+  return (
+    <>
+      <JsonLd
+        data={pageJsonLd({
+          page: 'privacy',
+          locale: 'en',
+          name: "Privacy Policy | Your Data Protection & Rights",
+          description:
+            "Read the NextGen Scholars Privacy Policy: how we collect, use, share, and protect your personal data, plus your rights and how to contact us about privacy.",
+          type: 'WebPage',
+        })}
+      />
+      <PrivacyPageV1 locale="en" />
+    </>
+  );
 }

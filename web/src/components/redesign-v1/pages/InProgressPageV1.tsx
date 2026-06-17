@@ -155,7 +155,7 @@ export function InProgressPageV1({ locale }: { locale: Locale }) {
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10">
             <Image
               src="/static/img/work_in_progress.jpg"
-              alt=""
+              alt={locale === 'en' ? 'Illustration of a page under construction' : '页面建设中的插画'}
               fill
               sizes="(min-width:1024px) 45vw, 100vw"
               className="object-cover"

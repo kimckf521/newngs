@@ -1,11 +1,30 @@
 import { DualTrackPageV1 } from '@/components/redesign-v1/pages/DualTrackPageV1';
+import { pageSeo } from '@/lib/seo';
+import { pageJsonLd } from '@/lib/jsonLd';
+import { JsonLd } from '@/components/seo/JsonLd';
 
-export const metadata = {
-  title: 'Dual-Track Program — NextGen Scholars',
+export const metadata = pageSeo({
+  page: 'dualTrack',
+  locale: 'en',
+  title: 'Dual-Track Program: Earn Two High School Diplomas',
   description:
-    'A customised support system that helps local-school students transition into IB, A-Level, AP and HKDSE without disrupting their Gaokao studies — earning both a public-school and an international diploma.',
-};
+    "Transition into IB, A-Level, AP & HKDSE without disrupting Gaokao studies. NGS Dual-Track helps local-school students earn both public-school and international diplomas.",
+});
 
 export default function Page() {
-  return <DualTrackPageV1 locale="en" />;
+  return (
+    <>
+      <JsonLd
+        data={pageJsonLd({
+          page: 'dualTrack',
+          locale: 'en',
+          name: 'Dual-Track Program: Earn Two High School Diplomas',
+          description:
+            "Transition into IB, A-Level, AP & HKDSE without disrupting Gaokao studies. NGS Dual-Track helps local-school students earn both public-school and international diplomas.",
+          type: 'Course',
+        })}
+      />
+      <DualTrackPageV1 locale="en" />
+    </>
+  );
 }

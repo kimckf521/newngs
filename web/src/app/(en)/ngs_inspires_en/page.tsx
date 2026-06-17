@@ -1,11 +1,30 @@
 import { InspiresPageV1 } from '@/components/redesign-v1/pages/InspiresPageV1';
+import { pageSeo } from '@/lib/seo';
+import { pageJsonLd } from '@/lib/jsonLd';
+import { JsonLd } from '@/components/seo/JsonLd';
 
-export const metadata = {
-  title: 'NextGen Inspires — Global Learning Community — NextGen Scholars',
+export const metadata = pageSeo({
+  page: 'ngsInspires',
+  locale: 'en',
+  title: 'NextGen Inspires: Global Learning Community for Schools',
   description:
-    'NextGen Inspires is an exclusive subscription service for NGS partner schools, connecting students to global industry leaders, renowned universities, SPARK LAB and a thriving alumni network.',
-};
+    "NextGen Inspires is an exclusive subscription for NGS partner schools, connecting students to global industry leaders, top universities, SPARK LAB and alumni.",
+});
 
 export default function Page() {
-  return <InspiresPageV1 locale="en" />;
+  return (
+    <>
+      <JsonLd
+        data={pageJsonLd({
+          page: 'ngsInspires',
+          locale: 'en',
+          name: 'NextGen Inspires: Global Learning Community for Schools',
+          description:
+            "NextGen Inspires is an exclusive subscription for NGS partner schools, connecting students to global industry leaders, top universities, SPARK LAB and alumni.",
+          type: 'WebPage',
+        })}
+      />
+      <InspiresPageV1 locale="en" />
+    </>
+  );
 }

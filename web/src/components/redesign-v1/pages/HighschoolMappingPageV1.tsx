@@ -21,7 +21,7 @@ import { ContactV1 } from '../ContactV1';
  * ------------------------------------------------------------------ */
 
 type Pillar = { number: number; title: string; items: string[] };
-type Specialist = { name: string; credential: string; img: string; bio: string[] };
+type Specialist = { name: string; credential: string; img: string; imgDescriptor: string; bio: string[] };
 
 const content: Record<Locale, {
   hero: { eyebrow: string; title: React.ReactNode; lead: string; book: string; talk: string };
@@ -34,7 +34,7 @@ const content: Record<Locale, {
   };
   pillars: { eyebrow: string; title: React.ReactNode; sub: string; curricula: string[]; list: Pillar[]; cta: string };
   community: { eyebrow: string; title: React.ReactNode; sub: string; locations: string[] };
-  specialists: { eyebrow: string; title: React.ReactNode; sub: string; list: Specialist[] };
+  specialists: { eyebrow: string; title: React.ReactNode; sub: string; role: string; list: Specialist[] };
 }> = {
   en: {
     hero: {
@@ -129,11 +129,13 @@ const content: Record<Locale, {
         </>
       ),
       sub: 'Mentors from leading global universities who know the international-school landscape inside out.',
+      role: 'NGS K-12 school specialist',
       list: [
         {
           name: 'Scarlett Sampson',
           credential: 'MBA @ University of Texas',
           img: '/static/img/profiles/Scarlet.jpg',
+          imgDescriptor: 'MBA, University of Texas',
           bio: [
             'Fortune 500 executive & Silicon Valley tech leader',
             '20+ years leading engineering teams',
@@ -146,6 +148,7 @@ const content: Record<Locale, {
           name: 'Paul Chiu',
           credential: 'Masters in Double E @ Melbourne U',
           img: '/static/img/profiles/Paul.jpg',
+          imgDescriptor: 'IB/A-Level/AP STEM tutor',
           bio: [
             'IB / A-Level / AP expert in Math, Physics, Chemistry & CS',
             'Super responsive — answers all questions and researches the tough ones',
@@ -156,6 +159,7 @@ const content: Record<Locale, {
           name: 'Nancy Wu',
           credential: 'Mechanical Engineering @ Melbourne U',
           img: '/static/img/profiles/Nancy.jpg',
+          imgDescriptor: 'IB graduate, STEM mentor',
           bio: [
             'IB top graduate (Singapore); expert across multiple curricula',
             'Co-founder of Zeta Technology, advancing AI & Web3 education',
@@ -167,6 +171,7 @@ const content: Record<Locale, {
           name: 'Valerie Zhou',
           credential: 'Business Management @ Essex University',
           img: '/static/img/profiles/Valerie.jpg',
+          imgDescriptor: 'IELTS mentor',
           bio: [
             'IELTS perfect-score mentor and independent artist',
             '15+ years of experience in tier-one international schools in China',
@@ -269,11 +274,13 @@ const content: Record<Locale, {
         </>
       ),
       sub: '来自全球顶尖大学的导师，深谙国际学校生态与升学路径。',
+      role: 'NGS K-12 国际学校择校指导老师',
       list: [
         {
           name: 'Scarlett Sampson',
           credential: 'MBA @ University of Texas',
           img: '/static/img/profiles/Scarlet.jpg',
+          imgDescriptor: '德州大学 MBA',
           bio: [
             '财富 500 强高管 & 硅谷科技领袖',
             '20+ 年工程团队领导经验',
@@ -286,6 +293,7 @@ const content: Record<Locale, {
           name: 'Paul Chiu',
           credential: 'Masters in Double E @ Melbourne U',
           img: '/static/img/profiles/Paul.jpg',
+          imgDescriptor: 'IB/A-Level/AP 理科导师',
           bio: [
             '精通 IB / A-Level / AP 数理化与计算机',
             '超快响应，难题深挖与资料扩展',
@@ -296,6 +304,7 @@ const content: Record<Locale, {
           name: 'Nancy Wu',
           credential: 'Mechanical Engineering @ Melbourne U',
           img: '/static/img/profiles/Nancy.jpg',
+          imgDescriptor: 'IB 毕业生 · 理科导师',
           bio: [
             '新加坡 IB 顶尖毕业生，多体系专家',
             'Zeta Technology 联合创始人（AI & Web3 教育）',
@@ -307,6 +316,7 @@ const content: Record<Locale, {
           name: 'Valerie Zhou',
           credential: 'Business Management @ Essex University',
           img: '/static/img/profiles/Valerie.jpg',
+          imgDescriptor: '雅思满分导师',
           bio: [
             '雅思满分导师，独立艺术家',
             '在中国一线国际学校 15+ 年经验',
@@ -400,7 +410,7 @@ export function HighschoolMappingPageV1({ locale }: { locale: Locale }) {
           {t.specialists.list.map((s) => (
             <GlassCard key={s.name} className="flex h-full flex-col p-7 sm:flex-row sm:gap-6">
               <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-white/10">
-                <Image src={s.img} alt={s.name} fill sizes="80px" className="object-cover" />
+                <Image src={s.img} alt={`${s.name} — ${s.imgDescriptor}`} fill sizes="80px" className="object-cover" />
               </div>
               <div className="mt-5 sm:mt-0">
                 <h3 className="font-grotesk text-lg font-bold text-white">{s.name}</h3>

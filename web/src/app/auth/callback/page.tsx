@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 import { OAuthCallback } from '@/components/auth/OAuthCallback';
 
-export const metadata: Metadata = { title: '登录中 — NextGen Scholars' };
+export const metadata: Metadata = {
+  title: '登录中',
+  robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
+};
 // OAuth callback consumes runtime URL params; never prerender it.
 export const dynamic = 'force-dynamic';
 

@@ -350,7 +350,7 @@ export function InspiresPageV1({ locale }: { locale: Locale }) {
       <Section tone="night-800" glow="cyan" glowPosition="center">
         <SectionHeading eyebrow={t.community.eyebrow} title={t.community.title} sub={t.community.lead} align="center" />
         <div className="relative mx-auto mt-12 aspect-[2/1] w-full max-w-4xl overflow-hidden rounded-3xl border border-white/10">
-          <Image src="/static/img/world-map.png" alt="" fill sizes="(min-width:1024px) 56rem, 100vw" className="object-contain p-6 opacity-90" />
+          <Image src="/static/img/world-map.png" alt={locale === 'en' ? 'Map of the NextGen Scholars global community marking San Francisco, Melbourne, Hong Kong, Taiwan and the Greater Bay Area' : 'NextGen Scholars 全球社区地图，标注三藩市、墨尔本、香港、台湾与大湾区'} fill sizes="(min-width:1024px) 56rem, 100vw" className="object-contain p-6 opacity-90" />
         </div>
         <div className="mt-10 flex flex-wrap justify-center gap-2.5">
           {t.community.locations.map((loc) => (

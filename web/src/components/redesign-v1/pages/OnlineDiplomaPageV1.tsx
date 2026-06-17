@@ -37,6 +37,7 @@ const content: Record<
       detail: string;
       benefitsTitle: string;
       benefits: string[];
+      imageAlt: string;
       imageCaption: string;
     };
     model: { eyebrow: string; title: React.ReactNode; sub: string; head: [string, string]; rows: Row[] };
@@ -84,6 +85,8 @@ const content: Record<
         'Accredited school enrolment & transcript',
         'A high-school diploma after completion',
       ],
+      imageAlt:
+        'Student smiling while studying online at her own pace in the NGS Online Diploma Program',
       imageCaption: 'Enjoy the flexibility of learning anywhere, at your own pace.',
     },
     model: {
@@ -195,6 +198,7 @@ const content: Record<
         '选择这条路线的学生将注册认证学校，并在 NGS 在线学校完成所有科目的学习与阶段性评估。在完成课程学习后，学生将在规定学校的实际考试地点参加统一考试。符合学校毕业评估标准的学生，将获得可信的高中国际文凭和完整成绩单。',
       benefitsTitle: '你将获得',
       benefits: ['按照自己的节奏灵活学习', '灵活的学习地点', '认证学校入学和成绩单', '完成后获得高中毕业证书'],
+      imageAlt: '学生在未来无界文凭课程（ODP）中按照自己的节奏在线学习，面带微笑',
       imageCaption: '随时随地，按照自己的节奏与进度学习。',
     },
     model: {
@@ -341,7 +345,7 @@ export function OnlineDiplomaPageV1({ locale }: { locale: Locale }) {
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10">
               <Image
                 src="/static/img/smilegirl.jpg"
-                alt=""
+                alt={t.intro.imageAlt}
                 fill
                 sizes="(min-width:1024px) 44vw, 100vw"
                 className="object-cover"

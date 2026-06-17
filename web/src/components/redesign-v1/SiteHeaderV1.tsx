@@ -60,16 +60,22 @@ export function SiteHeaderV1({ locale, langHref }: { locale: Locale; langHref?: 
     <>
       <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${solid ? 'border-b border-white/10 bg-night/70 backdrop-blur-xl' : 'border-b border-transparent bg-transparent'}`}>
         <div className="mx-auto flex h-[72px] max-w-page items-center justify-between gap-6 px-6 sm:px-8 lg:px-10">
-          <Link href={homeHref} className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
-            <Image src="/static/img/big_n.png" alt="NextGen Scholars" width={36} height={36} className="h-9 w-9 object-contain" priority />
+          <Link
+            href={homeHref}
+            aria-label={locale === 'zh' ? 'NextGen Scholars，返回首页' : 'NextGen Scholars, home'}
+            className="flex items-center gap-2.5"
+            onClick={() => setOpen(false)}
+          >
+            {/* Decorative — the visible brand text beside it carries the name. */}
+            <Image src="/static/img/big_n.png" alt="" width={36} height={36} className="h-9 w-9 object-contain" priority />
             <span className="font-grotesk text-[17px] font-bold tracking-tight text-white">
               NextGen<span className="font-normal text-white/65"> Scholars</span>
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-1 lg:flex">
+          <nav aria-label={locale === 'zh' ? '主导航' : 'Primary'} className="hidden items-center gap-1 lg:flex">
             {groups.map((group) => (
-              <NavItem key={group.label} group={group} />
+              <NavItem key={group.label} group={group} pathname={pathname} />
             ))}
           </nav>
 
@@ -92,7 +98,7 @@ export function SiteHeaderV1({ locale, langHref }: { locale: Locale; langHref?: 
             </Link>
           </div>
 
-          <button type="button" aria-label={locale === 'zh' ? '菜单' : 'Menu'} aria-expanded={open} onClick={() => setOpen((v) => !v)} className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-[5px] text-white lg:hidden">
+          <button type="button" aria-label={locale === 'zh' ? '菜单' : 'Menu'} aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen((v) => !v)} className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-[5px] text-white lg:hidden">
             <span className={`block h-[2px] w-6 rounded-full bg-current transition-all duration-300 ${open ? 'translate-y-[7px] rotate-45' : ''}`} />
             <span className={`block h-[2px] w-6 rounded-full bg-current transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
             <span className={`block h-[2px] w-6 rounded-full bg-current transition-all duration-300 ${open ? '-translate-y-[7px] -rotate-45' : ''}`} />
@@ -101,17 +107,17 @@ export function SiteHeaderV1({ locale, langHref }: { locale: Locale; langHref?: 
       </header>
 
       {/* Mobile panel (sibling of header) */}
-      <div className={`fixed inset-0 z-40 bg-night transition-all duration-300 lg:hidden ${open ? 'visible opacity-100' : 'invisible opacity-0'}`}>
+      <div id="mobile-menu" className={`fixed inset-0 z-40 bg-night transition-all duration-300 lg:hidden ${open ? 'visible opacity-100' : 'invisible opacity-0'}`}>
         <div className="flex h-full flex-col overflow-y-auto px-6 pb-10 pt-24">
-          <nav className="flex flex-col divide-y divide-white/10">
+          <nav aria-label={locale === 'zh' ? '移动端导航' : 'Mobile menu'} className="flex flex-col divide-y divide-white/10">
             {groups.map((group) => (
               <div key={group.label} className="py-4">
-                <Link href={group.href} onClick={() => setOpen(false)} className="font-grotesk text-lg font-semibold text-white">{group.label}</Link>
+                <Link href={group.href} aria-current={pathname === group.href ? 'page' : undefined} onClick={() => setOpen(false)} className="font-grotesk text-lg font-semibold text-white">{group.label}</Link>
                 {group.items && (
                   <ul className="mt-3 flex flex-col gap-2.5 pl-1">
                     {group.items.map((item) => (
                       <li key={item.href + item.label}>
-                        <Link href={item.href} onClick={() => setOpen(false)} className="text-[15px] text-white/60 hover:text-white">{item.label}</Link>
+                        <Link href={item.href} aria-current={pathname === item.href ? 'page' : undefined} onClick={() => setOpen(false)} className="text-[15px] text-white/60 hover:text-white">{item.label}</Link>
                       </li>
                     ))}
                   </ul>
@@ -154,17 +160,28 @@ function ThemeIcon({ theme }: { theme: 'dark' | 'light' }) {
   );
 }
 
-function NavItem({ group }: { group: NavGroup }) {
+function NavItem({ group, pathname }: { group: NavGroup; pathname: string | null }) {
+  const isActive = (href: string) => !!pathname && pathname === href;
   if (!group.items) {
     return (
-      <Link href={group.href} className="rounded-full px-3.5 py-2 text-sm font-medium text-white/80 transition-colors hover:text-white">
+      <Link
+        href={group.href}
+        aria-current={isActive(group.href) ? 'page' : undefined}
+        className="rounded-full px-3.5 py-2 text-sm font-medium text-white/80 transition-colors hover:text-white"
+      >
         {group.label}
       </Link>
     );
   }
+  const groupActive = isActive(group.href) || group.items.some((item) => isActive(item.href));
   return (
     <div className="group relative">
-      <Link href={group.href} className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-medium text-white/80 transition-colors hover:text-white">
+      <Link
+        href={group.href}
+        aria-haspopup="true"
+        aria-current={groupActive ? 'page' : undefined}
+        className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-medium text-white/80 transition-colors hover:text-white"
+      >
         {group.label}
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden className="opacity-60">
           <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
@@ -174,7 +191,7 @@ function NavItem({ group }: { group: NavGroup }) {
         <ul className="min-w-[244px] overflow-hidden rounded-2xl border border-white/10 bg-night-700 p-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)] backdrop-blur-xl">
           {group.items.map((item) => (
             <li key={item.href + item.label}>
-              <Link href={item.href} className="block rounded-xl px-4 py-2.5 text-sm font-medium text-white/70 transition-colors hover:bg-white/5 hover:text-white">{item.label}</Link>
+              <Link href={item.href} aria-current={isActive(item.href) ? 'page' : undefined} className="block rounded-xl px-4 py-2.5 text-sm font-medium text-white/70 transition-colors hover:bg-white/5 hover:text-white">{item.label}</Link>
             </li>
           ))}
         </ul>

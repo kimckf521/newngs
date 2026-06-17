@@ -8,6 +8,7 @@ export type ProgramsCard = {
   key: string;
   href: string;
   img: string;
+  imageAlt: string;
   title: string;
   description: string;
 };
@@ -89,7 +90,7 @@ export function ProgramsV1({ locale, data }: { locale: Locale; data?: ProgramsDa
                   >
                     <Image
                       src={card.img}
-                      alt={card.title}
+                      alt={card.imageAlt}
                       fill
                       sizes={featured ? '(min-width: 1024px) 50vw, 100vw' : '(min-width: 1024px) 33vw, 100vw'}
                       className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"

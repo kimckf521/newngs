@@ -30,6 +30,7 @@ const content: Record<Locale, {
     title: React.ReactNode;
     paras: string[];
     pillars: Feature[];
+    imageAlt: string;
   };
   model: {
     eyebrow: string;
@@ -38,6 +39,7 @@ const content: Record<Locale, {
     flexNote: string;
     head: { item: string; detail: string };
     rows: Row[];
+    imageAlt: string;
   };
   admissions: {
     eyebrow: string;
@@ -53,6 +55,7 @@ const content: Record<Locale, {
     locations: React.ReactNode;
     explore: string;
     cards: { title: string; body: string; href: string }[];
+    mapAlt: string;
   };
 }> = {
   en: {
@@ -84,6 +87,7 @@ const content: Record<Locale, {
         { title: 'Dual enrolment, dual curricula', body: 'Hold two student records and study two curricula in parallel, with both pathways fully supported.' },
         { title: 'An innovative learning experience', body: 'Live online classes, the SPARK LAB community and on-campus assessment combine into one modern model.' },
       ],
+      imageAlt: 'Smiling student studying in the NGS Dual-Track Program',
     },
     model: {
       eyebrow: 'The model',
@@ -106,6 +110,7 @@ const content: Record<Locale, {
         { item: 'Official transcripts', detail: 'Issued by school' },
         { item: 'Enrollment', detail: 'NGS Online + school' },
       ],
+      imageAlt: 'Students in a classroom during on-campus dual-track assessment',
     },
     admissions: {
       eyebrow: 'Admissions',
@@ -157,6 +162,7 @@ const content: Record<Locale, {
           href: siteLinks.en.ngsInspires,
         },
       ],
+      mapAlt: 'World map of NGS global locations: San Francisco, Melbourne, Hong Kong, Taiwan and the Greater Bay Area',
     },
   },
   zh: {
@@ -188,6 +194,7 @@ const content: Record<Locale, {
         { title: '双学籍双课程', body: '同时拥有两个学籍、并行修读两套课程，两条路径全程支持。' },
         { title: '创新学习体验', body: '线上直播课程、SPARK LAB 社区与线下评估融合为一套现代学习模式。' },
       ],
+      imageAlt: '微笑的学生在 NGS 未来教育双轨计划中学习',
     },
     model: {
       eyebrow: '双轨模式',
@@ -209,6 +216,7 @@ const content: Record<Locale, {
         { item: '考试局测试', detail: '线下' },
         { item: '成绩单', detail: 'NGS 线上学校、线下学校' },
       ],
+      imageAlt: '学生在教室中参加双轨计划线下评估',
     },
     admissions: {
       eyebrow: '入学要求',
@@ -260,6 +268,7 @@ const content: Record<Locale, {
           href: siteLinks.zh.ngsInspires,
         },
       ],
+      mapAlt: 'NGS 全球分布地图：三藩市、墨尔本、香港、台湾及大湾区',
     },
   },
 };
@@ -297,7 +306,7 @@ export function DualTrackPageV1({ locale }: { locale: Locale }) {
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10">
             <Image
               src="/static/img/smilegirl.jpg"
-              alt=""
+              alt={locale === 'en' ? 'Smiling student studying in the NGS Dual-Track Program' : '面带微笑的学生在 NGS 双轨计划中学习'}
               fill
               sizes="(min-width:1024px) 40vw, 100vw"
               className="object-cover"
@@ -320,7 +329,7 @@ export function DualTrackPageV1({ locale }: { locale: Locale }) {
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10">
               <Image
                 src="/static/img/classroom.jpg"
-                alt=""
+                alt={locale === 'en' ? 'Students in a classroom during on-campus dual-track assessment' : '学生在校园课堂参加双轨计划考核'}
                 fill
                 sizes="(min-width:1024px) 40vw, 100vw"
                 className="object-cover"
@@ -406,7 +415,7 @@ export function DualTrackPageV1({ locale }: { locale: Locale }) {
           <div className="relative aspect-[16/9] overflow-hidden rounded-3xl border border-white/10">
             <Image
               src="/static/img/world-map.png"
-              alt=""
+              alt={locale === 'en' ? 'World map of NGS global community locations: San Francisco, Melbourne, Hong Kong, Taiwan and the Greater Bay Area' : '展示 NGS 全球社区分布的世界地图：三藩市、墨尔本、香港、台湾与大湾区'}
               fill
               sizes="(min-width:1024px) 48vw, 100vw"
               className="object-contain p-4"

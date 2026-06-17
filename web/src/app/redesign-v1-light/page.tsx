@@ -3,7 +3,8 @@ import { HomeV1 } from '@/components/redesign-v1/HomeV1';
 import type { Locale } from '@/i18n/types';
 
 export const metadata: Metadata = {
-  title: 'NextGen Scholars — v1 (Light theme)',
+  robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
+  title: { absolute: 'NextGen Scholars — v1 (Light theme)' },
   description:
     'A light-theme variant of the live NextGen Scholars homepage — the same bold design, re-themed onto a clean light palette.',
 };

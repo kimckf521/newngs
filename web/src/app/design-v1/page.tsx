@@ -14,7 +14,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: 'NextGen Scholars — Heritage Prestige (design-v1)',
+  robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
+  title: { absolute: 'NextGen Scholars — Heritage Prestige (design-v1)' },
   description:
     'An alternate “Heritage Prestige” homepage concept for NextGen Scholars — ivory paper, deep navy ink, antique-gold accents and a high-contrast serif.',
 };

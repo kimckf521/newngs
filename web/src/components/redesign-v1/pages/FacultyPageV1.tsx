@@ -34,9 +34,9 @@ type Point = { title: string; body: string };
 
 const content: Record<Locale, {
   hero: { eyebrow: string; title: ReactNode; lead: string; primary: string; secondary: string };
-  intro: { eyebrow: string; title: ReactNode; sub: string; tags: string[] };
+  intro: { eyebrow: string; title: ReactNode; sub: string; tags: string[]; imageAlt: string };
   groups: Group[];
-  tailored: { eyebrow: string; title: ReactNode; points: Point[] };
+  tailored: { eyebrow: string; title: ReactNode; points: Point[]; imageAlt: string };
   cta: { eyebrow: string; title: ReactNode; sub: string; primary: string };
 }> = {
   en: {
@@ -61,6 +61,7 @@ const content: Record<Locale, {
       ),
       sub: 'One-to-one and small-group tuition across IB, A-Level / IGCSE, AP and HKDSE — taught by mentors who have walked the path our students are on.',
       tags: ['IB 40+ tutors', 'Top-50 graduates', 'Olympiad medalists', 'Bilingual EN / 中文'],
+      imageAlt: 'NGS students celebrating at their university graduation',
     },
     groups: [
       { eyebrow: 'Faculty', title: <>Math · Science · Economics</>, tutors: facultyMathScienceEn },
@@ -88,6 +89,7 @@ const content: Record<Locale, {
           body: 'One-to-one tutoring for most subjects across the IB, A-Level, AP and HKDSE curricula.',
         },
       ],
+      imageAlt: 'Smiling student in a one-to-one NGS tutoring session',
     },
     cta: {
       eyebrow: 'Get started',
@@ -122,6 +124,7 @@ const content: Record<Locale, {
       ),
       sub: '覆盖 IB、A-Level / IGCSE、AP 与 HKDSE 的一对一与小班教学 —— 由走过同一条升学之路的导师亲自授课。',
       tags: ['IB 40+ 导师', 'Top 50 大学毕业', '奥赛奖牌得主', '中英双语授课'],
+      imageAlt: 'NGS 学子在大学毕业典礼上欢庆',
     },
     groups: [
       { eyebrow: '教学团队', title: <>数学 · 自然科学 · 经济</>, tutors: facultyMathScienceZh },
@@ -149,6 +152,7 @@ const content: Record<Locale, {
           body: '覆盖 IB、A-Level、AP 与 HKDSE 课程大多数科目的一对一辅导。',
         },
       ],
+      imageAlt: '面带微笑的学生在 NGS 一对一辅导课堂中学习',
     },
     cta: {
       eyebrow: '开始学习',
@@ -213,7 +217,7 @@ export function FacultyPageV1({ locale }: { locale: Locale }) {
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10">
             <Image
               src="/static/img/Graduation.jpg"
-              alt=""
+              alt={t.intro.imageAlt}
               fill
               sizes="(min-width:1024px) 45vw, 100vw"
               className="object-cover"
@@ -245,7 +249,7 @@ export function FacultyPageV1({ locale }: { locale: Locale }) {
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10">
             <Image
               src="/static/img/smilegirl.jpg"
-              alt=""
+              alt={t.tailored.imageAlt}
               fill
               sizes="(min-width:1024px) 45vw, 100vw"
               className="object-cover"

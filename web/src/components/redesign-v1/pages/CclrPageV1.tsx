@@ -35,7 +35,7 @@ const content: Record<Locale, {
   diagram: { eyebrow: string; title: React.ReactNode; caption: string };
   ecosystem: { eyebrow: string; title: React.ReactNode; sub: string; programs: Program[]; explore: string };
   partner: { eyebrow: string; title: React.ReactNode; cards: Pillar[]; cta: string };
-  community: { eyebrow: string; title: React.ReactNode; locations: React.ReactNode };
+  community: { eyebrow: string; title: React.ReactNode; locations: React.ReactNode; worldMapAlt: string; harvardAlt: string };
 }> = {
   en: {
     hero: {
@@ -170,6 +170,9 @@ const content: Record<Locale, {
           Hong Kong · Taiwan · Greater Bay Area, China
         </>
       ),
+      worldMapAlt:
+        "World map highlighting the NextGen Scholars global community (San Francisco, Melbourne, Hong Kong, Taiwan and China's Greater Bay Area)",
+      harvardAlt: 'Harvard University campus, one of the top global universities in the NextGen Scholars network',
     },
   },
   zh: {
@@ -304,6 +307,8 @@ const content: Record<Locale, {
           中国香港 · 中国台湾 · 中国大湾区
         </>
       ),
+      worldMapAlt: '标注未来学者全球社区的世界地图（美国三藩市、澳大利亚墨尔本、中国香港、中国台湾及中国大湾区）',
+      harvardAlt: '哈佛大学校园，未来学者合作网络中的顶尖全球名校之一',
     },
   },
 };
@@ -399,7 +404,7 @@ export function CclrPageV1({ locale }: { locale: Locale }) {
             <div className="relative mt-8 aspect-[2/1] overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03]">
               <Image
                 src="/static/img/world-map.png"
-                alt=""
+                alt={t.community.worldMapAlt}
                 fill
                 sizes="(min-width:1024px) 45vw, 100vw"
                 className="object-contain p-4"
@@ -409,7 +414,7 @@ export function CclrPageV1({ locale }: { locale: Locale }) {
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10">
             <Image
               src="/static/img/harvard.jpg"
-              alt=""
+              alt={t.community.harvardAlt}
               fill
               sizes="(min-width:1024px) 45vw, 100vw"
               className="object-cover"

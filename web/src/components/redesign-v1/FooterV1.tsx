@@ -43,7 +43,8 @@ export function FooterV1({ locale }: { locale: Locale }) {
           {/* Brand */}
           <div className="lg:col-span-4">
             <div className="flex items-center gap-2.5">
-              <Image src="/static/img/big_n.png" alt="NextGen Scholars" width={36} height={36} className="h-9 w-9" />
+              {/* Decorative — the visible brand text beside it carries the name. */}
+              <Image src="/static/img/big_n.png" alt="" width={36} height={36} className="h-9 w-9" />
               <span className="font-grotesk text-[17px] font-bold text-white">
                 NextGen<span className="font-normal text-white/65"> Scholars</span>
               </span>
@@ -67,7 +68,8 @@ export function FooterV1({ locale }: { locale: Locale }) {
                   aria-label={s.alt}
                   className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 transition hover:border-white/30 hover:bg-white/10"
                 >
-                  <Image src={s.src} alt={s.alt} width={18} height={18} className="h-[18px] w-[18px] object-contain" />
+                  {/* Decorative — the wrapping <a> already has aria-label={s.alt}. */}
+                  <Image src={s.src} alt="" width={18} height={18} className="h-[18px] w-[18px] object-contain" />
                 </a>
               ))}
             </div>

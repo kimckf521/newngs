@@ -28,9 +28,9 @@ const content: Record<Locale, {
   stages: string[];
   curriculaHeading: { eyebrow: string; title: React.ReactNode; sub: string };
   curricula: Curriculum[];
-  tailored: { eyebrow: string; title: React.ReactNode; points: Point[]; cta: string };
+  tailored: { eyebrow: string; title: React.ReactNode; imgAlt: string; points: Point[]; cta: string };
   assurance: { eyebrow: string; title: React.ReactNode; cards: Point[] };
-  reviews: { eyebrow: string; title: React.ReactNode; sub: string; list: Review[] };
+  reviews: { eyebrow: string; title: React.ReactNode; sub: string; avatarAlt: (name: string) => string; list: Review[] };
 }> = {
   en: {
     hero: {
@@ -95,6 +95,7 @@ const content: Record<Locale, {
           A comprehensive and <GradientText>tailored</GradientText> curriculum
         </>
       ),
+      imgAlt: 'Smiling international-curriculum student learning with an NGS tutor',
       points: [
         {
           title: 'Personalised tutoring',
@@ -141,6 +142,7 @@ const content: Record<Locale, {
         </>
       ),
       sub: 'Real students, real results.',
+      avatarAlt: (name) => `NGS student ${name}`,
       list: [
         {
           name: 'Noah',
@@ -226,6 +228,7 @@ const content: Record<Locale, {
           四大课程体系 + <GradientText>定制化</GradientText>教学
         </>
       ),
+      imgAlt: '面带微笑的国际课程学生在 NGS 导师指导下学习',
       points: [
         {
           title: '个性化辅导',
@@ -272,6 +275,7 @@ const content: Record<Locale, {
         </>
       ),
       sub: '真实的学生，真实的成长。',
+      avatarAlt: (name) => `NGS 学员 ${name} 的头像`,
       list: [
         {
           name: 'Noah',
@@ -329,7 +333,7 @@ export function ProgramsPageV1({ locale }: { locale: Locale }) {
       <Section tone="night" glow="cyan" glowPosition="left">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10">
-            <Image src="/static/img/smilegirl.jpg" alt="" fill sizes="(min-width:1024px) 40vw, 100vw" className="object-cover" />
+            <Image src="/static/img/smilegirl.jpg" alt={t.tailored.imgAlt} fill sizes="(min-width:1024px) 40vw, 100vw" className="object-cover" />
             <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-night/50 to-transparent" />
           </div>
           <div>
@@ -368,7 +372,7 @@ export function ProgramsPageV1({ locale }: { locale: Locale }) {
               <span aria-hidden className="font-grotesk text-4xl leading-none text-ngs-violet/70">&ldquo;</span>
               <p className="mt-3 flex-1 text-[15px] leading-relaxed text-white/80">{r.quote}</p>
               <div className="mt-6 flex items-center gap-3 border-t border-white/10 pt-5">
-                <Image src={r.img} alt={r.name} width={44} height={44} className="h-11 w-11 rounded-full object-cover ring-1 ring-white/15" />
+                <Image src={r.img} alt={t.reviews.avatarAlt(r.name)} width={44} height={44} className="h-11 w-11 rounded-full object-cover ring-1 ring-white/15" />
                 <span className="font-grotesk text-sm font-semibold text-white">{r.name}</span>
               </div>
             </GlassCard>

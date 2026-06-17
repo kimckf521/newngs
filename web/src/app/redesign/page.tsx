@@ -14,7 +14,8 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: 'NextGen Scholars — International Education',
+  robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
+  title: { absolute: 'NextGen Scholars — International Education' },
   description:
     'NextGen Scholars connects ambitious students with mentors from the world’s leading universities and global industry leaders.',
 };

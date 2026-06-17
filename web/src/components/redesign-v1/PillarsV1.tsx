@@ -36,7 +36,7 @@ export function PillarsV1({ locale }: { locale: Locale }) {
           {cards.map((card) => (
             <GlassCard key={card.title} hover className="flex flex-col overflow-hidden">
               <div className="relative h-44">
-                <Image src={card.img} alt={card.title} fill sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />
+                <Image src={card.img} alt={card.imageAlt} fill sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-night/80" aria-hidden />
               </div>
               <div className="p-6">

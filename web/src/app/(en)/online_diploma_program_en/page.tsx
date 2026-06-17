@@ -1,11 +1,30 @@
 import { OnlineDiplomaPageV1 } from '@/components/redesign-v1/pages/OnlineDiplomaPageV1';
+import { pageSeo } from '@/lib/seo';
+import { pageJsonLd } from '@/lib/jsonLd';
+import { JsonLd } from '@/components/seo/JsonLd';
 
-export const metadata = {
-  title: 'Online Diploma Program — NextGen Scholars',
+export const metadata = pageSeo({
+  page: 'onlineDiploma',
+  locale: 'en',
+  title: "Online Diploma Program | Accredited High-School Diploma",
   description:
-    'The NGS Online Diploma Program (ODP) lets students learn online at their own pace, sit official exams on campus, and earn an accredited high-school diploma and transcript.',
-};
+    "Earn an accredited high-school diploma with our Online Diploma Program (ODP): study A-Level, HKDSE or AP online at your own pace, then sit official exams on campus.",
+});
 
 export default function Page() {
-  return <OnlineDiplomaPageV1 locale="en" />;
+  return (
+    <>
+      <JsonLd
+        data={pageJsonLd({
+          page: 'onlineDiploma',
+          locale: 'en',
+          name: "Online Diploma Program | Accredited High-School Diploma",
+          description:
+            "Earn an accredited high-school diploma with our Online Diploma Program (ODP): study A-Level, HKDSE or AP online at your own pace, then sit official exams on campus.",
+          type: 'Course',
+        })}
+      />
+      <OnlineDiplomaPageV1 locale="en" />
+    </>
+  );
 }

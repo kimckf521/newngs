@@ -3,7 +3,8 @@ import { HomeV1 } from '@/components/redesign-v1/HomeV1';
 import type { Locale } from '@/i18n/types';
 
 export const metadata: Metadata = {
-  title: 'NextGen Scholars — International Education',
+  robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
+  title: { absolute: 'NextGen Scholars — International Education' },
   description:
     'NextGen Scholars connects ambitious students with mentors from the world’s leading universities and global industry leaders.',
 };

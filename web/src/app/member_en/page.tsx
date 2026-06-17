@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 import { HtmlLang } from '@/components/layout/HtmlLang';
 import { MemberPageV1 } from '@/components/auth/MemberPageV1';
 
-export const metadata: Metadata = { title: 'Member Area — NextGen Scholars' };
+export const metadata: Metadata = {
+  title: 'Member Area',
+  robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
+};
 
 export default function Page() {
   return (

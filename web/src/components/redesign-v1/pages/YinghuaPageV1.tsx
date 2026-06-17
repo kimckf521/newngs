@@ -394,7 +394,7 @@ export function YinghuaPageV1({ locale }: { locale: Locale }) {
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10">
               <Image
                 src="/static/img/ycs/ycs_banner.jpg"
-                alt="Oriental Yinghua International Academy"
+                alt={locale === 'en' ? 'Oriental Yinghua Cambridge School (YCS) campus' : '珠海英华国际教育中心（YCS）校园'}
                 fill
                 sizes="(min-width:1024px) 40vw, 100vw"
                 className="object-cover"

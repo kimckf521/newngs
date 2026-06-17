@@ -1,11 +1,30 @@
 import { CollegeMentorshipPageV1 } from '@/components/redesign-v1/pages/CollegeMentorshipPageV1';
+import { pageSeo } from '@/lib/seo';
+import { pageJsonLd } from '@/lib/jsonLd';
+import { JsonLd } from '@/components/seo/JsonLd';
 
-export const metadata = {
-  title: 'College Mentorship — NextGen Scholars',
+export const metadata = pageSeo({
+  page: 'collegeMentorship',
+  locale: 'en',
+  title: "College Admissions Mentorship: 4-on-1 Guidance",
   description:
-    'The NGS College Mentorship Program pairs every student with a Four-on-one mentor team for personalized college admissions guidance — academic planning, essays, interviews and portfolios for top universities across the US, UK, Canada, Australia, Hong Kong and Singapore.',
-};
+    "Personalized 4-on-1 college mentorship for top universities in the US, UK, Canada, Australia, Hong Kong and Singapore — academic planning, essays, interviews and portfolios.",
+});
 
 export default function Page() {
-  return <CollegeMentorshipPageV1 locale="en" />;
+  return (
+    <>
+      <JsonLd
+        data={pageJsonLd({
+          page: 'collegeMentorship',
+          locale: 'en',
+          name: "College Admissions Mentorship: 4-on-1 Guidance",
+          description:
+            "Personalized 4-on-1 college mentorship for top universities in the US, UK, Canada, Australia, Hong Kong and Singapore — academic planning, essays, interviews and portfolios.",
+          type: 'WebPage',
+        })}
+      />
+      <CollegeMentorshipPageV1 locale="en" />
+    </>
+  );
 }

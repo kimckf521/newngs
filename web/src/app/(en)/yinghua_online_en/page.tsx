@@ -1,11 +1,30 @@
 import { YinghuaPageV1 } from '@/components/redesign-v1/pages/YinghuaPageV1';
+import { pageSeo } from '@/lib/seo';
+import { pageJsonLd } from '@/lib/jsonLd';
+import { JsonLd } from '@/components/seo/JsonLd';
 
-export const metadata = {
-  title: 'Oriental Yinghua International Academy — NextGen Scholars',
+export const metadata = pageSeo({
+  page: 'yinghuaOnline',
+  locale: 'en',
+  title: "Oriental Yinghua Cambridge School (YCS) + Online A-Level",
   description:
-    'Zhuhai Yinghua Cambridge School (YCS) — a Cambridge school authorised by Edexcel, AQA and CIE and accredited by UCAS, blending A-Level study with NGS online learning to reach leading universities worldwide.',
-};
+    "Zhuhai Yinghua Cambridge School (YCS): an Edexcel/AQA/CIE-authorised, UCAS-accredited A-Level school blending campus and NGS online learning for top universities.",
+});
 
 export default function Page() {
-  return <YinghuaPageV1 locale="en" />;
+  return (
+    <>
+      <JsonLd
+        data={pageJsonLd({
+          page: 'yinghuaOnline',
+          locale: 'en',
+          name: "Oriental Yinghua Cambridge School (YCS) + Online A-Level",
+          description:
+            "Zhuhai Yinghua Cambridge School (YCS): an Edexcel/AQA/CIE-authorised, UCAS-accredited A-Level school blending campus and NGS online learning for top universities.",
+          type: 'WebPage',
+        })}
+      />
+      <YinghuaPageV1 locale="en" />
+    </>
+  );
 }

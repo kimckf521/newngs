@@ -351,7 +351,7 @@ export function ConnectsPageV1({ locale }: { locale: Locale }) {
       <Section tone="night" glow="cyan" glowPosition="left">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10">
-            <Image src="/static/img/painting.jpg" alt="" fill sizes="(min-width:1024px) 40vw, 100vw" className="object-cover" />
+            <Image src="/static/img/painting.jpg" alt={locale === 'en' ? 'Students and mentors connecting in the NGS global education community' : '国际教育全球社区中师生交流的场景'} fill sizes="(min-width:1024px) 40vw, 100vw" className="object-cover" />
             <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-night/50 to-transparent" />
           </div>
           <div>

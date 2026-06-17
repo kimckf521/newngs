@@ -125,6 +125,95 @@ body {
   letter-spacing: inherit;
 }
 
+/* High-contrast display serif for the "Heritage Prestige" design (/design-v1).
+   Only the design-v1 components use this class, so it never touches the live
+   site or the other preview designs. */
+.font-display-serif {
+  font-family: var(--font-playfair), 'Playfair Display', Georgia, 'Times New Roman', serif;
+}
+
+/* ── Light theme for the v1 design (/redesign-v1-light) ──────────────────
+   A scoped re-theme of the EXACT live v1 components: wrapping any v1 markup
+   in `.v1-light` flips its dark palette to a clean light one. Nothing here
+   touches the live (dark) site — it never carries the `.v1-light` class.
+   The brand gradient (and gradient-clipped text) is intentionally preserved. */
+
+/* Surfaces */
+.v1-light .bg-night { background-color: #f7f8fb; }
+.v1-light .bg-night-800 { background-color: #eef1f7; }
+.v1-light .bg-night-700 { background-color: #e9ecf4; }
+/* Frosted header bar (only the scrolled <header> uses bg-night/70) */
+.v1-light .bg-night\/70 { background-color: rgba(247, 248, 251, 0.82); }
+
+/* Text — dark-ink ramp mirroring the original white opacities */
+.v1-light .text-white { color: #141a2e; }
+.v1-light .text-white\/85 { color: rgba(20, 26, 46, 0.86); }
+.v1-light .text-white\/80 { color: rgba(20, 26, 46, 0.80); }
+.v1-light .text-white\/75 { color: rgba(20, 26, 46, 0.74); }
+.v1-light .text-white\/70 { color: rgba(20, 26, 46, 0.70); }
+.v1-light .text-white\/65 { color: rgba(20, 26, 46, 0.64); }
+.v1-light .text-white\/60 { color: rgba(20, 26, 46, 0.60); }
+.v1-light .text-white\/55 { color: rgba(20, 26, 46, 0.56); }
+.v1-light .text-white\/50 { color: rgba(20, 26, 46, 0.52); }
+.v1-light .text-white\/45 { color: rgba(20, 26, 46, 0.48); }
+.v1-light .text-white\/40 { color: rgba(20, 26, 46, 0.44); }
+.v1-light .text-white\/35 { color: rgba(20, 26, 46, 0.42); }
+
+/* Keep text white on brand-gradient CTAs and on dark image-overlay badges
+   (placed after the ink ramp so they win for those specific elements). The
+   gradient-clip GradientText uses text-transparent, so it is left alone. */
+.v1-light .bg-ngs-gradient.text-white { color: #fff; }
+.v1-light .bg-night\/40 { color: #fff; }
+
+/* Borders / dividers / rings → subtle dark hairlines */
+.v1-light .border-white\/10 { border-color: rgba(20, 26, 46, 0.10); }
+.v1-light .border-white\/15 { border-color: rgba(20, 26, 46, 0.13); }
+.v1-light .border-white\/20 { border-color: rgba(20, 26, 46, 0.16); }
+.v1-light .border-white\/25 { border-color: rgba(20, 26, 46, 0.20); }
+.v1-light .divide-white\/10 > :not([hidden]) ~ :not([hidden]) { border-color: rgba(20, 26, 46, 0.10); }
+.v1-light .ring-white\/10 { --tw-ring-color: rgba(20, 26, 46, 0.10); }
+.v1-light .ring-white\/15 { --tw-ring-color: rgba(20, 26, 46, 0.13); }
+.v1-light .focus-visible\:ring-offset-night:focus-visible { --tw-ring-offset-color: #f7f8fb; }
+
+/* Glass surfaces → clean white cards with soft elevation */
+.v1-light .bg-white\/\[0\.03\] { background-color: #ffffff; }
+.v1-light .bg-white\/\[0\.04\] { background-color: #ffffff; box-shadow: 0 1px 2px rgba(20, 26, 46, 0.04), 0 18px 40px -26px rgba(20, 26, 46, 0.22); }
+.v1-light .bg-white\/\[0\.06\] { background-color: #ffffff; }
+.v1-light .bg-white\/5 { background-color: rgba(20, 26, 46, 0.035); }
+
+/* Hover / focus states */
+.v1-light .hover\:bg-white\/5:hover { background-color: rgba(20, 26, 46, 0.03); }
+.v1-light .hover\:bg-white\/10:hover { background-color: rgba(20, 26, 46, 0.05); }
+.v1-light .hover\:bg-white\/\[0\.07\]:hover { background-color: rgba(20, 26, 46, 0.045); }
+.v1-light .hover\:bg-white\/\[0\.12\]:hover { background-color: rgba(20, 26, 46, 0.06); }
+.v1-light .hover\:border-white\/25:hover { border-color: rgba(20, 26, 46, 0.20); }
+.v1-light .hover\:border-white\/30:hover { border-color: rgba(20, 26, 46, 0.24); }
+.v1-light .hover\:border-white\/40:hover { border-color: rgba(20, 26, 46, 0.30); }
+.v1-light .hover\:border-white\/50:hover { border-color: rgba(20, 26, 46, 0.36); }
+.v1-light .hover\:text-white:hover { color: #141a2e; }
+.v1-light .hover\:text-white\/80:hover { color: rgba(20, 26, 46, 0.80); }
+.v1-light .focus\:bg-white\/10:focus { background-color: rgba(20, 26, 46, 0.05); }
+
+/* Placeholder */
+.v1-light .placeholder\:text-white\/35::placeholder { color: rgba(20, 26, 46, 0.40); }
+
+/* Inner-page extras (comparison tables, logo chips) */
+.v1-light .text-white\/90 { color: rgba(20, 26, 46, 0.90); }
+.v1-light .border-white\/5 { border-color: rgba(20, 26, 46, 0.06); }
+.v1-light .bg-white\/90 { background-color: #ffffff; }
+
+/* When the whole site is toggled to light (class lives on <html>), flip the
+   page gutter so overscroll doesn't reveal the dark body. */
+.v1-light body { background-color: #f7f8fb; }
+
+/* Soften the aurora glows so they read as gentle washes on the light page */
+.v1-light .bg-ngs-magenta\/20 { background-color: rgba(236, 28, 139, 0.10); }
+.v1-light .bg-ngs-magenta\/15 { background-color: rgba(236, 28, 139, 0.08); }
+.v1-light .bg-ngs-cyan\/20 { background-color: rgba(22, 200, 230, 0.10); }
+.v1-light .bg-ngs-cyan\/15 { background-color: rgba(22, 200, 230, 0.08); }
+.v1-light .bg-ngs-violet\/20 { background-color: rgba(139, 47, 214, 0.10); }
+.v1-light .bg-ngs-violet\/15 { background-color: rgba(139, 47, 214, 0.08); }
+
 /* Form submit feedback */
 .ngs-form-status {
   margin-top: 0.75rem;

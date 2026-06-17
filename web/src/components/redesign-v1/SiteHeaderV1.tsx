@@ -36,6 +36,24 @@ export function SiteHeaderV1({ locale, langHref }: { locale: Locale; langHref?: 
     return () => { document.body.style.overflow = ''; };
   }, [open]);
 
+  // Light/dark theme. The choice is a `.v1-light` class on <html> (a pre-paint
+  // script in the root layout applies the saved value before hydration). We
+  // sync the button's icon from the DOM on mount, then toggle directly.
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  useEffect(() => {
+    setTheme(document.documentElement.classList.contains('v1-light') ? 'light' : 'dark');
+  }, []);
+  const toggleTheme = () => {
+    const next = theme === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    try { localStorage.setItem('ngs-theme', next); } catch {}
+    document.documentElement.classList.toggle('v1-light', next === 'light');
+  };
+  const themeLabel =
+    locale === 'zh'
+      ? theme === 'dark' ? '切换到浅色模式' : '切换到深色模式'
+      : theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+
   const solid = scrolled || open;
 
   return (
@@ -56,6 +74,15 @@ export function SiteHeaderV1({ locale, langHref }: { locale: Locale; langHref?: 
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={themeLabel}
+              title={themeLabel}
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white/85 transition-colors hover:border-white/50 hover:text-white"
+            >
+              <ThemeIcon theme={theme} />
+            </button>
             <Link href={langSwitchHref} className="rounded-full border border-white/20 px-3.5 py-1.5 text-xs font-semibold text-white/85 transition-colors hover:border-white/50 hover:text-white">
               {t.langSwitchLabel}
             </Link>
@@ -98,10 +125,32 @@ export function SiteHeaderV1({ locale, langHref }: { locale: Locale; langHref?: 
               <ArrowRight />
             </a>
             <Link href={langSwitchHref} onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-full border border-white/25 px-5 py-3.5 text-sm font-semibold text-white">{t.langSwitchLabel}</Link>
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={themeLabel}
+              className="inline-flex h-[50px] w-[50px] items-center justify-center rounded-full border border-white/25 text-white"
+            >
+              <ThemeIcon theme={theme} />
+            </button>
           </div>
         </div>
       </div>
     </>
+  );
+}
+
+function ThemeIcon({ theme }: { theme: 'dark' | 'light' }) {
+  // Show a sun while dark (tap to brighten) and a moon while light.
+  return theme === 'dark' ? (
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <circle cx="12" cy="12" r="4.2" />
+      <path d="M12 2.2v2.3M12 19.5v2.3M2.2 12h2.3M19.5 12h2.3M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M19.1 4.9l-1.6 1.6M6.5 17.5l-1.6 1.6" />
+    </svg>
+  ) : (
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M20.5 14.8A8.2 8.2 0 0 1 9.2 3.5 7.3 7.3 0 1 0 20.5 14.8z" />
+    </svg>
   );
 }
 

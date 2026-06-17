@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Albert_Sans, Josefin_Sans, Fraunces, Space_Grotesk } from 'next/font/google';
+import { Albert_Sans, Josefin_Sans, Fraunces, Space_Grotesk, Playfair_Display } from 'next/font/google';
 import './globals.css';
 
 // Albert Sans — body text. Multiple weights so we can pick what we need.
@@ -41,6 +41,17 @@ const spaceGrotesk = Space_Grotesk({
   display: 'swap',
 });
 
+// Playfair Display — high-contrast display serif for the "Heritage Prestige"
+// alternate design at /design-v1. Exposed as a CSS variable; only the
+// design-v1 components consume it, so the rest of the site is unaffected.
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+  variable: '--font-playfair',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://nextgenscholars.asia'),
   title: 'NextGen Scholars — International Education Parents Trust',
@@ -74,9 +85,18 @@ export default function RootLayout({
   return (
     <html
       lang="zh"
-      className={`${albertSans.variable} ${josefinSans.variable} ${fraunces.variable} ${spaceGrotesk.variable}`}
+      suppressHydrationWarning
+      className={`${albertSans.variable} ${josefinSans.variable} ${fraunces.variable} ${spaceGrotesk.variable} ${playfair.variable}`}
     >
       <body className="font-sans antialiased">
+        {/* Apply the saved light/dark choice before paint to avoid a flash.
+            Default (no class) is the dark v1 design. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{if(localStorage.getItem('ngs-theme')==='light'){document.documentElement.classList.add('v1-light')}}catch(e){}})();",
+          }}
+        />
         {children}
       </body>
     </html>

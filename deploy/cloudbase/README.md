@@ -81,7 +81,21 @@ Build-time vars (env id/region) are already in the image. Set the rest as
 - `SMTP_USER`, `SMTP_PASS` — **secrets**, never commit them (see the rotation note
   in [`../README.md`](../README.md)). `lib/env.ts → requireSmtpCreds()` reads them
   lazily at request time, so a missing value only breaks the contact form, not boot.
-- `SMTP_HOST`, `SMTP_PORT`, `EMAIL_RECEIVER` — non-secret; already in `cloudbaserc.json`.
+- **AI advisor ("咨询顾问") — NO key needed on CloudBase Run.** It uses the
+  **native CloudBase AI gateway** (生文模型) via `app.ai()` (`lib/chat/provider.ts`),
+  which authenticates with the Run **managed identity** (the same `TENCENTCLOUD_*`
+  creds the Puck SSR uses) — so there is **no `DEEPSEEK_API_KEY` to set here**.
+  Instead, the one-time step is in the console: **AI → 生文模型 → 开通 (enable) the
+  `deepseek-v3.2` model** (or whichever `CLOUDBASE_AI_MODEL` points at). If the
+  model isn't enabled, the chat falls back to the WeChat 客服 handoff (never 500s).
+- `DEEPSEEK_API_KEY` — **only for off-platform hosts / local dev** (Vercel, or
+  `npm run dev` where the Run managed identity is absent). It's the **fallback**
+  backend: when no CloudBase creds exist, `lib/chat/provider.ts` calls the direct
+  DeepSeek API instead. **Secret**, never commit; not needed on CloudBase Run.
+- `SMTP_HOST`, `SMTP_PORT`, `EMAIL_RECEIVER`, `CLOUDBASE_AI_PROVIDER`,
+  `CLOUDBASE_AI_MODEL` — non-secret; already in `cloudbaserc.json` (switch the AI
+  model/provider there — e.g. to `deepseek-v4-pro` or `hunyuan` — without a code
+  change or rebuild).
 - Do **not** set `PORT` / `HOSTNAME` in the console — let the Dockerfile's
   `3000` / `0.0.0.0` stand (console values override Dockerfile `ENV`).
 

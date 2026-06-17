@@ -1,25 +1,40 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { env, requireDeepSeekKey } from '@/lib/env';
 import { buildSystemPrompt } from '@/lib/chat/knowledge';
+import { streamChatReply, activeChatBackend, type ChatMessage } from '@/lib/chat/provider';
 import type { Locale } from '@/i18n/types';
 
 /**
- * AI advisor chat — proxies the on-site "咨询顾问" widget to DeepSeek
- * (China-hosted, OpenAI-compatible) and STREAMS the reply back as plain text.
+ * AI advisor chat — backs the on-site "咨询顾问" widget. Streams the reply as
+ * plain text. The model backend (CloudBase native AI gateway in prod; direct
+ * DeepSeek API as a local/off-platform fallback) is chosen in lib/chat/provider.
  *
- * Why a server route: the DeepSeek key must never reach the browser, and the
- * (China) server-to-DeepSeek hop is fast/reliable. fetch + ReadableStream need
- * Node APIs available on the nodejs runtime.
+ * runtime=nodejs: the native path uses @cloudbase/node-sdk (Node APIs); the
+ * fallback uses fetch + ReadableStream.
  */
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-// ---- Origin allow-list (CSRF defense) — mirrors /api/partner_with_us -------
+// ---- Origin check (CSRF defense) -------------------------------------------
+// Allow SAME-ORIGIN POSTs (whatever domain the app is served from — the custom
+// domain, *.vercel.app prod/preview, localhost) plus a few explicit known
+// hosts; block true cross-site POSTs. Absent Origin (older clients) is allowed.
+// A hardcoded allow-list alone would 403 the chat on Vercel preview/prod URLs.
 const ALLOWED_ORIGINS = new Set([
   'https://nextgenscholars.asia',
   'https://www.nextgenscholars.asia',
   'http://localhost:3000',
 ]);
+
+function originAllowed(req: NextRequest): boolean {
+  const origin = req.headers.get('origin');
+  if (!origin) return true; // same-origin GET-style / old clients
+  if (ALLOWED_ORIGINS.has(origin)) return true;
+  try {
+    return new URL(origin).host === req.headers.get('host'); // same-origin
+  } catch {
+    return false;
+  }
+}
 
 // ---- Limits ----------------------------------------------------------------
 const MAX_MESSAGES = 20; // most recent turns kept
@@ -43,8 +58,6 @@ function rateLimited(ip: string): boolean {
   return false;
 }
 
-type ChatMessage = { role: 'user' | 'assistant'; content: string };
-
 function sanitizeMessages(raw: unknown): ChatMessage[] {
   if (!Array.isArray(raw)) return [];
   return raw
@@ -60,9 +73,8 @@ function sanitizeMessages(raw: unknown): ChatMessage[] {
 }
 
 export async function POST(req: NextRequest) {
-  // CSRF: reject cross-origin POSTs (absent Origin is allowed for old clients).
-  const origin = req.headers.get('origin');
-  if (origin && !ALLOWED_ORIGINS.has(origin)) {
+  // CSRF: allow same-origin (any served domain) + known hosts; block cross-site.
+  if (!originAllowed(req)) {
     return NextResponse.json({ error: 'forbidden' }, { status: 403 });
   }
 
@@ -78,76 +90,17 @@ export async function POST(req: NextRequest) {
   }
   const locale: Locale = body?.locale === 'en' ? 'en' : 'zh';
 
-  // Missing key → graceful 503 so the UI can fall back to the WeChat handoff.
-  let apiKey: string;
+  const fullMessages: ChatMessage[] = [{ role: 'system', content: buildSystemPrompt(locale) }, ...messages];
+
+  let stream: ReadableStream<Uint8Array>;
   try {
-    apiKey = requireDeepSeekKey();
-  } catch {
+    stream = await streamChatReply(fullMessages);
+  } catch (e) {
+    // No usable backend (missing creds/key, model not enabled, upstream error) →
+    // graceful 503 so the UI falls back to the WeChat 客服 handoff.
+    console.error(`[chat] AI unavailable (backend=${activeChatBackend()})`, e);
     return NextResponse.json({ error: 'ai_unavailable' }, { status: 503 });
   }
-
-  let upstream: Response;
-  try {
-    upstream = await fetch(`${env.DEEPSEEK_BASE_URL}/chat/completions`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
-      body: JSON.stringify({
-        model: env.DEEPSEEK_MODEL,
-        messages: [{ role: 'system', content: buildSystemPrompt(locale) }, ...messages],
-        stream: true,
-        temperature: 0.4,
-        max_tokens: 1024,
-      }),
-    });
-  } catch (e) {
-    console.error('[chat] DeepSeek request failed', e);
-    return NextResponse.json({ error: 'upstream_error' }, { status: 502 });
-  }
-
-  if (!upstream.ok || !upstream.body) {
-    const detail = await upstream.text().catch(() => '');
-    console.error('[chat] DeepSeek bad response', upstream.status, detail.slice(0, 500));
-    return NextResponse.json({ error: 'upstream_error' }, { status: 502 });
-  }
-
-  // Transform the OpenAI-style SSE stream into a plain UTF-8 text stream of just
-  // the assistant's content deltas — keeps the client trivial.
-  const reader = upstream.body.getReader();
-  const decoder = new TextDecoder();
-  const encoder = new TextEncoder();
-  let buffer = '';
-
-  const stream = new ReadableStream<Uint8Array>({
-    async pull(controller) {
-      const { done, value } = await reader.read();
-      if (done) {
-        controller.close();
-        return;
-      }
-      buffer += decoder.decode(value, { stream: true });
-      const lines = buffer.split('\n');
-      buffer = lines.pop() ?? ''; // keep the trailing partial line
-      for (const line of lines) {
-        const trimmed = line.trim();
-        if (!trimmed.startsWith('data:')) continue;
-        const data = trimmed.slice(5).trim();
-        if (data === '[DONE]') {
-          controller.close();
-          return;
-        }
-        try {
-          const json = JSON.parse(data) as { choices?: { delta?: { content?: string } }[] };
-          const delta = json.choices?.[0]?.delta?.content;
-          if (delta) controller.enqueue(encoder.encode(delta));
-        } catch {
-          /* keepalive / partial chunk — ignore */
-        }
-      }
-    },
-    cancel() {
-      void reader.cancel();
-    },
-  });
 
   return new Response(stream, {
     headers: {

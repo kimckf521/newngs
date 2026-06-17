@@ -11,8 +11,14 @@ export const env = {
   SMTP_HOST: process.env.SMTP_HOST ?? 'smtp.exmail.qq.com',
   SMTP_PORT: Number(process.env.SMTP_PORT ?? '465'),
   EMAIL_RECEIVER: process.env.EMAIL_RECEIVER ?? 'info@nextgenscholars.asia',
-  // DeepSeek (China-hosted LLM) — powers the on-site AI advisor chat.
-  // Non-secret; the API key is validated lazily via requireDeepSeekKey().
+  // CloudBase native AI gateway (生文模型) — PRIMARY backend for the AI advisor
+  // in production. Auth uses the CloudBase Run managed identity (no key); see
+  // lib/chat/provider.ts. Provider + model are non-secret and console-visible.
+  CLOUDBASE_AI_PROVIDER: process.env.CLOUDBASE_AI_PROVIDER ?? 'deepseek',
+  CLOUDBASE_AI_MODEL: process.env.CLOUDBASE_AI_MODEL ?? 'deepseek-v3.2',
+  // Direct DeepSeek API — FALLBACK used only when CloudBase creds are absent
+  // (e.g. local dev with just DEEPSEEK_API_KEY). Non-secret; key is lazy via
+  // requireDeepSeekKey().
   DEEPSEEK_BASE_URL: process.env.DEEPSEEK_BASE_URL ?? 'https://api.deepseek.com',
   DEEPSEEK_MODEL: process.env.DEEPSEEK_MODEL ?? 'deepseek-chat',
 } as const;

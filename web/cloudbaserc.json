@@ -23,7 +23,9 @@
             "NODE_ENV": "production",
             "SMTP_HOST": "smtp.exmail.qq.com",
             "SMTP_PORT": "465",
-            "EMAIL_RECEIVER": "info@nextgenscholars.asia"
+            "EMAIL_RECEIVER": "info@nextgenscholars.asia",
+            "CLOUDBASE_AI_PROVIDER": "deepseek",
+            "CLOUDBASE_AI_MODEL": "deepseek-v3.2"
           }
         }
       }

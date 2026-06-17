@@ -471,13 +471,13 @@ export function Testimonials({
   return (
     <div>
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {quotes.map((t, i) => (
+        {(quotes ?? []).map((t, i) => (
           <GlassCard key={i} className="flex h-full flex-col p-7">
             <span aria-hidden className="font-grotesk text-4xl leading-none text-ngs-violet/70">&ldquo;</span>
             <p className="mt-3 flex-1 text-[15px] leading-relaxed text-white/80">{t.quote}</p>
             <div className="mt-6 flex items-center gap-3 border-t border-white/10 pt-5">
               <span aria-hidden className="grid h-10 w-10 place-items-center rounded-full bg-ngs-gradient font-grotesk text-sm font-bold text-white">
-                {t.name.trim().charAt(0)}
+                {(t.name ?? '').trim().charAt(0) || '?'}
               </span>
               <span className="leading-tight">
                 <span className="block font-grotesk text-sm font-semibold text-white">{t.name}</span>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getCloudBaseApp } from '@/lib/cloudbase';
 
 /**
@@ -19,6 +19,33 @@ export function ImageUploadField({
 }) {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState('');
+  const [preview, setPreview] = useState('');
+
+  // cloud:// handles aren't directly displayable; resolve to a temp URL for the
+  // editor PREVIEW only. Plain pasted URLs (and demo blob: URLs) display as-is.
+  useEffect(() => {
+    if (!value || !value.startsWith('cloud://')) {
+      setPreview('');
+      return;
+    }
+    let active = true;
+    void (async () => {
+      const app = await getCloudBaseApp();
+      if (!app) return;
+      try {
+        const r = await app.getTempFileURL({ fileList: [value] });
+        const url = r?.fileList?.[0]?.tempFileURL;
+        if (active && url) setPreview(url);
+      } catch {
+        /* leave preview empty */
+      }
+    })();
+    return () => {
+      active = false;
+    };
+  }, [value]);
+
+  const displayUrl = value?.startsWith('cloud://') ? preview : value;
 
   async function handleFile(file: File) {
     setBusy(true);
@@ -32,10 +59,11 @@ export function ImageUploadField({
       const safe = file.name.replace(/[^\w.\-]/g, '_');
       const cloudPath = `pages/uploads/${Date.now()}-${safe}`;
       const up = await app.uploadFile({ cloudPath, filePath: file });
-      const urlRes = await app.getTempFileURL({ fileList: [up.fileID] });
-      const url = urlRes?.fileList?.[0]?.tempFileURL;
-      if (!url) throw new Error('no_url');
-      onChange(url);
+      // Persist the PERMANENT cloud:// handle, not the expiring temp URL — the
+      // server (lib/puck/server.ts) resolves it to a fresh signed URL at render
+      // time, and the useEffect above resolves it for this editor preview.
+      if (!up?.fileID) throw new Error('no_file_id');
+      onChange(up.fileID);
     } catch {
       setErr('Upload failed — paste a URL instead.');
     } finally {
@@ -65,9 +93,9 @@ export function ImageUploadField({
       />
       {busy && <span style={{ fontSize: 12, color: '#888' }}>Uploading…</span>}
       {err && <span style={{ fontSize: 12, color: '#c0392b' }}>{err}</span>}
-      {value && (
+      {displayUrl && (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={value} alt="" style={{ maxWidth: '100%', borderRadius: 8, marginTop: 4 }} />
+        <img src={displayUrl} alt="" style={{ maxWidth: '100%', borderRadius: 8, marginTop: 4 }} />
       )}
     </div>
   );

@@ -17,7 +17,10 @@ import { getCloudBaseApp } from '@/lib/cloudbase';
  * console setup is finished).
  */
 export async function isAdmin(): Promise<boolean> {
-  if (!isRealAuth()) return true;
+  // Demo / unconfigured mode (no CloudBase env): usable only in local dev. NEVER
+  // grant admin to anonymous visitors in a production build — that would expose
+  // the /admin editor to everyone. (In real mode, fall through to the check below.)
+  if (!isRealAuth()) return process.env.NODE_ENV !== 'production';
   // Dev-only escape hatch — guarded by NODE_ENV so it's dead-code-eliminated
   // from production builds (can never open the editor to visitors in prod).
   if (process.env.NODE_ENV !== 'production' && process.env.NEXT_PUBLIC_ADMIN_DEV_BYPASS === '1') return true;

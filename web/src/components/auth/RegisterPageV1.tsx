@@ -35,6 +35,7 @@ const content = {
     create: 'Create account',
     sendingCode: 'Sending code…',
     mismatch: 'Passwords do not match.',
+    short: 'Password must be at least 8 characters.',
     termsError: 'Please accept the terms to continue.',
     sendError: 'Could not send the code. Check your email and try again.',
     demo: 'Demo only — this is a front-end design. No real account is created; submitting takes you to the member area.',
@@ -70,6 +71,7 @@ const content = {
     create: '创建账户',
     sendingCode: '发送验证码中…',
     mismatch: '两次输入的密码不一致。',
+    short: '密码至少需要 8 位字符。',
     termsError: '请先同意相关条款。',
     sendError: '验证码发送失败，请检查邮箱后重试。',
     demo: '仅为演示 —— 这是前端设计，不会创建真实账户；提交后将进入会员中心。',
@@ -118,6 +120,11 @@ export function RegisterPageV1({ locale }: { locale: Locale }) {
     const confirm = String(data.get('confirm') || '');
     if (password !== confirm) {
       setError(t.mismatch);
+      setStatus('err');
+      return;
+    }
+    if (password.length < 8) {
+      setError(t.short);
       setStatus('err');
       return;
     }

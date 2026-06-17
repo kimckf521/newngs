@@ -63,8 +63,55 @@ export async function getPublishedData(route: string, locale: Locale): Promise<P
       new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 2500)),
     ]);
     const doc = res?.data?.[0];
-    return (doc?.published as PuckData) ?? null;
+    const published = (doc?.published as PuckData) ?? null;
+    return published ? await resolveCloudImages(app, published) : null;
   } catch {
     return null; // never break the public page
   }
+}
+
+/**
+ * Published Puck data may store CloudBase storage handles (cloud://…) for
+ * uploaded images. These must be resolved to a FRESH signed temp URL at render
+ * time — persisting the temp URL itself would break once its signature expires.
+ * Walks the data, batch-resolves every cloud:// handle, and substitutes the
+ * fresh URL. Best-effort: any failure returns the data untouched.
+ */
+async function resolveCloudImages(app: any, data: PuckData): Promise<PuckData> {
+  const ids = new Set<string>();
+  const collect = (v: unknown): void => {
+    if (typeof v === 'string') {
+      if (v.startsWith('cloud://')) ids.add(v);
+    } else if (Array.isArray(v)) {
+      v.forEach(collect);
+    } else if (v && typeof v === 'object') {
+      Object.values(v).forEach(collect);
+    }
+  };
+  collect(data);
+  if (ids.size === 0) return data;
+
+  const map: Record<string, string> = {};
+  try {
+    const res: any = await app.getTempFileURL({
+      fileList: [...ids].map((fileID) => ({ fileID, maxAge: 86400 })),
+    });
+    for (const f of res?.fileList ?? []) {
+      if (f?.fileID && f?.tempFileURL) map[f.fileID] = f.tempFileURL;
+    }
+  } catch {
+    return data;
+  }
+
+  const swap = (v: unknown): unknown => {
+    if (typeof v === 'string') return v.startsWith('cloud://') ? map[v] ?? v : v;
+    if (Array.isArray(v)) return v.map(swap);
+    if (v && typeof v === 'object') {
+      const o: Record<string, unknown> = {};
+      for (const k of Object.keys(v)) o[k] = swap((v as Record<string, unknown>)[k]);
+      return o;
+    }
+    return v;
+  };
+  return swap(data) as PuckData;
 }

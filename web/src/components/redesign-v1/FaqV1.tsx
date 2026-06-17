@@ -79,7 +79,7 @@ const content: Record<Locale, FaqData> = {
 };
 
 export function FaqV1({ locale, data }: { locale: Locale; data?: FaqData }) {
-  const t = data ?? content[locale];
+  const t = { ...content[locale], ...(data ?? {}) };
   return (
     <Section tone="night-800" glow="cyan" glowPosition="right">
       <div className="grid gap-x-12 gap-y-10 lg:grid-cols-12">
@@ -87,7 +87,7 @@ export function FaqV1({ locale, data }: { locale: Locale; data?: FaqData }) {
           <SectionHeading eyebrow={t.eyebrow} title={t.title} sub={t.sub} />
         </div>
         <div className="lg:col-span-7">
-          <FAQ items={t.items} />
+          <FAQ items={t.items ?? []} />
         </div>
       </div>
     </Section>

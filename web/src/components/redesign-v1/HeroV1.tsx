@@ -44,7 +44,9 @@ const content: Record<Locale, HeroData> = {
 };
 
 export function HeroV1({ locale, data }: { locale: Locale; data?: HeroData }) {
-  const t = data ?? content[locale];
+  // Merge over the locale defaults so a partial/empty Puck block (which arrives as
+  // {} or with missing nested fields, never null) can't crash SSR/the editor.
+  const t = { ...content[locale], ...(data ?? {}) };
   return (
     <section className="relative isolate overflow-hidden bg-night">
       <Aurora />
@@ -72,12 +74,12 @@ export function HeroV1({ locale, data }: { locale: Locale; data?: HeroData }) {
         <p className="mt-7 max-w-2xl text-lg leading-relaxed text-white/70 animate-fade-up">{t.sub}</p>
 
         <div className="mt-10 flex flex-col gap-3 animate-fade-up sm:flex-row">
-          <Button href={t.primary.href} variant="gradient">{t.primary.label}</Button>
-          <Button href={t.secondary.href} variant="glass" withArrow={false}>{t.secondary.label}</Button>
+          <Button href={t.primary?.href ?? '#'} variant="gradient">{t.primary?.label}</Button>
+          <Button href={t.secondary?.href ?? '#'} variant="glass" withArrow={false}>{t.secondary?.label}</Button>
         </div>
 
         <dl className="mt-16 grid w-full max-w-2xl grid-cols-3 gap-4 border-t border-white/10 pt-8 animate-fade-up">
-          {t.stats.map((s) => (
+          {(t.stats ?? []).map((s) => (
             <div key={s.label}>
               <dt className="font-grotesk text-3xl font-bold sm:text-4xl">
                 <GradientText>{s.value}</GradientText>

@@ -8,18 +8,20 @@ import { siteLinks } from '@/lib/siteLinks';
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://nextgenscholars.asia';
-  const now = new Date();
 
-  const allPaths = [
-    ...Object.values(siteLinks.zh),
-    ...Object.values(siteLinks.en),
-  ];
+  // Exclude gated / non-public routes (auth, member area, OAuth callback) so the
+  // sitemap only advertises indexable marketing pages.
+  const EXCLUDE = new Set(['login', 'register', 'forgotPassword', 'member', 'oauthCallback']);
+  const allPaths = (['zh', 'en'] as const).flatMap((locale) =>
+    Object.entries(siteLinks[locale])
+      .filter(([key]) => !EXCLUDE.has(key))
+      .map(([, path]) => path),
+  );
 
   const homePaths = new Set<string>([siteLinks.zh.home, siteLinks.en.home]);
 
   return allPaths.map((path) => ({
     url: `${base}${path}`,
-    lastModified: now,
     changeFrequency: 'monthly' as const,
     priority: homePaths.has(path) ? 1.0 : 0.7,
   }));

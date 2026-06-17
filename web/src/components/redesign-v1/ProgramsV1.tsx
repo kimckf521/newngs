@@ -51,7 +51,7 @@ export function programsDefaults(locale: Locale): ProgramsData {
 }
 
 export function ProgramsV1({ locale, data }: { locale: Locale; data?: ProgramsData }) {
-  const t = data ?? defaults(locale);
+  const t = { ...defaults(locale), ...(data ?? {}) };
 
   return (
     <section className="relative overflow-hidden bg-night-800">
@@ -70,7 +70,7 @@ export function ProgramsV1({ locale, data }: { locale: Locale; data?: ProgramsDa
         <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/60">{t.sub}</p>
 
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:mt-14 lg:grid-cols-3">
-          {t.cards.map((card, i) => {
+          {(t.cards ?? []).map((card, i) => {
             const featured = i === 0;
             return (
               <Link

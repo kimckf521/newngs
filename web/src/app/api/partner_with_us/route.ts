@@ -86,10 +86,21 @@ function logError(tag: string, err: unknown): void {
 }
 
 export async function POST(req: NextRequest) {
-  // 1. CSRF: reject mismatched Origin.
+  // 1. CSRF: reject only true cross-origin POSTs. Accept same-origin (the Origin
+  // header's host matches the request Host) so the form works on every deployment
+  // domain (apex VM, CloudBase *.tcloudbaseapp.com, Vercel *.vercel.app/previews)
+  // without hard-coding each; ALLOWED_ORIGINS still whitelists trusted extras.
   const origin = req.headers.get('origin');
-  if (origin && !ALLOWED_ORIGINS.has(origin)) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  if (origin) {
+    let sameOrigin = false;
+    try {
+      sameOrigin = new URL(origin).host === req.headers.get('host');
+    } catch {
+      sameOrigin = false;
+    }
+    if (!sameOrigin && !ALLOWED_ORIGINS.has(origin)) {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    }
   }
 
   // 2. Rate limit per IP.

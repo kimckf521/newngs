@@ -71,12 +71,12 @@ const content: Record<Locale, TestimonialsData> = {
 };
 
 export function TestimonialsV1({ locale, data }: { locale: Locale; data?: TestimonialsData }) {
-  const t = data ?? content[locale];
+  const t = { ...content[locale], ...(data ?? {}) };
   return (
     <Section tone="night" glow="violet" glowPosition="left">
       <SectionHeading eyebrow={t.eyebrow} title={t.title} sub={t.sub} />
       <div className="mt-12 lg:mt-14">
-        <Testimonials quotes={t.quotes} placeholder placeholderNote={t.note} />
+        <Testimonials quotes={t.quotes ?? []} placeholder placeholderNote={t.note} />
       </div>
     </Section>
   );

@@ -49,12 +49,16 @@ export function ContactV1({ locale }: { locale: Locale }) {
     e.preventDefault();
     setStatus('sending');
     setErrorMsg('');
-    const data = new FormData(e.currentTarget);
+    // Capture the form element BEFORE awaiting: React nulls the SyntheticEvent's
+    // currentTarget after synchronous dispatch, so e.currentTarget would be null
+    // after `await` and .reset() would throw (masking success as a network error).
+    const formEl = e.currentTarget;
+    const data = new FormData(formEl);
     try {
       const res = await fetch('/api/partner_with_us', { method: 'POST', body: data });
       if (res.ok) {
         setStatus('ok');
-        e.currentTarget.reset();
+        formEl.reset();
       } else {
         const json = (await res.json().catch(() => ({}))) as { error?: string };
         setErrorMsg(json.error ?? form.errorMsgFallback);

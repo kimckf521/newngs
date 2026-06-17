@@ -209,6 +209,16 @@ body {
 .v1-light .bg-ngs-violet\/20 { background-color: rgba(139, 47, 214, 0.10); }
 .v1-light .bg-ngs-violet\/15 { background-color: rgba(139, 47, 214, 0.08); }
 
+/* AI / live-chat widget (AdvisorChat) — its floating panel uses dark utilities
+   the re-theme above didn't otherwise cover, so in light mode the panel + bubbles
+   stayed dark and the (now dark-ink) text was unreadable on them. Flip them. */
+.v1-light .bg-night\/95 { background-color: rgba(247, 248, 251, 0.95); }
+.v1-light .bg-white\/\[0\.05\] { background-color: #ffffff; }
+.v1-light .bg-white\/\[0\.02\] { background-color: rgba(20, 26, 46, 0.02); }
+.v1-light .border-white\/12 { border-color: rgba(20, 26, 46, 0.12); }
+.v1-light .ring-white\/5 { --tw-ring-color: rgba(20, 26, 46, 0.06); }
+.v1-light .text-ngs-cyan { color: #0e7490; }
+
 /* Form submit feedback */
 .ngs-form-status {
   margin-top: 0.75rem;

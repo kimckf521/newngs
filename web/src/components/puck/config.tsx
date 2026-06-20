@@ -53,10 +53,11 @@ export const puckConfig: Config = {
     Hero: {
       label: 'Hero',
       fields: {
-        badge: { type: 'text', label: 'Badge' },
-        titleLine1: { type: 'text', label: 'Title — line 1' },
-        titleAccent: { type: 'text', label: 'Title — highlight' },
-        sub: { type: 'textarea', label: 'Subtitle' },
+        // contentEditable: edit these directly in the preview (click the text).
+        badge: { type: 'text', label: 'Badge', contentEditable: true },
+        titleLine1: { type: 'text', label: 'Title — line 1', contentEditable: true },
+        titleAccent: { type: 'text', label: 'Title — highlight', contentEditable: true },
+        sub: { type: 'textarea', label: 'Subtitle', contentEditable: true },
         primary: { type: 'object', label: 'Primary button', objectFields: buttonFields },
         secondary: { type: 'object', label: 'Secondary button', objectFields: buttonFields },
         stats: {
@@ -71,12 +72,12 @@ export const puckConfig: Config = {
     Programs: {
       label: 'Programs (cards)',
       fields: {
-        eyebrow: { type: 'text', label: 'Eyebrow' },
-        headingLead: { type: 'text', label: 'Heading — before highlight' },
-        headingAccent: { type: 'text', label: 'Heading — highlight' },
-        headingTail: { type: 'text', label: 'Heading — after highlight' },
-        sub: { type: 'textarea', label: 'Subtitle' },
-        learnMore: { type: 'text', label: '“Learn more” label' },
+        eyebrow: { type: 'text', label: 'Eyebrow', contentEditable: true },
+        headingLead: { type: 'text', label: 'Heading — before highlight', contentEditable: true },
+        headingAccent: { type: 'text', label: 'Heading — highlight', contentEditable: true },
+        headingTail: { type: 'text', label: 'Heading — after highlight', contentEditable: true },
+        sub: { type: 'textarea', label: 'Subtitle', contentEditable: true },
+        learnMore: { type: 'text', label: '“Learn more” label', contentEditable: true },
         cards: {
           type: 'array',
           label: 'Cards',
@@ -94,10 +95,10 @@ export const puckConfig: Config = {
     Testimonials: {
       label: 'Testimonials',
       fields: {
-        eyebrow: { type: 'text', label: 'Eyebrow' },
-        title: { type: 'text', label: 'Title' },
-        sub: { type: 'textarea', label: 'Subtitle' },
-        note: { type: 'text', label: 'Placeholder note' },
+        eyebrow: { type: 'text', label: 'Eyebrow', contentEditable: true },
+        title: { type: 'text', label: 'Title', contentEditable: true },
+        sub: { type: 'textarea', label: 'Subtitle', contentEditable: true },
+        note: { type: 'text', label: 'Placeholder note', contentEditable: true },
         quotes: {
           type: 'array',
           label: 'Quotes',
@@ -110,9 +111,9 @@ export const puckConfig: Config = {
     Faq: {
       label: 'FAQ',
       fields: {
-        eyebrow: { type: 'text', label: 'Eyebrow' },
-        title: { type: 'text', label: 'Title' },
-        sub: { type: 'textarea', label: 'Subtitle' },
+        eyebrow: { type: 'text', label: 'Eyebrow', contentEditable: true },
+        title: { type: 'text', label: 'Title', contentEditable: true },
+        sub: { type: 'textarea', label: 'Subtitle', contentEditable: true },
         items: {
           type: 'array',
           label: 'Questions',

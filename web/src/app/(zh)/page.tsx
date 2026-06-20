@@ -1,5 +1,6 @@
 import { HomeContentV1 } from '@/components/redesign-v1/HomeContentV1';
 import { RenderPage } from '@/components/puck/RenderPage';
+import { LocalPublishedView } from '@/components/puck/LocalPublishedView';
 import { getPublishedData } from '@/lib/puck/server';
 import { pageSeo } from '@/lib/seo';
 import { pageJsonLd } from '@/lib/jsonLd';
@@ -35,7 +36,13 @@ export default async function Page() {
           type: 'WebPage',
         })}
       />
-      {data ? <RenderPage data={data} locale="zh" /> : <HomeContentV1 locale="zh" />}
+      {data ? (
+        <RenderPage data={data} locale="zh" />
+      ) : (
+        <LocalPublishedView route="home" locale="zh">
+          <HomeContentV1 locale="zh" />
+        </LocalPublishedView>
+      )}
     </>
   );
 }

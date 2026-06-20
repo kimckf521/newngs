@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { HtmlLang } from '@/components/layout/HtmlLang';
-import { MemberPageV1 } from '@/components/auth/MemberPageV1';
+import { MemberPortal } from '@/components/member/MemberPortal';
 
 export const metadata: Metadata = {
   title: '会员中心',
@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <>
       <HtmlLang lang="zh" />
-      <MemberPageV1 locale="zh" />
+      <MemberPortal locale="zh" />
     </>
   );
 }

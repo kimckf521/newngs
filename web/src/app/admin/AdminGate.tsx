@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { isAdmin } from '@/lib/puck/admins';
 
 /**
- * Client guard for the /admin area (mirrors MemberPageV1). UX gate only — the
+ * Client guard for the /admin area (mirrors MemberPortal). UX gate only — the
  * real security boundary is the CloudBase security rule on `pages`.
  */
 export function AdminGate({ children }: { children: ReactNode }) {

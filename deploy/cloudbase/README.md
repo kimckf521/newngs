@@ -125,6 +125,19 @@ works once the console + WeChat Open Platform are configured:
    `nextgenscholars.asia` (+ `www.`, + any preview domain). This is **separate**
    from WeChat's 授权回调域; both must be set.
 
+> ⚠️ **Web 安全域名 gates ALL browser CloudBase calls — not just WeChat.** The
+> JS SDK calls the auth gateway directly from the browser, so email/SMS/WeChat
+> **login, register, and forgot-password all 403 from any origin not on this
+> list** (the CORS preflight is rejected → the UI shows "登录失败"). Whatever
+> host actually serves the site must be whitelisted: `localhost:3000` (dev) is
+> already there, but the **Vercel domain `newngs.vercel.app`** (+ the
+> `newngs-git-master-…vercel.app` alias) had to be added before prod login
+> worked. Verify quickly without a browser:
+> `curl -i -X OPTIONS 'https://<envId>.api.tcloudbasegateway.com/auth/v1/signin?client_id=<envId>' -H 'Origin: https://<host>' -H 'Access-Control-Request-Method: POST'`
+> → a whitelisted origin returns `204` + `access-control-allow-origin`; a
+> missing one returns `403`. Server-side calls (`/api/chat`, Puck SSR) are
+> unaffected — only the browser SDK.
+
 **Test:** click 微信 → redirect to the WeChat QR page → scan → redirect back to
 `/auth/callback[_en]` → land on `/member[_en]` signed in.
 - `「该链接无法访问」` → fix the WeChat **授权回调域**.

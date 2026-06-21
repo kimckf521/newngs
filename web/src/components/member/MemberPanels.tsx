@@ -5,7 +5,7 @@ import { useState, type ReactNode } from 'react';
 import { GlassCard, GradientText, ArrowRight } from '@/components/redesign-v1/ui';
 import { initials } from '@/lib/demoAuth';
 import type { AuthUser } from '@/lib/auth';
-import type { MemberContent, TabKey } from './memberContent';
+import type { MemberContent, TabKey, MemberCourse, CourseModule, SidebarItem, AdminPage } from './memberContent';
 
 /* ------------------------------------------------------------------ *
  * Member portal panels — one per tab, all in the NGS dark/glass theme.
@@ -36,38 +36,43 @@ function SidebarBlock({ title, children }: { title: string; children: ReactNode 
   );
 }
 
-function SidebarLinks({ items, onLogout }: { items: { label: string; href?: string; action?: 'logout' }[]; onLogout: () => void }) {
+type SidebarNav = { onNavigate: (p: AdminPage) => void; onLogout: () => void; activePage?: AdminPage };
+
+function SidebarLinks({ items, onNavigate, onLogout, activePage }: { items: readonly SidebarItem[] } & SidebarNav) {
   return (
     <ul className="divide-y divide-white/10">
-      {items.map((it) =>
-        it.action === 'logout' ? (
+      {items.map((it) => {
+        const active = !!it.page && it.page === activePage;
+        const cls = `group flex w-full items-center justify-between px-4 py-3 text-left text-sm transition-colors ${
+          active ? 'bg-white/[0.05] text-white' : 'text-white/70 hover:text-white'
+        }`;
+        const arrow = (
+          <ArrowRight className={active ? 'text-ngs-cyan' : 'text-white/25 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-white/60'} />
+        );
+        return (
           <li key={it.label}>
-            <button type="button" onClick={onLogout} className="flex w-full items-center justify-between px-4 py-3 text-left text-sm text-white/70 transition-colors hover:text-white">
-              {it.label}
-              <ArrowRight className="text-white/30" />
-            </button>
+            {it.action === 'logout' ? (
+              <button type="button" onClick={onLogout} className={cls}>{it.label}{arrow}</button>
+            ) : it.external ? (
+              <a href={it.external} target="_blank" rel="noopener noreferrer" className={cls}>{it.label}{arrow}</a>
+            ) : (
+              <button type="button" onClick={() => it.page && onNavigate(it.page)} className={cls} aria-current={active ? 'page' : undefined}>{it.label}{arrow}</button>
+            )}
           </li>
-        ) : (
-          <li key={it.label}>
-            <Link href={it.href ?? '#'} className="group flex items-center justify-between px-4 py-3 text-sm text-white/70 transition-colors hover:text-white">
-              {it.label}
-              <ArrowRight className="text-white/25 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-white/60" />
-            </Link>
-          </li>
-        ),
-      )}
+        );
+      })}
     </ul>
   );
 }
 
-export function MemberSidebar({ t, onLogout }: { t: MemberContent; onLogout: () => void }) {
+export function MemberSidebar({ t, onNavigate, onLogout, activePage }: { t: MemberContent } & SidebarNav) {
   return (
     <aside className="space-y-6">
       <SidebarBlock title={t.sidebar.adminTitle}>
-        <SidebarLinks items={t.sidebar.adminItems} onLogout={onLogout} />
+        <SidebarLinks items={t.sidebar.adminItems} onNavigate={onNavigate} onLogout={onLogout} activePage={activePage} />
       </SidebarBlock>
       <SidebarBlock title={t.sidebar.collegeTitle}>
-        <SidebarLinks items={t.sidebar.collegeItems} onLogout={onLogout} />
+        <SidebarLinks items={t.sidebar.collegeItems} onNavigate={onNavigate} onLogout={onLogout} activePage={activePage} />
       </SidebarBlock>
       <SidebarBlock title={t.sidebar.topicsTitle}>
         <p className="px-4 py-4 text-sm text-white/45">{t.sidebar.topicsEmpty}</p>
@@ -95,10 +100,10 @@ function BigCard({ label, sub, glyph, onClick }: { label: string; sub: string; g
   );
 }
 
-export function DashboardPanel({ t, user, onTab, onLogout }: { t: MemberContent; user: AuthUser; onTab: (k: TabKey) => void; onLogout: () => void }) {
+export function DashboardPanel({ t, user, onTab, onLogout, onNavigate }: { t: MemberContent; user: AuthUser; onTab: (k: TabKey) => void; onLogout: () => void; onNavigate: (p: AdminPage) => void }) {
   return (
     <div className="grid gap-8 lg:grid-cols-[clamp(220px,22vw,272px)_1fr]">
-      <MemberSidebar t={t} onLogout={onLogout} />
+      <MemberSidebar t={t} onNavigate={onNavigate} onLogout={onLogout} />
 
       <div className="min-w-0">
         <div className="mb-8">
@@ -272,14 +277,14 @@ export function AccountPanel({ t, user }: { t: MemberContent; user: AuthUser }) 
 /* ================================================================== *
  * My Course Progress
  * ================================================================== */
-function CourseRow({ t, course }: { t: MemberContent; course: MemberContent['progress']['courses'][number] }) {
+function CourseRow({ t, course, onOpenCourse }: { t: MemberContent; course: MemberCourse; onOpenCourse: (id: string) => void }) {
   return (
     <GlassCard className="p-6">
       <div className="grid gap-6 md:grid-cols-[1fr_300px] md:items-center">
         <div>
           <h3 className="font-grotesk text-lg font-bold text-white">{course.name}</h3>
           <div className="mt-4 flex flex-wrap items-center gap-2.5">
-            <button type="button" className="rounded-full bg-ngs-gradient px-5 py-2 text-xs font-semibold text-white shadow-[0_8px_24px_-8px_rgba(236,28,139,0.7)] transition-transform hover:-translate-y-0.5">
+            <button type="button" onClick={() => onOpenCourse(course.id)} className="rounded-full bg-ngs-gradient px-5 py-2 text-xs font-semibold text-white shadow-[0_8px_24px_-8px_rgba(236,28,139,0.7)] transition-transform hover:-translate-y-0.5">
               {t.progress.learn}
             </button>
             {course.extras.includes('assignments') && (
@@ -309,20 +314,217 @@ function CourseRow({ t, course }: { t: MemberContent; course: MemberContent['pro
   );
 }
 
-export function ProgressPanel({ t, onLogout }: { t: MemberContent; onLogout: () => void }) {
+export function ProgressPanel({ t, onLogout, onOpenCourse, onNavigate }: { t: MemberContent; onLogout: () => void; onOpenCourse: (id: string) => void; onNavigate: (p: AdminPage) => void }) {
   return (
     <div className="grid gap-8 lg:grid-cols-[clamp(220px,22vw,272px)_1fr]">
-      <MemberSidebar t={t} onLogout={onLogout} />
+      <MemberSidebar t={t} onNavigate={onNavigate} onLogout={onLogout} />
       <div className="min-w-0">
         <h1 className="font-grotesk text-2xl font-bold text-white sm:text-[1.7rem]">{t.progress.title}</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-white/55">{t.progress.intro}</p>
         <div className="mt-7 space-y-4">
           {t.progress.courses.map((c) => (
-            <CourseRow key={c.name} t={t} course={c} />
+            <CourseRow key={c.id} t={t} course={c} onOpenCourse={onOpenCourse} />
           ))}
         </div>
       </div>
     </div>
+  );
+}
+
+/* ================================================================== *
+ * Course Detail (module list — behind "Click to Learn")
+ * ================================================================== */
+function StatCircle({ value, label, accent = false }: { value: number; label: string; accent?: boolean }) {
+  return (
+    <div className="flex flex-col items-center gap-3 text-center">
+      <span
+        className={`grid h-24 w-24 place-items-center rounded-full font-grotesk text-3xl font-bold text-white ${
+          accent ? 'bg-ngs-gradient shadow-[0_14px_44px_-12px_rgba(236,28,139,0.8)]' : 'border border-white/12 bg-white/[0.05]'
+        }`}
+      >
+        {String(value).padStart(2, '0')}
+      </span>
+      <span className="text-xs uppercase tracking-[0.12em] text-white/50">{label}</span>
+    </div>
+  );
+}
+
+const dotColor: Record<'todo' | 'passed' | 'failed', string> = {
+  todo: 'bg-ngs-magenta',
+  passed: 'bg-emerald-400',
+  failed: 'bg-rose-500',
+};
+
+function ModuleRow({ t, module, onOpenLesson }: { t: MemberContent; module: CourseModule; onOpenLesson: () => void }) {
+  const status: 'todo' | 'passed' | 'failed' = module.mcqButton === 'retry' ? 'failed' : module.progress >= 100 ? 'passed' : 'todo';
+  return (
+    <GlassCard className="p-5">
+      <p className="font-grotesk text-[15px] font-semibold text-white">{module.title}</p>
+      <div className="mt-3 grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
+        <div className="flex items-center gap-3">
+          <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/10">
+            <span className="block h-full rounded-full bg-ngs-gradient" style={{ width: `${module.progress}%` }} />
+          </div>
+          <span className="w-9 shrink-0 text-right text-xs font-semibold text-white/60">{module.progress}%</span>
+        </div>
+        <div className="flex items-center gap-2.5">
+          <button type="button" onClick={onOpenLesson} className="rounded-full bg-white/[0.06] px-4 py-1.5 text-xs font-semibold text-white ring-1 ring-white/12 transition-colors hover:bg-white/[0.12]">
+            {t.courseDetail.learn}
+          </button>
+          <span aria-hidden title={t.courseDetail[status]} className={`h-3 w-3 shrink-0 rounded-full ${dotColor[status]}`} />
+          {module.mcqButton === 'mcq' && (
+            <button type="button" className="rounded-full bg-ngs-gradient px-4 py-1.5 text-xs font-semibold text-white transition-transform hover:-translate-y-0.5">
+              {t.courseDetail.mcq}
+            </button>
+          )}
+          {module.mcqButton === 'retry' && (
+            <button type="button" className="rounded-full border border-rose-400/40 bg-rose-500/10 px-4 py-1.5 text-xs font-semibold text-rose-200 transition-colors hover:bg-rose-500/20">
+              {t.courseDetail.retry}
+            </button>
+          )}
+        </div>
+      </div>
+    </GlassCard>
+  );
+}
+
+export function CourseDetailPanel({
+  t,
+  course,
+  onBack,
+  onOpenLesson,
+}: {
+  t: MemberContent;
+  course: MemberCourse;
+  onBack: () => void;
+  onOpenLesson: (moduleIndex: number) => void;
+}) {
+  return (
+    <div className="min-w-0">
+      <button type="button" onClick={onBack} className="group mb-5 inline-flex items-center gap-2 text-sm font-semibold text-white/55 transition-colors hover:text-white">
+        <ArrowRight className="rotate-180 transition-transform duration-300 group-hover:-translate-x-1" />
+        {t.courseDetail.back}
+      </button>
+      <h1 className="font-grotesk text-2xl font-bold text-white sm:text-[1.7rem]">{course.name}</h1>
+      <p className="mt-2 text-sm leading-relaxed text-white/55">{t.courseDetail.intro}</p>
+
+      <GlassCard className="mt-6 p-7">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/45">{t.courseDetail.overview}</p>
+        <div className="mt-6 flex flex-wrap justify-around gap-8">
+          <StatCircle value={course.modules.length} label={t.courseDetail.modules} />
+          <StatCircle value={course.complete} label={t.courseDetail.complete} />
+          <StatCircle value={course.assessmentsComplete} label={t.courseDetail.assessmentsComplete} accent />
+        </div>
+        <div className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-2 border-t border-white/10 pt-5 text-xs text-white/55">
+          <span className="font-semibold uppercase tracking-[0.1em] text-white/40">{t.courseDetail.statusKey}</span>
+          {(['todo', 'passed', 'failed'] as const).map((s) => (
+            <span key={s} className="inline-flex items-center gap-2">
+              <span className={`h-2.5 w-2.5 rounded-full ${dotColor[s]}`} aria-hidden />
+              {t.courseDetail[s]}
+            </span>
+          ))}
+        </div>
+      </GlassCard>
+
+      <div className="mt-6 space-y-3">
+        {course.modules.map((m, i) => (
+          <ModuleRow key={m.title} t={t} module={m} onOpenLesson={() => onOpenLesson(i)} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ================================================================== *
+ * Lesson view (behind "Learn")
+ * ================================================================== */
+export function LessonPanel({
+  t,
+  course,
+  moduleIndex,
+  onBackToModules,
+}: {
+  t: MemberContent;
+  course: MemberCourse;
+  moduleIndex: number;
+  onBackToModules: () => void;
+}) {
+  const lessonModule = course.modules[moduleIndex] ?? course.modules[0];
+  const lessonName = lessonModule.title.replace(/^.*?[:：]\s*/, '');
+  const [expanded, setExpanded] = useState(false);
+  const paras = expanded ? t.lesson.introParas : t.lesson.introParas.slice(0, 1);
+
+  return (
+    <div className="grid gap-8 lg:grid-cols-[clamp(240px,24vw,300px)_1fr]">
+      {/* Left rail */}
+      <aside className="space-y-4">
+        <GlassCard className="overflow-hidden">
+          <div className="flex items-center gap-2.5 bg-white/[0.05] px-4 py-3">
+            <span className="text-ngs-cyan"><IconBookSmall /></span>
+            <span className="font-grotesk text-[13px] font-bold leading-tight text-white">{course.name}</span>
+          </div>
+          <div className="border-t border-white/10 px-4 py-3 text-sm font-semibold text-white/85">{lessonModule.title}</div>
+          <div className="border-t border-white/10 px-4 py-3">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/40">{t.lesson.yourLessons}</p>
+            <p className="mt-2 text-sm text-white/75">1&nbsp; {lessonName}</p>
+          </div>
+          <div className="border-t border-white/10 px-4 py-3">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/40">{t.lesson.moduleProgress}</p>
+            <div className="mt-2 flex items-center gap-3">
+              <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/10">
+                <span className="block h-full rounded-full bg-ngs-gradient" style={{ width: `${lessonModule.progress}%` }} />
+              </div>
+              <span className="text-xs font-semibold text-white/60">{lessonModule.progress}%</span>
+            </div>
+          </div>
+        </GlassCard>
+        <button type="button" onClick={onBackToModules} className="w-full rounded-full bg-ngs-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(236,28,139,0.7)] transition-transform hover:-translate-y-0.5">
+          {t.lesson.viewAllModules}
+        </button>
+      </aside>
+
+      {/* Lesson body */}
+      <div className="min-w-0">
+        <h1 className="font-grotesk text-2xl font-bold text-white sm:text-[1.7rem]">{lessonModule.title}</h1>
+
+        <h2 className="mt-7 font-grotesk text-base font-bold text-white">{t.lesson.learningOutcomes}</h2>
+        <ol className="mt-3 space-y-2.5">
+          {t.lesson.outcomes.map((o, i) => (
+            <li key={i} className="flex gap-3 text-sm leading-relaxed text-white/70">
+              <span className="font-grotesk text-sm font-bold text-ngs-cyan">{i + 1}.</span>
+              <span>{o}</span>
+            </li>
+          ))}
+        </ol>
+
+        <h2 className="mt-8 font-grotesk text-base font-bold text-white">{t.lesson.introduction}</h2>
+        <div className="mt-3 space-y-3 text-sm leading-relaxed text-white/70">
+          {paras.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+        {t.lesson.introParas.length > 1 && (
+          <button type="button" onClick={() => setExpanded((v) => !v)} className="mt-3 text-sm font-semibold text-ngs-cyan transition-opacity hover:opacity-80">
+            {expanded ? t.lesson.readLess : t.lesson.readMore}
+          </button>
+        )}
+
+        <div className="mt-8 flex justify-end">
+          <button type="button" className="rounded-full bg-ngs-gradient px-7 py-2.5 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(236,28,139,0.7)] transition-transform hover:-translate-y-0.5">
+            {t.lesson.firstLesson}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function IconBookSmall() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H12v15.5H5.5A1.5 1.5 0 0 0 4 21V5.5z" />
+      <path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H12" />
+    </svg>
   );
 }
 

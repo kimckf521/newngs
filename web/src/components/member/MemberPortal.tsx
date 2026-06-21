@@ -11,8 +11,17 @@ import { initials } from '@/lib/demoAuth';
 import { getCurrentUser, logout, isRealAuth, type AuthUser } from '@/lib/auth';
 import { ROLE_LABELS } from '@/lib/roles';
 import { Aurora } from '@/components/redesign-v1/ui';
-import { memberContent, type TabKey } from './memberContent';
-import { DashboardPanel, AccountPanel, ProgressPanel, ForumsPanel } from './MemberPanels';
+import { memberContent, type TabKey, type AdminPage } from './memberContent';
+import { adminContent } from './memberAdminContent';
+import { DashboardPanel, AccountPanel, ProgressPanel, ForumsPanel, CourseDetailPanel, LessonPanel } from './MemberPanels';
+import { AdminPanel } from './MemberAdminPanels';
+
+/** In-portal navigation: the tabbed views, the course/lesson drill-downs, and the nine sidebar pages. */
+type View =
+  | { kind: 'tab' }
+  | { kind: 'course'; courseId: string }
+  | { kind: 'lesson'; courseId: string; moduleIndex: number }
+  | { kind: 'admin'; page: AdminPage };
 
 /* ------------------------------------------------------------------ *
  * Member portal shell: auth gate, top bar, four-tab nav, active panel.
@@ -46,6 +55,19 @@ export function MemberPortal({ locale }: { locale: Locale }) {
   const [ready, setReady] = useState(false);
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [tab, setTab] = useState<TabKey>('dashboard');
+  const [view, setView] = useState<View>({ kind: 'tab' });
+
+  /** Switch tab and leave any course/lesson drill-down. */
+  const selectTab = (k: TabKey) => {
+    setTab(k);
+    setView({ kind: 'tab' });
+  };
+
+  // Hide the page scrollbar while the portal is open (still scrollable); see globals.css.
+  useEffect(() => {
+    document.documentElement.classList.add('ngs-member');
+    return () => document.documentElement.classList.remove('ngs-member');
+  }, []);
 
   useEffect(() => {
     setTheme(document.documentElement.classList.contains('v1-light') ? 'light' : 'dark');
@@ -83,19 +105,47 @@ export function MemberPortal({ locale }: { locale: Locale }) {
     );
   }
 
+  const courses = t.progress.courses;
+  const findCourse = (id: string) => courses.find((c) => c.id === id) ?? courses[0];
+  const openAdmin = (page: AdminPage) => setView({ kind: 'admin', page });
+
   let panel: ReactNode;
-  switch (tab) {
-    case 'account':
-      panel = <AccountPanel t={t} user={user} />;
-      break;
-    case 'progress':
-      panel = <ProgressPanel t={t} onLogout={signOut} />;
-      break;
-    case 'forums':
-      panel = <ForumsPanel t={t} />;
-      break;
-    default:
-      panel = <DashboardPanel t={t} user={user} onTab={setTab} onLogout={signOut} />;
+  if (view.kind === 'admin') {
+    panel = <AdminPanel t={t} a={adminContent[locale]} page={view.page} onNavigate={openAdmin} onLogout={signOut} />;
+  } else if (view.kind === 'course') {
+    const course = findCourse(view.courseId);
+    panel = (
+      <CourseDetailPanel
+        t={t}
+        course={course}
+        onBack={() => selectTab('progress')}
+        onOpenLesson={(moduleIndex) => setView({ kind: 'lesson', courseId: course.id, moduleIndex })}
+      />
+    );
+  } else if (view.kind === 'lesson') {
+    const course = findCourse(view.courseId);
+    panel = (
+      <LessonPanel
+        t={t}
+        course={course}
+        moduleIndex={view.moduleIndex}
+        onBackToModules={() => setView({ kind: 'course', courseId: course.id })}
+      />
+    );
+  } else {
+    switch (tab) {
+      case 'account':
+        panel = <AccountPanel t={t} user={user} />;
+        break;
+      case 'progress':
+        panel = <ProgressPanel t={t} onLogout={signOut} onOpenCourse={(id) => setView({ kind: 'course', courseId: id })} onNavigate={openAdmin} />;
+        break;
+      case 'forums':
+        panel = <ForumsPanel t={t} />;
+        break;
+      default:
+        panel = <DashboardPanel t={t} user={user} onTab={selectTab} onLogout={signOut} onNavigate={openAdmin} />;
+    }
   }
 
   return (
@@ -131,14 +181,14 @@ export function MemberPortal({ locale }: { locale: Locale }) {
 
         {/* Tab nav */}
         <nav className="mx-auto max-w-page px-2 sm:px-6 lg:px-8" aria-label={t.tabs.dashboard}>
-          <div className="flex gap-1 overflow-x-auto">
+          <div className="flex gap-1 overflow-x-auto overflow-y-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {TAB_ORDER.map((k) => {
               const activeTab = k === tab;
               return (
                 <button
                   key={k}
                   type="button"
-                  onClick={() => setTab(k)}
+                  onClick={() => selectTab(k)}
                   aria-current={activeTab ? 'page' : undefined}
                   className={`relative flex shrink-0 items-center gap-2 whitespace-nowrap px-3.5 py-3 text-[13px] font-semibold transition-colors sm:text-sm ${
                     activeTab ? 'text-white' : 'text-white/55 hover:text-white/85'
@@ -146,7 +196,7 @@ export function MemberPortal({ locale }: { locale: Locale }) {
                 >
                   <TabIcon tab={k} />
                   {t.tabs[k]}
-                  {activeTab && <span aria-hidden className="absolute inset-x-2 -bottom-px h-0.5 rounded-full bg-ngs-gradient" />}
+                  {activeTab && <span aria-hidden className="absolute inset-x-2 bottom-0 h-0.5 rounded-full bg-ngs-gradient" />}
                 </button>
               );
             })}
@@ -161,7 +211,7 @@ export function MemberPortal({ locale }: { locale: Locale }) {
           <span className="inline-block rounded-full border border-white/20 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/70">
             {ROLE_LABELS[locale][user.role]}
           </span>
-          <span className="text-sm text-white/55">{t.tabs[tab]}</span>
+          <span className="text-sm text-white/55">{view.kind === 'admin' ? adminContent[locale].pageTitles[view.page] : t.tabs[tab]}</span>
         </div>
       </div>
 

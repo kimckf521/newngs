@@ -1,0 +1,215 @@
+{
+  "book": "Cambridge IELTS 15",
+  "test": 1,
+  "section": "listening",
+  "timeLimitMinutes": 30,
+  "audio": [
+    "/ielts/audio/cam15-test1/part1.mp3",
+    "/ielts/audio/cam15-test1/part2.mp3",
+    "/ielts/audio/cam15-test1/part3.mp3",
+    "/ielts/audio/cam15-test1/part4.mp3"
+  ],
+  "parts": [
+    { "id": 1, "title": "Part 1", "figure": null },
+    { "id": 2, "title": "Part 2", "figure": null },
+    { "id": 3, "title": "Part 3", "figure": null },
+    { "id": 4, "title": "Part 4", "figure": null }
+  ],
+  "questionGroups": [
+    {
+      "part": 1,
+      "range": "1-10",
+      "type": "note-completion",
+      "instructions": "Complete the notes below. Write ONE WORD AND/OR A NUMBER for each answer.\n\nBankside Recruitment Agency\n- Address of agency: 497 Eastside, Docklands\n- Name of agent: Becky ___\n- Phone number: 07866 510333\n- Best to call her in the ___\n\nTypical jobs\n- Clerical and admin roles, mainly in the finance industry\n- Must have good ___ skills\n- Jobs are usually for at least one ___\n- Pay is usually £ ___ per hour\n\nRegistration process\n- Wear a ___ to the interview\n- Must bring your ___ to the interview\n- They will ask questions about each applicant's ___\n\nAdvantages of using an agency\n- The ___ you receive at interview will benefit you\n- Will get access to vacancies which are not advertised\n- Less ___ is involved in applying for jobs",
+      "wordLimit": "ONE WORD AND/OR A NUMBER",
+      "optionBank": [],
+      "questions": [
+        { "n": 1, "text": "Name of agent: Becky ___", "options": [], "answer": "Jamieson" },
+        { "n": 2, "text": "Best to call her in the ___", "options": [], "answer": "afternoon" },
+        { "n": 3, "text": "Must have good ___ skills", "options": [], "answer": "communication" },
+        { "n": 4, "text": "Jobs are usually for at least one ___", "options": [], "answer": "week" },
+        { "n": 5, "text": "Pay is usually £ ___ per hour", "options": [], "answer": "10/ten" },
+        { "n": 6, "text": "Wear a ___ to the interview", "options": [], "answer": "suit" },
+        { "n": 7, "text": "Must bring your ___ to the interview", "options": [], "answer": "passport" },
+        { "n": 8, "text": "They will ask questions about each applicant's ___", "options": [], "answer": "personality" },
+        { "n": 9, "text": "The ___ you receive at interview will benefit you", "options": [], "answer": "feedback" },
+        { "n": 10, "text": "Less ___ is involved in applying for jobs", "options": [], "answer": "time" }
+      ]
+    },
+    {
+      "part": 2,
+      "range": "11-14",
+      "type": "mcq",
+      "instructions": "Choose the correct letter, A, B or C.\n\nMatthews Island Holidays",
+      "wordLimit": null,
+      "optionBank": [],
+      "questions": [
+        {
+          "n": 11,
+          "text": "According to the speaker, the company",
+          "options": [
+            { "key": "A", "text": "has been in business for longer than most of its competitors." },
+            { "key": "B", "text": "arranges holidays to more destinations than its competitors." },
+            { "key": "C", "text": "has more customers than its competitors." }
+          ],
+          "answer": "A"
+        },
+        {
+          "n": 12,
+          "text": "Where can customers meet the tour manager before travelling to the Isle of Man?",
+          "options": [
+            { "key": "A", "text": "Liverpool" },
+            { "key": "B", "text": "Heysham" },
+            { "key": "C", "text": "Luton" }
+          ],
+          "answer": "B"
+        },
+        {
+          "n": 13,
+          "text": "How many lunches are included in the price of the holiday?",
+          "options": [
+            { "key": "A", "text": "three" },
+            { "key": "B", "text": "four" },
+            { "key": "C", "text": "five" }
+          ],
+          "answer": "A"
+        },
+        {
+          "n": 14,
+          "text": "Customers have to pay extra for",
+          "options": [
+            { "key": "A", "text": "guaranteeing themselves a larger room." },
+            { "key": "B", "text": "booking at short notice." },
+            { "key": "C", "text": "transferring to another date." }
+          ],
+          "answer": "C"
+        }
+      ]
+    },
+    {
+      "part": 2,
+      "range": "15-20",
+      "type": "table-completion",
+      "instructions": "Complete the table below. Write ONE WORD AND/OR A NUMBER for each answer.\n\nTimetable for Isle of Man holiday\n\nDay 1 — Arrive: Introduction by manager. Hotel dining room has view of the ___ (15)\nDay 2 — Tynwald Exhibition and Peel: Tynwald may have been founded in ___ (16), not 979.\nDay 3 — Trip to Snaefell: Travel along promenade in a tram; train to Laxey; train to the ___ (17) of Snaefell\nDay 4 — Free day: Company provides a ___ (18) for local transport and heritage sites.\nDay 5 — Free time, then coach to Castletown: Take the ___ (19) railway train from Douglas to Port Erin — former ___ (20) has old castle.\nDay 6 — Leave: Leave the island by ferry or plane",
+      "wordLimit": "ONE WORD AND/OR A NUMBER",
+      "optionBank": [],
+      "questions": [
+        { "n": 15, "text": "Day 1 — Hotel dining room has view of the ___", "options": [], "answer": "river" },
+        { "n": 16, "text": "Day 2 — Tynwald may have been founded in ___, not 979.", "options": [], "answer": "1422" },
+        { "n": 17, "text": "Day 3 — train to the ___ of Snaefell", "options": [], "answer": "top" },
+        { "n": 18, "text": "Day 4 — Company provides a ___ for local transport and heritage sites.", "options": [], "answer": "pass" },
+        { "n": 19, "text": "Day 5 — Take the ___ railway train from Douglas to Port Erin", "options": [], "answer": "steam" },
+        { "n": 20, "text": "Day 5 — former ___ has old castle.", "options": [], "answer": "capital" }
+      ]
+    },
+    {
+      "part": 3,
+      "range": "21-26",
+      "type": "matching",
+      "instructions": "What did findings of previous research claim about the personality traits a child is likely to have because of their position in the family? Choose SIX answers from the box and write the correct letter, A-H, next to Questions 21-26.",
+      "wordLimit": null,
+      "optionBank": [
+        { "key": "A", "text": "outgoing" },
+        { "key": "B", "text": "selfish" },
+        { "key": "C", "text": "independent" },
+        { "key": "D", "text": "attention-seeking" },
+        { "key": "E", "text": "introverted" },
+        { "key": "F", "text": "co-operative" },
+        { "key": "G", "text": "caring" },
+        { "key": "H", "text": "competitive" }
+      ],
+      "questions": [
+        { "n": 21, "text": "the eldest child", "options": [], "answer": "G" },
+        { "n": 22, "text": "a middle child", "options": [], "answer": "F" },
+        { "n": 23, "text": "the youngest child", "options": [], "answer": "A" },
+        { "n": 24, "text": "a twin", "options": [], "answer": "E" },
+        { "n": 25, "text": "an only child", "options": [], "answer": "B" },
+        { "n": 26, "text": "a child with much older siblings", "options": [], "answer": "C" }
+      ]
+    },
+    {
+      "part": 3,
+      "range": "27-28",
+      "type": "mcq",
+      "instructions": "Choose the correct letter, A, B or C.",
+      "wordLimit": null,
+      "optionBank": [],
+      "questions": [
+        {
+          "n": 27,
+          "text": "What do the speakers say about the evidence relating to birth order and academic success?",
+          "options": [
+            { "key": "A", "text": "There is conflicting evidence about whether oldest children perform best in intelligence tests." },
+            { "key": "B", "text": "There is little doubt that birth order has less influence on academic achievement than socio-economic status." },
+            { "key": "C", "text": "Some studies have neglected to include important factors such as family size." }
+          ],
+          "answer": "C"
+        },
+        {
+          "n": 28,
+          "text": "What does Ruth think is surprising about the difference in oldest children's academic performance?",
+          "options": [
+            { "key": "A", "text": "It is mainly thanks to their roles as teachers for their younger siblings." },
+            { "key": "B", "text": "The advantages they have only lead to a slightly higher level of achievement." },
+            { "key": "C", "text": "The extra parental attention they receive at a young age makes little difference." }
+          ],
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "part": 3,
+      "range": "29-30",
+      "type": "mcq",
+      "instructions": "Choose TWO letters, A-E. Which TWO experiences of sibling rivalry do the speakers agree has been valuable for them?",
+      "wordLimit": null,
+      "optionBank": [],
+      "questions": [
+        {
+          "n": 29,
+          "text": "Which TWO experiences of sibling rivalry do the speakers agree has been valuable for them? (first of two)",
+          "options": [
+            { "key": "A", "text": "learning to share" },
+            { "key": "B", "text": "learning to stand up for oneself" },
+            { "key": "C", "text": "learning to be a good loser" },
+            { "key": "D", "text": "learning to be tolerant" },
+            { "key": "E", "text": "learning to say sorry" }
+          ],
+          "answer": "B/D"
+        },
+        {
+          "n": 30,
+          "text": "Which TWO experiences of sibling rivalry do the speakers agree has been valuable for them? (second of two)",
+          "options": [
+            { "key": "A", "text": "learning to share" },
+            { "key": "B", "text": "learning to stand up for oneself" },
+            { "key": "C", "text": "learning to be a good loser" },
+            { "key": "D", "text": "learning to be tolerant" },
+            { "key": "E", "text": "learning to say sorry" }
+          ],
+          "answer": "B/D"
+        }
+      ]
+    },
+    {
+      "part": 4,
+      "range": "31-40",
+      "type": "note-completion",
+      "instructions": "Complete the notes below. Write ONE WORD ONLY for each answer.\n\nThe Eucalyptus Tree in Australia\n\nImportance\n- it provides ___ (31) and food for a wide range of species\n- its leaves provide ___ (32) which is used to make a disinfectant\n\nReasons for present decline in number\nA) Diseases\n(i) 'Mundulla Yellows'\n- Cause – lime used for making ___ (33) was absorbed\n- trees were unable to take in necessary iron through their roots\n(ii) 'Bell-miner Associated Die-back'\n- Cause – ___ (34) feed on eucalyptus leaves\n- they secrete a substance containing sugar\n- bell-miner birds are attracted by this and keep away other species\n\nB) Bushfires\nWilliam Jackson's theory:\n- high-frequency bushfires have impact on vegetation, resulting in the growth of ___ (35)\n- mid-frequency bushfires result in the growth of eucalyptus forests, because they:\n  - make more ___ (36) available to the trees\n  - maintain the quality of the ___ (37)\n- low-frequency bushfires result in the growth of '___ (38) rainforest', which is:\n  - a ___ (39) ecosystem\n  - an ideal environment for the ___ (40) of the bell-miner",
+      "wordLimit": "ONE WORD ONLY",
+      "optionBank": [],
+      "questions": [
+        { "n": 31, "text": "it provides ___ and food for a wide range of species", "options": [], "answer": "shelter" },
+        { "n": 32, "text": "its leaves provide ___ which is used to make a disinfectant", "options": [], "answer": "oil" },
+        { "n": 33, "text": "'Mundulla Yellows' — Cause – lime used for making ___ was absorbed", "options": [], "answer": "roads" },
+        { "n": 34, "text": "'Bell-miner Associated Die-back' — Cause – ___ feed on eucalyptus leaves", "options": [], "answer": "insects" },
+        { "n": 35, "text": "high-frequency bushfires result in the growth of ___", "options": [], "answer": "grass(es)" },
+        { "n": 36, "text": "mid-frequency bushfires make more ___ available to the trees", "options": [], "answer": "water" },
+        { "n": 37, "text": "mid-frequency bushfires maintain the quality of the ___", "options": [], "answer": "soil" },
+        { "n": 38, "text": "low-frequency bushfires result in the growth of '___ rainforest'", "options": [], "answer": "dry" },
+        { "n": 39, "text": "the rainforest is a ___ ecosystem", "options": [], "answer": "simple" },
+        { "n": 40, "text": "an ideal environment for the ___ of the bell-miner", "options": [], "answer": "nest(s)" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "book": "Cambridge IELTS 15",
+  "test": 1,
+  "section": "writing",
+  "timeLimitMinutes": 60,
+  "tasks": [
+    {
+      "task": 1,
+      "minutes": 20,
+      "minWords": 150,
+      "prompt": "The chart below shows the results of a survey about people's coffee and tea buying and drinking habits in five Australian cities.\n\nSummarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+      "figureImage": "/ielts/img/cam15-t1-writing1.png",
+      "figureAlt": "Bar chart of coffee and tea buying and drinking habits in five Australian cities"
+    },
+    {
+      "task": 2,
+      "minutes": 40,
+      "minWords": 250,
+      "prompt": "Write about the following topic:\n\nIn some countries, owning a home rather than renting one is very important for people.\n\nWhy might this be the case?\nDo you think this is a positive or negative situation?\n\nGive reasons for your answer and include any relevant examples from your own knowledge or experience."
+    }
+  ]
+}

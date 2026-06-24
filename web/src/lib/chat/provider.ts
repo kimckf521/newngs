@@ -39,8 +39,37 @@ export function activeChatBackend(): 'cloudbase' | 'deepseek-api' {
   return canUseCloudBaseAI() ? 'cloudbase' : 'deepseek-api';
 }
 
-export async function streamChatReply(messages: ChatMessage[]): Promise<ReadableStream<Uint8Array>> {
+export type ChatBackend = 'auto' | 'deepseek';
+
+export async function streamChatReply(
+  messages: ChatMessage[],
+  opts?: { backend?: ChatBackend },
+): Promise<ReadableStream<Uint8Array>> {
+  // 'deepseek' forces the direct DeepSeek API (low latency, China-accessible) —
+  // used by the IELTS speaking examiner where the CloudBase gateway is too slow
+  // for a live turn-by-turn conversation. 'auto' keeps the advisor's behaviour
+  // (CloudBase AI gateway primary, DeepSeek fallback).
+  if (opts?.backend === 'deepseek') return streamViaDeepSeekApi(messages);
   return canUseCloudBaseAI() ? streamViaCloudBase(messages) : streamViaDeepSeekApi(messages);
+}
+
+/**
+ * Non-streaming convenience: accumulate the full assistant reply as a string.
+ * Used by the IELTS speaking examiner + grader, which need the complete text
+ * (to speak it / to parse a JSON verdict).
+ */
+export async function completeChatReply(messages: ChatMessage[], opts?: { backend?: ChatBackend }): Promise<string> {
+  const stream = await streamChatReply(messages, opts);
+  const reader = stream.getReader();
+  const decoder = new TextDecoder();
+  let out = '';
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    if (value) out += decoder.decode(value, { stream: true });
+  }
+  out += decoder.decode();
+  return out;
 }
 
 /** Native CloudBase AI gateway via app.ai().createModel(provider).streamText(). */

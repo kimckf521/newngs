@@ -133,7 +133,7 @@ export default function InboxPage() {
     <main style={{ maxWidth: 960, margin: '0 auto', padding: '32px 24px', fontFamily: 'system-ui, sans-serif', color: '#111' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
         <h1 style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.01em' }}>Live chat inbox</h1>
-        <Link href="/admin" style={{ color: '#9333ea', fontSize: 13, textDecoration: 'none' }}>← Pages</Link>
+        <Link href="/admin" style={{ color: '#9333ea', fontSize: 13, textDecoration: 'none' }}>← Console</Link>
       </div>
 
       <div style={{ marginTop: 14, display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center', background: '#f7f7f8', border: '1px solid #ececec', borderRadius: 12, padding: '10px 12px' }}>

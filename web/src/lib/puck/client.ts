@@ -1,33 +1,30 @@
 'use client';
 
-import { getCloudBaseApp } from '@/lib/cloudbase';
-import { getCurrentUser } from '@/lib/auth';
 import type { Locale } from '@/i18n/types';
 import { pageDocId, type PageDoc, type PuckData } from './types';
 
 /**
  * Browser-side load/save of page data.
  *
- * Primary path: CloudBase (@cloudbase/js-sdk), gated by the `pages` security
- * rules. TRIAL FALLBACK: when CloudBase isn't usable (no env, no session, no
- * `pages` collection, or a denying rule), save/publish persist to localStorage
- * so the editor is fully usable without any backend setup — and the public
- * homepage renders that local publish via LocalPublishedView. Per-browser only;
- * not real cross-visitor publishing.
+ * Primary path: the PostgreSQL-backed /api/pages. TRIAL FALLBACK: when that
+ * isn't configured (no DATABASE_URL) or a request fails, save/publish persist to
+ * localStorage so the editor is fully usable without any backend — and the
+ * public homepage renders that local publish via LocalPublishedView (which reads
+ * the same `ngs-puck:` key). Per-browser only; not real cross-visitor publishing.
  */
-
 export type SaveMode = 'cloud' | 'local';
 
 const LS_PREFIX = 'ngs-puck:';
+const KEY_LS = 'ngs-admin-key';
 const lsKey = (route: string, locale: Locale) => LS_PREFIX + pageDocId(route, locale);
 
-/** Cap CloudBase calls so a credential-less / hanging request falls back to the
- *  local trial path quickly instead of stalling the editor. */
-function withTimeout<T>(p: Promise<T>, ms = 4000): Promise<T> {
-  return Promise.race([
-    p,
-    new Promise<T>((_, reject) => setTimeout(() => reject(new Error('timeout')), ms)),
-  ]);
+function adminKeyHeaders(): Record<string, string> {
+  try {
+    const k = (typeof window !== 'undefined' && window.localStorage.getItem(KEY_LS)) || '';
+    return k ? { 'x-admin-key': k } : {};
+  } catch {
+    return {};
+  }
 }
 
 function readLocal(route: string, locale: Locale): PageDoc | null {
@@ -52,47 +49,46 @@ function writeLocal(route: string, locale: Locale, patch: Partial<PageDoc>): voi
 }
 
 export async function loadPageDoc(route: string, locale: Locale): Promise<PageDoc | null> {
-  const app = await getCloudBaseApp();
-  if (app) {
-    try {
-      const res = await withTimeout(app.database().collection('pages').doc(pageDocId(route, locale)).get());
-      const doc = (res?.data?.[0] as PageDoc) || null;
-      if (doc) return doc;
-    } catch {
-      /* fall back to the local trial copy */
-    }
+  let data: { ok?: boolean; error?: string; doc?: PageDoc | null } | null = null;
+  try {
+    const res = await fetch(`/api/pages?route=${encodeURIComponent(route)}&locale=${locale}`, {
+      headers: adminKeyHeaders(),
+    });
+    data = (await res.json().catch(() => null)) as { ok?: boolean; error?: string; doc?: PageDoc | null } | null;
+  } catch {
+    return readLocal(route, locale); // no response at all (offline) → trial copy
   }
-  return readLocal(route, locale);
+  if (data?.ok) return data.doc ?? null;
+  if (data?.error === 'not_configured') return readLocal(route, locale); // genuine trial mode
+  // Backend exists but the request FAILED (unauthorized / unavailable). Do NOT
+  // seed from a stale local copy — surface it so the editor refuses to save and
+  // can't later clobber the live row with stale content.
+  throw new Error(data?.error || 'pages_load_failed');
 }
 
 async function writePage(route: string, locale: Locale, patch: Partial<PageDoc>): Promise<SaveMode> {
-  const app = await getCloudBaseApp();
-  if (app) {
-    try {
-      const user = await getCurrentUser();
-      const id = pageDocId(route, locale);
-      // Read-merge-set so writing `draft` doesn't wipe `published` (and upserts).
-      const existing = ((await withTimeout(app.database().collection('pages').doc(id).get()))?.data?.[0] as PageDoc) || null;
-      // Strip `_id` — the web SDK REJECTS set()/update() payloads containing it
-      // (resolving with { code } rather than throwing).
-      const { _id, ...rest } = (existing || {}) as PageDoc;
-      void _id;
-      const res = (await withTimeout(app.database().collection('pages').doc(id).set({
-        ...rest,
-        route,
-        locale,
-        ...patch,
-        updatedBy: user?.email || user?.name || 'unknown',
-        updatedAt: Date.now(),
-      }))) as { code?: string } | undefined;
-      if (res?.code) throw new Error(res.code);
-      return 'cloud';
-    } catch {
-      /* CloudBase not ready (no session / collection / rule) → local trial */
-    }
+  let data: { ok?: boolean; error?: string } | null = null;
+  try {
+    const res = await fetch('/api/pages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...adminKeyHeaders() },
+      body: JSON.stringify({ route, locale, draft: patch.draft, published: patch.published }),
+    });
+    data = (await res.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
+  } catch {
+    // No response at all (offline / dev server down) → local trial fallback.
+    writeLocal(route, locale, patch);
+    return 'local';
   }
-  writeLocal(route, locale, patch);
-  return 'local';
+  if (data?.ok) return 'cloud';
+  if (data?.error === 'not_configured') {
+    writeLocal(route, locale, patch); // genuine trial mode (no DATABASE_URL)
+    return 'local';
+  }
+  // Backend exists but REJECTED the write (unauthorized / unavailable / bad
+  // request). Surfacing this — instead of silently writing localStorage and
+  // claiming success — is what stops the misleading "Published — live now".
+  throw new Error(data?.error || 'pages_save_failed');
 }
 
 export async function saveDraft(route: string, locale: Locale, data: PuckData): Promise<SaveMode> {
@@ -100,7 +96,7 @@ export async function saveDraft(route: string, locale: Locale, data: PuckData): 
 }
 
 export async function publishPage(route: string, locale: Locale, data: PuckData): Promise<SaveMode> {
-  const mode = await writePage(route, locale, { draft: data, published: data, publishedAt: Date.now() });
+  const mode = await writePage(route, locale, { draft: data, published: data });
   if (mode === 'cloud') {
     // Invalidate the ISR cache so a real publish goes live immediately.
     try {

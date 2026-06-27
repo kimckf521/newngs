@@ -8,9 +8,10 @@ export type PuckData = {
   zones?: Record<string, unknown[]>;
 };
 
-/** One document in the CloudBase `pages` collection (id = `${route}_${locale}`). */
+/** One page row, keyed by (route, locale) in the Postgres `pages` table. The
+ *  `draft`/`published` trees are stored as JSONB. (Some fields are only used by
+ *  the localStorage trial copy.) */
 export type PageDoc = {
-  _id?: string;
   route: string;
   locale: Locale;
   draft: PuckData | null;
@@ -20,8 +21,8 @@ export type PageDoc = {
   publishedAt?: number;
 };
 
-/** Document id for a page in a given locale. `route` is the siteLinks key
- *  (e.g. 'home'), NOT the URL path, to keep ids DB-safe and locale-stable. */
+/** Stable key for a page in a given locale. `route` is the siteLinks key
+ *  (e.g. 'home'), NOT the URL path. Used for the localStorage trial key. */
 export function pageDocId(route: string, locale: Locale): string {
   return `${route}_${locale}`;
 }

@@ -34,11 +34,27 @@ function toAuthUser(u: CloudBaseUser | null | undefined, fallbackEmail = ''): Au
   return { name, email, uid: u.uid, role: DEFAULT_ROLE };
 }
 
-/** Enrich a signed-in user with their stored role from the `users` collection.
- *  Best-effort: keeps the default role if there's no uid or the lookup fails. */
+/** Enrich a signed-in user with their stored role (read-only). Best-effort:
+ *  keeps the default role if there's no uid/email or the lookup fails. Passes
+ *  the email so the server can honour the `admins` allowlist (email-keyed). */
 async function withRole(user: AuthUser | null): Promise<AuthUser | null> {
+  if (!user?.uid && !user?.email) return user;
+  return { ...user, role: await getUserRole(user.uid || '', user.email) };
+}
+
+/** Login-moment enrich: ensure the user's `app_users` row exists (creating it as
+ *  a student for first-time SMS/WeChat sign-ins; an existing role is preserved
+ *  server-side), THEN read the authoritative role. Used on the paths that mint a
+ *  fresh session; getCurrentUser stays read-only via withRole. */
+async function syncRole(user: AuthUser | null): Promise<AuthUser | null> {
   if (!user?.uid) return user;
-  return { ...user, role: await getUserRole(user.uid) };
+  await setUserRole(user.uid, DEFAULT_ROLE, { email: user.email, name: user.name });
+  return { ...user, role: await getUserRole(user.uid, user.email) };
+}
+
+/** Where to land a user after sign-in: admins go straight to the console. */
+export function postLoginDest(user: AuthUser | null, memberLink: string): string {
+  return user?.role === 'admin' ? '/admin' : memberLink;
 }
 
 /** CloudBase v3 methods resolve to a Supabase-style { data, error } object. */
@@ -61,7 +77,7 @@ export async function login({ email, password }: { email: string; password: stri
   const state = await auth.getLoginState();
   const user = toAuthUser(state?.user, email);
   if (!user) throw new Error('login_failed');
-  return (await withRole(user)) ?? user;
+  return (await syncRole(user)) ?? user;
 }
 
 /**
@@ -201,7 +217,7 @@ export async function requestSmsCode(phone: string): Promise<SmsSession> {
       if (vErr) throw new Error(vErr);
       const state = await auth.getLoginState();
       const user = toAuthUser(state?.user, '');
-      return (await withRole(user)) ?? { name: 'Member', email: '', role: DEFAULT_ROLE };
+      return (await syncRole(user)) ?? { name: 'Member', email: '', role: DEFAULT_ROLE };
     },
   };
 }
@@ -219,7 +235,9 @@ export async function completeOAuthLogin(): Promise<AuthUser | null> {
   const err = readError(await auth.verifyOAuth());
   const user = await getCurrentUser();
   if (!user && err) throw new Error(err);
-  return user;
+  // First WeChat sign-in has no app_users row yet — create it (as a student;
+  // an existing role is preserved server-side) and return the real role.
+  return user?.uid ? await syncRole(user) : user;
 }
 
 /** A pending password reset: call complete(code, newPassword) to finish. */
@@ -262,6 +280,10 @@ export async function sendPasswordReset(email: string): Promise<PasswordResetSes
   };
 }
 
+/** uids already profile-synced in this JS context — so an active session
+ *  upserts its app_users row at most once per page load (not on every call). */
+const syncedUids = new Set<string>();
+
 export async function getCurrentUser(): Promise<AuthUser | null> {
   const auth = await getCloudBaseAuth();
   if (!auth) {
@@ -270,7 +292,15 @@ export async function getCurrentUser(): Promise<AuthUser | null> {
   }
   try {
     const state = await auth.getLoginState();
-    return await withRole(toAuthUser(state?.user));
+    const user = await withRole(toAuthUser(state?.user));
+    // Ensure a row exists for an already-signed-in user (created as a student;
+    // an existing role is preserved server-side) so they appear in the members
+    // list without having to log in again. Fire-and-forget — never blocks reads.
+    if (user?.uid && !syncedUids.has(user.uid)) {
+      syncedUids.add(user.uid);
+      void setUserRole(user.uid, DEFAULT_ROLE, { email: user.email, name: user.name });
+    }
+    return user;
   } catch {
     return null;
   }

@@ -93,6 +93,8 @@ export interface CloudBaseApp {
       };
       where(q: Record<string, unknown>): { get(): Promise<{ data?: unknown[] }> };
       add(data: unknown): Promise<unknown>;
+      get(): Promise<{ data?: unknown[] }>;
+      limit(n: number): { get(): Promise<{ data?: unknown[] }> };
     };
   };
   uploadFile(p: {

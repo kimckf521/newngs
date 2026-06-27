@@ -33,6 +33,10 @@ const PATHS: Record<string, ReactNode> = {
   arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
   spark: <path d="M12 3v6M12 15v6M3 12h6M15 12h6M6 6l3 3M15 15l3 3M18 6l-3 3M9 15l-3 3" />,
   edit: <path d="M14 4l6 6M3 21l4-1L19 8l-3-3L4 17l-1 4z" />,
+  building: <><path d="M4 21V5a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v16" /><path d="M15 9h3a2 2 0 0 1 2 2v10" /><path d="M8 7h3M8 11h3M8 15h3M3 21h18" /></>,
+  key: <><circle cx="8" cy="14" r="4" /><path d="M11 11l8-8M16 3l3 3M14 5l3 3" /></>,
+  users: <><circle cx="9" cy="8" r="3" /><path d="M3.5 20a5.5 5.5 0 0 1 11 0" /><path d="M16 5.5a3 3 0 0 1 0 5.8M16.5 20a5.5 5.5 0 0 0-2-4.3" /></>,
+  clipboard: <><rect x="5" y="4.5" width="14" height="16.5" rx="2" /><path d="M9 4.5a3 3 0 0 1 6 0M9 11h6M9 15h4" /></>,
   sun: <><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4" /></>,
   moon: <path d="M20 14.5A8 8 0 0 1 9.5 4 7 7 0 1 0 20 14.5z" />,
 };

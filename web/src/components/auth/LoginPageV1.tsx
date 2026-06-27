@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useState, type FormEvent } from 'react';
 import { siteLinks } from '@/lib/siteLinks';
 import type { Locale } from '@/i18n/types';
-import { login, loginWithProvider, isRealAuth } from '@/lib/auth';
+import { login, loginWithProvider, isRealAuth, postLoginDest } from '@/lib/auth';
 import { AuthShell } from './AuthShell';
 import { AuthField, PasswordField } from './fields';
 import { OrDivider, WeChatButton, SubmitButton, DemoNote } from './parts';
@@ -68,8 +68,8 @@ export function LoginPageV1({ locale }: { locale: Locale }) {
     setStatus('sending');
     setError('');
     try {
-      await login({ email, password });
-      router.push(links.member);
+      const user = await login({ email, password });
+      router.push(postLoginDest(user, links.member));
     } catch {
       setError(t.error);
       setStatus('err');

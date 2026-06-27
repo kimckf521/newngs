@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { siteLinks } from '@/lib/siteLinks';
-import { completeOAuthLogin } from '@/lib/auth';
+import { completeOAuthLogin, postLoginDest } from '@/lib/auth';
 import type { Locale } from '@/i18n/types';
 
 const content = {
@@ -30,7 +30,7 @@ export function OAuthCallback({ locale }: { locale: Locale }) {
         const user = await completeOAuthLogin();
         if (cancelled) return;
         if (user) {
-          router.replace(links.member);
+          router.replace(postLoginDest(user, links.member));
         } else {
           setFailed(true);
           router.replace(links.login);

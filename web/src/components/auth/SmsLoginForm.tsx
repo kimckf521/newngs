@@ -4,7 +4,7 @@ import { useState, type FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { siteLinks } from '@/lib/siteLinks';
 import type { Locale } from '@/i18n/types';
-import { requestSmsCode, type SmsSession } from '@/lib/auth';
+import { requestSmsCode, postLoginDest, type SmsSession } from '@/lib/auth';
 import { AuthField, authLabelClass } from './fields';
 import { SubmitButton } from './parts';
 
@@ -79,8 +79,8 @@ export function SmsLoginForm({ locale }: { locale: Locale }) {
     setStatus('sending');
     setError('');
     try {
-      await session.verify(code);
-      router.push(links.member);
+      const user = await session.verify(code);
+      router.push(postLoginDest(user, links.member));
     } catch {
       setError(t.verifyErr);
       setStatus('err');

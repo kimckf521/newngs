@@ -42,15 +42,54 @@ mkdir -p /var/log/pm2
 
 ## Configure secrets
 
-Create `/var/www/ngs/shared/.env.production` with the SMTP credentials:
+Create `/var/www/ngs/shared/.env.production` with the runtime secrets:
 
 ```env
+# SMTP (contact form)
 SMTP_HOST=smtp.exmail.qq.com
 SMTP_PORT=465
 SMTP_USER=didihaha@nextgenscholars.asia
 SMTP_PASS=<rotated_password>
 EMAIL_RECEIVER=info@nextgenscholars.asia
+
+# PostgreSQL backend — members/roles, courses, page builder (see web/db/README.md)
+DATABASE_URL=postgresql://ngs_web:<db_password>@sh-postgres-dnu0pvpe.sql.tencentcdb.com:20165/postgres
+PGSSL=0
+# Shared secret gating the admin write APIs (members/courses/pages). Type the SAME
+# value into the console's 管理密钥 box + the editor's ADMIN_API_KEY field.
+ADMIN_API_KEY=<long-random-string>
 ```
+
+### Database connection (CloudBase PostgreSQL)
+
+This VM is **outside** the CloudBase VPC, so it connects to the DB over the
+**external** endpoint (`sh-postgres-dnu0pvpe.sql.tencentcdb.com:20165`), exactly
+like Vercel. Two CloudBase-side requirements:
+
+- **`PGSSL=0`** — this endpoint does **not** support TLS (`PGSSL=1` fails with
+  "server does not support SSL connections").
+- **Whitelist this server's IP.** CloudBase → SQL 型数据库 → 数据库设置 → 跳转实例
+  → 安全组 → allow inbound `43.139.195.82/32` on the external port. Because this
+  box has a **static IP**, you can whitelist just this one address — no
+  `0.0.0.0/0` (that's only needed for Vercel's dynamic IPs).
+
+The app auto-creates its tables on first request. Promote an admin with
+`cd web && node scripts/make-admin.mjs their@email.com` (run from anywhere that
+can reach the DB), or via the console's 成员 tab once deployed.
+
+### Build-time vs runtime env (important)
+
+`deploy/deploy.sh` runs `npm run build` **on your dev machine**, so:
+
+- **`NEXT_PUBLIC_*`** (e.g. `NEXT_PUBLIC_CLOUDBASE_ENV_ID`) are inlined at BUILD
+  time — they come from your **local `web/.env.local`** during the build, NOT
+  from the server's `.env.production`. Make sure your local `.env.local` has the
+  right values before running `deploy.sh`.
+- **Server secrets** (`DATABASE_URL`, `ADMIN_API_KEY`, `SMTP_PASS`, …) are read
+  at RUNTIME from `/var/www/ngs/shared/.env.production` (Next standalone loads it
+  from the process cwd, which deploy.sh symlinks). These must NOT be `NEXT_PUBLIC`.
+- The `/admin` gate is now **on by default in production** (code, not an env
+  flag) — visitors must log in as an admin. No `NEXT_PUBLIC_ADMIN_AUTH` needed.
 
 **CRITICAL — must do before first deploy:**
 

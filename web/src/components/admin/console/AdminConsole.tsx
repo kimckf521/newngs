@@ -11,6 +11,7 @@ import { Icon } from '@/components/member/design-v1/parts';
 import { adminConsoleContent, type AdminSectionKey } from './adminConsole.content';
 import { DashboardSection } from './DashboardSection';
 import { CoursesSection } from './CoursesSection';
+import { QuestionBankSection } from './QuestionBankSection';
 import { MembersSection } from './MembersSection';
 import { CollegeSection, type CollegeSectionKey } from './college/CollegeSection';
 
@@ -20,6 +21,7 @@ import { CollegeSection, type CollegeSectionKey } from './college/CollegeSection
 const NAV: { key: AdminSectionKey; icon: string }[] = [
   { key: 'dashboard', icon: 'dashboard' },
   { key: 'courses', icon: 'book' },
+  { key: 'questionBank', icon: 'clipboard' },
   { key: 'members', icon: 'user' },
 ];
 // Platform-side multi-tenant management (manage all partner colleges).
@@ -50,6 +52,15 @@ export function AdminConsole({ locale }: { locale: Locale }) {
 
   useEffect(() => {
     document.documentElement.classList.remove('v1-light');
+    // Open a specific tab when arrived at e.g. /admin?section=courses (used by the
+    // course editor's back/save navigation).
+    try {
+      const s = new URLSearchParams(window.location.search).get('section');
+      const valid = [...NAV, ...COLLEGE_NAV].map((n) => n.key);
+      if (s && (valid as string[]).includes(s)) setSection(s as AdminSectionKey);
+    } catch {
+      /* ignore */
+    }
     void getCurrentUser().then((u) => {
       if (u) setProfile({ name: u.name || 'Admin', email: u.email || '' });
     });
@@ -163,6 +174,7 @@ export function AdminConsole({ locale }: { locale: Locale }) {
           <main className="px-5 py-7 sm:px-8 lg:px-10">
             {section === 'dashboard' && <DashboardSection locale={locale} name={profile.name} onNavigate={setSection} />}
             {section === 'courses' && <CoursesSection locale={locale} />}
+            {section === 'questionBank' && <QuestionBankSection locale={locale} />}
             {section === 'members' && <MembersSection locale={locale} />}
             {COLLEGE_KEYS.includes(section) && <CollegeSection locale={locale} section={section as CollegeSectionKey} />}
           </main>

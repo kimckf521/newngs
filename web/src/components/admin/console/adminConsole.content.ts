@@ -3,6 +3,7 @@ import type { Locale } from '@/i18n/types';
 export type AdminSectionKey =
   | 'dashboard'
   | 'courses'
+  | 'questionBank'
   | 'members'
   | 'colleges'
   | 'authorizations'
@@ -19,6 +20,7 @@ type Strings = {
   nav: {
     dashboard: string;
     courses: string;
+    questionBank: string;
     members: string;
     colleges: string;
     authorizations: string;
@@ -107,7 +109,7 @@ export const adminConsoleContent: Record<Locale, Strings> = {
     role: 'Administrator',
     navGroups: { main: 'Manage', college: 'Colleges', more: 'Tools' },
     nav: {
-      dashboard: 'Dashboard', courses: 'Courses', members: 'Members',
+      dashboard: 'Dashboard', courses: 'Courses', questionBank: 'Question bank', members: 'Members',
       colleges: 'Colleges', authorizations: 'Authorizations', teachers: 'Teachers',
       classes: 'Classes', assignments: 'Assignments', resources: 'Resources',
       siteEditor: 'Site Editor', liveChat: 'Live Chat', myCollege: 'My College',
@@ -189,7 +191,7 @@ export const adminConsoleContent: Record<Locale, Strings> = {
     role: '管理员',
     navGroups: { main: '管理', college: '学院', more: '工具' },
     nav: {
-      dashboard: '仪表盘', courses: '课程', members: '成员',
+      dashboard: '仪表盘', courses: '课程', questionBank: '题库', members: '成员',
       colleges: '学院管理', authorizations: '授权管理', teachers: '教师',
       classes: '班级', assignments: '作业', resources: '资源管理',
       siteEditor: '网站编辑器', liveChat: '在线客服', myCollege: '我的学院',

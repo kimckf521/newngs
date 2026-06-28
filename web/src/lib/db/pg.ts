@@ -84,6 +84,12 @@ CREATE TABLE IF NOT EXISTS courses (
   published  boolean NOT NULL DEFAULT false,
   updated_at timestamptz NOT NULL DEFAULT now()
 );
+CREATE TABLE IF NOT EXISTS question_bank (
+  id         text PRIMARY KEY,
+  data       jsonb NOT NULL,
+  published  boolean NOT NULL DEFAULT false,
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
 CREATE TABLE IF NOT EXISTS pages (
   route      text NOT NULL,
   locale     text NOT NULL,

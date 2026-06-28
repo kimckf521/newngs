@@ -29,6 +29,16 @@ CREATE TABLE IF NOT EXISTS courses (
   updated_at timestamptz NOT NULL DEFAULT now()
 );
 
+-- Question bank. Each row is one stored question/test, full payload in `data`
+-- (e.g. {book, test, section, questions, answerKey, ...}); `id` (slug) and
+-- `published` are promoted for keying/filtering. Mirrors `courses`.
+CREATE TABLE IF NOT EXISTS question_bank (
+  id         text PRIMARY KEY,           -- slug, e.g. 'cam15-test1-reading'
+  data       jsonb NOT NULL,
+  published  boolean NOT NULL DEFAULT false,
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
+
 -- Visual page-builder (Puck) documents, one row per (route, locale).
 CREATE TABLE IF NOT EXISTS pages (
   route      text NOT NULL,

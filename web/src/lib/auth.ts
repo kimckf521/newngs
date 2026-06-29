@@ -15,8 +15,10 @@ import { siteLinks } from './siteLinks';
 export type AuthUser = { name: string; email: string; uid?: string; role: Role };
 export type Provider = 'WeChat';
 
-/** CloudBase built-in OAuth provider identifiers (fixed string literals). */
-const PROVIDER_ID: Record<Provider, string> = { WeChat: 'wechat' };
+/** CloudBase OAuth identity-source IDs. WeChat Open Platform 网站应用 (web QR
+ *  scan login) is registered under `wx_open` — NOT `wechat` (that's the 公众号
+ *  /official-account source). Must match the 身份源 enabled in the console. */
+const PROVIDER_ID: Record<Provider, string> = { WeChat: 'wx_open' };
 
 /** True when real CloudBase auth is active (vs. the demo fallback). */
 export function isRealAuth(): boolean {

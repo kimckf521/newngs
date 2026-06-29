@@ -45,8 +45,15 @@ export interface CloudBaseAuth {
   // Email sign-up with verification code: signUp() emails the code and
   // resolves with a verifyOtp() closure that completes the second step
   // (creates + signs the user in). Mirrors the phone-OTP flow.
-  signUp(p: { email?: string; password?: string; username?: string; [k: string]: unknown }): Promise<{
-    data?: { verifyOtp?: (q: { token: string; messageId?: string }) => Promise<{ data?: { user?: CloudBaseUser }; error?: unknown }> };
+  // Also handles OAuth registration: signUp({ provider_token }) creates a user
+  // from a third-party identity (e.g. a first-time WeChat sign-in) and returns a
+  // session — verifyOAuth() only signs in users that already exist.
+  signUp(p: { email?: string; password?: string; username?: string; provider_token?: string; [k: string]: unknown }): Promise<{
+    data?: {
+      verifyOtp?: (q: { token: string; messageId?: string }) => Promise<{ data?: { user?: CloudBaseUser }; error?: unknown }>;
+      user?: CloudBaseUser;
+      session?: { user?: CloudBaseUser };
+    };
     error?: unknown;
   }>;
   signOut(): Promise<unknown>;
@@ -66,7 +73,13 @@ export interface CloudBaseAuth {
     provider: string;
     options?: { redirectTo?: string; state?: string; skipBrowserRedirect?: boolean };
   }): Promise<{ data?: { url?: string; provider?: string }; error?: unknown }>;
-  verifyOAuth(p?: { code?: string; state?: string; provider?: string }): Promise<unknown>;
+  // Resolves to { data, error } (it does NOT throw). data.user is the reliable
+  // signed-in profile here; getLoginState().user is a controller that serialises
+  // blank, so read the user from this result on the callback path.
+  verifyOAuth(p?: { code?: string; state?: string; provider?: string }): Promise<{
+    data?: { user?: CloudBaseUser; session?: { user?: CloudBaseUser } };
+    error?: unknown;
+  }>;
   // Phone/email one-time-code (OTP) login. signInWithOtp sends the code and
   // resolves with a verifyOtp() closure that completes the second step.
   // Phone OTP requires region 'ap-shanghai' (set in init).

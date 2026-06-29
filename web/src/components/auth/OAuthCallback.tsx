@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { siteLinks } from '@/lib/siteLinks';
 import { completeOAuthLogin, postLoginDest } from '@/lib/auth';
@@ -22,8 +22,14 @@ export function OAuthCallback({ locale }: { locale: Locale }) {
   const links = siteLinks[locale];
   const router = useRouter();
   const [failed, setFailed] = useState(false);
+  // The OAuth `code` is single-use — run the exchange exactly once, even if React
+  // re-mounts/re-invokes the effect (StrictMode double-invoke would otherwise
+  // consume the code twice and fail the second time).
+  const ranRef = useRef(false);
 
   useEffect(() => {
+    if (ranRef.current) return;
+    ranRef.current = true;
     let cancelled = false;
     void (async () => {
       try {

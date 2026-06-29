@@ -225,21 +225,101 @@ export async function requestSmsCode(phone: string): Promise<SmsSession> {
 }
 
 /**
- * Completes a social (WeChat) login on the /auth/callback[_en] page. Exchanges
- * the OAuth ?code=&state= in the URL for a session via a single awaited
- * verifyOAuth(), then resolves the user. verifyOAuth resolves to { data, error }
- * (it does not throw); a "code required" / already-verified error is benign when
- * a session already exists, so we only surface it if no user results.
+ * Temporarily wraps window.fetch to capture the one-time `provider_token` that
+ * CloudBase returns from /auth/v1/provider/token during verifyOAuth(). We need
+ * it to REGISTER a brand-new WeChat identity (signUp({ provider_token })):
+ * verifyOAuth() hides the token, and the OAuth `code` is single-use (already
+ * consumed by verifyOAuth), so it can't be re-derived. Returns a restore fn.
+ */
+function installProviderTokenSniffer(onToken: (t: string) => void): () => void {
+  if (typeof window === 'undefined' || typeof window.fetch !== 'function') return () => {};
+  const orig = window.fetch.bind(window);
+  const wrapped = async (...args: Parameters<typeof fetch>): Promise<Response> => {
+    const res = await orig(...args);
+    try {
+      const input = args[0];
+      const url = typeof input === 'string' ? input : input instanceof URL ? input.href : (input as Request)?.url ?? '';
+      if (/provider\/token/.test(url)) {
+        const body = await res.clone().json().catch(() => null);
+        if (body && typeof body.provider_token === 'string' && body.provider_token) onToken(body.provider_token);
+      }
+    } catch (e) {
+      // Sniffing must never break the real request — but log so a malformed
+      // /provider/token response (which would block new-user registration) is
+      // debuggable rather than silently swallowed.
+      console.warn('[auth] provider_token sniff failed', e);
+    }
+    return res;
+  };
+  window.fetch = wrapped as typeof window.fetch;
+  return () => {
+    window.fetch = orig;
+  };
+}
+
+/**
+ * Completes a social (WeChat) login on the /auth/callback[_en] page — signing in
+ * an existing user OR registering a brand-new one.
+ *
+ * verifyOAuth() exchanges the ?code=&state= for a session, but only for users
+ * that ALREADY exist; a first-time WeChat identity comes back with "does not
+ * match any profile on server". In that case we register it with
+ * signUp({ provider_token }) — reusing the provider_token sniffed off the
+ * /auth/v1/provider/token call (the `code` is single-use). The signed-in profile
+ * is read from verifyOAuth()/signUp() `data.user` directly — getLoginState().user
+ * is a controller that serialises blank, so it's not used on this path.
+ * verifyOAuth resolves to { data, error } (it never throws); a benign
+ * "already-verified / code required" error when a session already exists is only
+ * surfaced if no user results.
  */
 export async function completeOAuthLogin(): Promise<AuthUser | null> {
   const auth = await getCloudBaseAuth();
   if (!auth) return getCurrentUser(); // demo: nothing to exchange (maps role)
-  const err = readError(await auth.verifyOAuth());
-  const user = await getCurrentUser();
-  if (!user && err) throw new Error(err);
-  // First WeChat sign-in has no app_users row yet — create it (as a student;
-  // an existing role is preserved server-side) and return the real role.
-  return user?.uid ? await syncRole(user) : user;
+
+  // Only act on a real OAuth callback (?code=); otherwise just read the session.
+  if (typeof window !== 'undefined' && !new URLSearchParams(window.location.search).get('code')) {
+    return getCurrentUser();
+  }
+
+  let providerToken: string | null = null;
+  const restoreFetch = installProviderTokenSniffer((t) => {
+    providerToken = t;
+  });
+  try {
+    const verify = await auth.verifyOAuth();
+    const vErr = readError(verify);
+    let user = toAuthUser(verify?.data?.user ?? verify?.data?.session?.user);
+
+    if (!user && vErr) {
+      if (providerToken) {
+        // verifyOAuth captured a provider_token but matched no existing profile
+        // → a first-time WeChat identity. Register it (creates the CloudBase
+        // user + a session). Token-driven, NOT gated on the exact error string:
+        // CloudBase's "does not match any profile" wording can change/localise,
+        // and silently dropping that would turn away every new user. Surface
+        // signUp's error only if it ALSO yields no session.
+        const signUp = await auth.signUp({ provider_token: providerToken });
+        user = toAuthUser(signUp?.data?.user ?? signUp?.data?.session?.user);
+        if (!user) {
+          const sErr = readError(signUp);
+          user = await getCurrentUser();
+          if (!user) throw new Error(sErr || vErr);
+        }
+      } else {
+        // No token captured → benign "already-verified / code required" case
+        // (a session may already exist); only surface a genuine failure.
+        user = await getCurrentUser();
+        if (!user) throw new Error(vErr);
+      }
+    }
+
+    if (!user) user = await getCurrentUser();
+    // First WeChat sign-in has no app_users row yet — create it (as a student;
+    // an existing role is preserved server-side) and return the real role.
+    return user?.uid ? await syncRole(user) : user;
+  } finally {
+    restoreFetch();
+  }
 }
 
 /** A pending password reset: call complete(code, newPassword) to finish. */

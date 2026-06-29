@@ -36,7 +36,9 @@ export function useCountdown(initial: number, running: boolean, onExpire: () => 
 export function fmtTimer(secs: number, hover: boolean) {
   const m = Math.floor(secs / 60);
   const s = secs % 60;
-  if (hover || secs < 60) return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')} left`;
+  // Real test: minutes phrasing; exact mm:ss only revealed on hover.
+  if (hover) return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')} left`;
+  if (secs < 60) return 'less than 1 minute left';
   return `${m} minute${m === 1 ? '' : 's'} left`;
 }
 
@@ -76,10 +78,13 @@ export function TopBar({
   onExit: () => void;
 }) {
   const [hover, setHover] = useState(false);
+  const [helpOpen, setHelpOpen] = useState(false);
   const hasTimer = typeof secs === 'number';
   const warn = hasTimer && secs! <= 600;
   const danger = hasTimer && secs! <= 300;
   return (
+    <>
+    {helpOpen ? <HelpModal onClose={() => setHelpOpen(false)} /> : null}
     <header className="flex h-12 shrink-0 items-center justify-between border-b border-[#c8c8c8] bg-[#ececec] px-3 text-[#222]">
       <div className="flex items-center gap-3">
         <button
@@ -112,9 +117,46 @@ export function TopBar({
         ) : null}
         {hasTimer && toggleHidden ? <BarBtn onClick={toggleHidden}>{hidden ? 'Show' : 'Hide'}</BarBtn> : null}
         <BarBtn onClick={onSettings}>Settings</BarBtn>
-        <BarBtn onClick={() => alert('On-screen help is not available in this demo.')}>Help</BarBtn>
+        <BarBtn onClick={() => setHelpOpen(true)}>Help</BarBtn>
       </div>
     </header>
+    </>
+  );
+}
+
+function HelpModal({ onClose }: { onClose: () => void }) {
+  const items = [
+    ['Navigation', 'Use the numbered boxes at the bottom to jump between questions; the ‹ › arrows move back and forward.'],
+    ['Review', 'Tick “Review” to flag a question so you can come back to it.'],
+    ['Highlight & notes', 'In Reading, select text in the passage and right-click to Highlight it or add a Note. Right-click a highlight to remove it.'],
+    ['Timer', 'The header shows the time remaining. Click “Hide” to hide it; hover it to see the exact mm:ss.'],
+    ['Settings', 'Change the text size and screen colours (e.g. white-on-black, yellow-on-black).'],
+    ['Listening audio', 'The recording plays once and cannot be paused, rewound or replayed — exactly as in the real exam. Adjust only the volume.'],
+    ['Writing', 'No spell-check or auto-correct. Both tasks share the 60-minute time. Use the Cut / Copy / Paste buttons to move text.'],
+  ];
+  return (
+    <div className="fixed inset-0 z-[90] flex items-center justify-center bg-black/30 p-4" onClick={onClose}>
+      <div className="max-h-[85vh] w-[460px] overflow-y-auto rounded bg-white p-5 text-[#222] shadow-xl" onClick={(e) => e.stopPropagation()} style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
+        <div className="mb-3 flex items-center justify-between">
+          <h3 className="text-[15px] font-bold">Help · using this screen</h3>
+          <button type="button" onClick={onClose} className="text-[#666] hover:text-black">✕</button>
+        </div>
+        <dl className="space-y-2.5 text-[13px]">
+          {items.map(([t, d]) => (
+            <div key={t}>
+              <dt className="font-bold">{t}</dt>
+              <dd className="text-[#555]">{d}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className="mt-4 border-t border-[#eee] pt-3 text-[12px] italic text-[#888]">
+          This is a practice tool. Your band score is an estimate based on the IELTS criteria — not an official IELTS result.
+        </p>
+        <div className="mt-4 text-right">
+          <button type="button" onClick={onClose} className="rounded bg-[#1565c0] px-4 py-1.5 text-[13px] font-bold text-white hover:bg-[#0f4ea0]">Close</button>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -407,7 +449,7 @@ export function BottomNav({
       <div className="flex shrink-0 items-center gap-2">
         <button type="button" onClick={() => setCurrent(Math.max(1, current - 1))} className="h-7 w-8 rounded border border-[#bbb] bg-white text-[15px] hover:bg-[#e2e2e2]" aria-label="Previous">‹</button>
         <button type="button" onClick={() => setCurrent(Math.min(total, current + 1))} className="h-7 w-8 rounded border border-[#bbb] bg-white text-[15px] hover:bg-[#e2e2e2]" aria-label="Next">›</button>
-        <button type="button" onClick={onSubmit} className="h-7 rounded bg-[#1565c0] px-3 text-[12px] font-bold text-white hover:bg-[#0f4ea0]">Submit</button>
+        <button type="button" onClick={() => { if (window.confirm('End the test now and see your practice results?')) onSubmit(); }} className="h-7 rounded bg-[#1565c0] px-3 text-[12px] font-bold text-white hover:bg-[#0f4ea0]">End test</button>
       </div>
     </footer>
   );
@@ -691,6 +733,7 @@ export function ResultsOverlay({
     <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/40 p-4">
       <div className="flex max-h-[86vh] w-[560px] flex-col rounded bg-white text-[#222] shadow-2xl" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
         <div className="border-b border-[#ddd] p-5">
+          <div className="mb-1 inline-block rounded bg-[#fff3cd] px-2 py-0.5 text-[11px] font-bold text-[#8a6d00]">Practice results · not an official IELTS score</div>
           <h3 className="text-[18px] font-bold">{title}</h3>
           <p className="mt-1 text-[13px] text-[#666]">{subtitle}</p>
           <div className="mt-3 flex items-end gap-6">

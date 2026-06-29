@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import rawTest from './data/cam15-test1-writing.json';
 import type { ColorTheme, TextSize, WritingTest } from './types';
 import { SettingsPanel, SIZE, THEME, TopBar, useCountdown } from './shared';
@@ -45,6 +45,38 @@ export function WritingSection({
 
   const task = test.tasks.find((t) => t.task === active)!;
   const th = THEME[theme];
+  const taRef = useRef<HTMLTextAreaElement>(null);
+
+  // Cut / Copy / Paste — the signature CD-IELTS editor toolbar. Native Ctrl+X/C/V
+  // keep working too; these buttons mirror the real on-screen affordance.
+  const sel = () => {
+    const ta = taRef.current;
+    return ta ? { ta, s: ta.selectionStart, e: ta.selectionEnd } : null;
+  };
+  const doCopy = useCallback(async () => {
+    const x = sel();
+    if (!x || x.s === x.e) return;
+    try { await navigator.clipboard.writeText((texts[active] || '').slice(x.s, x.e)); } catch { /* clipboard blocked */ }
+    x.ta.focus();
+  }, [texts, active]);
+  const doCut = useCallback(async () => {
+    const x = sel();
+    if (!x || x.s === x.e) return;
+    const v = texts[active] || '';
+    try { await navigator.clipboard.writeText(v.slice(x.s, x.e)); } catch { /* clipboard blocked */ }
+    setTexts((t) => ({ ...t, [active]: v.slice(0, x.s) + v.slice(x.e) }));
+    requestAnimationFrame(() => { x.ta.focus(); x.ta.setSelectionRange(x.s, x.s); });
+  }, [texts, active]);
+  const doPaste = useCallback(async () => {
+    const x = sel();
+    if (!x) return;
+    let clip = '';
+    try { clip = await navigator.clipboard.readText(); } catch { return; }
+    const v = texts[active] || '';
+    setTexts((t) => ({ ...t, [active]: v.slice(0, x.s) + clip + v.slice(x.e) }));
+    const pos = x.s + clip.length;
+    requestAnimationFrame(() => { x.ta.focus(); x.ta.setSelectionRange(pos, pos); });
+  }, [texts, active]);
   const counts = useMemo(
     () => test.tasks.map((t) => ({ task: t.task, words: wordCount(texts[t.task] || ''), min: t.minWords })),
     [texts],
@@ -108,7 +140,21 @@ export function WritingSection({
 
         {/* answer */}
         <section className="flex min-h-0 flex-1 flex-col px-6 py-5">
+          <div className="mb-2 flex items-center gap-1">
+            {([['Cut', doCut], ['Copy', doCopy], ['Paste', doPaste]] as const).map(([label, fn]) => (
+              <button
+                key={label}
+                type="button"
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => void fn()}
+                className="rounded border border-current/30 px-3 py-1 text-[0.8em] hover:bg-current/10"
+              >
+                {label}
+              </button>
+            ))}
+          </div>
           <textarea
+            ref={taRef}
             value={texts[active] || ''}
             onChange={(e) => setTexts((t) => ({ ...t, [active]: e.target.value }))}
             spellCheck={false}
@@ -118,36 +164,34 @@ export function WritingSection({
             className="min-h-0 flex-1 resize-none rounded border border-current/30 p-3 text-[0.95em] leading-relaxed outline-none focus:border-[#1565c0]"
             style={{ background: th.input, color: th.fg, fontSize: SIZE[size] }}
           />
-          <div className="mt-2 flex items-center justify-between text-[13px]">
-            <span className="font-bold tabular-nums">Words: {wordCount(texts[active] || '')}</span>
-            <span className="opacity-70">Recommended: at least {task.minWords} words</span>
-          </div>
         </section>
       </div>
 
-      {/* bottom bar: task tabs */}
+      {/* bottom bar: word count (lower-left, as in the real test) + task tabs */}
       <footer className="flex shrink-0 items-center gap-4 border-t border-[#c8c8c8] bg-[#ececec] px-4 py-2 text-[#222]">
+        <span className="shrink-0 text-[13px] font-bold tabular-nums">Word Count: {wordCount(texts[active] || '')}</span>
         <div className="flex items-center gap-1">
-          {test.tasks.map((t) => {
-            const c = counts.find((x) => x.task === t.task)!;
-            return (
-              <button
-                key={t.task}
-                type="button"
-                onClick={() => setActive(t.task)}
-                className={`flex items-center gap-2 rounded border px-3 py-1 text-[12px] ${
-                  active === t.task ? 'border-[#1976d2] bg-[#d6e4f5] font-bold' : 'border-[#bbb] bg-white'
-                }`}
-              >
-                Part {t.task}
-                <span className={`tabular-nums ${c.words >= c.min ? 'text-[#1b7a32]' : 'text-[#888]'}`}>{c.words}w</span>
-              </button>
-            );
-          })}
+          {test.tasks.map((t) => (
+            <button
+              key={t.task}
+              type="button"
+              onClick={() => setActive(t.task)}
+              className={`rounded border px-3 py-1 text-[12px] ${
+                active === t.task ? 'border-[#1976d2] bg-[#d6e4f5] font-bold' : 'border-[#bbb] bg-white'
+              }`}
+            >
+              Part {t.task}
+            </button>
+          ))}
         </div>
-        <span className="text-[11px] text-[#777]">Both tasks share the 60-minute section time. No spell-check or auto-correct (as in the real test).</span>
         <div className="ml-auto">
-          <button type="button" onClick={submit} className="h-7 rounded bg-[#1565c0] px-3 text-[12px] font-bold text-white hover:bg-[#0f4ea0]">Submit for marking</button>
+          <button
+            type="button"
+            onClick={() => { if (window.confirm('End the test now and mark your writing?')) submit(); }}
+            className="h-7 rounded bg-[#1565c0] px-3 text-[12px] font-bold text-white hover:bg-[#0f4ea0]"
+          >
+            End test
+          </button>
         </div>
       </footer>
 

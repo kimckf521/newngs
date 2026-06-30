@@ -90,6 +90,24 @@ CREATE TABLE IF NOT EXISTS question_bank (
   published  boolean NOT NULL DEFAULT false,
   updated_at timestamptz NOT NULL DEFAULT now()
 );
+CREATE TABLE IF NOT EXISTS sat_questions (
+  id         text PRIMARY KEY,
+  data       jsonb NOT NULL,
+  published  boolean NOT NULL DEFAULT false,
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
+CREATE TABLE IF NOT EXISTS sat_forms (
+  id         text PRIMARY KEY,
+  data       jsonb NOT NULL,
+  published  boolean NOT NULL DEFAULT false,
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
+CREATE TABLE IF NOT EXISTS sat_attempts (
+  id         text PRIMARY KEY,
+  data       jsonb NOT NULL,
+  published  boolean NOT NULL DEFAULT false,
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
 CREATE TABLE IF NOT EXISTS pages (
   route      text NOT NULL,
   locale     text NOT NULL,

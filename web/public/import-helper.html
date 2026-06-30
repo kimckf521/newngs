@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>Importing lesson data...</title></head>
+<body>
+<p id="status">Decoding lesson data...</p>
+<script>
+(async () => {
+  const status = document.getElementById('status');
+  try {
+    const hash = location.hash.slice('#import='.length);
+    const data = JSON.parse(decodeURIComponent(escape(atob(hash))));
+    const keys = Object.keys(data);
+    status.textContent = 'Saving ' + keys.length + ' modules...';
+    for (const k of keys) {
+      const r = await fetch('/api/save-lessons', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ key: k, pages: data[k] })
+      });
+      const d = await r.json();
+      status.textContent = 'Saved ' + k + ' (' + data[k].length + ' pages): ' + (d.ok ? 'ok' : 'FAIL');
+    }
+    status.textContent = 'All ' + keys.length + ' modules saved! Redirecting...';
+    window.__done = true;
+    setTimeout(() => location.replace('/admin/ielts_training'), 1500);
+  } catch(e) {
+    status.textContent = 'Error: ' + e.message;
+    window.__error = e.message;
+  }
+})();
+</script>
+</body>
+</html>

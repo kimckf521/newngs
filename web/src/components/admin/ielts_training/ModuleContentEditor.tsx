@@ -8,6 +8,7 @@ import {
   type Block,
   type BlockType,
   type RichData,
+  type TableFillCell,
   BLOCK_TYPE_KEYS,
   PAGE_TYPE_KEYS,
   emptyBlock,
@@ -36,6 +37,7 @@ const BLOCK_LABELS: Record<BlockType, { en: string; zh: string }> = {
   video: { en: 'Video (upload)', zh: '上传视频' },
   audio: { en: 'Audio', zh: '音频' },
   link: { en: 'Link', zh: '链接' },
+  tablefill: { en: 'Fill-in table', zh: '填空表格' },
 };
 
 const PAGE_TYPE_LABEL: Record<string, { en: string; zh: string }> = {
@@ -67,6 +69,10 @@ const STR = {
     text: 'Text', items: 'Items', emptyTitle: '(untitled page)', cancel: 'Cancel', confirm: 'Delete', versions: 'History',
     dragToReorder: 'Drag to reorder', hide: 'Hide from students', show: 'Show to students', hidden: 'Hidden',
     editMode: 'Edit', previewMode: 'Preview', renameHint: 'Double-click to rename', pageNamePh: 'Page name',
+    tfTitle: 'Table title', tfIndicator: 'Indicator column label', tfGroup: 'Group column label',
+    tfAddCol: '+ Column', tfAddRow: '+ Row', tfRemoveRow: 'Remove row', tfRemoveCol: 'Remove column',
+    tfIndicatorPh: 'Indicator', tfGroupPh: 'Group (optional)', tfZhPh: '中文 (optional)', tfColPh: 'Header',
+    tfHint: 'Type the standard answer in each cell. Leave a cell blank to make it a non-answer (—) cell.',
   },
   zh: {
     back: '返回课程', editModule: '编辑内容', module: '模块', save: '保存', saving: '保存中…',
@@ -86,6 +92,10 @@ const STR = {
     text: '文本', items: '条目', emptyTitle: '（未命名页面）', cancel: '取消', confirm: '删除', versions: '历史版本',
     dragToReorder: '拖动以重新排序', hide: '对学生隐藏', show: '对学生显示', hidden: '已隐藏',
     editMode: '编辑', previewMode: '预览', renameHint: '双击重命名', pageNamePh: '页面名称',
+    tfTitle: '表格标题', tfIndicator: '指标列标题', tfGroup: '分组列标题',
+    tfAddCol: '+ 列', tfAddRow: '+ 行', tfRemoveRow: '删除行', tfRemoveCol: '删除列',
+    tfIndicatorPh: '指标', tfGroupPh: '分组（可选）', tfZhPh: '中文（可选）', tfColPh: '列标题',
+    tfHint: '在每个单元格填入标准答案。留空的单元格将显示为非答题项（—）。',
   },
 } as const;
 
@@ -143,6 +153,109 @@ function VideoUploadField({ value, onChange, s }: { value: string; onChange: (v:
         // eslint-disable-next-line jsx-a11y/media-has-caption
         <video controls src={value} className="mt-1 max-h-44 w-full rounded-lg bg-black" />
       )}
+    </div>
+  );
+}
+
+/* ── Fill-in table editor (rows / columns / answers) ──────────────────────── */
+type TFBlockEdit = Extract<Block, { t: 'tablefill' }>;
+const tfCellStr = (cell: TableFillCell): string => (cell && (cell.a ?? cell.given)) || '';
+
+function TableFillEditor({ block, lang, onChange }: { block: TFBlockEdit; lang: Lang; onChange: (b: Block) => void }) {
+  const s = STR[lang];
+  const cols = block.cols ?? [];
+  const rows = block.rows ?? [];
+  const tfInput = `${inputCls} px-2 py-1 text-xs`;
+
+  const setColHeader = (c: number, v: string) => onChange({ ...block, cols: cols.map((h, i) => (i === c ? v : h)) });
+  const addCol = () => onChange({ ...block, cols: [...cols, ''], rows: rows.map((r) => ({ ...r, cells: [...(r.cells ?? []), null] })) });
+  const removeCol = (c: number) =>
+    onChange({ ...block, cols: cols.filter((_, i) => i !== c), rows: rows.map((r) => ({ ...r, cells: (r.cells ?? []).filter((_, i) => i !== c) })) });
+
+  const setRow = (r: number, patch: Partial<TFBlockEdit['rows'][number]>) =>
+    onChange({ ...block, rows: rows.map((row, i) => (i === r ? { ...row, ...patch } : row)) });
+  const setCell = (r: number, c: number, v: string) =>
+    onChange({
+      ...block,
+      rows: rows.map((row, i) => {
+        if (i !== r) return row;
+        const cells = (row.cells ?? []).slice();
+        while (cells.length < cols.length) cells.push(null);
+        cells[c] = v.trim() ? { a: v } : null;
+        return { ...row, cells };
+      }),
+    });
+  const addRow = () => onChange({ ...block, rows: [...rows, { indicator: '', group: '', cells: cols.map(() => null) }] });
+  const removeRow = (r: number) => onChange({ ...block, rows: rows.filter((_, i) => i !== r) });
+  const moveRow = (r: number, dir: -1 | 1) => {
+    const j = r + dir;
+    if (j < 0 || j >= rows.length) return;
+    const c = rows.slice();
+    [c[r], c[j]] = [c[j], c[r]];
+    onChange({ ...block, rows: c });
+  };
+
+  return (
+    <div className="space-y-3">
+      <input value={block.title || ''} onChange={(e) => onChange({ ...block, title: e.target.value })} placeholder={s.tfTitle} className={`${inputCls} font-semibold`} />
+      <div className="grid grid-cols-2 gap-2">
+        <input value={block.indicatorLabel || ''} onChange={(e) => onChange({ ...block, indicatorLabel: e.target.value })} placeholder={s.tfIndicator} className={tfInput} />
+        <input value={block.groupLabel || ''} onChange={(e) => onChange({ ...block, groupLabel: e.target.value })} placeholder={s.tfGroup} className={tfInput} />
+      </div>
+
+      <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-white/10">
+        <table className="w-full border-collapse text-xs">
+          <thead>
+            <tr className="bg-slate-50 dark:bg-white/5">
+              <th className="border border-slate-200 px-2 py-1.5 text-left font-semibold text-slate-500 dark:border-white/10 dark:text-slate-400">{block.indicatorLabel || s.tfIndicatorPh}</th>
+              <th className="border border-slate-200 px-2 py-1.5 text-left font-semibold text-slate-500 dark:border-white/10 dark:text-slate-400">{block.groupLabel || s.tfGroupPh}</th>
+              {cols.map((h, c) => (
+                <th key={c} className="border border-slate-200 px-2 py-1.5 dark:border-white/10">
+                  <div className="flex items-center gap-1">
+                    <input value={h} onChange={(e) => setColHeader(c, e.target.value)} placeholder={s.tfColPh} className={`${tfInput} min-w-[4rem] text-center`} />
+                    <button type="button" onClick={() => removeCol(c)} disabled={cols.length <= 1} title={s.tfRemoveCol} className="shrink-0 rounded px-1 text-slate-400 transition hover:text-rose-500 disabled:opacity-30">✕</button>
+                  </div>
+                </th>
+              ))}
+              <th className="border border-slate-200 px-2 py-1.5 dark:border-white/10">
+                <button type="button" onClick={addCol} className="whitespace-nowrap rounded-lg border border-dashed border-slate-300 px-2 py-1 text-[11px] font-semibold text-slate-500 transition hover:border-ngs-violet/50 hover:text-ngs-violet dark:border-white/15">{s.tfAddCol}</button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, r) => (
+              <tr key={r}>
+                <td className="border border-slate-200 px-2 py-1.5 align-top dark:border-white/10">
+                  <input value={row.indicator} onChange={(e) => setRow(r, { indicator: e.target.value })} placeholder={s.tfIndicatorPh} className={tfInput} />
+                  <input value={row.indicatorZh || ''} onChange={(e) => setRow(r, { indicatorZh: e.target.value })} placeholder={s.tfZhPh} className={`${tfInput} mt-1 text-slate-400`} />
+                </td>
+                <td className="border border-slate-200 px-2 py-1.5 align-top dark:border-white/10">
+                  <input value={row.group || ''} onChange={(e) => setRow(r, { group: e.target.value })} placeholder={s.tfGroupPh} className={tfInput} />
+                </td>
+                {cols.map((_, c) => (
+                  <td key={c} className="border border-slate-200 px-2 py-1.5 align-top dark:border-white/10">
+                    <input value={tfCellStr((row.cells ?? [])[c] ?? null)} onChange={(e) => setCell(r, c, e.target.value)} className={`${tfInput} text-center`} />
+                  </td>
+                ))}
+                <td className="border border-slate-200 px-1 py-1.5 align-top dark:border-white/10">
+                  <div className="flex items-center">
+                    <button type="button" onClick={() => moveRow(r, -1)} disabled={r === 0} title={s.up} className={miniBtn}><Icon name="arrow" className="h-3.5 w-3.5 -rotate-90" /></button>
+                    <button type="button" onClick={() => moveRow(r, 1)} disabled={r === rows.length - 1} title={s.down} className={miniBtn}><Icon name="arrow" className="h-3.5 w-3.5 rotate-90" /></button>
+                    <button type="button" onClick={() => removeRow(r)} title={s.tfRemoveRow} className="grid h-7 w-7 place-items-center rounded-lg text-slate-400 transition hover:bg-rose-500/10 hover:text-rose-500">✕</button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="flex items-center justify-between">
+        <button type="button" onClick={addRow} className="inline-flex items-center gap-1.5 rounded-lg border border-dashed border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-500 transition hover:border-ngs-violet/50 hover:text-ngs-violet dark:border-white/15">
+          <Icon name="spark" className="h-3.5 w-3.5" /> {s.tfAddRow}
+        </button>
+        <p className="text-[11px] text-slate-400 dark:text-slate-500">{s.tfHint}</p>
+      </div>
     </div>
   );
 }
@@ -236,6 +349,9 @@ function BlockEditor({ block, lang, onChange }: { block: Block; lang: Lang; onCh
   }
   if (block.t === 'video') {
     return <VideoUploadField value={block.v} onChange={(v) => onChange({ ...block, v })} s={s} />;
+  }
+  if (block.t === 'tablefill') {
+    return <TableFillEditor block={block} lang={lang} onChange={onChange} />;
   }
   if (block.t === 'audio') {
     return (

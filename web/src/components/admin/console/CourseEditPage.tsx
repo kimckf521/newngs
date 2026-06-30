@@ -106,9 +106,24 @@ function ConfirmDialog({
 }
 
 export function CourseEditPage({ id, locale }: { id: string; locale: Locale }) {
-  const t = adminConsoleContent[locale];
+  // Language is switchable in-page (EN / 中文), sharing the IELTS flow's
+  // localStorage key so it stays consistent across the hub / reader / editors.
+  const [lang, setLang] = useState<Locale>(locale);
+  useEffect(() => {
+    try {
+      const s = localStorage.getItem('ielts:lang');
+      if (s === 'en' || s === 'zh') setLang(s as Locale);
+    } catch {
+      /* ignore */
+    }
+  }, []);
+  const changeLang = (nl: Locale) => {
+    setLang(nl);
+    try { localStorage.setItem('ielts:lang', nl); } catch {}
+  };
+  const t = adminConsoleContent[lang];
   const f = t.form;
-  const l = L[locale];
+  const l = L[lang];
   const router = useRouter();
   const isNew = id === 'new';
   const BACK = '/admin?section=courses'; // return to the console's Courses tab
@@ -281,6 +296,21 @@ export function CourseEditPage({ id, locale }: { id: string; locale: Locale }) {
             {status && (
               <span className={`text-sm font-medium ${status === f.saveFailed ? 'text-rose-500' : 'text-emerald-500'}`}>{status}</span>
             )}
+            {/* Language toggle (EN / 中文) */}
+            <div className="flex items-center rounded-lg border border-slate-200 p-0.5">
+              {(['en', 'zh'] as const).map((ll) => (
+                <button
+                  key={ll}
+                  type="button"
+                  onClick={() => changeLang(ll)}
+                  className={`rounded-md px-2 py-1 text-xs font-bold transition ${
+                    lang === ll ? 'bg-ngs-gradient text-white' : 'text-slate-500 hover:text-slate-900'
+                  }`}
+                >
+                  {ll === 'en' ? 'EN' : '中'}
+                </button>
+              ))}
+            </div>
             <button
               type="button"
               onClick={() => setPreviewing(true)}
@@ -324,7 +354,7 @@ export function CourseEditPage({ id, locale }: { id: string; locale: Locale }) {
               </div>
               <div className="flex shrink-0 flex-wrap items-center gap-2.5">
                 <Link
-                  href={`${builtinContentHref(existing.id)!}/module/1`}
+                  href={builtinContentHref(existing.id)!}
                   className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100"
                 >
                   👁 {l.previewCourse}
@@ -434,7 +464,7 @@ export function CourseEditPage({ id, locale }: { id: string; locale: Locale }) {
               courses (e.g. IELTS), whose assessments are managed with the rich
               lessons in the dedicated content editor. */}
           {!isNew && existing && !builtinContentHref(existing.id) && (
-            <QuestionBankPanel courseId={existing.id} locale={locale} />
+            <QuestionBankPanel courseId={existing.id} locale={lang} />
           )}
         </div>
 
@@ -491,7 +521,7 @@ export function CourseEditPage({ id, locale }: { id: string; locale: Locale }) {
         <CoursePreview
           name={name}
           modules={modules.map((m) => ({ title: m.title }))}
-          locale={locale}
+          locale={lang}
           onClose={() => setPreviewing(false)}
         />
       )}
@@ -511,7 +541,7 @@ export function CourseEditPage({ id, locale }: { id: string; locale: Locale }) {
         <VersionHistoryPanel
           kind="course"
           refId={existing.id}
-          lang={locale}
+          lang={lang}
           onRestore={restoreVersion}
           onClose={() => setShowVersions(false)}
         />

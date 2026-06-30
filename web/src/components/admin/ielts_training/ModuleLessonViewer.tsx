@@ -314,7 +314,7 @@ const TF_STR = {
     check: '核对答案', reset: '重置',
     score: '正确', accuracy: '正确率', wrongTitle: '需复习',
     your: '你的', correct: '正确', copy: '复制错题', copied: '已复制', time: '用时',
-    cjkWarn: '请输入数字、分数或带单位的英文数值。',
+    cjkWarn: '请输入数字、分数或带单位英文数值',
     allCorrect: '全部正确，太棒了！🎉',
   },
 } as const;
@@ -328,7 +328,7 @@ type TableFillRowLite = { indicator: string; group?: string };
 function TableFillCheck({ block, lang }: { block: TFBlock; lang: Lang }) {
   const t = TF_STR[lang];
   const cols = block.cols ?? [];
-  const rows = block.rows ?? [];
+  const rows = useMemo(() => block.rows ?? [], [block.rows]);
   const hasGroups = rows.some((r) => (r.group || '').trim());
 
   const [vals, setVals] = useState<Record<string, string>>({});
@@ -455,7 +455,7 @@ function TableFillCheck({ block, lang }: { block: TFBlock; lang: Lang }) {
                       className={`border border-slate-200 px-3 py-2 align-top font-medium text-slate-700 dark:border-white/10 dark:text-slate-200 ${zh ? 'cursor-help' : ''}`}
                     >
                       {row.indicator}
-                      {zh && <span className="ml-1 align-middle text-[10px] text-slate-300 dark:text-slate-600">ⓘ</span>}
+                      {zh && <span className="ml-1 align-middle text-[10px] text-slate-400 dark:text-slate-500">ⓘ</span>}
                     </td>
                   )}
                   {hasGroups && (
@@ -466,7 +466,7 @@ function TableFillCheck({ block, lang }: { block: TFBlock; lang: Lang }) {
                     const key = cellKey(r, c);
                     // Not-applicable cell (no input, no value)
                     if (!cell || (!cell.a && !cell.given)) {
-                      return <td key={c} className="border border-slate-200 bg-slate-50/40 px-3 py-2 text-center text-slate-300 dark:border-white/10 dark:bg-white/[0.02] dark:text-slate-600">—</td>;
+                      return <td key={c} className="border border-slate-200 bg-slate-50/40 px-3 py-2 text-center text-slate-300 dark:border-white/10 dark:bg-white/[0.02] dark:text-slate-500" aria-label="N/A">—</td>;
                     }
                     // Pre-given read-only value (shown, never graded)
                     if (cell.given && !cell.a) {
@@ -490,7 +490,7 @@ function TableFillCheck({ block, lang }: { block: TFBlock; lang: Lang }) {
                           onChange={(e) => onInput(key, e.target.value)}
                           inputMode="text"
                           aria-label={`${rowLabel(row)} ${cols[c]}`}
-                          className="w-full min-w-[3.5rem] border-b border-slate-300 bg-transparent py-0.5 text-center text-sm text-slate-800 outline-none transition focus:border-blue-500 dark:border-white/20 dark:text-slate-100 dark:focus:border-blue-400"
+                          className="w-full min-w-[3.5rem] rounded-sm border-b border-slate-300 bg-transparent py-0.5 text-center text-sm text-slate-800 outline-none transition focus:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500 dark:border-white/20 dark:text-slate-100 dark:focus:border-blue-400 dark:focus-visible:ring-blue-400"
                         />
                         {checked && !ok && (
                           <div className="mt-1 text-[11px] font-semibold text-[#c82423] dark:text-rose-300">{cell.a}</div>
@@ -507,14 +507,14 @@ function TableFillCheck({ block, lang }: { block: TFBlock; lang: Lang }) {
 
       {/* CJK warning */}
       {warn && (
-        <div className="border-t border-slate-100 px-4 py-2 text-xs font-medium text-[#c82423] dark:border-white/10 dark:text-rose-300">
+        <div role="alert" aria-live="assertive" className="border-t border-slate-100 px-4 py-2 text-xs font-medium text-[#c82423] dark:border-white/10 dark:text-rose-300">
           ⚠ {t.cjkWarn}
         </div>
       )}
 
       {/* Feedback */}
       {checked && (
-        <div className="border-t border-slate-100 px-4 py-3 dark:border-white/10">
+        <div role="status" aria-live="polite" className="border-t border-slate-100 px-4 py-3 dark:border-white/10">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-sm">
             <span className="font-semibold text-slate-700 dark:text-slate-200">
               {t.score}: <span className="tabular-nums">{correctCount}/{total}</span>

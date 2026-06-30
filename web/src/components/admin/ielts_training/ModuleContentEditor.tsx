@@ -181,7 +181,14 @@ function TableFillEditor({ block, lang, onChange }: { block: TFBlockEdit; lang: 
         if (i !== r) return row;
         const cells = (row.cells ?? []).slice();
         while (cells.length < cols.length) cells.push(null);
-        cells[c] = v.trim() ? { a: v } : null;
+        const existing = cells[c];
+        // Empty → N/A cell; otherwise an answer cell, but preserve a pre-given
+        // (read-only) cell's kind so editing it doesn't turn it gradable.
+        cells[c] = !v.trim()
+          ? null
+          : existing && existing.given != null && existing.a == null
+            ? { given: v }
+            : { a: v };
         return { ...row, cells };
       }),
     });
@@ -517,7 +524,9 @@ export function ModuleContentEditor({ modId }: { modId: string }) {
       confirmLabel: s.confirm,
       onConfirm: () => {
         mutate((ps) => ps.filter((_, idx) => idx !== i));
-        setSel((c) => Math.max(0, Math.min(c, pages.length - 2)));
+        // Keep the selection pointing at the same page: shift down when an
+        // earlier page is removed, otherwise clamp to the new last index.
+        setSel((c) => Math.max(0, i < c ? c - 1 : Math.min(c, pages.length - 2)));
       },
     });
   };

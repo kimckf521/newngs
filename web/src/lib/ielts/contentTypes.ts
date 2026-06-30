@@ -7,7 +7,7 @@
  * content editor, so they live here rather than inside either component.
  */
 
-export type Block =
+type BlockBody =
   | { t: 'p' | 'h2' | 'h3'; v: string }
   | { t: 'ul' | 'ol'; items: string[] }
   | { t: 'img'; v: string; size?: 'full' | 'medium' | 'small' }
@@ -18,7 +18,11 @@ export type Block =
   | { t: 'audio'; v: string; label?: string }
   | { t: 'link'; v: string; label?: string };
 
-export type RichPage = { page: number; blocks: Block[] };
+/** A content block. `hidden` keeps the block in the lesson (still editable) but
+ *  excludes it from the student-facing reader. */
+export type Block = BlockBody & { hidden?: boolean };
+
+export type RichPage = { page: number; title?: string; blocks: Block[] };
 export type RichData = { pageTypes: Record<string, string | null>; pages: RichPage[] };
 
 /** Page-type labels used by the pedagogy badge (in display order). */
@@ -61,12 +65,12 @@ export function emptyBlock(t: BlockType): Block {
 
 /** Renumber pages 1..N and rebuild the pageTypes map from a working list that
  *  carries the type alongside each page. Used by the editor on save. */
-export function normaliseRichData(pages: { type: string | null; blocks: Block[] }[]): RichData {
+export function normaliseRichData(pages: { type: string | null; title?: string; blocks: Block[] }[]): RichData {
   const pageTypes: Record<string, string | null> = {};
   const out: RichPage[] = pages.map((p, i) => {
     const num = i + 1;
     pageTypes[String(num)] = p.type && p.type !== 'None' ? p.type : null;
-    return { page: num, blocks: p.blocks };
+    return { page: num, ...(p.title && p.title.trim() ? { title: p.title.trim() } : {}), blocks: p.blocks };
   });
   return { pageTypes, pages: out };
 }

@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { Locale } from '@/i18n/types';
 import { Card, Icon, GradientButton, SoftButton, Bar } from '@/components/member/design-v1/parts';
 import { siteLinks } from '@/lib/siteLinks';
@@ -60,8 +60,11 @@ const navItemCls = (active?: boolean) =>
   }`;
 
 export function MyCollegeView({ locale }: { locale: Locale }) {
-  const t = C[locale];
-  const data = collegeData(locale);
+  const [lang, setLang] = useState<Locale>(locale);
+  const changeLang = (nl: Locale) => { setLang(nl); try { localStorage.setItem('ielts:lang', nl); } catch {} };
+  useEffect(() => { try { const s = localStorage.getItem('ielts:lang'); if (s === 'en' || s === 'zh') setLang(s as Locale); } catch {} }, []);
+  const t = C[lang];
+  const data = collegeData(lang);
   const college = data.colleges[0];
   const auth = data.authorizations.find((a) => a.collegeName === college.name);
   const granted = auth?.allowedCourses ?? [];
@@ -97,11 +100,11 @@ export function MyCollegeView({ locale }: { locale: Locale }) {
           <div className="space-y-1 border-t border-slate-100 pt-3">
             <Link href="/admin" className={navItemCls(false)}>
               <span className={navIconCls(false)}><Icon name="arrow" className="h-[18px] w-[18px] -scale-x-100" /></span>
-              {locale === 'en' ? 'Back to admin' : '返回后台'}
+              {lang === 'en' ? 'Back to admin' : '返回后台'}
             </Link>
             <button
               type="button"
-              onClick={() => void logout().then(() => { window.location.href = siteLinks[locale].login; })}
+              onClick={() => void logout().then(() => { window.location.href = siteLinks[lang].login; })}
               className={navItemCls(false)}
             >
               <span className={navIconCls(false)}><Icon name="logout" className="h-[18px] w-[18px]" /></span>
@@ -112,11 +115,20 @@ export function MyCollegeView({ locale }: { locale: Locale }) {
 
         <div className="min-w-0 flex-1">
           <header className="sticky top-0 z-20 flex items-center gap-3 border-b border-slate-200/70 bg-[var(--dv1-topbar)] px-5 py-3 backdrop-blur-xl sm:px-8">
-            <Link href={siteLinks[locale].home} className="flex items-center gap-2 lg:hidden">
+            <Link href={siteLinks[lang].home} className="flex items-center gap-2 lg:hidden">
               <Image src="/static/img/big_n.png" alt="NextGen Scholars" width={26} height={26} className="h-6 w-6 object-contain" />
             </Link>
             <p className="font-grotesk text-sm font-bold text-slate-900">{t.nav[section]}</p>
-            {auth && <span className={`ml-auto rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${STATUS_CLS[auth.status]}`}>{t.status[auth.status]}</span>}
+            <div className="ml-auto flex items-center gap-2">
+              {auth && <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${STATUS_CLS[auth.status]}`}>{t.status[auth.status]}</span>}
+              <div className="flex items-center rounded-lg border border-slate-200 p-0.5">
+                {(['en', 'zh'] as const).map((ll) => (
+                  <button key={ll} type="button" onClick={() => changeLang(ll)} className={`rounded-md px-2 py-1 text-xs font-bold transition ${lang === ll ? 'bg-ngs-gradient text-white' : 'text-slate-500 hover:text-slate-900'}`}>
+                    {ll === 'en' ? 'EN' : '中'}
+                  </button>
+                ))}
+              </div>
+            </div>
           </header>
 
           {/* Mobile nav */}
@@ -244,7 +256,7 @@ export function MyCollegeView({ locale }: { locale: Locale }) {
                     </Card>
                   ))}
                 </div>
-                <GradientButton className="mt-2">{locale === 'en' ? 'Contact NGS support' : '联系 NGS 支持'}</GradientButton>
+                <GradientButton className="mt-2">{lang === 'en' ? 'Contact NGS support' : '联系 NGS 支持'}</GradientButton>
               </div>
             )}
           </main>

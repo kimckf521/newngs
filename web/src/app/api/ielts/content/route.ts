@@ -35,6 +35,7 @@ function parseRichData(body: unknown): RichData | null {
     .filter((p): p is RichPage => Boolean(p) && Array.isArray((p as RichPage).blocks))
     .map((p, i) => ({
       page: typeof p.page === 'number' ? p.page : i + 1,
+      ...(typeof p.title === 'string' && p.title ? { title: p.title } : {}),
       blocks: (p.blocks as Block[]).filter((b) => Boolean(b) && typeof (b as Block).t === 'string'),
     }));
   const pageTypes: Record<string, string | null> =

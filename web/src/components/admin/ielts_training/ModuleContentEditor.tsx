@@ -16,10 +16,11 @@ import {
 import { MODULE_TITLES } from '@/lib/ielts/builtinContent';
 import { loadModuleContent, saveModuleContent, resetModuleContent, hasOverride, type SaveMode } from '@/lib/ielts/content';
 import { VersionHistoryPanel } from '@/components/admin/VersionHistoryPanel';
+import { PageCard } from './ModuleLessonViewer';
 
 type Lang = 'en' | 'zh';
 type Theme = 'light' | 'dark';
-type EditorPage = { type: string | null; blocks: Block[] };
+type EditorPage = { type: string | null; title?: string; blocks: Block[] };
 
 /* ── Labels ───────────────────────────────────────────────────────────────── */
 const BLOCK_LABELS: Record<BlockType, { en: string; zh: string }> = {
@@ -64,7 +65,8 @@ const STR = {
     unsaved: 'Unsaved changes', loading: 'Loading…', customised: 'Customised', original: 'Default content',
     sizeFull: 'Full width', sizeMedium: 'Medium', sizeSmall: 'Small', noPages: 'This module has no pages. Add one to begin.',
     text: 'Text', items: 'Items', emptyTitle: '(untitled page)', cancel: 'Cancel', confirm: 'Delete', versions: 'History',
-    dragToReorder: 'Drag to reorder',
+    dragToReorder: 'Drag to reorder', hide: 'Hide from students', show: 'Show to students', hidden: 'Hidden',
+    editMode: 'Edit', previewMode: 'Preview', renameHint: 'Double-click to rename', pageNamePh: 'Page name',
   },
   zh: {
     back: '返回课程', editModule: '编辑内容', module: '模块', save: '保存', saving: '保存中…',
@@ -82,7 +84,8 @@ const STR = {
     unsaved: '未保存的更改', loading: '加载中…', customised: '已自定义', original: '默认内容',
     sizeFull: '整宽', sizeMedium: '中等', sizeSmall: '小', noPages: '本模块暂无页面，请先添加。',
     text: '文本', items: '条目', emptyTitle: '（未命名页面）', cancel: '取消', confirm: '删除', versions: '历史版本',
-    dragToReorder: '拖动以重新排序',
+    dragToReorder: '拖动以重新排序', hide: '对学生隐藏', show: '对学生显示', hidden: '已隐藏',
+    editMode: '编辑', previewMode: '预览', renameHint: '双击重命名', pageNamePh: '页面名称',
   },
 } as const;
 
@@ -335,6 +338,8 @@ export function ModuleContentEditor({ modId }: { modId: string }) {
   const [showVersions, setShowVersions] = useState(false);
   const [dragIdx, setDragIdx] = useState<number | null>(null);
   const [overIdx, setOverIdx] = useState<number | null>(null);
+  const [preview, setPreview] = useState(false);
+  const [editingTitle, setEditingTitle] = useState<number | null>(null);
 
   const s = STR[lang];
   const title = (MODULE_TITLES[modId] ? MODULE_TITLES[modId][lang] : null) ?? `Module ${modId}`;
@@ -355,7 +360,7 @@ export function ModuleContentEditor({ modId }: { modId: string }) {
   useEffect(() => { if (mounted) try { localStorage.setItem('ielts:lang', lang); } catch {} }, [lang, mounted]);
 
   const loadInto = useCallback((data: RichData) => {
-    setPages(data.pages.map((p) => ({ type: data.pageTypes?.[String(p.page)] ?? null, blocks: p.blocks })));
+    setPages(data.pages.map((p) => ({ type: data.pageTypes?.[String(p.page)] ?? null, title: p.title, blocks: p.blocks })));
     setSel(0);
   }, []);
 
@@ -406,11 +411,13 @@ export function ModuleContentEditor({ modId }: { modId: string }) {
     setSel(j);
   };
   const setPageType = (t: string | null) => mutate((ps) => ps.map((pg, idx) => (idx === sel ? { ...pg, type: t } : pg)));
+  const setPageTitle = (i: number, title: string) => mutate((ps) => ps.map((pg, idx) => (idx === i ? { ...pg, title } : pg)));
 
   /* Block ops (within selected page) */
   const setBlock = (i: number, b: Block) => mutate((ps) => ps.map((pg, idx) => (idx === sel ? { ...pg, blocks: pg.blocks.map((bb, j) => (j === i ? b : bb)) } : pg)));
   const addBlock = (t: BlockType) => { mutate((ps) => ps.map((pg, idx) => (idx === sel ? { ...pg, blocks: [...pg.blocks, emptyBlock(t)] } : pg))); setAddOpen(false); };
   const delBlock = (i: number) => mutate((ps) => ps.map((pg, idx) => (idx === sel ? { ...pg, blocks: pg.blocks.filter((_, j) => j !== i) } : pg)));
+  const toggleHidden = (i: number) => mutate((ps) => ps.map((pg, idx) => (idx === sel ? { ...pg, blocks: pg.blocks.map((bb, j) => (j === i ? { ...bb, hidden: !bb.hidden } : bb)) } : pg)));
   const moveBlock = (i: number, dir: -1 | 1) => mutate((ps) => ps.map((pg, idx) => {
     if (idx !== sel) return pg;
     const j = i + dir;
@@ -554,10 +561,30 @@ export function ModuleContentEditor({ modId }: { modId: string }) {
                   {pages.map((p, i) => (
                     <li key={i}>
                       <div className={`group flex items-center gap-1 rounded-lg px-1 ${i === sel ? 'bg-slate-900 dark:bg-white/10' : 'hover:bg-slate-100 dark:hover:bg-white/5'}`}>
-                        <button type="button" onClick={() => setSel(i)} className="flex min-w-0 flex-1 items-center gap-2 py-1.5 text-left">
+                        <div
+                          role="button"
+                          tabIndex={0}
+                          onClick={() => setSel(i)}
+                          onDoubleClick={() => setEditingTitle(i)}
+                          onKeyDown={(e) => { if (e.key === 'Enter') setSel(i); }}
+                          className="flex min-w-0 flex-1 cursor-pointer items-center gap-2 py-1.5 text-left"
+                        >
                           <span className={`grid h-5 w-5 shrink-0 place-items-center rounded text-[10px] font-bold ${i === sel ? 'bg-white/20 text-white dark:bg-white/20' : 'bg-slate-200 text-slate-500 dark:bg-white/10 dark:text-slate-400'}`}>{i + 1}</span>
-                          <span className={`truncate text-xs ${i === sel ? 'font-semibold text-white' : 'text-slate-600 dark:text-slate-300'}`}>{pageTitle(p)}</span>
-                        </button>
+                          {editingTitle === i ? (
+                            <input
+                              autoFocus
+                              value={p.title ?? ''}
+                              placeholder={pageTitle(p)}
+                              onClick={(e) => e.stopPropagation()}
+                              onChange={(e) => setPageTitle(i, e.target.value)}
+                              onBlur={() => setEditingTitle(null)}
+                              onKeyDown={(e) => { e.stopPropagation(); if (e.key === 'Enter' || e.key === 'Escape') { e.preventDefault(); setEditingTitle(null); } }}
+                              className="min-w-0 flex-1 rounded border border-ngs-violet/60 bg-white px-1.5 py-0.5 text-xs text-slate-800 outline-none dark:bg-night-600 dark:text-slate-100"
+                            />
+                          ) : (
+                            <span title={s.renameHint} className={`truncate text-xs ${i === sel ? 'font-semibold text-white' : 'text-slate-600 dark:text-slate-300'}`}>{p.title?.trim() || pageTitle(p)}</span>
+                          )}
+                        </div>
                         <div className="flex shrink-0 items-center opacity-0 transition group-hover:opacity-100">
                           <button type="button" onClick={() => movePage(i, -1)} disabled={i === 0} title={s.up} className={miniBtn}><Icon name="arrow" className="h-3.5 w-3.5 -rotate-90" /></button>
                           <button type="button" onClick={() => movePage(i, 1)} disabled={i === pages.length - 1} title={s.down} className={miniBtn}><Icon name="arrow" className="h-3.5 w-3.5 rotate-90" /></button>
@@ -596,9 +623,28 @@ export function ModuleContentEditor({ modId }: { modId: string }) {
                         <option key={k} value={k}>{lang === 'zh' ? `${PAGE_TYPE_LABEL[k].zh} · ${k}` : k}</option>
                       ))}
                     </select>
-                    <span className="ml-auto text-xs text-slate-400">{s.pages} {sel + 1} / {pages.length}</span>
+                    <div className="ml-auto flex items-center gap-3">
+                      <div className="flex items-center rounded-lg border border-slate-200 p-0.5 dark:border-white/10">
+                        {([false, true] as const).map((pv) => (
+                          <button
+                            key={String(pv)}
+                            type="button"
+                            onClick={() => setPreview(pv)}
+                            className={`rounded-md px-2.5 py-1 text-xs font-semibold transition ${preview === pv ? 'bg-slate-900 text-white dark:bg-white dark:text-night' : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'}`}
+                          >
+                            {pv ? s.previewMode : s.editMode}
+                          </button>
+                        ))}
+                      </div>
+                      <span className="hidden text-xs text-slate-400 sm:inline">{s.pages} {sel + 1} / {pages.length}</span>
+                    </div>
                   </div>
 
+                  {/* Live student preview of the current page (hidden blocks excluded). */}
+                  {preview ? (
+                    <PageCard page={{ page: sel + 1, title: cur.title, blocks: cur.blocks }} pageType={cur.type} totalPages={pages.length} lang={lang} onZoom={() => {}} />
+                  ) : (
+                  <>
                   {/* Blocks */}
                   {cur.blocks.length === 0 ? (
                     <div className="rounded-2xl border border-dashed border-slate-300 p-10 text-center text-sm text-slate-400 dark:border-white/15">{s.emptyPage}</div>
@@ -610,7 +656,7 @@ export function ModuleContentEditor({ modId }: { modId: string }) {
                         onDragOver={(e) => { if (dragIdx !== null) { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; if (overIdx !== i) setOverIdx(i); } }}
                         onDrop={(e) => { e.preventDefault(); onBlockDrop(i); }}
                         className={`rounded-2xl border bg-white p-4 shadow-sm transition dark:bg-night-700 ${
-                          dragIdx === i ? 'opacity-40' : ''
+                          dragIdx === i ? 'opacity-40' : b.hidden ? 'opacity-60' : ''
                         } ${
                           overIdx === i && dragIdx !== null && dragIdx !== i
                             ? 'border-ngs-violet ring-2 ring-ngs-violet/40'
@@ -635,7 +681,23 @@ export function ModuleContentEditor({ modId }: { modId: string }) {
                             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="6" r="1.6" /><circle cx="9" cy="12" r="1.6" /><circle cx="9" cy="18" r="1.6" /><circle cx="15" cy="6" r="1.6" /><circle cx="15" cy="12" r="1.6" /><circle cx="15" cy="18" r="1.6" /></svg>
                           </span>
                           <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[11px] font-bold text-slate-500 dark:bg-white/10 dark:text-slate-300">{lang === 'zh' ? BLOCK_LABELS[b.t].zh : BLOCK_LABELS[b.t].en}</span>
+                          {b.hidden && (
+                            <span className="inline-flex items-center gap-1 rounded-md bg-amber-100 px-2 py-0.5 text-[11px] font-bold text-amber-700 dark:bg-amber-500/15 dark:text-amber-300">{s.hidden}</span>
+                          )}
                           <div className="ml-auto flex items-center">
+                            <button
+                              type="button"
+                              onClick={() => toggleHidden(i)}
+                              title={b.hidden ? s.show : s.hide}
+                              aria-label={b.hidden ? s.show : s.hide}
+                              className={`grid h-7 w-7 place-items-center rounded-lg transition ${b.hidden ? 'text-amber-500 hover:bg-amber-500/10' : 'text-slate-400 hover:bg-slate-100 dark:hover:bg-white/10'}`}
+                            >
+                              {b.hidden ? (
+                                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3l18 18" /><path d="M10.6 10.6a3 3 0 0 0 4.2 4.2" /><path d="M9.9 4.2A10.9 10.9 0 0 1 12 5c6.5 0 10 7 10 7a17.6 17.6 0 0 1-3.3 4.3" /><path d="M6.6 6.6A17.7 17.7 0 0 0 2 12s3.5 7 10 7a10.8 10.8 0 0 0 4-.8" /></svg>
+                              ) : (
+                                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" /><circle cx="12" cy="12" r="3" /></svg>
+                              )}
+                            </button>
                             <button type="button" onClick={() => moveBlock(i, -1)} disabled={i === 0} title={s.up} className={miniBtn}><Icon name="arrow" className="h-4 w-4 -rotate-90" /></button>
                             <button type="button" onClick={() => moveBlock(i, 1)} disabled={i === cur.blocks.length - 1} title={s.down} className={miniBtn}><Icon name="arrow" className="h-4 w-4 rotate-90" /></button>
                             <button type="button" onClick={() => delBlock(i)} title={s.del} className="grid h-7 w-7 place-items-center rounded-lg text-slate-400 transition hover:bg-rose-500/10 hover:text-rose-500">✕</button>
@@ -661,6 +723,8 @@ export function ModuleContentEditor({ modId }: { modId: string }) {
                       </div>
                     )}
                   </div>
+                  </>
+                  )}
                 </div>
               )}
             </main>

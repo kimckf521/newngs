@@ -310,12 +310,15 @@ function RichBlocks({
   large: boolean;
   onZoom: (src: string) => void;
 }) {
+  // Skip blocks the admin has hidden — they stay in the lesson but are excluded
+  // from the student view.
+  const visible = blocks.filter((b) => !b.hidden);
   // If the page has real audio attached, don't show the "audio unavailable"
   // notice after its "listen" instructions.
-  const hasAudio = blocks.some((b) => b.t === 'audio');
+  const hasAudio = visible.some((b) => b.t === 'audio');
   return (
     <div className={`space-y-3 text-slate-700 dark:text-slate-300 ${large ? 'text-[15px] leading-7' : 'text-sm leading-relaxed'}`}>
-      {blocks.map((block, i) => {
+      {visible.map((block, i) => {
         if (block.t === 'img') {
           const sizeClass = block.size === 'full' ? 'w-full' : block.size === 'small' ? 'max-w-xs' : 'max-w-2xl';
           return (
@@ -377,8 +380,8 @@ function RichBlocks({
   );
 }
 
-/* ── Page card (header badge + content) ───────────────────────────────────── */
-function PageCard({
+/* ── Page card (header badge + content) — exported for the editor's live preview. */
+export function PageCard({
   page,
   pageType,
   totalPages,
@@ -587,6 +590,7 @@ export function ModuleLessonViewer({ modId }: { modId: string }) {
   const pageTitles = useMemo(
     () =>
       pages.map((p) => {
+        if (p.title && p.title.trim()) return p.title.trim();
         const h = p.blocks.find((b) => b.t === 'h2') ?? p.blocks.find((b) => b.t === 'h3');
         return h && 'v' in h ? h.v : null;
       }),

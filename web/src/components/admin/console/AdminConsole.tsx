@@ -45,13 +45,23 @@ const navIconCls = (active?: boolean) =>
   }`;
 
 export function AdminConsole({ locale }: { locale: Locale }) {
-  const t = adminConsoleContent[locale];
+  // Language is switchable in-console (EN / 中文) and shared across the whole
+  // admin + IELTS flow via one localStorage key.
+  const [lang, setLang] = useState<Locale>(locale);
+  const changeLang = (nl: Locale) => { setLang(nl); try { localStorage.setItem('ielts:lang', nl); } catch {} };
+  const t = adminConsoleContent[lang];
   const [section, setSection] = useState<AdminSectionKey>('dashboard');
   const [dark, setDark] = useState(true);
   const [profile, setProfile] = useState({ name: 'Admin', email: '' });
 
   useEffect(() => {
     document.documentElement.classList.remove('v1-light');
+    try {
+      const sLang = localStorage.getItem('ielts:lang');
+      if (sLang === 'en' || sLang === 'zh') setLang(sLang as Locale);
+    } catch {
+      /* ignore */
+    }
     // Open a specific tab when arrived at e.g. /admin?section=courses (used by the
     // course editor's back/save navigation).
     try {
@@ -88,7 +98,7 @@ export function AdminConsole({ locale }: { locale: Locale }) {
       <div className="mx-auto flex max-w-[1440px]">
         {/* ── Sidebar ─────────────────────────────────────────── */}
         <aside className="sticky top-0 hidden h-screen w-[260px] shrink-0 flex-col border-r border-slate-200/70 bg-white px-4 py-5 lg:flex">
-          <Link href={siteLinks[locale].home} className="flex items-center gap-2.5 px-2">
+          <Link href={siteLinks[lang].home} className="flex items-center gap-2.5 px-2">
             <Image src="/static/img/big_n.png" alt="NextGen Scholars" width={30} height={30} className="h-7 w-7 object-contain" />
             <span className="font-grotesk text-[15px] font-bold tracking-tight text-slate-900">
               NextGen<span className="font-medium text-slate-400"> Scholars</span>
@@ -118,7 +128,7 @@ export function AdminConsole({ locale }: { locale: Locale }) {
             </div>
             <button
               type="button"
-              onClick={() => void logout().then(() => { window.location.href = siteLinks[locale].login; })}
+              onClick={() => void logout().then(() => { window.location.href = siteLinks[lang].login; })}
               aria-label="Sign out"
               className="grid h-8 w-8 place-items-center rounded-lg text-slate-400 transition-colors hover:bg-white hover:text-slate-700"
             >
@@ -130,7 +140,7 @@ export function AdminConsole({ locale }: { locale: Locale }) {
         {/* ── Main column ─────────────────────────────────────── */}
         <div className="min-w-0 flex-1">
           <header className="sticky top-0 z-20 flex items-center gap-3 border-b border-slate-200/70 bg-[var(--dv1-topbar)] px-5 py-3 backdrop-blur-xl sm:px-8 lg:px-10">
-            <Link href={siteLinks[locale].home} className="flex items-center gap-2 lg:hidden">
+            <Link href={siteLinks[lang].home} className="flex items-center gap-2 lg:hidden">
               <Image src="/static/img/big_n.png" alt="NextGen Scholars" width={26} height={26} className="h-6 w-6 object-contain" />
             </Link>
             <label className="relative hidden max-w-md flex-1 sm:block">
@@ -144,6 +154,21 @@ export function AdminConsole({ locale }: { locale: Locale }) {
             </label>
             <div className="ml-auto flex items-center gap-2">
               <span className="hidden rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-semibold text-slate-500 sm:inline-block">{t.brandTag}</span>
+              {/* Language toggle (EN / 中文) */}
+              <div className="flex items-center rounded-xl border border-slate-200 bg-white p-0.5">
+                {(['en', 'zh'] as const).map((ll) => (
+                  <button
+                    key={ll}
+                    type="button"
+                    onClick={() => changeLang(ll)}
+                    className={`rounded-lg px-2.5 py-1 text-xs font-bold transition ${
+                      lang === ll ? 'bg-ngs-gradient text-white' : 'text-slate-500 hover:text-slate-800'
+                    }`}
+                  >
+                    {ll === 'en' ? 'EN' : '中'}
+                  </button>
+                ))}
+              </div>
               <button type="button" onClick={() => setDark((v) => !v)} aria-label="Toggle theme" className="grid h-9 w-9 place-items-center rounded-xl border border-slate-200 bg-white text-slate-500 transition-colors hover:text-slate-800">
                 <Icon name={dark ? 'sun' : 'moon'} className="h-[18px] w-[18px]" />
               </button>
@@ -172,11 +197,11 @@ export function AdminConsole({ locale }: { locale: Locale }) {
           </div>
 
           <main className="px-5 py-7 sm:px-8 lg:px-10">
-            {section === 'dashboard' && <DashboardSection locale={locale} name={profile.name} onNavigate={setSection} />}
-            {section === 'courses' && <CoursesSection locale={locale} />}
-            {section === 'questionBank' && <QuestionBankSection locale={locale} />}
-            {section === 'members' && <MembersSection locale={locale} />}
-            {COLLEGE_KEYS.includes(section) && <CollegeSection locale={locale} section={section as CollegeSectionKey} />}
+            {section === 'dashboard' && <DashboardSection locale={lang} name={profile.name} onNavigate={setSection} />}
+            {section === 'courses' && <CoursesSection locale={lang} />}
+            {section === 'questionBank' && <QuestionBankSection locale={lang} />}
+            {section === 'members' && <MembersSection locale={lang} />}
+            {COLLEGE_KEYS.includes(section) && <CollegeSection locale={lang} section={section as CollegeSectionKey} />}
           </main>
         </div>
       </div>

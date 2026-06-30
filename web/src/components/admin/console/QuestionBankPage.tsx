@@ -33,9 +33,15 @@ const SKILLS = {
 } as const;
 
 export function QuestionBankPage({ id, locale }: { id: string; locale: Locale }) {
-  const l = L[locale];
+  const [lang, setLang] = useState<Locale>(locale);
+  const changeLang = (nl: Locale) => { setLang(nl); try { localStorage.setItem('ielts:lang', nl); } catch {} };
+  const l = L[lang];
   const [bank, setBank] = useState<BankSummary | null>(null);
   const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    try { const s = localStorage.getItem('ielts:lang'); if (s === 'en' || s === 'zh') setLang(s as Locale); } catch {}
+  }, []);
 
   useEffect(() => {
     let active = true;
@@ -72,13 +78,20 @@ export function QuestionBankPage({ id, locale }: { id: string; locale: Locale })
           <span className={`ml-1 rounded-full px-2 py-0.5 text-[11px] font-semibold ${bank.published ? 'bg-emerald-500/10 text-emerald-600' : 'bg-slate-100 text-slate-500'}`}>
             {bank.published ? l.published : l.draft}
           </span>
+          <div className="ml-auto flex items-center rounded-lg border border-slate-200 p-0.5">
+            {(['en', 'zh'] as const).map((ll) => (
+              <button key={ll} type="button" onClick={() => changeLang(ll)} className={`rounded-md px-2 py-1 text-xs font-bold transition ${lang === ll ? 'bg-ngs-gradient text-white' : 'text-slate-500 hover:text-slate-900'}`}>
+                {ll === 'en' ? 'EN' : '中'}
+              </button>
+            ))}
+          </div>
         </div>
       </header>
 
       <main className="mx-auto grid max-w-[1120px] gap-6 px-5 py-7 sm:px-8 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
-          {SKILLS[locale].map((s) => (
-            <QuestionBankPanel key={s.key} courseId={id} locale={locale} title={s.label} skill={s.key} />
+          {SKILLS[lang].map((s) => (
+            <QuestionBankPanel key={s.key} courseId={id} locale={lang} title={s.label} skill={s.key} />
           ))}
         </div>
         <div className="space-y-6">

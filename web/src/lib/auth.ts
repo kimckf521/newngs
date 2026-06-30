@@ -6,7 +6,7 @@
  * keeps working in local/preview builds. Components depend only on this file —
  * switching to real auth is purely an env + console-config change.
  */
-import { getCloudBaseAuth, isCloudBaseConfigured, type CloudBaseUser } from './cloudbase';
+import { getCloudBaseAuth, isCloudBaseConfigured, type CloudBaseAuth, type CloudBaseUser } from './cloudbase';
 import { getDemoUser, setDemoUser, clearDemoUser } from './demoAuth';
 import { getUserRole, setUserRole } from './userProfile';
 import { DEFAULT_ROLE, normalizeRole, type Role } from './roles';
@@ -23,6 +23,62 @@ const PROVIDER_ID: Record<Provider, string> = { WeChat: 'wx_open' };
 /** True when real CloudBase auth is active (vs. the demo fallback). */
 export function isRealAuth(): boolean {
   return isCloudBaseConfigured();
+}
+
+// ── "Remember me" session policy ───────────────────────────────────────────
+// CloudBase persists the login state in localStorage (persistence 'local'), so
+// it survives a browser restart — and the js-sdk has no 'session'
+// (sessionStorage) mode. To honour a "remember me" opt-OUT we emulate
+// session-scoped persistence on top of 'local': each login records the choice
+// (REMEMBER_KEY) and tags the current browser session (SESSION_MARKER, in
+// sessionStorage). On a NEW browser session (the marker is gone) a login that
+// opted out is signed out; a plain reload keeps the marker, so it never logs
+// the user out mid-session. A "remembered" session then lasts until the
+// CloudBase refresh token expires (console → 身份认证 → Token 管理; default 30天).
+const REMEMBER_KEY = 'ngs_auth_remember';
+const SESSION_MARKER = 'ngs_auth_session';
+
+/** Record the "remember me" choice and mark this browser session active.
+ *  Browser-only, best-effort (storage may be blocked in private mode). */
+export function setSessionRemember(remember: boolean): void {
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.setItem(REMEMBER_KEY, remember ? '1' : '0');
+    window.sessionStorage.setItem(SESSION_MARKER, '1');
+  } catch {
+    /* storage unavailable — best-effort */
+  }
+}
+
+/** Drop the remembered-choice flag (on logout) so it can't outlive the session. */
+function clearSessionRemember(): void {
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.removeItem(REMEMBER_KEY);
+  } catch {
+    /* best-effort */
+  }
+}
+
+let sessionPolicyPromise: Promise<void> | null = null;
+/** On the first session read of a browser session, sign out a not-remembered
+ *  login. Runs once per page load (concurrent callers share one promise). */
+function enforceSessionPolicy(auth: CloudBaseAuth): Promise<void> {
+  if (typeof window === 'undefined') return Promise.resolve();
+  if (!sessionPolicyPromise) {
+    sessionPolicyPromise = (async () => {
+      try {
+        if (window.sessionStorage.getItem(SESSION_MARKER)) return; // same session (a reload) — keep
+        if (window.localStorage.getItem(REMEMBER_KEY) === '0') {
+          await auth.signOut().catch(() => {});
+        }
+        window.sessionStorage.setItem(SESSION_MARKER, '1');
+      } catch {
+        /* best-effort */
+      }
+    })();
+  }
+  return sessionPolicyPromise;
 }
 
 function nameFromEmail(email: string): string {
@@ -66,7 +122,18 @@ function readError(res: unknown): string | null {
   return e.message || e.error_description || e.error || 'auth_error';
 }
 
-export async function login({ email, password }: { email: string; password: string }): Promise<AuthUser> {
+export async function login({
+  email,
+  password,
+  remember = true,
+}: {
+  email: string;
+  password: string;
+  /** "Remember me": persist the session across browser restarts (default) vs.
+   *  end it when the browser is fully closed. See setSessionRemember. */
+  remember?: boolean;
+}): Promise<AuthUser> {
+  setSessionRemember(remember);
   const auth = await getCloudBaseAuth();
   if (!auth) {
     const user: AuthUser = { name: nameFromEmail(email), email, role: normalizeRole(getDemoUser()?.role) };
@@ -124,6 +191,7 @@ export async function requestEmailSignup({
     verify: async (code: string) => {
       const vErr = readError(await verifyOtp({ token: code }));
       if (vErr) throw new Error(vErr);
+      setSessionRemember(true); // a completed sign-up is a remembered session
       const state = await auth.getLoginState();
       const user = toAuthUser(state?.user, email) ?? { name: name || nameFromEmail(email), email, role };
       // Persist the chosen role to the `users` collection (best-effort).
@@ -149,6 +217,7 @@ export async function loginWithProvider(provider: Provider): Promise<AuthUser> {
   }
   const providerId = PROVIDER_ID[provider];
   if (!providerId) throw new Error('social_login_not_configured');
+  setSessionRemember(true); // WeChat sign-in is a remembered session (persists across the redirect)
 
   // Callback URL must live under the WeChat 授权回调域 AND the CloudBase Web
   // 安全域名. Keep the locale so the callback lands on /member vs /member_en.
@@ -217,6 +286,7 @@ export async function requestSmsCode(phone: string): Promise<SmsSession> {
     verify: async (code: string) => {
       const vErr = readError(await verifyOtp({ token: code }));
       if (vErr) throw new Error(vErr);
+      setSessionRemember(true); // a completed SMS login is a remembered session
       const state = await auth.getLoginState();
       const user = toAuthUser(state?.user, '');
       return (await syncRole(user)) ?? { name: 'Member', email: '', role: DEFAULT_ROLE };
@@ -314,6 +384,7 @@ export async function completeOAuthLogin(): Promise<AuthUser | null> {
     }
 
     if (!user) user = await getCurrentUser();
+    if (user) setSessionRemember(true); // a completed WeChat sign-in is remembered
     // First WeChat sign-in has no app_users row yet — create it (as a student;
     // an existing role is preserved server-side) and return the real role.
     return user?.uid ? await syncRole(user) : user;
@@ -355,6 +426,7 @@ export async function sendPasswordReset(email: string): Promise<PasswordResetSes
     complete: async (code: string, newPassword: string) => {
       const vErr = readError(await updateUser({ nonce: code, password: newPassword }));
       if (vErr) throw new Error(vErr);
+      setSessionRemember(true); // reset + sign-in via password reset is remembered
       // updateUser signs the user in on success; read the resulting session.
       const state = await auth.getLoginState();
       return toAuthUser(state?.user, email);
@@ -373,6 +445,7 @@ export async function getCurrentUser(): Promise<AuthUser | null> {
     return d ? { name: d.name, email: d.email, role: normalizeRole(d.role) } : null;
   }
   try {
+    await enforceSessionPolicy(auth);
     const state = await auth.getLoginState();
     const user = await withRole(toAuthUser(state?.user));
     // Ensure a row exists for an already-signed-in user (created as a student;
@@ -391,6 +464,7 @@ export async function getCurrentUser(): Promise<AuthUser | null> {
 export async function logout(): Promise<void> {
   const auth = await getCloudBaseAuth();
   clearDemoUser(); // always clear the demo store
+  clearSessionRemember();
   if (auth) {
     try {
       await auth.signOut();

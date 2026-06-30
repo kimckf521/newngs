@@ -42,7 +42,7 @@ export const footer: Localized<FooterStrings> = {
     termsLabel: '服务协议',
     privacyHref: siteLinks.zh.privacy,
     termsHref: siteLinks.zh.terms,
-    copyright: '深圳市千瞳空间文化艺术有限公司版权所有 © 2025',
+    copyright: '深圳市千瞳空间文化艺术有限公司版权所有 © 2026',
   },
   en: {
     links: [
@@ -57,6 +57,6 @@ export const footer: Localized<FooterStrings> = {
     termsLabel: 'Terms of Service',
     privacyHref: siteLinks.en.privacy,
     termsHref: siteLinks.en.terms,
-    copyright: '深圳市千瞳空间文化艺术有限公司版权所有 © 2025',
+    copyright: '深圳市千瞳空间文化艺术有限公司版权所有 © 2026',
   },
 };

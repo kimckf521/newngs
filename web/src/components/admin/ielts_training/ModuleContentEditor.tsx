@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { Icon } from '@/components/member/design-v1/parts';
 import { getCloudBaseApp } from '@/lib/cloudbase';
@@ -340,6 +340,8 @@ export function ModuleContentEditor({ modId }: { modId: string }) {
   const [overIdx, setOverIdx] = useState<number | null>(null);
   const [preview, setPreview] = useState(false);
   const [editingTitle, setEditingTitle] = useState<number | null>(null);
+  const [titleDraft, setTitleDraft] = useState('');
+  const draftStartRef = useRef('');
 
   const s = STR[lang];
   const title = (MODULE_TITLES[modId] ? MODULE_TITLES[modId][lang] : null) ?? `Module ${modId}`;
@@ -412,6 +414,21 @@ export function ModuleContentEditor({ modId }: { modId: string }) {
   };
   const setPageType = (t: string | null) => mutate((ps) => ps.map((pg, idx) => (idx === sel ? { ...pg, type: t } : pg)));
   const setPageTitle = (i: number, title: string) => mutate((ps) => ps.map((pg, idx) => (idx === i ? { ...pg, title } : pg)));
+  /* Inline page rename (double-click). Pre-fills the current displayed name so
+   *  it's obviously editable; only writes (and marks dirty) if actually changed. */
+  const startRename = (i: number) => {
+    const pg = pages[i];
+    const h = pg?.blocks.find((b) => b.t === 'h2') ?? pg?.blocks.find((b) => b.t === 'h3');
+    const current = (pg?.title && pg.title.trim()) || (h && 'v' in h ? h.v : '') || '';
+    draftStartRef.current = current;
+    setTitleDraft(current);
+    setEditingTitle(i);
+  };
+  const commitRename = () => {
+    if (editingTitle == null) return;
+    if (titleDraft !== draftStartRef.current) setPageTitle(editingTitle, titleDraft.trim());
+    setEditingTitle(null);
+  };
 
   /* Block ops (within selected page) */
   const setBlock = (i: number, b: Block) => mutate((ps) => ps.map((pg, idx) => (idx === sel ? { ...pg, blocks: pg.blocks.map((bb, j) => (j === i ? b : bb)) } : pg)));
@@ -565,20 +582,25 @@ export function ModuleContentEditor({ modId }: { modId: string }) {
                           role="button"
                           tabIndex={0}
                           onClick={() => setSel(i)}
-                          onDoubleClick={() => setEditingTitle(i)}
-                          onKeyDown={(e) => { if (e.key === 'Enter') setSel(i); }}
+                          onDoubleClick={() => startRename(i)}
+                          onKeyDown={(e) => { if (e.key === 'Enter') setSel(i); if (e.key === 'F2') startRename(i); }}
                           className="flex min-w-0 flex-1 cursor-pointer items-center gap-2 py-1.5 text-left"
                         >
                           <span className={`grid h-5 w-5 shrink-0 place-items-center rounded text-[10px] font-bold ${i === sel ? 'bg-white/20 text-white dark:bg-white/20' : 'bg-slate-200 text-slate-500 dark:bg-white/10 dark:text-slate-400'}`}>{i + 1}</span>
                           {editingTitle === i ? (
                             <input
                               autoFocus
-                              value={p.title ?? ''}
+                              value={titleDraft}
                               placeholder={pageTitle(p)}
                               onClick={(e) => e.stopPropagation()}
-                              onChange={(e) => setPageTitle(i, e.target.value)}
-                              onBlur={() => setEditingTitle(null)}
-                              onKeyDown={(e) => { e.stopPropagation(); if (e.key === 'Enter' || e.key === 'Escape') { e.preventDefault(); setEditingTitle(null); } }}
+                              onFocus={(e) => e.currentTarget.select()}
+                              onChange={(e) => setTitleDraft(e.target.value)}
+                              onBlur={commitRename}
+                              onKeyDown={(e) => {
+                                e.stopPropagation();
+                                if (e.key === 'Enter') { e.preventDefault(); commitRename(); }
+                                else if (e.key === 'Escape') { e.preventDefault(); setEditingTitle(null); }
+                              }}
                               className="min-w-0 flex-1 rounded border border-ngs-violet/60 bg-white px-1.5 py-0.5 text-xs text-slate-800 outline-none dark:bg-night-600 dark:text-slate-100"
                             />
                           ) : (

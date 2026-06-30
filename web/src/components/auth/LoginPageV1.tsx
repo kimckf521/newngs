@@ -64,11 +64,11 @@ export function LoginPageV1({ locale }: { locale: Locale }) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'err'>('idle');
   const [error, setError] = useState('');
 
-  async function signIn(email: string, password: string) {
+  async function signIn(email: string, password: string, remember: boolean) {
     setStatus('sending');
     setError('');
     try {
-      const user = await login({ email, password });
+      const user = await login({ email, password, remember });
       router.push(postLoginDest(user, links.member));
     } catch {
       setError(t.error);
@@ -93,7 +93,8 @@ export function LoginPageV1({ locale }: { locale: Locale }) {
     const data = new FormData(e.currentTarget);
     const email = String(data.get('email') || '');
     const password = String(data.get('password') || '');
-    void signIn(email, password);
+    const remember = data.get('remember') === 'on';
+    void signIn(email, password, remember);
   }
 
   return (

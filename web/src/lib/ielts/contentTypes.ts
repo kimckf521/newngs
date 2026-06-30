@@ -13,6 +13,8 @@ export type Block =
   | { t: 'img'; v: string; size?: 'full' | 'medium' | 'small' }
   | { t: 'vid'; v: string }
   | { t: 'yt'; v: string; label?: string }
+  | { t: 'bili'; v: string; label?: string }
+  | { t: 'video'; v: string }
   | { t: 'audio'; v: string; label?: string }
   | { t: 'link'; v: string; label?: string };
 
@@ -31,7 +33,7 @@ export const PAGE_TYPE_KEYS = [
 ] as const;
 
 /** Block kinds the editor can create. */
-export const BLOCK_TYPE_KEYS = ['p', 'h2', 'h3', 'ul', 'ol', 'img', 'vid', 'yt', 'audio', 'link'] as const;
+export const BLOCK_TYPE_KEYS = ['p', 'h2', 'h3', 'ul', 'ol', 'img', 'vid', 'yt', 'bili', 'video', 'audio', 'link'] as const;
 export type BlockType = (typeof BLOCK_TYPE_KEYS)[number];
 
 /** A fresh, empty block of the given type. */
@@ -45,6 +47,8 @@ export function emptyBlock(t: BlockType): Block {
     case 'vid':
       return { t, v: '' };
     case 'yt':
+      return { t, v: '', label: '' };
+    case 'bili':
       return { t, v: '', label: '' };
     case 'audio':
       return { t, v: '', label: '' };

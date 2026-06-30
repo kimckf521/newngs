@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { Icon } from '@/components/member/design-v1/parts';
+import { getCloudBaseApp } from '@/lib/cloudbase';
 import {
   type Block,
   type BlockType,
@@ -30,6 +31,8 @@ const BLOCK_LABELS: Record<BlockType, { en: string; zh: string }> = {
   img: { en: 'Image', zh: '图片' },
   vid: { en: 'Vimeo video', zh: 'Vimeo 视频' },
   yt: { en: 'YouTube video', zh: 'YouTube 视频' },
+  bili: { en: 'Bilibili video', zh: 'Bilibili 视频' },
+  video: { en: 'Video (upload)', zh: '上传视频' },
   audio: { en: 'Audio', zh: '音频' },
   link: { en: 'Link', zh: '链接' },
 };
@@ -55,9 +58,13 @@ const STR = {
     addItem: 'Add item', removeItem: 'Remove', label: 'Label (optional)', vimeoId: 'Vimeo video ID (e.g. 387654970)',
     ytId: 'YouTube video ID (e.g. j25CFx-4g0I)', imgUrl: 'Image URL', linkUrl: 'Link URL', size: 'Size',
     audioUrl: 'Audio file URL (.mp3 / .m4a / .ogg)',
+    biliUrl: 'Bilibili video URL or BV id (e.g. BV1xx411c7mD)',
+    videoUrl: 'Video URL (.mp4 / .webm) — or upload a file below', chooseVideo: 'Choose video file',
+    uploading: 'Uploading…', uploaded: '✓ Uploaded', uploadFailed: 'Upload failed — paste a URL instead.',
     unsaved: 'Unsaved changes', loading: 'Loading…', customised: 'Customised', original: 'Default content',
     sizeFull: 'Full width', sizeMedium: 'Medium', sizeSmall: 'Small', noPages: 'This module has no pages. Add one to begin.',
     text: 'Text', items: 'Items', emptyTitle: '(untitled page)', cancel: 'Cancel', confirm: 'Delete', versions: 'History',
+    dragToReorder: 'Drag to reorder',
   },
   zh: {
     back: '返回课程', editModule: '编辑内容', module: '模块', save: '保存', saving: '保存中…',
@@ -69,9 +76,13 @@ const STR = {
     addItem: '添加条目', removeItem: '删除', label: '标签（可选）', vimeoId: 'Vimeo 视频 ID（如 387654970）',
     ytId: 'YouTube 视频 ID（如 j25CFx-4g0I）', imgUrl: '图片 URL', linkUrl: '链接 URL', size: '尺寸',
     audioUrl: '音频文件 URL（.mp3 / .m4a / .ogg）',
+    biliUrl: 'Bilibili 视频链接或 BV 号（如 BV1xx411c7mD）',
+    videoUrl: '视频 URL（.mp4 / .webm）——或在下方上传文件', chooseVideo: '选择视频文件',
+    uploading: '上传中…', uploaded: '✓ 已上传', uploadFailed: '上传失败——请改为粘贴 URL。',
     unsaved: '未保存的更改', loading: '加载中…', customised: '已自定义', original: '默认内容',
     sizeFull: '整宽', sizeMedium: '中等', sizeSmall: '小', noPages: '本模块暂无页面，请先添加。',
     text: '文本', items: '条目', emptyTitle: '（未命名页面）', cancel: '取消', confirm: '删除', versions: '历史版本',
+    dragToReorder: '拖动以重新排序',
   },
 } as const;
 
@@ -79,6 +90,59 @@ const inputCls =
   'w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-ngs-violet/60 dark:border-white/10 dark:bg-night-600 dark:text-slate-100 dark:placeholder:text-slate-500';
 const miniBtn =
   'grid h-7 w-7 place-items-center rounded-lg text-slate-400 transition hover:bg-slate-100 disabled:opacity-30 dark:hover:bg-white/10';
+
+/* ── Direct video upload (browser → CloudBase storage, like ImageUploadField) ─ */
+function VideoUploadField({ value, onChange, s }: { value: string; onChange: (v: string) => void; s: (typeof STR)[Lang] }) {
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState('');
+
+  async function handleFile(file: File) {
+    setBusy(true);
+    setErr('');
+    try {
+      const app = await getCloudBaseApp();
+      if (!app) {
+        // Demo / no CloudBase configured → ephemeral local preview.
+        onChange(URL.createObjectURL(file));
+        return;
+      }
+      const safe = file.name.replace(/[^\w.\-]/g, '_');
+      const cloudPath = `ielts/videos/${Date.now()}-${safe}`;
+      const up = await app.uploadFile({ cloudPath, filePath: file });
+      if (!up?.fileID) throw new Error('no_file_id');
+      onChange(up.fileID); // permanent cloud:// handle; viewer signs it at render
+    } catch (e) {
+      // Surface the real reason (e.g. not signed in / storage permission) so a
+      // failed upload on the live site is diagnosable instead of silent.
+      console.error('[ielts] video upload failed', e);
+      const msg = e instanceof Error && e.message ? e.message : String(e);
+      setErr(`${s.uploadFailed}${msg ? ` (${msg})` : ''}`);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  const isCloud = value.startsWith('cloud://');
+  return (
+    <div className="space-y-2">
+      <input value={value} onChange={(e) => onChange(e.target.value)} placeholder={s.videoUrl} className={inputCls} />
+      <input
+        type="file"
+        accept="video/*"
+        disabled={busy}
+        onChange={(e) => { const f = e.currentTarget.files?.[0]; if (f) void handleFile(f); }}
+        className="block w-full text-xs text-slate-500 file:mr-3 file:rounded-lg file:border-0 file:bg-slate-100 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-slate-700 dark:text-slate-400 dark:file:bg-white/10 dark:file:text-slate-200"
+      />
+      {busy && <p className="text-xs text-slate-400">{s.uploading}</p>}
+      {err && <p className="text-xs text-rose-500">{err}</p>}
+      {isCloud && !busy && <p className="text-xs font-medium text-emerald-500">{s.uploaded}</p>}
+      {value && !isCloud && (
+        // eslint-disable-next-line jsx-a11y/media-has-caption
+        <video controls src={value} className="mt-1 max-h-44 w-full rounded-lg bg-black" />
+      )}
+    </div>
+  );
+}
 
 /* ── Per-block editor ─────────────────────────────────────────────────────── */
 function BlockEditor({ block, lang, onChange }: { block: Block; lang: Lang; onChange: (b: Block) => void }) {
@@ -159,11 +223,23 @@ function BlockEditor({ block, lang, onChange }: { block: Block; lang: Lang; onCh
       </div>
     );
   }
+  if (block.t === 'bili') {
+    return (
+      <div className="space-y-2">
+        <input value={block.v} onChange={(e) => onChange({ ...block, v: e.target.value })} placeholder={s.biliUrl} className={inputCls} />
+        <input value={block.label || ''} onChange={(e) => onChange({ ...block, label: e.target.value })} placeholder={s.label} className={inputCls} />
+      </div>
+    );
+  }
+  if (block.t === 'video') {
+    return <VideoUploadField value={block.v} onChange={(v) => onChange({ ...block, v })} s={s} />;
+  }
   if (block.t === 'audio') {
     return (
       <div className="space-y-2">
         <input value={block.v} onChange={(e) => onChange({ ...block, v: e.target.value })} placeholder={s.audioUrl} className={inputCls} />
         <input value={block.label || ''} onChange={(e) => onChange({ ...block, label: e.target.value })} placeholder={s.label} className={inputCls} />
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         {block.v && <audio controls src={block.v} className="mt-1 w-full" />}
       </div>
     );
@@ -257,6 +333,8 @@ export function ModuleContentEditor({ modId }: { modId: string }) {
   const [addOpen, setAddOpen] = useState(false);
   const [dialog, setDialog] = useState<null | { title: string; message?: string; confirmLabel: string; onConfirm: () => void }>(null);
   const [showVersions, setShowVersions] = useState(false);
+  const [dragIdx, setDragIdx] = useState<number | null>(null);
+  const [overIdx, setOverIdx] = useState<number | null>(null);
 
   const s = STR[lang];
   const title = (MODULE_TITLES[modId] ? MODULE_TITLES[modId][lang] : null) ?? `Module ${modId}`;
@@ -340,6 +418,22 @@ export function ModuleContentEditor({ modId }: { modId: string }) {
     const c = pg.blocks.slice(); [c[i], c[j]] = [c[j], c[i]];
     return { ...pg, blocks: c };
   }));
+  /* Drag-and-drop reorder: move block `from` → `to` within the current page. */
+  const moveBlockTo = (from: number, to: number) => {
+    if (from === to) return;
+    mutate((ps) => ps.map((pg, idx) => {
+      if (idx !== sel) return pg;
+      const arr = pg.blocks.slice();
+      const [item] = arr.splice(from, 1);
+      arr.splice(to, 0, item);
+      return { ...pg, blocks: arr };
+    }));
+  };
+  const onBlockDrop = (to: number) => {
+    if (dragIdx !== null && dragIdx !== to) moveBlockTo(dragIdx, to);
+    setDragIdx(null);
+    setOverIdx(null);
+  };
 
   async function onSave() {
     setSaving(true);
@@ -510,8 +604,36 @@ export function ModuleContentEditor({ modId }: { modId: string }) {
                     <div className="rounded-2xl border border-dashed border-slate-300 p-10 text-center text-sm text-slate-400 dark:border-white/15">{s.emptyPage}</div>
                   ) : (
                     cur.blocks.map((b, i) => (
-                      <div key={i} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-night-700">
+                      <div
+                        key={i}
+                        data-block-card
+                        onDragOver={(e) => { if (dragIdx !== null) { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; if (overIdx !== i) setOverIdx(i); } }}
+                        onDrop={(e) => { e.preventDefault(); onBlockDrop(i); }}
+                        className={`rounded-2xl border bg-white p-4 shadow-sm transition dark:bg-night-700 ${
+                          dragIdx === i ? 'opacity-40' : ''
+                        } ${
+                          overIdx === i && dragIdx !== null && dragIdx !== i
+                            ? 'border-ngs-violet ring-2 ring-ngs-violet/40'
+                            : 'border-slate-200 dark:border-white/10'
+                        }`}
+                      >
                         <div className="mb-2.5 flex items-center gap-2">
+                          <span
+                            draggable
+                            onDragStart={(e) => {
+                              setDragIdx(i);
+                              e.dataTransfer.effectAllowed = 'move';
+                              e.dataTransfer.setData('text/plain', String(i));
+                              const card = (e.currentTarget as HTMLElement).closest('[data-block-card]');
+                              if (card) e.dataTransfer.setDragImage(card as Element, 12, 12);
+                            }}
+                            onDragEnd={() => { setDragIdx(null); setOverIdx(null); }}
+                            title={s.dragToReorder}
+                            aria-label={s.dragToReorder}
+                            className="grid h-7 w-5 shrink-0 cursor-grab place-items-center rounded text-slate-300 transition hover:text-slate-500 active:cursor-grabbing dark:text-slate-500 dark:hover:text-slate-300"
+                          >
+                            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="6" r="1.6" /><circle cx="9" cy="12" r="1.6" /><circle cx="9" cy="18" r="1.6" /><circle cx="15" cy="6" r="1.6" /><circle cx="15" cy="12" r="1.6" /><circle cx="15" cy="18" r="1.6" /></svg>
+                          </span>
                           <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[11px] font-bold text-slate-500 dark:bg-white/10 dark:text-slate-300">{lang === 'zh' ? BLOCK_LABELS[b.t].zh : BLOCK_LABELS[b.t].en}</span>
                           <div className="ml-auto flex items-center">
                             <button type="button" onClick={() => moveBlock(i, -1)} disabled={i === 0} title={s.up} className={miniBtn}><Icon name="arrow" className="h-4 w-4 -rotate-90" /></button>

@@ -6,6 +6,7 @@ import { Icon } from '@/components/member/design-v1/parts';
 import type { Block, RichPage, RichData } from '@/lib/ielts/contentTypes';
 import { BUILTIN_RICH, MODULE_TITLES, MODULE_IDS, moduleHasTest } from '@/lib/ielts/builtinContent';
 import { loadModuleContent } from '@/lib/ielts/content';
+import { getCloudBaseApp } from '@/lib/cloudbase';
 
 type Lang = 'en' | 'zh';
 type Theme = 'light' | 'dark';
@@ -177,6 +178,67 @@ function YoutubeEmbed({ id, label }: { id: string; label?: string }) {
   );
 }
 
+/* ── Bilibili embed (click-to-load) ───────────────────────────────────────── */
+function BilibiliEmbed({ id, label }: { id: string; label?: string }) {
+  const [loaded, setLoaded] = useState(false);
+  const bvid = id.match(/BV[0-9A-Za-z]+/)?.[0] || id; // accept a full URL or a bare BV id
+  return (
+    <div className="my-4 overflow-hidden rounded-xl border border-slate-200 dark:border-white/10">
+      {loaded ? (
+        <iframe
+          src={`https://player.bilibili.com/player.html?bvid=${bvid}&page=1&autoplay=0&danmaku=0&high_quality=1`}
+          className="aspect-video w-full"
+          scrolling="no"
+          allow="fullscreen"
+          allowFullScreen
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={() => setLoaded(true)}
+          className="group relative flex aspect-video w-full items-center justify-center bg-[#00a1d6] transition hover:brightness-110"
+        >
+          <span className="grid h-16 w-16 place-items-center rounded-full bg-white/25 transition group-hover:bg-white/35">
+            <svg className="ml-1 h-7 w-7 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+          </span>
+          <span className="absolute bottom-3 left-0 right-0 text-center text-xs text-white/80">{label || 'Bilibili'}</span>
+        </button>
+      )}
+    </div>
+  );
+}
+
+/* ── Uploaded video file (resolves a cloud:// handle to a temp URL) ────────── */
+function VideoFile({ src }: { src: string }) {
+  const [url, setUrl] = useState(src.startsWith('cloud://') ? '' : src);
+  useEffect(() => {
+    if (!src.startsWith('cloud://')) { setUrl(src); return; }
+    let active = true;
+    void (async () => {
+      const app = await getCloudBaseApp();
+      if (!app) return;
+      try {
+        const r = await app.getTempFileURL({ fileList: [src] });
+        const u = r?.fileList?.[0]?.tempFileURL;
+        if (active && u) setUrl(u);
+      } catch {
+        /* leave unresolved */
+      }
+    })();
+    return () => { active = false; };
+  }, [src]);
+  return (
+    <div className="my-4 overflow-hidden rounded-xl border border-slate-200 dark:border-white/10">
+      {url ? (
+        // eslint-disable-next-line jsx-a11y/media-has-caption
+        <video controls preload="metadata" src={url} className="aspect-video w-full bg-black" />
+      ) : (
+        <div className="grid aspect-video place-items-center bg-slate-900 text-xs text-white/50">…</div>
+      )}
+    </div>
+  );
+}
+
 /* ── Link card (replaces bare blue URLs) ──────────────────────────────────── */
 function LinkCard({ url, label, lang }: { url: string; label?: string; lang: Lang }) {
   const info = linkInfo(url);
@@ -274,6 +336,8 @@ function RichBlocks({
         }
         if (block.t === 'vid') return <VimeoEmbed key={i} id={block.v} />;
         if (block.t === 'yt') return <YoutubeEmbed key={i} id={block.v} label={block.label} />;
+        if (block.t === 'bili') return <BilibiliEmbed key={i} id={block.v} label={block.label} />;
+        if (block.t === 'video') return <VideoFile key={i} src={block.v} />;
         if (block.t === 'audio') return <AudioPlayer key={i} src={block.v} label={block.label} />;
         if (block.t === 'link') return <LinkCard key={i} url={block.v} label={block.label} lang={lang} />;
         if (block.t === 'h2') return <h2 key={i} className="mt-4 font-grotesk text-lg font-bold text-slate-900 dark:text-white">{block.v}</h2>;

@@ -1,0 +1,911 @@
+{
+  "pageTypes": {
+    "1": null,
+    "2": "Show Me",
+    "3": "Show Me",
+    "4": "Involve Me",
+    "5": "Show Me",
+    "6": "Involve Me",
+    "7": "Involve Me",
+    "8": "Involve Me",
+    "9": "Involve Me"
+  },
+  "pages": [
+    {
+      "page": 1,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "Technology and Social Networking"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/social_media-1.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Unit Overview"
+        },
+        {
+          "t": "p",
+          "v": "This unit is about understanding how technology has become central to all our lives especially the role of Social Media and how we use it to communicate with each other."
+        },
+        {
+          "t": "p",
+          "v": "In Listening and Speaking, you will learn how to:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Listen to conversations among retailers and customers relating to the purchase of technologies for the home and answer questions relating to the conversation.",
+            "Listen to conversations among teenagers talking about their social networking habits and answer questions relating to the conversation.",
+            "Learn new vocabulary relating to social media, social networking and technology"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "In Reading and Writing, you will learn how to:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Complete reading comprehension and answer multiple choice questions",
+            "Structure a 250 word answer similar to that expected in an Academic IELTS exam"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Watch this video on the task 1 of your IELTS exam:"
+        },
+        {
+          "t": "vid",
+          "v": "382423132"
+        },
+        {
+          "t": "link",
+          "v": "https://player.youku.com/embed/XNTEyNjA2ODQ5Mg",
+          "label": "https://player.youku.com/embed/XNTEyNjA2ODQ5Mg"
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Read through the following conversation and answer the questions:"
+        },
+        {
+          "t": "p",
+          "v": "Telephone call between a retailer of a technology store and a customer..."
+        },
+        {
+          "t": "p",
+          "v": "Phone rings"
+        },
+        {
+          "t": "p",
+          "v": "Jon (retailer): Good morning, Anderson Electrics how can I help you?"
+        },
+        {
+          "t": "p",
+          "v": "Michael: Hi, I am looking to buy a few gifts for my family and I need to check if you have them in stock and whether you can post them out today?"
+        },
+        {
+          "t": "p",
+          "v": "Jon: Sure, sir…..if you can tell me what you are looking for I can see if we currently have those items."
+        },
+        {
+          "t": "p",
+          "v": "Michael: Right, first of all, I need a Dualit espresso machine, the one that you can put ground coffee capsules and pods in"
+        },
+        {
+          "t": "p",
+          "v": "Jon:  right it that the Dualit D E I N 1 model?"
+        },
+        {
+          "t": "p",
+          "v": "Michael: Yes I think so, is that the 3-in-1 model in stainless steel?"
+        },
+        {
+          "t": "p",
+          "v": "Jon: Yes we have 2 in stock, one is black with a chrome top and the second one is in stainless steel"
+        },
+        {
+          "t": "p",
+          "v": "Michael: Great are they the same price?"
+        },
+        {
+          "t": "p",
+          "v": "Jon: Almost, the chrome machine is £166 and the stainless steel one is £179.99"
+        },
+        {
+          "t": "p",
+          "v": "Michael:  Ok, I think the stainless steel model is cheaper at Currys, it is only £159.99 there. Have you any better deals?"
+        },
+        {
+          "t": "p",
+          "v": "Jon: Well at the moment both Dualit models have a 12-month warranty included, which is £15.99, and covers you for any breakdown issues for the first 12 months of owning the machines."
+        },
+        {
+          "t": "p",
+          "v": "Michael: Ok but I really need to get a better price, how can you help me."
+        },
+        {
+          "t": "p",
+          "v": "Jon: Well I suppose if you can tell me all the items you are hoping to buy today, then I could look at some discounts I could potentially offer."
+        },
+        {
+          "t": "p",
+          "v": "Michael: Ok, I need the machine, an iPad and potentially a 40inch flat screen tv, but I need a good price for everything."
+        },
+        {
+          "t": "p",
+          "v": "Jon:  Ok well I think I can reduce the coffee machine to the same price as Currys, but it won't include the 12-month warranty.  We do have the new iPad minis at £399, however, I cannot discount them as we have limited stock but the 40inch tv I can get for you for £199.99."
+        },
+        {
+          "t": "p",
+          "v": "Michael: Which model of tv would that be?"
+        },
+        {
+          "t": "p",
+          "v": "Jon: it’s a sony 40 inch LED screen"
+        },
+        {
+          "t": "p",
+          "v": "Michael: Great that’s actually not a bad price, but can you knock another £20 off that price?"
+        },
+        {
+          "t": "p",
+          "v": "Jon: I really cannot knock any more money off the price my manager would kill me, well maybe not kill me, but seriously I am not authorised to offer any further discounts."
+        },
+        {
+          "t": "p",
+          "v": "Michael: Right, I feel that I can't really stretch to £750 today for the machine, TV and iPad. I just don’t have that cash on me."
+        },
+        {
+          "t": "p",
+          "v": "Jon: Well, the best advice I can give you is that if you can wait until the 20th of December, so next Wednesday, you can get another 12% discount as we have a pre-Christmas sale, just for 12 hours."
+        },
+        {
+          "t": "p",
+          "v": "Michael: Ok, but if I buy them on the 20th how quickly can they be delivered to my family members?"
+        },
+        {
+          "t": "p",
+          "v": "Jon: Well it all depends on where you need the items sending to"
+        },
+        {
+          "t": "p",
+          "v": "Michael:  The TV needs to be sent to my sister in North London, the coffee machine to my brother in Liverpool and the iPad to my father in Ireland."
+        },
+        {
+          "t": "p",
+          "v": "Jon: Ok the only one that might not arrive in time for Christmas will be the iPad to Ireland, you would really need to buy that today if you want it to arrive on time."
+        },
+        {
+          "t": "p",
+          "v": "Michael: Ok I shall buy the iPad today and then buy the other items next week."
+        },
+        {
+          "t": "p",
+          "v": "Jon: Great shall I take your credit /debit card details now?"
+        },
+        {
+          "t": "p",
+          "v": "Michael: Sure, can I use my debit card?"
+        },
+        {
+          "t": "p",
+          "v": "Jon: Yes no problem, if you can give me the full name on the card and the 16 digit number, to begin with."
+        },
+        {
+          "t": "p",
+          "v": "Michael: It is Michael Smith and it's my VISA Debit card number 4568 4444 8767 1212."
+        },
+        {
+          "t": "p",
+          "v": "Jon: Great, and the valid to and expiry date in that order, please."
+        },
+        {
+          "t": "p",
+          "v": "Michael: 09/12  and 08/17."
+        },
+        {
+          "t": "p",
+          "v": "Jon:  And finally, the 3 digit code on the signature strip."
+        },
+        {
+          "t": "p",
+          "v": "Michael: 324"
+        },
+        {
+          "t": "p",
+          "v": "Jon: Oh, I almost forgot to ask the address of where the iPad will be sent?"
+        },
+        {
+          "t": "p",
+          "v": "Michael: its for Jon Smith, 34 Old Farm Lane, Sandy Mount, Dublin 13, Ireland."
+        },
+        {
+          "t": "p",
+          "v": "Jon: Great, that will go out today and your father should receive it before Saturday."
+        },
+        {
+          "t": "p",
+          "v": "Michael: That’s great, thanks for you help and I will see you next Tuesday for the special discount sale and I will get the other two items then."
+        },
+        {
+          "t": "p",
+          "v": "Jon: Ah, the pre Christmas sale is Wednesday 20th not Tuesday 19th, just remember."
+        },
+        {
+          "t": "p",
+          "v": "Michael: Sorry I was getting confused, that’s great , take care."
+        },
+        {
+          "t": "h3",
+          "v": "Questions:"
+        },
+        {
+          "t": "p",
+          "v": "What is the name of the Electronics Shop?"
+        },
+        {
+          "t": "p",
+          "v": "Which payment method was used by Michael?"
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "Watch this video about the 4 different tyes of sentence: simple, compound, complex and compound-complex."
+        },
+        {
+          "t": "vid",
+          "v": "382426201"
+        },
+        {
+          "t": "link",
+          "v": "https://player.youku.com/embed/XNTEyNjA2NjY2NA",
+          "label": "https://player.youku.com/embed/XNTEyNjA2NjY2NA"
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Academic Reading Assessment"
+        },
+        {
+          "t": "p",
+          "v": "Read the text and answer the questions"
+        },
+        {
+          "t": "p",
+          "v": "High-tech crime-fighting tools"
+        },
+        {
+          "t": "p",
+          "v": "ACrime-fighting technology is getting more sophisticated and rightly so. The police need to be equipped for the 21st century. In Britain, we’ve already got the world's biggest DNA database. By next year the state will have access to the genetic data of 4.25m people: that is 1 British-based person in 14. Hundreds of thousands of those on the database will never have been charged with a crime."
+        },
+        {
+          "t": "p",
+          "v": "BBritain is also reported to have more than £4 million worth of CCTV (closed circuit television) cameras. There is a continuing debate about the effectiveness of CCTV. Some evidence suggests that it is helpful in reducing shoplifting and car crime. It has also been used to successfully identify terrorists and murderers. However, many claim that better lighting is just as effective to prevent crime, and that cameras could displace crime. An internal police report said that only one crime was solved for every 1,000 cameras in London in 2007. In short, there is conflicting evidence about the effectiveness of cameras, so it is likely that the debate will continue."
+        },
+        {
+          "t": "p",
+          "v": "CProfessor Mike Press, who has spent the past decade studying how design can contribute to crime reduction, said that, in order for CCTV to have any effect, it must be used in a targeted way. For example, a scheme in Manchester records every licence plate at the entrance of a shopping complex and alerts police when one is found to belong to an untaxed or stolen car. This is an effective example of monitoring, he said. Most schemes that simply record city centres continually — often not being watched - do not produce results. CCTV can also have the opposite effect of that intended, by giving citizens a false sense of security and encouraging them to be careless with property and personal safety. Professor Press said 'All the evidence suggests that CCTV alone makes no positive impact on crime reduction and prevention at all. The weight of evidence would suggest the investment is more or less a waste of money unless you have lots of other things in place.’ He believes that much of the increase is driven by the marketing efforts of security companies who promote the crime-reducing benefits of their products. He described it as a lazy approach to crime prevention and said that authorities should instead be focusing on how to alter the environment to reduce crime."
+        },
+        {
+          "t": "p",
+          "v": "DBut in reality, this is not what is happening. Instead, police are considering using more technology. Police forces have recently begun experimenting with cameras in their helmets. The footage will be stored on police computers, along with the footage from thousands of CCTV cameras and millions of pictures from numberplate recognition cameras used increasingly to check up on motorists."
+        },
+        {
+          "t": "p",
+          "v": "EAnd now another type of technology is being introduced. It's called the Microdrone and it’s a toy-sized remote-control craft that hovers above streets or crowds to film what’s going on beneath. The Microdrone has already been used to monitor rock festivals, but its supplier has also been in discussions to supply it to the Metropolitan Police, and Soca, the Serious Organised Crime Agency. The drones are small enough to be unnoticed by people on the ground when they are flying at 350ft. They contain high-resolution video surveillance equipment and an infrared night vision capability, so even in darkness, they give their operators a bird’s-eye view of locations while remaining virtually undetectable."
+        },
+        {
+          "t": "p",
+          "v": "FThe worrying thing is, who will get access to this technology? Merseyside police are already employing two of the devices as part of a pilot scheme to watch football crowds and city parks looking for antisocial behaviour. It is not just about crime detection: West Midlands fire brigade is about to lease a drone, for example, to get a better view of fire and flood scenes and aid rescue attempts; the Environment Agency is considering their use for monitoring of illegal fly-tipping and oil spills. The company that makes the drone says it has no plans to license the equipment to individuals or private companies, which hopefully will prevent private security firms from getting their hands on them. But what about local authorities? In theory, this technology could be used against motorists. And where will the surveillance society end? Already there are plans to introduce 'Smart Water' containing a unique DNA code identifier that when sprayed on a suspect will cling to their clothes and skin and allow officers to identify them later. As long as high-tech tools are being used in the fight against crime and terrorism, fine. But if it’s another weapon to be used to invade our privacy then we don’t want it."
+        },
+        {
+          "t": "p",
+          "v": "Glossary: drone: a remote-controlled pilotless aircraft 350ft: about 107 meters bird's eye view: a view from above fly-tipping: illegally dumping waste (British English)"
+        },
+        {
+          "t": "p",
+          "v": "Please answer the questions below"
+        },
+        {
+          "t": "p",
+          "v": "Britain has already got"
+        },
+        {
+          "t": "p",
+          "v": "The Microdrone is"
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Sample IELTS Writing Question and Answer on Social Media"
+        },
+        {
+          "t": "p",
+          "v": "Many people believe that social networking sites (such as Facebook) have a huge negative impact on both individuals and society."
+        },
+        {
+          "t": "p",
+          "v": "To what extent do you agree or disagree?"
+        },
+        {
+          "t": "p",
+          "v": "Give reasons for your answer and include any relevant examples from your own knowledge or experience."
+        },
+        {
+          "t": "p",
+          "v": "You should write at least 250 words."
+        },
+        {
+          "t": "p",
+          "v": "Model Essay:"
+        },
+        {
+          "t": "p",
+          "v": "Usage of social networking sites like Facebook, Twitter, LinkedIn, Google + etc. have dramatically increased recently with the advancement of technology. Although it has many detrimental effects on the society, its positive side cannot be neglected. I believe that technology has made a significant contribution in bringing people closer around the globe and also as a source of cheap and efficient communication. Social networking sites play a pivotal role in mitigating communication gaps, not only in the immediate social circle but also with friends and families in remote areas, by sharing news and updates. Social networking sites provide a rapid and effective way of interaction among people. Furthermore, many social groups exist on such sites which help people to find persons of the same interests and attitudes without confining them to any geographical boundaries. It has recently been seen that many injustice and social issues were shared on social networking sites that made a huge impact on authority and has brought justice to the victims. Social networking sites are a common ground for mass people to share their updates, views and other details. Thus this has created a world without any boundaries. On the other hand, it is often seen that people have become disjointed and fragmented as the social networking sites become prevalent in societies and communities. Youngsters are more receptive to this change and would like to spend most of their time on these sites. This has led to dire consequences on their physical and psychological health. Moreover, families are greatly affected by this and their social bonding is no more present in contemporary days. People are getting addicted to these websites and thus becoming less social in many cases. Propaganda and fraud relationship have caused many personal and social dilemmas.   To sum up, I would like to say that people have become more social and interactive by the use of social networking sites. It gives people a sense of freedom to talk around the world without worrying about the huge cost that incurred previously. However, it has severe negative effects, as most of the people opt to talk using technology than meeting others in person due to their busy lifestyle, it increases the distance in their relationships."
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Read the following text and answer the questions"
+        },
+        {
+          "t": "p",
+          "v": "Cyberbullying"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/qw.jpg"
+        },
+        {
+          "t": "p",
+          "v": "There have been many media stories in the last few years about cyberbullying. Make no mistake, the consequences are similar to other forms of bullying."
+        },
+        {
+          "t": "p",
+          "v": "The only difference being the platform used. Texts; networking sites such as Facebook; Twitter, Ask.fm, email; blog comments and apps like Snapchat can all be spaces where bullying happens. It can happen to anyone but generally happens as part of the traditional form of bullying."
+        },
+        {
+          "t": "p",
+          "v": "Cyberbullying behaviour includes:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "abusive messages on networking sites or texts",
+            "offensive or antagonistic comments on posts",
+            "rumour spreading online",
+            "posting offensive images or videos",
+            "hacking into online accounts."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Effects of cyberbullying"
+        },
+        {
+          "t": "p",
+          "v": "Unfortunately, due to the nature of the tools, bullying is no longer limited to schoolyards or street corners and can invade a young person’s space at any time of the day, not matter where they are."
+        },
+        {
+          "t": "p",
+          "v": "A more traditional form of bullying can now follow a person into their home life."
+        },
+        {
+          "t": "p",
+          "v": "Cyberbullying very rarely happens without there being a case of bullying."
+        },
+        {
+          "t": "p",
+          "v": "Bullying and severe cyberbullying can leave young people at greater risk for anxiety and depression rare but highly publicised cases, some young people have turned to suicide."
+        },
+        {
+          "t": "p",
+          "v": "Signs of cyberbullying"
+        },
+        {
+          "t": "p",
+          "v": "Some things to look out for if you’re concerned your son or daughter might be experiencing cyberbullying:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Signs of emotional distress during or after using the internet or the phone",
+            "Being very protective or secretive of their digital life",
+            "Withdrawal from friends and activities",
+            "Avoidance of school or group gatherings",
+            "Changes in mood, behaviour, sleep or appetite."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "How parents can help"
+        },
+        {
+          "t": "p",
+          "v": "There are things you can do if your son or daughter is experiencing bullying."
+        },
+        {
+          "t": "p",
+          "v": "Here are some additional tips specific to cyberbullying:"
+        },
+        {
+          "t": "p",
+          "v": "Assertiveness"
+        },
+        {
+          "t": "p",
+          "v": "Encourage your son or daughter to be assertive. The old “turn the other cheek” approach doesn’t really work."
+        },
+        {
+          "t": "p",
+          "v": "They need to be able to try to stop the behaviour or make it clear that it is unacceptable if they themselves are experiencing bullying, but also if they witness it happening to someone else."
+        },
+        {
+          "t": "p",
+          "v": "Know your son/daughter’s online world"
+        },
+        {
+          "t": "p",
+          "v": "Be aware of how young people spend their time online. Talk to them about the importance of privacy and why it’s a bad idea to share personal information online."
+        },
+        {
+          "t": "p",
+          "v": "Encourage them to safeguard passwords. Make sure they are aware of privacy control on the social networks they use."
+        },
+        {
+          "t": "p",
+          "v": "Learn more about the popular apps and networking sites young people are using and how they’re used, to fully understand the environment they’re living in every day."
+        },
+        {
+          "t": "p",
+          "v": "Limit access to technology"
+        },
+        {
+          "t": "p",
+          "v": "Although it’s hurtful, many young people who are being bullied can’t resist the temptation to check if they have new messages."
+        },
+        {
+          "t": "p",
+          "v": "Keep the computer in a public place in the house (no laptops in bedrooms) and limit the use of mobile phones and games. Write up mobile phone and social media use contracts that you are willing to enforce."
+        },
+        {
+          "t": "p",
+          "v": "Involve your son or daughter with what these contracts are. The older they get the harder it will be, so if they’re involved in the process of making the rules, it will be easier to enforce them."
+        },
+        {
+          "t": "p",
+          "v": "Encourage them not to respond or retaliate to any bullying."
+        },
+        {
+          "t": "h3",
+          "v": "Answer the following multiple choice questions"
+        },
+        {
+          "t": "h3",
+          "v": "Which of the following is not a form of cyber bullying"
+        },
+        {
+          "t": "h3",
+          "v": "The author talks about ‘turning the other cheek’ . What does this mean?"
+        },
+        {
+          "t": "p",
+          "v": "Which of the following states are True?"
+        }
+      ]
+    },
+    {
+      "page": 7,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "IELTS speaking preparation"
+        },
+        {
+          "t": "p",
+          "v": "Vocabulary used when discussing social media and technology used in networking and sample questions and answers."
+        },
+        {
+          "t": "p",
+          "v": "Chat – communicating in real-time through computers or smartphones, by writing messages back-and-forth, this is communication involving two or more people."
+        },
+        {
+          "t": "p",
+          "v": "Chat room – an  area within a website where ‘chats’ happen"
+        },
+        {
+          "t": "p",
+          "v": "Example: People spend quite a lot of time on social media chat rooms instead of traditional forms of communication."
+        },
+        {
+          "t": "p",
+          "v": "Emoticon – a pictorial representation of a facial expression, which is used in writing to help the reader of a message know the writer’s emotions."
+        },
+        {
+          "t": "p",
+          "v": "Example: Emoticons are taking over from regular text language on social media forums e.g  :D or :(."
+        },
+        {
+          "t": "p",
+          "v": "Messaging/instant messaging/IM –  this is like chatting but is on-line communication, generally only between two people and sometimes this is not done in real-time."
+        },
+        {
+          "t": "p",
+          "v": "Example: The worst thing about social media and networking is the constant instant messaging that people engage in especially when in the company of others."
+        },
+        {
+          "t": "p",
+          "v": "Viral/to go viral – anything that is shared in social networks (Facebook, Twitter, YouTube, etc.) and gets passed along to many people very rapidly it viral, to go viral is verb to talk about this happening, for example, 'This Transparent Language blog post has gone viral!'."
+        },
+        {
+          "t": "p",
+          "v": "Example: Businesses use social media to help their brands go viral and drive their sales."
+        },
+        {
+          "t": "p",
+          "v": "Blog – a personal or professional website which is updated on a regular basis with an individual’s or company’s thoughts, ideas, opinions and/or educational information."
+        },
+        {
+          "t": "p",
+          "v": "Example: Social media blogs have become a very effective way for companies brand to be endorsed by both celebrities and ordinary people."
+        },
+        {
+          "t": "p",
+          "v": "Subscribe  – this is like becoming a fan or a member of a blog; subscribing allows a person to be notified when new blog posts are written, it is the on-line equivalent of signing up for a magazine."
+        },
+        {
+          "t": "p",
+          "v": "Example:  I tend to subscribe to many blogs and websites so I can receive regular notification of information I find useful, like sports scores, new cooking recipes and discount deals at my retail stores."
+        },
+        {
+          "t": "p",
+          "v": "News feed – on Facebook this is the centre column of a person’s home page; it is constantly updating with new stories and information, pictures, and events from friends."
+        },
+        {
+          "t": "p",
+          "v": "Example: I get news feeds all day on my mobile phone because I have subscribed to too many social media apps."
+        },
+        {
+          "t": "p",
+          "v": "Trending – a word, phrase or topic that is popular on Twitter at any given moment."
+        },
+        {
+          "t": "p",
+          "v": "Example: Each day I wake up to notification of topics or news feeds that are currently trending."
+        },
+        {
+          "t": "p",
+          "v": "Tweet – a message sent on Twitter."
+        },
+        {
+          "t": "p",
+          "v": "Example: I have stopped tweeting as I don’t use Twitter anymore. Instead of post messages on Facebook and upload images on Instagram."
+        }
+      ]
+    },
+    {
+      "page": 8,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Reading exercise"
+        },
+        {
+          "t": "p",
+          "v": "Read through the following conversation and answer the questions"
+        },
+        {
+          "t": "p",
+          "v": "John: Hey guys I am so annoyed"
+        },
+        {
+          "t": "p",
+          "v": "Mary: why?"
+        },
+        {
+          "t": "p",
+          "v": "Patrick: Whats up?"
+        },
+        {
+          "t": "p",
+          "v": "John: Well I had a dinner party yesterday at my home and I invited Jane, George, Michelle and Michael over for a nice Sunday roast"
+        },
+        {
+          "t": "p",
+          "v": "Mary: Why weren’t we invited? (laughing)"
+        },
+        {
+          "t": "p",
+          "v": "Patrick: Yeah John, we would have come! (laughing)"
+        },
+        {
+          "t": "p",
+          "v": "John: Sorry guys…..but because you don’t really know these guys very well……. I thought it would be better not to invite you."
+        },
+        {
+          "t": "p",
+          "v": "Mary: John we are only joking with you. I know we don’t know these friends of yours well."
+        },
+        {
+          "t": "p",
+          "v": "John:  Well you would have hated it, it was a total disaster."
+        },
+        {
+          "t": "p",
+          "v": "Patrick: Was it your cooking, I know you are not super cook (laughing)"
+        },
+        {
+          "t": "p",
+          "v": "John: Cheeky! (laughing),  no I cooked a delicious vegetable soup for starters, a lovely roast chicken, potatoes and vegetables for the main course and chocolate cake with cream for dessert."
+        },
+        {
+          "t": "p",
+          "v": "Mary: yum sounds delicious, so what went wrong?"
+        },
+        {
+          "t": "p",
+          "v": "John:  Well throughout the evening everyone's phones kept beeping with social media updates, it really was so frustrating and I think a bit rude."
+        },
+        {
+          "t": "p",
+          "v": "Patrick: That is a bit rude they should have at least put their phones on silent mode"
+        },
+        {
+          "t": "p",
+          "v": "John: Exactly but they didn’t and they also spent more time taking photos of the food and posting them on Facebook instead of eating it.  By the time they had stopped taking pictures the food was starting to get cold."
+        },
+        {
+          "t": "p",
+          "v": "Mary: I honestly have stopped using Facebook as I think it takes over our lives too much."
+        },
+        {
+          "t": "p",
+          "v": "John: Really? I think I would find that really hard"
+        },
+        {
+          "t": "p",
+          "v": "Mary: Yeah….. initially but now I find that I actually spend more quality time speaking with my close friends as opposed to messaging everyone who knows me on Facebook"
+        },
+        {
+          "t": "p",
+          "v": "Patrick: To be honest, I have never really got into Facebook, but I do get regular notifications through to my phone regarding all the premiership football match scores. It's really useful as I don’t always have the time to watch the matches on TV.  I am never home from work before 8.30 in the evening and the matches are usually over."
+        },
+        {
+          "t": "p",
+          "v": "John: Well I am definitely not inviting them over for dinner in a hurry again, I just felt that they were more interested in tweeting and messaging rather than eating and having decent conversations over the table."
+        },
+        {
+          "t": "p",
+          "v": "Mary: Well why don’t you come over to ours next week and I will cook some nice Italian food for you, no phones at the table!"
+        },
+        {
+          "t": "p",
+          "v": "Patrick: Yeah John, let's do Friday or Saturday night"
+        },
+        {
+          "t": "p",
+          "v": "John: Friday works better for me. …..No wait I have to go out with my parents on Friday, so can we do Saturday?"
+        },
+        {
+          "t": "p",
+          "v": "Mary: Sure shall we say 6.30?"
+        },
+        {
+          "t": "p",
+          "v": "John: Fantastic, I look forward to it."
+        },
+        {
+          "t": "h3",
+          "v": "Answer the following questions:"
+        },
+        {
+          "t": "p",
+          "v": "Which of the following is true?"
+        },
+        {
+          "t": "p",
+          "v": "What day next week will John Mary and Patrick be having dinner?"
+        }
+      ]
+    },
+    {
+      "page": 9,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Read the text and answer the questions that follow"
+        },
+        {
+          "t": "p",
+          "v": "Five Resolutions to Simplify Your Tech Life"
+        },
+        {
+          "t": "p",
+          "v": "By:Brian X. Chen"
+        },
+        {
+          "t": "p",
+          "v": "In 2017, why not try a new kind of New Year’s resolution? Instead of just hitting the gym and dropping some pounds, consider changing some personal habits to simplify the tech in your life."
+        },
+        {
+          "t": "p",
+          "v": "If you are like most people, there are things you do with tech that could use some tweaking. Strengthening your password security, for one, would benefit you tremendously in an era when hacks are rampant. For another, purging the e-junk you have accumulated over the years would help the environment and your sanity. While you’re at it, start doing maintenance on your electronics to make sure they work smoothly this year."
+        },
+        {
+          "t": "p",
+          "v": "Here are my top recommendations for resolutions to abide by to make tech less frustrating in the new year."
+        },
+        {
+          "t": "p",
+          "v": "Clean Up Your Password Hygiene"
+        },
+        {
+          "t": "p",
+          "v": "P.U. — what’s that smell? It’s your bad password hygiene. You are probably using the same password across multiple websites for banking, shopping, social media and email."
+        },
+        {
+          "t": "link",
+          "v": "http://www.nytimes.com/2016/09/23/technology/yahoo-hackers.html",
+          "label": "500 million Yahoo accounts"
+        },
+        {
+          "t": "link",
+          "v": "http://www.nytimes.com/2016/12/14/technology/yahoo-hack.html",
+          "label": "1 billion accounts"
+        },
+        {
+          "t": "link",
+          "v": "http://www.nytimes.com/2016/01/21/technology/personaltech/apps-to-manage-passwords-so-they-are-harder-to-crack-than-password.html",
+          "label": "password-managing apps"
+        },
+        {
+          "t": "link",
+          "v": "http://thewirecutter.com/blog/password-managers-are-for-everyone-including-you/",
+          "label": "master password to unlock a vault of passwords"
+        },
+        {
+          "t": "p",
+          "v": "Taking these two simple steps will help safeguard you from the inevitable hacks that arise this year."
+        },
+        {
+          "t": "p",
+          "v": "Maintain Your Devices"
+        },
+        {
+          "t": "link",
+          "v": "http://www.nytimes.com/2016/04/21/technology/personaltech/choosing-to-skipthe-upgrade-and-care-for-the-gadget-youve-got.html",
+          "label": "a bit of maintenance"
+        },
+        {
+          "t": "link",
+          "v": "http://www.coconut-flavour.com/coconutbattery/",
+          "label": "coconutBattery"
+        },
+        {
+          "t": "link",
+          "v": "https://play.google.com/store/apps/details",
+          "label": "Battery"
+        },
+        {
+          "t": "link",
+          "v": "http://www.nytimes.com/2016/06/02/technology/personaltech/zen-and-the-art-of-managing-smartphone-photos.html",
+          "label": "Google Photos"
+        },
+        {
+          "t": "p",
+          "v": "Show your gadgets some physical love, too. Give your screens a good wipe with a wetted cloth. If you own a desktop computer, open it up and use compressed air to blow out the dust."
+        },
+        {
+          "t": "p",
+          "v": "Do this basic maintenance every six months and your devices will run smoothly for many years."
+        },
+        {
+          "t": "p",
+          "v": "Mind Your Infrastructure"
+        },
+        {
+          "t": "p",
+          "v": "We don’t hesitate to buy new smartphones every two years — but that neglected, ugly Wi-Fi router tucked away in the corner of the living room may be the most important tech product to upgrade every few years. Among all tech headaches, there is nothing more annoying than a sluggish, spotty internet connection."
+        },
+        {
+          "t": "p",
+          "v": "Start off each new year by doing some checks on your internet infrastructure. If your router is more than three years old, you probably need a new one that is compatible with today’s faster, smarter wireless standards. If you are relying on a router provided by your broadband provider, you should probably buy a more powerful stand-alone router."
+        },
+        {
+          "t": "link",
+          "v": "http://www.tp-link.com/us/products/details/cat-9_Archer-C7.html",
+          "label": "TP-Link’s Archer C7"
+        },
+        {
+          "t": "p",
+          "v": "Be Less Wasteful"
+        },
+        {
+          "t": "p",
+          "v": "Unused gadgets and power cables take up lots of space in drawers and attics. This e-waste would be better off sold or donated to someone in need or recycled for their precious metals."
+        },
+        {
+          "t": "link",
+          "v": "http://www.nytimes.com/2015/12/03/technology/how-to-sell-or-recycle-old-electronics.html",
+          "label": "headache-free trade-in services"
+        },
+        {
+          "t": "p",
+          "v": "There is bound to be unsellable e-junk in your pile. Fortunately, all Best Buy locations will take your used electronics and recycle them for free. Just bag the items up and drop them off at the store’s customer-service counter, and the retailer will take care of the rest."
+        },
+        {
+          "t": "p",
+          "v": "Be a Smarter Shopper"
+        },
+        {
+          "t": "link",
+          "v": "http://www.nytimes.com/2016/11/17/technology/personaltech/how-not-to-overpay-on-black-friday-let-the-web-be-your-guide.html",
+          "label": "no need to wait until Black Friday or Cyber Monday"
+        },
+        {
+          "t": "link",
+          "v": "http://www.camelcamelcamel.com/",
+          "label": "Camel Camel Camel"
+        },
+        {
+          "t": "link",
+          "v": "http://www.keepa.com/",
+          "label": "Keepa"
+        },
+        {
+          "t": "p",
+          "v": "Many deals that emerge throughout the year are as good, or better than, the ones on Black Friday. You just have to know how to spot them."
+        },
+        {
+          "t": "link",
+          "v": "http://www.nytimes.com/2016/04/28/technology/personaltech/taking-the-stigma-out-of-buying-usedelectronics.html",
+          "label": "buying used products"
+        },
+        {
+          "t": "p",
+          "v": "What is the first recommendation given by the author of the article in this era of cyber security breaches?"
+        },
+        {
+          "t": "p",
+          "v": "The author uses a word to describe removing apps from your phones. Which word did he use?"
+        },
+        {
+          "t": "p",
+          "v": "Which of the following statements is true?"
+        },
+        {
+          "t": "p",
+          "v": "Unused tech accessories like chargers should be"
+        },
+        {
+          "t": "h3",
+          "v": "The word restored is used to described devices that are"
+        }
+      ]
+    }
+  ]
+}

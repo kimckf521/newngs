@@ -1,0 +1,429 @@
+{
+  "pageTypes": {
+    "1": null,
+    "2": "Tell Me",
+    "3": "Tell Me",
+    "4": "Tell Me",
+    "5": "Tell Me",
+    "6": "Summary"
+  },
+  "pages": [
+    {
+      "page": 1,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "Understanding the Academic IELTS Exam"
+        },
+        {
+          "t": "p",
+          "v": "The following unit will take an overlook of the Academic IELTS exam, illustrating the key parts of the examination and some helpful tips when tackling the more challenging parts of the exams."
+        },
+        {
+          "t": "p",
+          "v": "This unit is purely informative and does not involve assessment exercises. Please tick the box on the bottom of each page to indicate you have thoroughly read through the information on each page."
+        },
+        {
+          "t": "p",
+          "v": "Watch a video on the task 1 of the writing exam:"
+        },
+        {
+          "t": "vid",
+          "v": "382423132"
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "IELTS Examination: An overview"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "2 categories: General and Academic. The following overview will focus on the Academic version of the exam",
+            "Format: 4 Areas"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Reading: 60 Mins Exercise"
+        },
+        {
+          "t": "p",
+          "v": "40 questions with the objective to examine reading skills especially focusing on reading for gist, skimming, details, the writer's opinions and arguments, understanding the broad meaning of a text and the ability to critique texts taking the format of paragraphs from books, journals and magazine articles."
+        },
+        {
+          "t": "p",
+          "v": "Each answer carries 1 point and grammar and spelling mistakes are penalised"
+        },
+        {
+          "t": "p",
+          "v": "Questions format can be:"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Multiple Choice",
+            "Identifying arguments or opinions",
+            "Assessing statements through the cross-referencing of text",
+            "Matching information and headings",
+            "Sentence endings and features (text to letters)",
+            "Completing sentences",
+            "Summary, notes, graphs and illustrations",
+            "Short Answer questions"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Watch this video on matching headings:"
+        },
+        {
+          "t": "vid",
+          "v": "387653548"
+        },
+        {
+          "t": "link",
+          "v": "https://player.youku.com/embed/XNTEyNjQwNzg0MA",
+          "label": "优酷视频云 (youku.com)"
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Listening: 30 Mins Exercise plus 10 Mins transfer time"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "40 questions 1 mark per question",
+            "Question format can be:"
+          ]
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Multiple Choice",
+            "Identifying arguments or opinions",
+            "Assessing statements through the cross-referencing of text",
+            "Matching information and headings",
+            "Sentence endings and features (text to letters)",
+            "Completing sentences",
+            "Summary, notes, graphs and illustrations",
+            "Short Answer questions"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "4 sections with 10 questions each",
+            "The context of listening examination can be:"
+          ]
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Social context,",
+            "Education/training context,",
+            "Multiple regional accents-",
+            "Dialogues to monologues with 2 or 4 speakers"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Recordings are heard only once"
+          ]
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Writing: 60 minutes- two compulsory sections"
+        },
+        {
+          "t": "p",
+          "v": "Writing"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Format- Two compulsory sections- 1-hour exercise"
+          ]
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Task 1 – describing an illustration- min 150 words- completed in 20minutes",
+            "Task 2-  view, argument or analysis of a problem- min 250 words- completed in 40 minutes"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Answers are assessed on the following basis"
+          ]
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Task achievement",
+            "Coherence and cohesion",
+            "Lexical resource",
+            "Grammatical range and accuracy"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Watch this video on using commas."
+        },
+        {
+          "t": "vid",
+          "v": "387652587"
+        },
+        {
+          "t": "link",
+          "v": "https://player.youku.com/embed/XNTEyNjQwNzM2MA",
+          "label": "优酷视频云 (youku.com)"
+        },
+        {
+          "t": "p",
+          "v": "Now watch this video on punctuation:"
+        },
+        {
+          "t": "vid",
+          "v": "387653063"
+        },
+        {
+          "t": "link",
+          "v": "https://player.youku.com/embed/XNTEyNjQwNzYyNA",
+          "label": "优酷视频云 (youku.com)"
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Speaking: 11-14 Mins exercise"
+        },
+        {
+          "t": "p",
+          "v": "Speaking"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "All test recorded",
+            "3 elements"
+          ]
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Introduction with the interviewee asked questions to test his/her ability to discuss basic everyday topics and experiences.",
+            "Long Run- Cards presented with a topic to discuss with keywords presented to the interviewee, to be brought up in the discussion and interviewer will ask additional questions during the oral presentation.",
+            "Discussion following on from a related topic."
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Total Examination Duration 2hrs 45mins"
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "HELPFUL HINTS FOR THE READING ASSESSMENT"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "You must write your answers in pencil.",
+            "Look out for the title, headings and any special features such as capital letters, underlining, italics, figures, graphs and tables.",
+            "Make sure that you understand the questions and follow instructions carefully.",
+            "Pay attention to timing; do not spend too long on one passage or question.",
+            "Do not try and read every word; remember, you are reading for a purpose.",
+            "If you do not know the answer to a question, attempt it but do not waste time; move quickly onto the next one.",
+            "Do not panic if you do not know anything about the subject of the text; all the answers can be found in the text.",
+            "The word(s) you use must be taken from the Reading text; you must not change the form of the word(s) in the text.",
+            "Do not worry if there is a word that you do not understand – you may not need to use it.",
+            "Check your spelling.",
+            "Be careful to use singular and plural correctly.",
+            "Focus precisely on what you are asked to do in ‘completion’ type questions.",
+            "If the question asks you to complete the note ‘in the…’ and the correct answer is ‘evening’, just use ‘evening’ as your answer; note that ‘in the evening’ would be incorrect.",
+            "Pay attention to the word limit; for example, if you are asked to complete a sentence using no more than two words, if the correct answer is ‘silk shirt’, the answer ‘shirt made of silk’ would be incorrect.",
+            "Attempt all questions; there are no penalties for incorrect answers, so you have nothing to lose.",
+            "Check your answers."
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "HELPFUL HINTS FOR THE LISTENING ASSESSMENT"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "If you cannot hear the audio clearly, let a member of staff know straight away.",
+            "Follow the instructions carefully; they may be different to practice or previous tests.",
+            "Listen for the specific information you want.",
+            "Try and anticipate what the speaker will say; this will require concentration.",
+            "Do not worry if there is a word you do not understand; you may not need to use it.",
+            "If you do not know the answer to a question, attempt it but do not waste time; move quickly onto the next one.",
+            "Be careful with your spelling and grammar.",
+            "Do not panic if you think the topic is too difficult or the speaker is too fast; relax and tune in.",
+            "Read, write and listen at the same time.",
+            "Focus precisely on what you are asked to do in completion type questions.",
+            "Pay attention to the word limit; for example, if you are asked to complete a sentence using no more than two words, if the correct answer is ‘leather coat’, the answer ‘coat made of leather’ would be incorrect.",
+            "If the question asks you to complete the note ‘in the…’ and the correct answer is ‘morning’, note that ‘in the morning’ would be incorrect; the correct answer is 'morning'.",
+            "Attempt all questions; there are no penalties for incorrect answers.",
+            "Check your answers.",
+            "Topics that tend to be covered in listening assessments are:"
+          ]
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Crime and punishment",
+            "Advertising",
+            "Health",
+            "Education",
+            "Food and Diet",
+            "Media, Culture and Popular Culture"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "HELPFUL HINTS FOR THE WRITING ASSESSMENT"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Analyse each task properly and spend some time making notes.",
+            "Highlight or underline key words in the tasks to make sure that you focus on what you have to do.",
+            "Plan your answers.",
+            "Use paragraphs clearly; put one idea in each paragraph.",
+            "Do not repeat ideas using different words.",
+            "Do not copy whole sentences from the question – you will receive no marks for this.",
+            "Keep to the topic; do not write about unrelated subjects.",
+            "Manage your time; remember, Task 2 is worth twice as much as Task 1.",
+            "Spend approximately 20 minutes on Task 1 and approximately 40 minutes on Task 2.",
+            "Pay attention to the number of words required for each task; you will lose marks if you do not write at least 150 words for Task 1 and at least 250 words for Task 2.",
+            "Learn to recognise how long 150 and 250 words look in your handwriting; you will not have time to count during the test.",
+            "You must write your answers in full; answers written in note form or in bullet points will lose marks.",
+            "Pay attention to spelling, grammar and punctuation; you will lose marks for mistakes.",
+            "Do not use informal language or abbreviations.",
+            "Do not memorise model answers; examiners are trained to recognise them and your test will be invalid.",
+            "Spend several minutes re-reading and correcting your answers.",
+            "Topics to be familiar with especially vocabulary and the context of that vocabulary:"
+          ]
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Health",
+            "Environment",
+            "Education",
+            "Development",
+            "Globalisation",
+            "Public Transport",
+            "Criminal Justice",
+            "Youth Crime",
+            "Technology",
+            "Government Spending"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "HELPFUL HINTS FOR THE SPEAKING ASSESSMENT"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Try to talk as much as you can.",
+            "Talk as fluently as possible and be spontaneous.",
+            "Relax, be confident and enjoy using your English.",
+            "Develop your answers.",
+            "Speak more than the examiner.",
+            "Ask for clarification if necessary.",
+            "Do not learn prepared answers; the examiner is trained to spot this and will change the question.",
+            "Express your opinions; you will be assessed on your ability to communicate.",
+            "Test examiner’s questions tend to be fairly predictable; practise at home and record yourself.",
+            "Topics to be familiar with:"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Task 1"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Studies",
+            "Hobbies",
+            "Hometown",
+            "Work",
+            "Food",
+            "Family life",
+            "Magazines & Newspapers"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Task 2"
+        },
+        {
+          "t": "p",
+          "v": "The cue card given in IELTS speaking task 2 is divided into the most common types of topics:"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "People: your favourite person, your role model etc",
+            "Places: your favourite restaurant, favourite city, etc",
+            "Experiences: favourite childhood memory, etc",
+            "Feelings: memorable experience, etc",
+            "Habits and likes: hobbies and interests, etc",
+            "Objects: money, finances, favourite item, etc"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Task 3"
+        },
+        {
+          "t": "p",
+          "v": "There are seven common question types that appear in IELTS speaking part 3:"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Opinion: Give your opinion on a certain topic. Remember to give examples",
+            "Evaluate: Give your opinion of someone else's",
+            "Future: Your opinion about what will happen in the future?",
+            "Past: How have times changed?",
+            "Cause and Effect: What is the cause of a reaction/action?",
+            "Hypothetical: Your take on imaginary situations",
+            "Compare and Contrast: Talk about the difference and/or similarities between two things"
+          ]
+        },
+        {
+          "t": "h2",
+          "v": "Congratulations! this is the end of the online training. the online modules will be available to you for 1 year."
+        }
+      ]
+    }
+  ]
+}

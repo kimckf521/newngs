@@ -1,0 +1,466 @@
+{
+  "pageTypes": {
+    "1": null,
+    "2": "Involve Me",
+    "3": "Tell Me",
+    "4": "Tell Me",
+    "5": "Tell Me",
+    "6": "Involve Me",
+    "7": "Involve Me"
+  },
+  "pages": [
+    {
+      "page": 1,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "This module is about developing your communication skills on the topics of Health & Fitness."
+        },
+        {
+          "t": "p",
+          "v": "We will use text and audio to help you in your learning."
+        },
+        {
+          "t": "p",
+          "v": "In Listening, you will learn how to:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Listen to a dialogue between 2 people relating to a health issue and answer questions on their discussion",
+            "Listen to a dialogue between 3 people relating to a discussion at a health club.  This is very similar to an IELTS assessment where you need to train your ear to listening to more than 2 people speaking in a conversation"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "In Speaking you will learn some new vocabulary relating to health and fitness to help you prepare for speaking about these topics in your IELTS speaking assessment"
+        },
+        {
+          "t": "p",
+          "v": "In Reading and Writing, you will learn how to:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Read comprehension exercises relating to health and answer questions to test your understanding of the text"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Look at this video on multiple choice questions"
+        },
+        {
+          "t": "vid",
+          "v": "387654295"
+        },
+        {
+          "t": "link",
+          "v": "https://player.youku.com/embed/XNTEyNzExMzkyNA",
+          "label": "优酷视频云 (youku.com)"
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Listening Assessment"
+        },
+        {
+          "t": "p",
+          "v": "Appointment with the doctor"
+        },
+        {
+          "t": "h3",
+          "v": "Questions:"
+        },
+        {
+          "t": "p",
+          "v": "1)      What was the name of the patient?"
+        },
+        {
+          "t": "p",
+          "v": "Where did the doctor go on her 40th birthday?"
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Academic Reading Sample Task – Identifying Writer’s Views/Claims"
+        },
+        {
+          "t": "p",
+          "v": "The Risks of Cigarette smoke."
+        },
+        {
+          "t": "p",
+          "v": "Discovered in the early 1800s and named ‘nicotianine’, the oily essence now called nicotine is the main active ingredient of tobacco. Nicotine, however, is only a small component of cigarette smoke, which contains more than 4,700 chemical compounds, including 43 cancer-causing substances. In recent times, scientific research has been providing evidence that years of cigarette smoking vastly increases the risk of developing fatal medical conditions."
+        },
+        {
+          "t": "p",
+          "v": "In addition to being responsible for more than 85 per cent of lung cancers, smoking is associated with cancers of, amongst others, the mouth, stomach and kidneys, and is thought to cause about 14 per cent of leukaemia and cervical cancers. In 1990, smoking caused more than 84,000 deaths, mainly resulting from such problems as pneumonia, bronchitis and influenza. Smoking, it is believed, is responsible for 30 per cent of all deaths from cancer and clearly represents the most important preventable cause of cancer in countries like the United States today."
+        },
+        {
+          "t": "p",
+          "v": "Passive smoking, the breathing in of the side-stream smoke from the burning of tobacco between puffs or of the smoke exhaled by a smoker, also causes a serious health risk. A report published in 1992 by the US Environmental Protection Agency (EPA) emphasized the health dangers, especially from side-stream smoke. This type of smoke contains more smaller particles and is therefore more likely to be deposited deep in the lungs. On the basis of this report, the EPA has classified environmental tobacco smoke in the highest risk category for causing cancer."
+        },
+        {
+          "t": "p",
+          "v": "As an illustration of the health risks, in the case of a married couple where one partner is a smoker and one a non-smoker, the latter is believed to have a 30 per cent higher risk of death from heart disease because of passive smoking. The risk of lung cancer also increases over the years of exposure and the figure jumps to 80 per cent if the spouse has been smoking four packs a day for 20 years. It has been calculated that 17 per cent of cases of lung cancer can be attributed to high levels of exposure to second-hand tobacco smoke during childhood and adolescence."
+        },
+        {
+          "t": "p",
+          "v": "A more recent study by researchers at the University of California at San Francisco (UCSF) has shown that second-hand cigarette smoke does more harm to non-smokers than to smokers. Leaving aside the philosophical question of whether anyone should have to breathe someone else’s cigarette smoke, the report suggests that the smoke experienced by many people in their daily lives is enough to produce substantial adverse effects on a person’s heart and lungs. Academic Reading sample task – Identifying writer’s views/claims"
+        },
+        {
+          "t": "p",
+          "v": "The report, published in the Journal of the American Medical Association (AMA), was based on the researchers’ own earlier research but also includes a review of studies over the past few years. The American Medical Association represents about half of all US doctors and is a strong opponent of smoking. The study suggests that people who smoke cigarettes are continually damaging their cardiovascular system, which adapts in order to compensate for the effects of smoking. It further states that people who do not smoke do not have the benefit of their system adapting to the smoke inhalation. Consequently, the effects of passive smoking are far greater on non-smokers than on smokers."
+        },
+        {
+          "t": "h3",
+          "v": "Questions"
+        },
+        {
+          "t": "p",
+          "v": "What are fatal medical conditions?"
+        },
+        {
+          "t": "h3",
+          "v": "Listening Assessment"
+        },
+        {
+          "t": "p",
+          "v": "Health Club Meeting:"
+        },
+        {
+          "t": "p",
+          "v": "What are the names of the two people enquiring about membership?"
+        },
+        {
+          "t": "p",
+          "v": "What is their landline telephone number?"
+        },
+        {
+          "t": "p",
+          "v": "Which football teams are playing later that day?"
+        },
+        {
+          "t": "p",
+          "v": "What is the cheapest membership options?"
+        },
+        {
+          "t": "p",
+          "v": "What time are the fitness classes on during the day?"
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Preparing  for your IELTS Speaking Exam"
+        },
+        {
+          "t": "p",
+          "v": "Questions worth preparing and sample answers:"
+        },
+        {
+          "t": "p",
+          "v": "Question:"
+        },
+        {
+          "t": "p",
+          "v": "In what ways do you try to stay healthy?"
+        },
+        {
+          "t": "p",
+          "v": "Answer:"
+        },
+        {
+          "t": "p",
+          "v": "My health is really important to me so I try to eat healthy food, I don’t smoke and I try to exercise at least 3 times a week."
+        },
+        {
+          "t": "p",
+          "v": "Question:"
+        },
+        {
+          "t": "p",
+          "v": "Is it easy to keep fit where you live?"
+        },
+        {
+          "t": "p",
+          "v": "Answer:"
+        },
+        {
+          "t": "p",
+          "v": "It is difficult to always get to the gym or have time to exercise properly as I tend to be very busy with work. However, I do try to make time to either go for a walk or a run before or after work."
+        },
+        {
+          "t": "p",
+          "v": "Question"
+        },
+        {
+          "t": "p",
+          "v": "What do you think is more important, eating healthily or doing exercise?"
+        },
+        {
+          "t": "p",
+          "v": "Answer"
+        },
+        {
+          "t": "p",
+          "v": "Personally, I think that it is a combination of both. Whilst exercising is definitely important, I also think that eating healthily is even more important. I try to limit the amount of unhealthy food I eat and always try to exercise at least 3 times a week."
+        },
+        {
+          "t": "p",
+          "v": "Question"
+        },
+        {
+          "t": "p",
+          "v": "What are the health benefits of playing a sport?"
+        },
+        {
+          "t": "p",
+          "v": "Answer"
+        },
+        {
+          "t": "p",
+          "v": "I think that playing any sport is really good for your heart but also playing team sports in particular are really good for making friends and learning how to develop team skills."
+        },
+        {
+          "t": "p",
+          "v": "Question"
+        },
+        {
+          "t": "p",
+          "v": "Have you ever had any habits which you consider to be unhealthy?"
+        },
+        {
+          "t": "p",
+          "v": "Answer"
+        },
+        {
+          "t": "p",
+          "v": "Well I used to occasional smoke but I gave up because I knew it was bad for me. I also used to eat too much fried food but I find as I have gotten older I need to look after my health a lot more."
+        },
+        {
+          "t": "p",
+          "v": "Question"
+        },
+        {
+          "t": "p",
+          "v": "Do you think more about your health now than when you were younger?"
+        },
+        {
+          "t": "p",
+          "v": "Answer"
+        },
+        {
+          "t": "p",
+          "v": "Absolutely. I think most people when they are younger, do not pay as much attention to their health as they should. They are more inclined to take their health for granted. I am definitely more conscious about eating healthily and exercising the older I get."
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Sample IELTS Writing Assessment and Answer"
+        },
+        {
+          "t": "p",
+          "v": "In some countries the average weight of people is increasing and their levels of health and fitness are decreasing."
+        },
+        {
+          "t": "p",
+          "v": "What do you think are the causes of these problems and what measures could be taken to solve them?"
+        },
+        {
+          "t": "p",
+          "v": "Answer:"
+        },
+        {
+          "t": "p",
+          "v": "In some parts of the world, people are getting heavier and standards of health and well-being are falling. This essay will suggest that the principal cause of these issues is the type of food they are eating and that governments need to intervene to help solve this serious problem."
+        },
+        {
+          "t": "p",
+          "v": "The main cause of the health crisis currently affecting so many individuals is over-consumption of poor quality food.  Junk food has, unfortunately, become commonplace among so many people. We live in a fast-paced convenience culture, where microwave dinners, chocolate bars, McDonald’s and pizza have become core parts of modern life. Eating too much of these high-fat foods causes many to gain weight and this has knock-on effects on someone’s general wellness."
+        },
+        {
+          "t": "p",
+          "v": "As a consequence, eating unhealthily and exercising less has undoubtedly contributed to the rise in cancers and other illnesses. Apart from having a devastating effect on an individual's health, it also costs governments substantial amounts of money. Baring this in mind, a very practical solution would be for governments to engage in sponsored health awareness programmes. This could involve promoting healthier eating in schools and trying to educate young people to make better decisions regarding the food they eat and of courses the activities they engage in."
+        },
+        {
+          "t": "p",
+          "v": "In addition, taxes on junk food should perhaps be increased so that the convenience food becomes more expensive to buy than fruit and vegetables.  This may help to motivate and encourage people to eat more healthily especially if eating unhealthily is more costly."
+        },
+        {
+          "t": "p",
+          "v": "In summary, the current health crisis has been caused by an over-reliance on unhealthy food however governments can improve the situation by intervening and promoting healthier eating habits."
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Academic Reading Sample Task"
+        },
+        {
+          "t": "p",
+          "v": "Long-haul flights have just got longer, with a non-stop flight from Singapore to New York now in operation. But 18 hours in the air creates its own challenges. A lot of preparation goes into the ultra long haul flight. The aircraft is specifically designed for the journey with more space and extensive entertainment services. The flight crew are also specially trained."
+        },
+        {
+          "t": "p",
+          "v": "The seasoned traveller is also more aware of the health risks associated with a flight that covers as much as 16,600-kilometers (10,310-miles) in distance. Exposure to lower oxygen levels for up to 18, maybe 20, hours is abnormal for the human body. With deep vein thrombosis (DVT) the problem really starts occurring after 12 hours (in-flight). This could lead to an increase in heart attacks."
+        },
+        {
+          "t": "p",
+          "v": "Doctors believe prevention is better than cure when it comes to in-flight health. Passengers on ultra long range flights need to be provided with flight socks and, if necessary, tablets for thinning the blood. It is not just the health and vitality of the passenger that is at stake on a flight of this length, but also that of the flight crew. \"They give us training on fatigue management and how to adjust to the local time in New York and to exercise, as well as take care our diet and eat lightly in-flight,\" says Linda Wu, a stewardess on Singapore Airlines."
+        },
+        {
+          "t": "p",
+          "v": "However, passengers are trading in health concerns for convenience. An extra- long flight means passengers do not need to break up their journey and change planes. \"They like to board once, de-plane once. It is saving time,\" says James Williams from Singapore Airlines."
+        },
+        {
+          "t": "p",
+          "v": "\"From Los Angeles to Singapore, passengers are saving two and a half hours. And to New York passengers are saving up to four hours in flying time.\" Thai Airways is also launching a non-stop service to New York from Bangkok next June to compete with Singapore Airlines. It is planning a similar service to Chicago. Cathay Pacific, Continental, Qantas and Emirates Airlines also offer flights that are more than 14 hours in duration. However, there is still a question of whether longer non-stop flights will become popular. \"They will certainly have a role in the future of aviation, there is no doubt about it. People will prefer to fly non-stop if it is available,\" says Chris Johnson, an airline analyst. \"But we are reaching the limits. These markets are at the very margin of aviation. Most airlines still fly in the eight to 12-hour sector. This is still where the biggest volume in traffic is.\" Avery believes that geography will determine the demand for the ultra long-haul flight and that worldwide appeal for this type of flight is unlikely. \"Asia is where the demand is for the ultra long-haul flight. They are connecting Asian cities to the U.S. East Coast, which is the big market,\" he explains. \"The routes that connect most places that European business travellers go do not need a capacity and endurance to fly 18-hours -- this is the same for U.S. carriers.\""
+        },
+        {
+          "t": "h3",
+          "v": "Questions"
+        },
+        {
+          "t": "p",
+          "v": "Why are longer flights potentially harmful to passengers and crew?"
+        },
+        {
+          "t": "p",
+          "v": "Thinning of blood is important for some passengers when travelling long haul, so tablets can be advisable?"
+        },
+        {
+          "t": "p",
+          "v": "According to the author, why are passengers less concerned about the health implications of long haul flights?"
+        },
+        {
+          "t": "p",
+          "v": "Which of the following statements is false?"
+        }
+      ]
+    },
+    {
+      "page": 7,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Read the Paragraphs below and answer the following questions."
+        },
+        {
+          "t": "p",
+          "v": "(A)Moor walks, North Yorkshire"
+        },
+        {
+          "t": "p",
+          "v": "The yoga weekends at The Orange Tree, a lovely small retreat in the North York Moors, are led by personable owner Edward Harpin and his sister Helen. They teach hatha yoga and mindfulness meditation in two or three sessions a day, which may include music, periods of silence, mantras, breathing techniques and a gong bath to enhance relaxation. There’s an outdoor jacuzzi and sauna, massages and time for moor walks before a three-course homemade veggie supper and yoga nidra prior to bed."
+        },
+        {
+          "t": "p",
+          "v": "(B)Go with the flow, Kent"
+        },
+        {
+          "t": "p",
+          "v": "Jean Hall and Liz Lark are among the UK’s most experienced and inspiring yoga teachers. They draw on a range of yoga styles in their teaching, and on their joint retreats they offer tuition for beginners and more advanced students in separate classes. Their Oxon Hoath base (near Tonbridge) is a stately home on a country estate where participants can expect one pranayama class in the morning and a couple of two-hour flow classes late morning and late afternoon. Mix in walks, massage, open fires and veggie meals – with wine allowed."
+        },
+        {
+          "t": "p",
+          "v": "(C)Doze in the Downs, East Sussex"
+        },
+        {
+          "t": "p",
+          "v": "At the end of a long country lane on the South Downs, elegant Tilton House near Lewes offers weekend yoga retreats all year round, with up to three classes a day from a changing roster of teachers. They include affable Stewart Heffernan, a former actor who teaches vinyasa and yin-based classes to all levels. Between classes, guests can go hiking, doze in the sauna, read by an open fire, have a massage or visit the Bloomsbury group’s Charleston Farmhouse nearby. Meals use ingredients from the orchard and kitchen garden."
+        },
+        {
+          "t": "p",
+          "v": "(D)Solar and sauna, Argyll, Scotland"
+        },
+        {
+          "t": "p",
+          "v": "The rustic retreat of Ecoyoga at Inverliever Lodge features a bath by a wild river, an underground sauna and a solar-powered hot tub for some mindful cold plunges and hot soaking between classes. Mainly ashtanga-based teachers run retreats here all year, including the ashtanga and mindfulness expert Scott Johnson, who teaches a self-practice method and encourages you to practise on your own during the retreat. There are usually two, two-hour-long classes a day with chanting, talks on yoga and healthy veggie meals (including raw chocolate cakes, naturally)."
+        },
+        {
+          "t": "p",
+          "v": "(E)Kriya me a river, south-east Devon"
+        },
+        {
+          "t": "p",
+          "v": "A light-hearted, instinctive teacher, London-based Tania Brown leads seven, one-hour classes over a weekend at comfy, organic Trill Farm near Lyme Regis. Wake up with traditional kriya (cleansing techniques), then after a nourishing breakfast and a walk, join in dynamic yoga in the middle of the woods. There’s also massage, foraging and a restorative yoga and meditation session each evening. Meals by a River Cottage chef are seasonal and organic. Detox or indulge in organic wines."
+        },
+        {
+          "t": "p",
+          "v": "(F)All the right ingredients, East Sussex"
+        },
+        {
+          "t": "p",
+          "v": "Popular restorative and yin yoga teacher and personal development coach Julie Bickerton and yogi and cookery writer Mary Gwynn have teamed up to launch new retreats in East Sussex. Based at a studio in Hartfield village, in an area of outstanding natural beauty, they combine five yoga sessions designed to help deal with seasonal changes, and two cookery demos that focus on sourcing and cooking food that is in season. Largely vegetarian meals will include wine, cake and caffeine. Rooms are split between the hub and a boutique B&B in the village."
+        },
+        {
+          "t": "p",
+          "v": "(G) Snowdon walks, North Wales"
+        },
+        {
+          "t": "p",
+          "v": "On the Isle of Anglesey Zest Life Retreats teams yoga with wild swimming, standup paddleboarding, hiking on Snowdon, walking, detoxing, relaxation, fitness and seashore foraging for engaging, restorative weekends. The base is a secluded, country house estate, and the two, 90-minute classes a day include music, meditation and pranayama either with vinyasa flow with Zest Life founder Laura Bell or yin with partner and dru yoga teacher Kate Hamilton-Hunter."
+        },
+        {
+          "t": "p",
+          "v": "(H)Alpine aura, France"
+        },
+        {
+          "t": "p",
+          "v": "AdventureYogi has been offering a great choice of yoga trips for the past 10 years, including fun, intense healthy weeks in the French Alps. Wake up at 7am with an energising hour of hatha yoga with Chetana Thornton, enjoy a day of skiing or snowboarding, then unwind with a sauna or a good book by a roaring fire before a 90-minute early-evening restorative class. Your base is an apartment by the slopes at Sainte Foy. Three-course gourmet vegetarian feasts include local organic wines. All levels of yogis and skiers welcome."
+        },
+        {
+          "t": "p",
+          "v": "(I)Ionian inversions, Zakynthos, Greece"
+        },
+        {
+          "t": "p",
+          "v": "Soulfood London runs a creative retreat combining daily yoga and photography lessons at Villa Zaharoula, which overlooks the Ionian sea. There’s a fast-paced but accessible 90-minute yoga class to music each morning, and relaxing meditative classes each evening with dynamic vinyasa flow teacher Charlie Morgan. Professional photographer Chloe Read finds something new to inspire every day, from still life to moving waves, and there’s a trip to a hilltop town and wild swimming in a quiet cove. Organic meals include meat and fish."
+        },
+        {
+          "t": "p",
+          "v": "(J)Hatha in Ithaca, Greece"
+        },
+        {
+          "t": "p",
+          "v": "International teachers lead different weeks between May and October at Itha108, a gorgeous island retreat just five minutes from the Ionian sea, where accommodation is split between a Venetian-style house and five Mongolian-style yurts. All levels will enjoy weeks with Laura Gilmore, director of Bristol City Yoga, who teaches two, two-hour long hatha yoga classes a day, the second being a restorative class. Fish is served for those who want it, alongside the veggie meals."
+        },
+        {
+          "t": "p",
+          "v": "(K)Life of Pi, Costa Brava, Spain"
+        },
+        {
+          "t": "p",
+          "v": "With hammocks and a saltwater swimming pool just a 10-minute stroll from a beach, Pi Blau is an eco villa which enjoys 9-11 hours of sunshine a day during the summer, when Destination Yoga runs retreats here. Twice-daily, one-hour yoga classes are led by visiting experts, including vinyasa flow teacher Joanna Najduch (in June) who is particularly patient with beginners. Between times there’s walking, massages and healthy veggie meals. Guests can detox or enjoy local wine and beer."
+        },
+        {
+          "t": "h3",
+          "v": "Questions"
+        },
+        {
+          "t": "p",
+          "v": "Match the paragraphs with the statements below"
+        }
+      ]
+    }
+  ]
+}

@@ -8,6 +8,11 @@ import type { Config } from 'tailwindcss';
  */
 const config: Config = {
   content: ['./src/**/*.{ts,tsx}'],
+  // Opt-in class strategy so a `.dark` wrapper can scope dark styling to a
+  // single subtree (e.g. the IELTS lesson viewer) without affecting the rest
+  // of the app. No existing component uses Tailwind `dark:` variants, so this
+  // is a no-op everywhere else.
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {

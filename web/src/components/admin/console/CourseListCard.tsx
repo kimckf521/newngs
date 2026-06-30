@@ -2,6 +2,7 @@
 
 import { Card, Icon, SoftButton } from '@/components/member/design-v1/parts';
 import type { AdminCourse } from '@/lib/courses/types';
+import { isBuiltinCourse } from '@/lib/courses/builtin';
 import { CoverPreview } from './CoverPreview';
 
 /**
@@ -9,7 +10,7 @@ import { CoverPreview } from './CoverPreview';
  * Extracted from CoursesSection so the 题库 section can show the same card for
  * courses that belong to a question bank (single source of truth).
  */
-export type CourseCardLabels = { published: string; draft: string; moduleCount: (n: number) => string; edit: string; del: string };
+export type CourseCardLabels = { published: string; draft: string; moduleCount: (n: number) => string; edit: string; del: string; builtin?: string };
 
 export function CourseListCard({
   c,
@@ -33,10 +34,15 @@ export function CourseListCard({
       >
         <CoverPreview value={c.coverImage} />
         <div className="px-5 pt-5">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${c.published ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-500'}`}>
               {c.published ? labels.published : labels.draft}
             </span>
+            {isBuiltinCourse(c.id) && (
+              <span className="rounded-full bg-ngs-violet/10 px-2 py-0.5 text-[11px] font-semibold text-ngs-violet">
+                {labels.builtin ?? 'Built-in'}
+              </span>
+            )}
             {c.level && <span className="text-[11px] text-slate-400">{c.level}</span>}
           </div>
           <h3 className="mt-2 font-grotesk text-base font-bold leading-snug text-slate-900">{c.name}</h3>

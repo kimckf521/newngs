@@ -1,0 +1,775 @@
+{
+  "pageTypes": {
+    "1": null,
+    "2": "Tell Me",
+    "3": "Show Me",
+    "4": "Tell Me",
+    "5": "Show Me",
+    "6": "Involve Me",
+    "7": "Involve Me"
+  },
+  "pages": [
+    {
+      "page": 1,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "This Unit is about Science and Education"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/download_2_.jpg"
+        },
+        {
+          "t": "p",
+          "v": "We will use comprehension exercises and audio to help you in your learning."
+        },
+        {
+          "t": "p",
+          "v": "In Listening and Speaking, you will learn how to:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Listen to and follow a discussion regarding education",
+            "Gain a broader understanding of vocabulary relating to education and science",
+            "Gain a greater understanding of the types of questions that can be asked about education and science in the IELTS Speaking Exam"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "In Reading and Writing, you will learn how to:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Read articles and text about Education and Science",
+            "Practice reading comprehension skills"
+          ]
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Reading Excercise"
+        },
+        {
+          "t": "p",
+          "v": "Read through the article below and answer the following questions"
+        },
+        {
+          "t": "p",
+          "v": "Early Childhood Education"
+        },
+        {
+          "t": "p",
+          "v": "New Zealand's National Party spokesman on education, Dr Lockwood Smith, recently visited the US and Britain. Here he reports on the findings of his tripand what they could mean for New Zealand's education policy."
+        },
+        {
+          "t": "p",
+          "v": "A'Education To Be More' was published last August. It was the report of the New Zealand Government's Early Childhood Care and Education Working Group. The report argued for enhanced equity of access and better funding for childcare and early childhood education institutions. Unquestionably, that's a real need; but since parents don't normally send children to pre-schools until the age of three, are we missing out on the most important years of all?"
+        },
+        {
+          "t": "p",
+          "v": "BA 13-year study of early childhood development at Harvard University has shown that, by the age of three, most children have the potential to understand about 1000 words - most of the language they will use in general conversation for the rest of their lives. Furthermore, research has shown that while every child is born with a natural curiosity, it can be suppressed dramatically during the second and third years of life. Researchers claim that the human personality is formed during the first two years of life, and during the first three years children learn the basic skills they will use in all their later learning both at home and at school. Once over the age of three, children continue to expand on existing knowledge of the world."
+        },
+        {
+          "t": "p",
+          "v": "CIt is generally acknowledged that young people from poorer socio-economic backgrounds tend to do less well in our education system. That's observed not just in New Zealand, but also in Australia, Britain and America. In an attempt to overcome that educational under-achievement, a nationwide programme called 'Headstart' was launched in the United States in 1965. A lot of money was poured into it. It took children into pre-school institutions at the age of three and was supposed to help the children of poorer families succeed in school. Despite substantial funding, results have been disappointing. It is thought that there are two explanations for this. Firstly, the programme began too late, many children who entered it at the age of three were already behind their peers in language and measurable intelligence. Secondly, the parents were not involved, at the end of each day, 'Headstart' children returned to the same disadvantaged home environment."
+        },
+        {
+          "t": "p",
+          "v": "DAs a result of the growing research evidence of the importance of the first three years of a child's life, and the disappointing results from 'Headstart', a pilot programme was launched in Missouri in the US that focused on parents as the child's first teachers. The 'Missouri' programme was predicated on research showing that working with the family, rather than bypassing the parents, is the most effective way of helping children get off to the best possible start in life. The four-year pilot study included 380 families who were about to have their first child and who represented a cross-section of socio-economic status, age and family configurations. They included single parent and two-parent families, families in which both parents worked, and families with either the mother or father at home. The programme involved trained parent-educators visiting the parents' home and working with the parent, or parents, and the child. Information on child development and guidance on things to look for and expect as the child grows were provided, plus guidance in fostering the child's intellectual, language, social and motor-skill development. Periodic check-ups of the child's educational and sensory development (hearing and vision) were made to detect possible handicaps that interfere with growth and development. Medical problems were referred to professionals. Parent-educators made personal visits to homes and monthly group meetings were held with other new parents to share experience and discuss topics of interest. Parent resource centres, located in school buildings, offered learning materials for families and facilitators for child care."
+        },
+        {
+          "t": "p",
+          "v": "EAt the age of three, the children who had been involved in the 'Missouri' programme were evaluated alongside a cross-section of children selected from the same range of socio-economic backgrounds and family situations, and also a random sample of children that age. The results were phenomenal. By the age of three, the children in the programme were significantly more advanced in language development than their peers, had made greater strides in problem-solving and other intellectual skills and were further along in social development. In fact, the average child on the programme was performing at the level of the top 15 to 20 percent of their peers in such things as auditory comprehension, verbal ability and language ability. Most important of all, the traditional measures of 'risk', such as parents' age and education, or whether they were a single parent, bore little or no relationship to the measures of achievement and language development. Children in the programme performed equally well regardless of socio-economic disadvantages. Child abuse was virtually eliminated. The one factor that was found to affect the child's development was family stress leading to a poor quality of parent-child interaction. That interaction was not necessarily bad in poorer families."
+        },
+        {
+          "t": "p",
+          "v": "FThese research findings are exciting. There is growing evidence in New Zealand that children from poorer socio-economic backgrounds are arriving at school less well developed and that our school system tends to perpetuate that disadvantage. The initiative outlined above could break that cycle of disadvantage. The concept of working with parents in their homes, or at their place of work, contrasts quite markedly with the report of the Early Childhood Care and Education Working Group. Their focus is on getting children and mothers access to childcare and institutionalised early childhood education. Education from the age of three to five is undoubtedly vital, but without a similar focus on parent education and on the vital importance of the first three years, some evidence indicates that it will not be enough to overcome educational inequity."
+        },
+        {
+          "t": "h3",
+          "v": "Please answer the following questions"
+        },
+        {
+          "t": "p",
+          "v": "Which paragraph contains the following information?"
+        },
+        {
+          "t": "p",
+          "v": "Details of the range of family types involved in an education programme"
+        },
+        {
+          "t": "p",
+          "v": "Which paragraph contains the following information?"
+        },
+        {
+          "t": "p",
+          "v": "Reasons why an education programme failed."
+        },
+        {
+          "t": "p",
+          "v": "which of the following statements are True?"
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Reading Assessment"
+        },
+        {
+          "t": "p",
+          "v": "Read through the chat, between a customer and representative, below then answer the following questions"
+        },
+        {
+          "t": "p",
+          "v": "College Representative: Hi there, how can I help you?"
+        },
+        {
+          "t": "p",
+          "v": "Customer: I am interested in doing a post graduate programme in psychotherapy and I believe you offer a course I could consider."
+        },
+        {
+          "t": "p",
+          "v": "College Representative: Yes we have a PGDIP which is a Post Graduate Diploma in Counselling and Psychotherapy."
+        },
+        {
+          "t": "p",
+          "v": "Customer: Great, so could you tell me how long the course is and a little bit about the content of the course?"
+        },
+        {
+          "t": "p",
+          "v": "College Representative: Well the course is 9 months in duration, starts in September, let me just check the exact date…….(pause)………..right, the 17th of sept and the course runs on a part-time basis, with classes on a Wednesday and Thursday each week."
+        },
+        {
+          "t": "p",
+          "v": "Customer: Ok, so how many hours of classes do I actually need to attend?"
+        },
+        {
+          "t": "p",
+          "v": "College Representative: Well you would have classes on a Wednesday from 9am-4pm and on a Thursday from 9am-1pm each week."
+        },
+        {
+          "t": "p",
+          "v": "Customer: And are there any other workshops that I would need to attend?"
+        },
+        {
+          "t": "p",
+          "v": "College Representative: Well if you decide to enrol, you would need to attend a weekend residential workshop on the weekend before the course actually begins, so this would actually be the 13th and 14th of September.  This is an induction programme and you get to meet all the course staff members, attend seminars on different topics and choose which modules you wish to study over the 9month course”"
+        },
+        {
+          "t": "p",
+          "v": "Customer: So, you mentioned it is a residential programme so does that mean it is a seminar which I would have to stay overnight at?"
+        },
+        {
+          "t": "p",
+          "v": "College Representative: Yes, we invite you to join the weekend residential at our Manchester Campus, and you get to stay at our student residents”"
+        },
+        {
+          "t": "p",
+          "v": "Customer: Ok, and what is the cost?"
+        },
+        {
+          "t": "p",
+          "v": "College Representative: Well you need to pay £300 for the weekend residential which includes a 2 day/1 night stay, dinner on the Saturday and breakfast on Sunday."
+        },
+        {
+          "t": "p",
+          "v": "Customer: And the overall course fee, how much is that?”"
+        },
+        {
+          "t": "p",
+          "v": "College Representative: It is £4,600."
+        },
+        {
+          "t": "p",
+          "v": "Customer: Ok, and how can this be paid?"
+        },
+        {
+          "t": "p",
+          "v": "College Representative: “You can pay it all in one go and if you do you get a 10% reduction which would make the fees £4,140. Alternatively, you can pay in two payments before the start of the autumn and spring semesters, £2,300 on each payment."
+        },
+        {
+          "t": "p",
+          "v": "Customer: Right, can I consider the first option, as this works out cheaper. How would I proceed if I wanted to reserve the course?”"
+        },
+        {
+          "t": "p",
+          "v": "College Representative: Well, first of all, you need to complete an application form and this has to be submitted either to our enrolment office or online to our email address – our central admissions email address."
+        },
+        {
+          "t": "p",
+          "v": "Customer: Ok great, so I will probably just download the application form from your website, complete it, and bring it in in person next week."
+        },
+        {
+          "t": "p",
+          "v": "College Representative: Fantastic, well our office hours are 9am-5pm Monday to Friday so when you come in if you can either bring in a cheque or your debit or credit card we can take an enrolment fee of  £300 which is refundable should you decide not to proceed at a later date. Just bare in mind that if you cancel within 2 weeks of the course start date in September the enrollment fee is non-refundable."
+        },
+        {
+          "t": "p",
+          "v": "Customer: Do I need to bring in any ID?"
+        },
+        {
+          "t": "p",
+          "v": "College Representative: Yes please can you bring in your passport or a driver's license."
+        },
+        {
+          "t": "p",
+          "v": "Customer: Great, I will see you next week then."
+        },
+        {
+          "t": "p",
+          "v": "College Representative: Take care have a nice day."
+        },
+        {
+          "t": "h3",
+          "v": "How long is the psychotherapy course?"
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Vocabulary useful when discussing Education"
+        },
+        {
+          "t": "p",
+          "v": "Word"
+        },
+        {
+          "t": "p",
+          "v": "Meaning"
+        },
+        {
+          "t": "p",
+          "v": "The curriculum"
+        },
+        {
+          "t": "p",
+          "v": "Example"
+        },
+        {
+          "t": "p",
+          "v": "The entire school program including course materials and testing of students."
+        },
+        {
+          "t": "p",
+          "v": "When I read the curriculum of the course I decided that it was possibly too challenging for me."
+        },
+        {
+          "t": "p",
+          "v": "Graduate"
+        },
+        {
+          "t": "p",
+          "v": "Example"
+        },
+        {
+          "t": "p",
+          "v": "A person who has graduated from a school"
+        },
+        {
+          "t": "p",
+          "v": "I graduated from university in 2015"
+        },
+        {
+          "t": "p",
+          "v": "Illiteracy"
+        },
+        {
+          "t": "p",
+          "v": "Example"
+        },
+        {
+          "t": "p",
+          "v": "The inability to read and write"
+        },
+        {
+          "t": "p",
+          "v": "Dealing with illiteracy is crucial to overcoming poverty"
+        },
+        {
+          "t": "p",
+          "v": "Literacy"
+        },
+        {
+          "t": "p",
+          "v": "Example"
+        },
+        {
+          "t": "p",
+          "v": "The ability to read and write"
+        },
+        {
+          "t": "p",
+          "v": "The government launched a new literacy programme to improve the reading and writing skills of young people"
+        },
+        {
+          "t": "p",
+          "v": "Nurture"
+        },
+        {
+          "t": "p",
+          "v": "Example"
+        },
+        {
+          "t": "p",
+          "v": "To help grow or develop"
+        },
+        {
+          "t": "p",
+          "v": "Parents need to nurture their children from a very young age to ensure they grow up to be strong capable adults"
+        },
+        {
+          "t": "p",
+          "v": "Qualification"
+        },
+        {
+          "t": "p",
+          "v": "Example"
+        },
+        {
+          "t": "p",
+          "v": "What someone gets when they graduate from school. For instance, a diploma is a qualification."
+        },
+        {
+          "t": "p",
+          "v": "It is very important to gain qualifications in order to achieve your career goals"
+        },
+        {
+          "t": "p",
+          "v": "Social skills"
+        },
+        {
+          "t": "p",
+          "v": "Example"
+        },
+        {
+          "t": "p",
+          "v": "The ability to communicate and interact well with others"
+        },
+        {
+          "t": "p",
+          "v": "Some people simply lack good social skills and offend people easily"
+        },
+        {
+          "t": "h3",
+          "v": "Some useful Verbs"
+        },
+        {
+          "t": "p",
+          "v": "Word"
+        },
+        {
+          "t": "p",
+          "v": "Meaning"
+        },
+        {
+          "t": "p",
+          "v": "Graduate"
+        },
+        {
+          "t": "p",
+          "v": "To pass a course or level of study"
+        },
+        {
+          "t": "p",
+          "v": "Concentrate"
+        },
+        {
+          "t": "p",
+          "v": "To focus attention towards a particular activity, subject or problem"
+        },
+        {
+          "t": "p",
+          "v": "Revise"
+        },
+        {
+          "t": "p",
+          "v": "To review materials that have already been taught"
+        },
+        {
+          "t": "p",
+          "v": "Enroll"
+        },
+        {
+          "t": "p",
+          "v": "To join a class"
+        },
+        {
+          "t": "p",
+          "v": "Indoctrinate"
+        },
+        {
+          "t": "p",
+          "v": "To teach following a biased belief or point of view. For example, Hitler indoctrinated young Germans with a hatred for other races."
+        },
+        {
+          "t": "p",
+          "v": "Interpret"
+        },
+        {
+          "t": "p",
+          "v": "To understand in a particular way. For example, we need to interpret the meaning of the painting."
+        },
+        {
+          "t": "p",
+          "v": "Persevere"
+        },
+        {
+          "t": "p",
+          "v": "To not give up."
+        },
+        {
+          "t": "p",
+          "v": "Procrastinate"
+        },
+        {
+          "t": "p",
+          "v": "To delay or put off doing something"
+        },
+        {
+          "t": "h3",
+          "v": "Some useful Adjectives"
+        },
+        {
+          "t": "p",
+          "v": "Word"
+        },
+        {
+          "t": "p",
+          "v": "Meaning"
+        },
+        {
+          "t": "p",
+          "v": "Academic"
+        },
+        {
+          "t": "p",
+          "v": "Example"
+        },
+        {
+          "t": "p",
+          "v": "Relating to education especially universities."
+        },
+        {
+          "t": "p",
+          "v": "I have two academic qualifications, my degree and my masters"
+        },
+        {
+          "t": "p",
+          "v": "Co-Educational"
+        },
+        {
+          "t": "p",
+          "v": "Example"
+        },
+        {
+          "t": "p",
+          "v": "When male and female students are taught together in the same school."
+        },
+        {
+          "t": "p",
+          "v": "I attended a co-educational school for my primary education."
+        },
+        {
+          "t": "p",
+          "v": "Single sex"
+        },
+        {
+          "t": "p",
+          "v": "Example"
+        },
+        {
+          "t": "p",
+          "v": "When only male or female students are taught in the same school."
+        },
+        {
+          "t": "p",
+          "v": "Some people believe single-sex education is more beneficial for boys and less so for girls."
+        },
+        {
+          "t": "p",
+          "v": "Hands-on"
+        },
+        {
+          "t": "p",
+          "v": "Example"
+        },
+        {
+          "t": "p",
+          "v": "To learn by actually doing. We can get hands-on experience by actually doing things."
+        },
+        {
+          "t": "p",
+          "v": "I like to be really hands-on when I am making decisions in my daily life"
+        },
+        {
+          "t": "p",
+          "v": "Vocational"
+        },
+        {
+          "t": "p",
+          "v": "Example"
+        },
+        {
+          "t": "p",
+          "v": "The actual skills necessary for a  particular job."
+        },
+        {
+          "t": "p",
+          "v": "Very often the biggest weakness of university education is the lack of vocational skills that students acquire which are necessary for the workplace."
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Frequently asked questions in the IELTS Speaking Exam and Sample Answers"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "How long have you been studying English?"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "I have been studying English for more than 16 years, first in primary school and then throughout my high school education. I have also studied my nursing degree in English so, although English is not my first language, I feel very confident speaking and studying in English."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Would you say you are a good student?"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Yes, I would describe myself as a good student. I actually really enjoy learning and I do not mind studying, especially if it is a subject that I feel passionate about or I know it will help me with my career and my future."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "When you were younger did you enjoy school?"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Yes, I really enjoyed school when I was younger.  I was always the kind of pupil that wanted to impress my teachers, a bit of a teacher’s pet. I particularly loved gym class because I love sports and especially team sports like soccer.  I also enjoyed studying geography and history, mainly because I have always wanted to learn about other countries and their histories and I think that’s why I have always wanted to travel around the world."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "When can you remember really enjoying learning?"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "I have very fond memories of studying drama at high school and doing high school musicals with my friends. It really helped me develop more confidence in myself and I think this has helped me massively in all aspects of my life."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Describe a teacher who had a very positive influence on you?"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "One of my teachers in primary school, Mrs Burke, was very supportive of my artistic skills and she really encouraged me to focus on my painting and drawing skills.  She also encouraged me to love reading, introducing me to some great novels and I think this gave me a real hunger for learning and discovering new things."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "What do you think makes a good teacher?"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "I think a good teacher is someone who has a real passion for the subject they teach and this passion is something they are able to pass onto their students.   My teacher Mrs Burke in primary school was exactly like this and I feel I gained a real passion for art because of her enthusiasm."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Why has studying English been important to you?"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Well studying English is very important to me, especially as it allows me to consider moving to the United Kingdom and pursue my career as a nurse. Without studying English my career ambitions would not be possible."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Do you think education and university, in particular, prepares you for life?"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "I am not quite sure if education and university prepare you for all aspects of your life. I do think however that you develop good friends during your school years which if you are lucky you keep throughout your life and this is very important.  I also think that school can teach you how to work hard in your life to achieve your goals and although much we learn in school gets forgotten about, there are keep skills like literacy and numeracy which we use every day in our lives."
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Reading assessment"
+        },
+        {
+          "t": "p",
+          "v": "Read through the below article and answer the following questions"
+        },
+        {
+          "t": "p",
+          "v": "5 science and technology breakthroughs from 2016"
+        },
+        {
+          "t": "p",
+          "v": "Source Published on Tuesday, May 10th 2016. Written by Alex Cadman"
+        },
+        {
+          "t": "p",
+          "v": "Technology is constantly evolving, and emerging technologies are developing every day that could have the power to solve key problems and change the way we live. From potential cancer-curing technology to devices powered solely by radio signals, 2016 so far, has been a year of technology milestones."
+        },
+        {
+          "t": "link",
+          "v": "https://www.technologyreview.com/10-breakthrough-technologies/2016/",
+          "label": "2016 | MIT Technology Review"
+        },
+        {
+          "t": "p",
+          "v": "5. Immune Engineering"
+        },
+        {
+          "t": "p",
+          "v": "Scientists at Cellectis began developing a cancer treatment in 2011 that involves editing an individual’s genes using a method called TALENs, which makes changes to DNA in living cells. The goal of this gene-editing process is to gain control over ‘T’ cells, the “killer cells of the immune system”, and direct them to attack the blood cells that mutate in leukaemia."
+        },
+        {
+          "t": "p",
+          "v": "The technique has been tested with hundreds of patients to date, yielding largely positive results. With further development, the ‘immune engineering’ technology could be available in 1 to 2 years, according to Technology Review."
+        },
+        {
+          "t": "p",
+          "v": "4. Gene Editing in Plants"
+        },
+        {
+          "t": "p",
+          "v": "A new technology known as CRISPR is a gene modification technique for plants that can be used to help crops “yield more food and resist droughts and diseases more effectively”. A lab in the UK is applying this technology to potatoes, tomatoes and other crops to test its effectiveness and to fight fungal diseases."
+        },
+        {
+          "t": "link",
+          "v": "https://www.technologyreview.com/s/600765/10-breakthrough-technologies-2016-precise-gene-editing-in-plants/",
+          "label": "this technology"
+        },
+        {
+          "t": "p",
+          "v": "3. Reusable Rockets"
+        },
+        {
+          "t": "p",
+          "v": "Until now, rockets that fly into space have been destroyed by burning up in the Earth’s atmosphere, making each journey to space extremely costly to the tune of tens of millions of US dollars. However, two technology companies – Blue Origin and SpaceX – have proved that reusable rockets are possible. Both companies tested rockets in 2015 that were able to land vertically on the ground after their respective journeys using foldout legs."
+        },
+        {
+          "t": "link",
+          "v": "https://www.technologyreview.com/s/600767/10-breakthrough-technologies-2016-reusable-rockets/",
+          "label": "new technology"
+        },
+        {
+          "t": "p",
+          "v": "2. Robots That Teach Each Other"
+        },
+        {
+          "t": "link",
+          "v": "https://www.technologyreview.com/s/600768/10-breakthrough-technologies-2016-robots-that-teach-each-other/",
+          "label": "Teaching a robot"
+        },
+        {
+          "t": "p",
+          "v": "However, it is possible to enable robots to teach each other these tasks by programming one robot to complete the task, and then instruct that robot to pass the data along to other robots via cloud software. This would help advance the capabilities of robots in a much quicker fashion. Technology Review claims this will be available in approximately 3 to 5 years."
+        },
+        {
+          "t": "p",
+          "v": "1. Power from the Air"
+        },
+        {
+          "t": "p",
+          "v": "Devices and gadgets are part of daily life in the 21st century and typically, the devices we use to connect to the Internet are powered by a battery or power cord. However, developing technology could see the release of devices that are powered solely by TV, radio, mobile phone or Wi-Fi signals. Transferring power wireless is not a new trick but to power a device by radio signal alone, without a conventional power source, proves more difficult than it seems."
+        },
+        {
+          "t": "p",
+          "v": "The technology that allows our devices to operate effectively without batteries or power cords could become available in the next 2 to 3 years, increasing the usability and mobility of such devices while decreasing the costs of production."
+        },
+        {
+          "t": "h3",
+          "v": "According to the author, 2016 has"
+        },
+        {
+          "t": "p",
+          "v": "T Cells"
+        },
+        {
+          "t": "p",
+          "v": "Which of the following statements are true?"
+        },
+        {
+          "t": "h3",
+          "v": "According to the author, 2016 has"
+        },
+        {
+          "t": "p",
+          "v": "T Cells"
+        },
+        {
+          "t": "p",
+          "v": "Which of the following statements are true?"
+        }
+      ]
+    },
+    {
+      "page": 7,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Listening Assessment"
+        },
+        {
+          "t": "p",
+          "v": "University Lecture on Reproductive Treatment"
+        },
+        {
+          "t": "h3",
+          "v": "Answer the following questions."
+        },
+        {
+          "t": "p",
+          "v": "What does A  R  T  stand for?"
+        },
+        {
+          "t": "p",
+          "v": "Where can the success data been retrieved for A R T success rates"
+        },
+        {
+          "t": "p",
+          "v": "Which of the following statements is true?"
+        },
+        {
+          "t": "p",
+          "v": "I V F, according to the lecturers is"
+        }
+      ]
+    }
+  ]
+}

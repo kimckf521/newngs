@@ -7,11 +7,13 @@ import type { Locale } from '@/i18n/types';
 import { Card, Icon, GradientButton } from '@/components/member/design-v1/parts';
 import { ImageUploadField } from '@/components/puck/fields/ImageUploadField';
 import { listCourses, saveCourse, deleteCourse } from '@/lib/courses/client';
+import { builtinContentHref } from '@/lib/courses/builtin';
 import { slugify, uniqueSlug, type AdminCourse, type CourseModule } from '@/lib/courses/types';
 import { adminConsoleContent } from './adminConsole.content';
 import { CoverPreview } from './CoverPreview';
 import { QuestionBankPanel } from './QuestionBankPanel';
 import { CoursePreview } from './CoursePreview';
+import { VersionHistoryPanel } from '@/components/admin/VersionHistoryPanel';
 
 const inputCls =
   'w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-ngs-violet/60 focus:ring-2 focus:ring-ngs-violet/15';
@@ -27,6 +29,10 @@ const L = {
     coverT: '封面图', infoT: '课程信息', slug: '课程 ID(slug)', created: '创建时间', updated: '更新时间', by: '最近修改', loading: '加载中…',
     notFound: '找不到这门课程。', action: '按钮', actions: { mcq: '测验 (MCQ)', retry: '重做', none: '无' },
     moduleTitlePh: '模块标题,如「Reading 阅读专项」', addModule: '添加模块', up: '上移', down: '下移', remove: '删除模块',
+    contentT: '课件与测验', contentHint: '本课程的课件、视频与每个模块的测验在专用编辑器中管理。', contentCta: '管理课件与测验', previewCourse: '预览整门课程',
+    cancel: '取消', confirmDelete: '删除', delModuleTitle: '删除模块',
+    delModuleMsg: (t: string) => (t ? `确定删除模块「${t}」吗？此操作无法撤销。` : '确定删除此模块吗？此操作无法撤销。'),
+    delCourseTitle: '删除课程', versions: '版本历史',
   },
   en: {
     back: 'Courses', editTitle: 'Edit course', newTitle: 'New course', del: 'Delete', preview: 'Preview',
@@ -35,11 +41,69 @@ const L = {
     coverT: 'Cover image', infoT: 'Course info', slug: 'Course ID (slug)', created: 'Created', updated: 'Updated', by: 'Last edited by', loading: 'Loading…',
     notFound: 'Course not found.', action: 'Button', actions: { mcq: 'Quiz (MCQ)', retry: 'Retry', none: 'None' },
     moduleTitlePh: 'Module title, e.g. "Reading practice"', addModule: 'Add module', up: 'Move up', down: 'Move down', remove: 'Remove module',
+    contentT: 'Lessons & tests', contentHint: "This course's lessons, videos and per-module tests are managed in a dedicated editor.", contentCta: 'Manage lessons & tests', previewCourse: 'Preview whole course',
+    cancel: 'Cancel', confirmDelete: 'Delete', delModuleTitle: 'Delete module',
+    delModuleMsg: (t: string) => (t ? `Delete the module "${t}"? This can't be undone.` : "Delete this module? This can't be undone."),
+    delCourseTitle: 'Delete course', versions: 'History',
   },
 } as const;
 
 type ModuleRow = { title: string; mcqButton: NonNullable<CourseModule['mcqButton']> };
 const fmtDate = (ms?: number) => (ms ? new Date(ms).toLocaleString() : '—');
+
+/** Styled confirm modal (replaces native window.confirm). Light utility classes
+ *  are re-themed to dark by the surrounding `.dv1-dark` scope. */
+function ConfirmDialog({
+  title,
+  message,
+  confirmLabel,
+  cancelLabel,
+  onConfirm,
+  onCancel,
+}: {
+  title: string;
+  message?: string;
+  confirmLabel: string;
+  cancelLabel: string;
+  onConfirm: () => void;
+  onCancel: () => void;
+}) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onCancel(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onCancel]);
+  return (
+    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm" onClick={onCancel}>
+      <div
+        role="alertdialog"
+        aria-modal="true"
+        onClick={(e) => e.stopPropagation()}
+        className="w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl"
+      >
+        <div className="flex items-start gap-3">
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-rose-500/10 text-rose-500">
+            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" />
+            </svg>
+          </span>
+          <div className="min-w-0">
+            <h3 className="font-grotesk text-base font-bold text-slate-900">{title}</h3>
+            {message && <p className="mt-1 text-sm text-slate-500">{message}</p>}
+          </div>
+        </div>
+        <div className="mt-6 flex justify-end gap-2.5">
+          <button type="button" onClick={onCancel} className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100">
+            {cancelLabel}
+          </button>
+          <button type="button" onClick={onConfirm} autoFocus className="rounded-xl bg-rose-500 px-4 py-2 text-sm font-bold text-white transition hover:bg-rose-600">
+            {confirmLabel}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function CourseEditPage({ id, locale }: { id: string; locale: Locale }) {
   const t = adminConsoleContent[locale];
@@ -65,6 +129,8 @@ export function CourseEditPage({ id, locale }: { id: string; locale: Locale }) {
   const [status, setStatus] = useState('');
   const [saving, setSaving] = useState(false);
   const [previewing, setPreviewing] = useState(false);
+  const [dialog, setDialog] = useState<null | { title: string; message?: string; confirmLabel: string; onConfirm: () => void }>(null);
+  const [showVersions, setShowVersions] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -146,14 +212,42 @@ export function CourseEditPage({ id, locale }: { id: string; locale: Locale }) {
     }
   }
 
-  async function onDelete() {
+  function onDelete() {
     if (!existing) return;
-    if (!window.confirm(t.courses.confirmDel(existing.name))) return;
+    setDialog({
+      title: l.delCourseTitle,
+      message: t.courses.confirmDel(existing.name),
+      confirmLabel: l.confirmDelete,
+      onConfirm: () => void doDelete(),
+    });
+  }
+  async function doDelete() {
+    if (!existing) return;
     try {
       await deleteCourse(existing.id);
       router.push(BACK);
     } catch {
       window.alert(t.courses.delFailed);
+    }
+  }
+
+  /* Restore a snapshot from version history → load it into the form and save it
+   *  as the new current version (non-destructive: history is preserved). */
+  async function restoreVersion(data: unknown) {
+    const c = data as AdminCourse;
+    if (!c || typeof c !== 'object') return;
+    setName(c.name || '');
+    setDescription(c.description || '');
+    setLevel(c.level || '');
+    setTrack(c.track || '');
+    setCover(c.coverImage || '');
+    setPublished(!!c.published);
+    setModules((c.modules?.length ? c.modules : [{ title: '' }]).map((m) => ({ title: m.title || '', mcqButton: m.mcqButton || 'mcq' })));
+    try {
+      const mode = await saveCourse({ ...c, id: existing?.id || c.id, createdAt: existing?.createdAt ?? c.createdAt });
+      setStatus(mode === 'cloud' ? f.savedCloud : f.savedLocal);
+    } catch {
+      setStatus(f.saveFailed);
     }
   }
 
@@ -194,6 +288,15 @@ export function CourseEditPage({ id, locale }: { id: string; locale: Locale }) {
             >
               👁 {l.preview}
             </button>
+            {!isNew && existing && (
+              <button
+                type="button"
+                onClick={() => setShowVersions(true)}
+                className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 px-3.5 py-2 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100"
+              >
+                <Icon name="clock" className="h-4 w-4" /> {l.versions}
+              </button>
+            )}
             {!isNew && (
               <button
                 type="button"
@@ -212,6 +315,32 @@ export function CourseEditPage({ id, locale }: { id: string; locale: Locale }) {
       <main className="mx-auto grid max-w-[1120px] gap-6 px-5 py-7 sm:px-8 lg:grid-cols-3">
         {/* Left / main */}
         <div className="space-y-6 lg:col-span-2">
+          {/* Rich lessons/tests live in a dedicated editor (built-in courses). */}
+          {!isNew && existing && builtinContentHref(existing.id) && (
+            <Card className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
+              <div className="min-w-0">
+                <p className={sectionTitle}>{l.contentT}</p>
+                <p className="mt-0.5 text-xs text-slate-400">{l.contentHint}</p>
+              </div>
+              <div className="flex shrink-0 flex-wrap items-center gap-2.5">
+                <Link
+                  href={`${builtinContentHref(existing.id)!}/module/1`}
+                  className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100"
+                >
+                  👁 {l.previewCourse}
+                </Link>
+                <Link
+                  href={builtinContentHref(existing.id)!}
+                  className="inline-flex items-center gap-2 rounded-xl bg-ngs-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_24px_-10px_rgba(236,28,139,0.7)] transition-transform hover:-translate-y-0.5"
+                >
+                  <Icon name="book" className="h-4 w-4" />
+                  {l.contentCta}
+                  <Icon name="arrow" className="h-4 w-4" />
+                </Link>
+              </div>
+            </Card>
+          )}
+
           <Card className="p-6">
             <p className={sectionTitle}>{l.basics}</p>
             <div className="mt-4 space-y-4">
@@ -272,7 +401,19 @@ export function CourseEditPage({ id, locale }: { id: string; locale: Locale }) {
                       <Icon name="arrow" className="h-4 w-4 rotate-90" />
                     </button>
                     {modules.length > 1 && (
-                      <button type="button" onClick={() => setModules((ms) => ms.filter((_, idx) => idx !== i))} title={l.remove} className="grid h-8 w-7 place-items-center rounded-lg text-slate-400 hover:bg-rose-500/10 hover:text-rose-500">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setDialog({
+                            title: l.delModuleTitle,
+                            message: l.delModuleMsg(m.title.trim()),
+                            confirmLabel: l.confirmDelete,
+                            onConfirm: () => setModules((ms) => ms.filter((_, idx) => idx !== i)),
+                          })
+                        }
+                        title={l.remove}
+                        className="grid h-8 w-7 place-items-center rounded-lg text-slate-400 hover:bg-rose-500/10 hover:text-rose-500"
+                      >
                         ✕
                       </button>
                     )}
@@ -289,8 +430,12 @@ export function CourseEditPage({ id, locale }: { id: string; locale: Locale }) {
             </button>
           </Card>
 
-          {/* Question bank linked to this course (by id) — present for e.g. `ielts`. */}
-          {!isNew && existing && <QuestionBankPanel courseId={existing.id} locale={locale} />}
+          {/* Question bank linked to this course (by id). Hidden for built-in
+              courses (e.g. IELTS), whose assessments are managed with the rich
+              lessons in the dedicated content editor. */}
+          {!isNew && existing && !builtinContentHref(existing.id) && (
+            <QuestionBankPanel courseId={existing.id} locale={locale} />
+          )}
         </div>
 
         {/* Right / sidebar */}
@@ -348,6 +493,27 @@ export function CourseEditPage({ id, locale }: { id: string; locale: Locale }) {
           modules={modules.map((m) => ({ title: m.title }))}
           locale={locale}
           onClose={() => setPreviewing(false)}
+        />
+      )}
+
+      {dialog && (
+        <ConfirmDialog
+          title={dialog.title}
+          message={dialog.message}
+          confirmLabel={dialog.confirmLabel}
+          cancelLabel={l.cancel}
+          onConfirm={() => { dialog.onConfirm(); setDialog(null); }}
+          onCancel={() => setDialog(null)}
+        />
+      )}
+
+      {showVersions && existing && (
+        <VersionHistoryPanel
+          kind="course"
+          refId={existing.id}
+          lang={locale}
+          onRestore={restoreVersion}
+          onClose={() => setShowVersions(false)}
         />
       )}
     </>,

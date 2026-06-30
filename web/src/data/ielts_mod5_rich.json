@@ -1,0 +1,1188 @@
+{
+  "pageTypes": {
+    "1": null,
+    "2": "Involve Me",
+    "3": "Involve Me",
+    "4": "Involve Me",
+    "5": "Show Me",
+    "6": "Show Me More",
+    "7": "Tell Me",
+    "8": "Involve Me",
+    "9": "Involve Me",
+    "10": "Tell Me",
+    "11": "Show Me",
+    "12": "Tell Me",
+    "13": "Show Me",
+    "14": "Show Me More",
+    "15": "Show Me",
+    "16": "Involve Me",
+    "17": "Show Me",
+    "18": "Involve Me"
+  },
+  "pages": [
+    {
+      "page": 1,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Overview"
+        },
+        {
+          "t": "p",
+          "v": "This module is about citizenship and politics."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/f1_1.jpg"
+        },
+        {
+          "t": "p",
+          "v": "We will use pictures and audio to help you in your learning."
+        },
+        {
+          "t": "p",
+          "v": "In Listening and Speaking, you will learn how to:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Give views and opinions about local issues",
+            "Listen to and follow a discussion",
+            "Gain a broader understanding of vocabulary relating to citizenship and politics",
+            "Gain a greater understanding of the types of questions that can be asked about citizenship and politics in the IELTS Speaking Exam"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "In Reading and Writing, you will learn how to:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Read newsletters and reports about local issues",
+            "Read articles about the government",
+            "Practice reading comprehension skills"
+          ]
+        },
+        {
+          "t": "vid",
+          "v": "382423626"
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Good Citizenship"
+        },
+        {
+          "t": "p",
+          "v": "What is good citizenship? Good citizenship starts with being informed about the world around you. Only then can you be a good neighbour, protect the environment, be compassionate, help where there is a need, respect the rights of others and take responsibility for your own actions."
+        },
+        {
+          "t": "p",
+          "v": "What makes a good citizen?"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/f2.jpg"
+        },
+        {
+          "t": "h3",
+          "v": "Which of these statements is about good citizenship?"
+        },
+        {
+          "t": "h3",
+          "v": "Useful Vocabulary when discussing citizenship"
+        },
+        {
+          "t": "p",
+          "v": "Citizenship = membership in a community, city, town or country"
+        },
+        {
+          "t": "p",
+          "v": "Example: I am an Irish citizen but I live in the United Kingdom."
+        },
+        {
+          "t": "p",
+          "v": "Active citizen = someone who works towards the improvement of their community, perhaps through volunteer work or other forms of economic contribution"
+        },
+        {
+          "t": "p",
+          "v": "Example: She has always been a very active citizen, collecting money for good causes and helping out the those less fortunate in the community."
+        },
+        {
+          "t": "p",
+          "v": "Community = A group of people living in the same locality"
+        },
+        {
+          "t": "p",
+          "v": "Example: I really enjoy living in my neighbourhood as the community is very warm and friendly"
+        },
+        {
+          "t": "p",
+          "v": "Community service = Work that people do to help other people without payment.  It can also represent unpaid labour that someone is forced to do as a result of a criminal conviction."
+        },
+        {
+          "t": "p",
+          "v": "Example: Criminals who receive community service get off lightly as a prison sentence would be a better punishment."
+        },
+        {
+          "t": "p",
+          "v": "Election = An occasion when people vote to choose someone for an official job or a political position."
+        },
+        {
+          "t": "p",
+          "v": "Example: We have an election every 5 years."
+        },
+        {
+          "t": "p",
+          "v": "Election campaign = The period of time leading up to an election, where politicians or political candidates try to persuade the public to vote for them"
+        },
+        {
+          "t": "p",
+          "v": "Example: The election campaign leading up to the US presidential election was an ugly and rather surreal experience."
+        },
+        {
+          "t": "p",
+          "v": "Dual nationality = Having nationality of 2 countries simultaneously"
+        },
+        {
+          "t": "p",
+          "v": "Example: My friend holds dual nationality of France and Spain, as his father is Spanish and his mother is French."
+        },
+        {
+          "t": "p",
+          "v": "Patriotic = Love for one’s own country"
+        },
+        {
+          "t": "p",
+          "v": "Example: I consider myself to be very patriotic as I absolutely love my country."
+        },
+        {
+          "t": "p",
+          "v": "State = A country and its Government"
+        },
+        {
+          "t": "p",
+          "v": "Example: America is considered to be one of the most powerful states in the world today"
+        },
+        {
+          "t": "p",
+          "v": "Volunteers = A person who works on the behalf of others without payment for his/her services"
+        },
+        {
+          "t": "p",
+          "v": "Example: I volunteer myself to charitable causes I believe in within my community."
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Using modal verbs"
+        },
+        {
+          "t": "p",
+          "v": "We can use modal verbs to say how sure we are about something."
+        },
+        {
+          "t": "p",
+          "v": "Look at these opinions about what makes a good citizen."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/f3_1.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Some of the words in the opinions are in bold. Which of the words in bold express certainty? Which express possibility?"
+        },
+        {
+          "t": "h3",
+          "v": "Which of the words in bold express certainty? Which express possibility?"
+        },
+        {
+          "t": "h3",
+          "v": "Words"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "certainty",
+            "possibility",
+            "possibility",
+            "certainty"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "possibility",
+            "possibility",
+            "certainty",
+            "certainty"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Now look at the opinions again and mark the words you think would be stressed. Practise saying the sentences."
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "Stressed words are in bold:"
+        },
+        {
+          "t": "p",
+          "v": "I think it must be someone who goes to work and pays their taxes."
+        },
+        {
+          "t": "p",
+          "v": "I’m not sure. It could be someone who’s unemployed and does a lot for the community."
+        },
+        {
+          "t": "p",
+          "v": "That’s right, or it might be someone who looks after their parents and can’t go to work."
+        },
+        {
+          "t": "p",
+          "v": "No, I’m sorry, it can’t be someone who’s unemployed."
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Practise IELTS reading assessment"
+        },
+        {
+          "t": "p",
+          "v": "Chinese Stretch to Catch up with Teenage Model"
+        },
+        {
+          "t": "p",
+          "v": "The young in China are going to desperate lengths to add extra inches to their height in pursuit of celebrity and wealth. They are being urged on by a government shamed by the news that, for the first time in history, the Japanese now stand taller than the Chinese. There is constant pressure on Chinese adolescents to think tall. The government is encouraging them to drink milk as a way of promoting growth, while magazines and television are replete with the images of lanky supermodels and basketball stars."
+        },
+        {
+          "t": "p",
+          "v": "One of the greatest influences has been the astonishing success of Huang Xinye, a 14-year-old schoolgirl from a fishing village in southern China. She was whisked away by talent scouts for a modelling contest late last year. Until then, her 6ft 1in frame had marked her out as a gawky and out of place on the school playground. Having won the contest, Huang was spotted by the international modelling agency Elite and flown to Europe. The news of her glamorous new life and the £12,000 that she won in the modelling contest has inspired thousands to attempt to follow in her footsteps - even if they don't have her natural advantages."
+        },
+        {
+          "t": "p",
+          "v": "Teenagers are inundating hospitals that claim to be able to enhance their height with requests for leg-lengthening operations. Xia Hetao, a doctor whose clinics perform the operation said: \"I have received many letters from people saying that, because they were born short, they have suffered and are looking for some solace.\""
+        },
+        {
+          "t": "p",
+          "v": "If they are accepted on Xia's waiting list, the aspiring patients are guaranteed only more pain in the short run. Xia slices the thigh bone in half and inserts a steel rod supported by a metal frame on the outside of the bone. The patient cranks the mechanism wider every day, forcing the leg to grow longer. Most can stand the pain only for the month that it takes to stretch an inch, but others persist. The record is held by a young man who gained 6.5 inches. Last year, The Telegraph highlighted the case of the British girl, Emma Richards, 16, from Wadebridge, Cornwall, who underwent a series of leg-lengthening operations to gain an extra five inches so that she could become an air stewardess."
+        },
+        {
+          "t": "p",
+          "v": "Even in successful cases in China, the lengthening and attendant physiotherapy and rehabilitation lasts months. Frequently, however, the result is disastrous - the bone never sets properly, but constantly breaks, eventually turning the patient into an invalid."
+        },
+        {
+          "t": "p",
+          "v": "Those who either cannot afford the equivalent of the £2,000 that the doctor charges or are unwilling to suffer the pain that it entails can take advantage of scores of products that claim to boost growth - ranging from the absurd to the downright dangerous. In department stores throughout the country, salesmen entice shoppers to try the Wanlijian shoe pad, a magnetic insole that claims to stimulate pressure points in the foot, triggering the release of a natural growth hormone."
+        },
+        {
+          "t": "p",
+          "v": "White-coated salesmen on the same shopping floors tout a vast array of lotions and pills for enhancing growth, such as \"Increasing Brains and Stature\" tablets, which contain a double boost for the anxious consumer. Manufacturers of such products claim that sales are booming, thanks in large part to the emergence of towering young role models such as Huang Xinye."
+        },
+        {
+          "t": "p",
+          "v": "Zhang Mei is one of the many who want to look like Huang. She says cosmetic surgery will create undreamt-of opportunities for her. She and her friends swap tales of operations to lengthen their legs, enlarge their breasts, reduce their thighs, straighten their noses and tuck their eyelids. She said: \"A nice body is the passport through the door leading to our dream life.\""
+        },
+        {
+          "t": "p",
+          "v": "Teenage boys have their own giant heroes, in the form of a trio of basketball players known as the \"Walking Great Wall\". The average height of Yao Ming, Wang Zhizhi and Menk Bateer is 7 ft 6 in. At last year's Olympic Games, they towered over rivals from Scandinavia and confidently looked the American Dream Team straight in the eye. Since then, China's growing legion of basketball fans has been proudly confident that a Chinese player will one day establish the country as a great force in the sport."
+        },
+        {
+          "t": "p",
+          "v": "For centuries, the Chinese have derisively referred to the Japanese as \"dwarfs\", which is why the news that the average Chinese person is now smaller than his Japanese counterpart caused such official consternation. The explanation is undoubtedly the better nutrition enjoyed by recent generations of Japanese, which is why Beijing has made it compulsory for every schoolchild from nursery school upwards to drink a quarter-pint of milk every day. Officials believe that the reason for China's physical shortfall is the fact that Japanese children drink 18 times as much milk a year as Chinese infants. However, the order to drink milk is not popular with children, most of whom (as with the majority of Chinese) are lactose-intolerant and, therefore, have difficulty digesting the natural sugars in milk. It has been accepted by all, however, as a necessary evil if modern Chinese people are to achieve the greater goal of a taller nation."
+        },
+        {
+          "t": "p",
+          "v": "Height and beauty, though, are not always enough, as Huang Xinye is discovering. \"When I have enough money, I will buy a place in Beijing for my family,\" she said as she boarded a plane for Geneva late last year. Sadly, her parents are still in their fishing village as Huang is struggling to make her name on the international modelling circuit."
+        },
+        {
+          "t": "p",
+          "v": "Which of the following is the Chinese government using to stimulate their citizens to grow?"
+        },
+        {
+          "t": "p",
+          "v": "Generally, the Chinese are motivated to have the operation because of the possibility of:"
+        },
+        {
+          "t": "p",
+          "v": "The Chinese government adopted the new policy because it:"
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Democracy"
+        },
+        {
+          "t": "h2",
+          "v": "Introduction"
+        },
+        {
+          "t": "p",
+          "v": "The United Kingdom is a democracy. But what does that mean? Let's find out more…"
+        },
+        {
+          "t": "h3",
+          "v": "Reading about democracy"
+        },
+        {
+          "t": "p",
+          "v": "Here is an article about democracy in the UK."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/f7.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Read the text again and answer the following questions."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Which part of Parliament has less power?",
+            "What is the Cabinet?",
+            "What is council tax used for?",
+            "Who has most power in local authorities?"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "The House of Lords",
+            "Senior Government ministers",
+            "Funding local services",
+            "Executive councillors"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Refer to the article again. Then match the word (shown in bold in the article) with what it refers to."
+        },
+        {
+          "t": "h3",
+          "v": "Words"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "the fact that the UK is a constitutional monarchy",
+            "the House of Lords",
+            "MPs",
+            "parties",
+            "local services"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "the House of Lords",
+            "parties",
+            "the fact that the UK is a constitutional monarchy",
+            "MPs",
+            "local services"
+          ]
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "Find out more about what it means to be a good citizen of the UK and make a positive contribution."
+        },
+        {
+          "t": "link",
+          "v": "https://lifeintheuktests.co.uk/study-guide/",
+          "label": "Life in the UK Handbook: A guide for new residents, 3rd Edition (lifeintheuktests.co.uk)"
+        }
+      ]
+    },
+    {
+      "page": 7,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Local democracy in action: an interview"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/f8.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Marcia McDonald is being interviewed by a local radio station about the Brookton estate, a large housing estate in the area of Liverpool which she represents."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Create a list the positive and negative points of living on a large housing estate."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Now listen to the interview"
+        },
+        {
+          "t": "p",
+          "v": "1. What are the positive and negative points of living on the Brookton estate? Are any points the same as your list?"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "Positive points: good people in the Tenants’ Association; a sense of community; council improving the estate; beautiful, spacious, well-designed flats"
+        },
+        {
+          "t": "p",
+          "v": "Negative points: crime and anti-social behaviour; problem tenants; noise; drug problems; unemployment"
+        },
+        {
+          "t": "p",
+          "v": "2. Listen again"
+        },
+        {
+          "t": "p",
+          "v": "Do you think Marcia McDonald answers the interviewer’s questions?"
+        }
+      ]
+    },
+    {
+      "page": 8,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Working out meaning from context"
+        },
+        {
+          "t": "p",
+          "v": "Listen to the interview again. Look at the following phrases and try to work out their meaning."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "… and it has a lot going for it.",
+            "… and the estate’s widely seen as a dumping ground for those problem tenants, isn’t it?",
+            "… the vast majority, are law-abiding citizens …",
+            "There’s a real sense of community on this estate …",
+            "But it’s just the tip of the iceberg, isn’t it? Crime is still a major problem.",
+            "It’s really a wake-up call to London."
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "Suggested answers..."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "There are a lot of positive things about it.",
+            "A place where you put unwanted things, in this case, tenants.",
+            "People who obey the law.",
+            "People feel part of the community; they are not isolated.",
+            "A small part of something much bigger.",
+            "An indication that they need to think about an issue. (‘London’ here means the Government.)"
+          ]
+        }
+      ]
+    },
+    {
+      "page": 9,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Writing and Righting Rights"
+        },
+        {
+          "t": "p",
+          "v": "A  ‘Morality is a private and costly luxury’, wrote the author Henry James, in a statement that seems to condemn all the poor and mistreated to the rubbish heap. Indeed, while morality has been defined in the United Nations ‘human rights’ declarations, upholding such values is neither cheap nor straightforward."
+        },
+        {
+          "t": "p",
+          "v": "B The declaration formed and ratified after the Second World War and, in particular, the dreadful treatment of those affected by the Holocaust focused mainly on civil and political rights. Despite international support and the compelling nature of the statements it sought to uphold, the document proved too vague for use in court. Consequently, in the 1960s, two more covenants, the International Covenant on Civil and Political Rights and the International Covenant on Economic, Social and Cultural Rights, were added so as to make the declaration more legally binding."
+        },
+        {
+          "t": "p",
+          "v": "C During the years that followed, support for the two covenants split. Capitalist countries put more emphasis on upholding the political and civil rights enshrined in the former covenant. Communist countries favoured the social and economic rights of the latter. And while the West accused the Soviet Union of neglecting citizens’ civil rights, the Soviet government’s response was that it considered social and economic rights more important. Current communist governments make the same argument today."
+        },
+        {
+          "t": "p",
+          "v": "D Activist groups, at least those that were founded in the west such as Amnesty International and Human Rights Watch, have unsurprisingly focused on civil rights. By exposing the plight of torture victims and political prisoners they have managed to put pressure on unjust regimes and, with their not inconsiderable clout, have occasionally managed to shame leaders into improving conditions. Much less emphasis has been placed on the second covenant, meaning that socio-economic rights, such as housing, food, health care and fair wages, have gone unchecked. This is set to change, however, as human-rights groups seek to persuade governments to give equal importance to the right to vote as to the right to a home and regular meals."
+        },
+        {
+          "t": "p",
+          "v": "E Considering the size of the population who are not currently benefitting from such provisions, this may seem like a fool’s errand. But human rights veterans have achieved the seemingly impossible before. Twenty-five years ago, nobody believed that Amnesty International’s letter-writing and lobbying tactics could bring down torturers and censors, yet they have succeeded on multiple occasions."
+        },
+        {
+          "t": "p",
+          "v": "F However, social and economic rights are new territory for these groups and the goal that bit harder to achieve. Campaigners within these organisations are understandably apprehensive. Even so, Amnesty International spent several years drawing up provisional changes to its policy in order to explicitly incorporate economic and social rights into their mandate. These were discussed and adopted at a meeting of hundreds of delegates in Senegal in 2001."
+        },
+        {
+          "t": "p",
+          "v": "G   Amnesty’s new mission has enabled it to work on a much wider range of issues. In the Palestine territories, it campaigns against curfews and rights to work. In Kenya, it highlighted how the lack of secure tenure leads to people living in slum conditions that lacked basic sanitation and policing."
+        },
+        {
+          "t": "p",
+          "v": "H  Amnesty’s workload has been alleviated by the fact that Economic, social and cultural rights are now widely recognised as enforceable in both national and international courts of law. Mechanisms have been developed at the UN and in African, American and European regional systems that enable victims of violations to enforce their economic, social and cultural rights.  Policies have been put into place to ensure that aspects such as health, education, housing, food, poverty, cultural rights, sanitation and water are monitored."
+        },
+        {
+          "t": "p",
+          "v": "I  Despite the advances, great challenges remain. Under the Obama government of the  US, such ideals are still considered ‘goals’ and ‘aspirations’ rather than rights, and a number of influential states continue to be sceptical about the validity of individual claims to economic, social and cultural human rights. Meanwhile, those countries that accept the new rights do not always safeguard them in their national constitutions or provide effective remedies for the victims of such violations."
+        },
+        {
+          "t": "p",
+          "v": "J  And while some governments make excuses for failing to take action, claiming they lack the necessary resources, Amnesty International sees it as a lack of political will or purposeful discrimination. ‘Now that economic cultural and social rights are based on and are enforceable by international law,’ they say, ‘they demand immediate respect and cannot be deferred to the future’."
+        },
+        {
+          "t": "p",
+          "v": "Match each heading to the most suitable paragraph."
+        }
+      ]
+    },
+    {
+      "page": 10,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Making suggestions"
+        },
+        {
+          "t": "p",
+          "v": "Noor has just moved to the Brookton estate. She is talking to Florence, who has lived there for a long time."
+        },
+        {
+          "t": "p",
+          "v": "Listen to their conversation and answer the questions."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "What improvement would Noor like to see on the estate?",
+            "What suggestions does Florence make?"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "A playgroup",
+            "Ask the local councillor; talk to the mums; find out what people think; come to a tenants’ association meeting"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Listen again"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "What does Florence say to make suggestions, e.g. Why don’t you …?",
+            "What does Noor say to accept or reject Florence’s suggestions, e.g. I don’t think so …?"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "To make suggestions Florence says:"
+        },
+        {
+          "t": "p",
+          "v": "a)    Why don’t you … ?"
+        },
+        {
+          "t": "p",
+          "v": "b)    You could ..."
+        },
+        {
+          "t": "p",
+          "v": "c)    you should ..."
+        },
+        {
+          "t": "p",
+          "v": "d)    you ought to …"
+        },
+        {
+          "t": "p",
+          "v": "e)    what about … ?"
+        },
+        {
+          "t": "p",
+          "v": "To reject suggestions:"
+        },
+        {
+          "t": "p",
+          "v": "a)    I don’t think so..."
+        },
+        {
+          "t": "p",
+          "v": "b)    I’m not sure..."
+        },
+        {
+          "t": "p",
+          "v": "To accept suggestions:"
+        },
+        {
+          "t": "p",
+          "v": "a)    Good idea..."
+        },
+        {
+          "t": "p",
+          "v": "b)    That’s true..."
+        },
+        {
+          "t": "p",
+          "v": "c)    Yes..."
+        },
+        {
+          "t": "p",
+          "v": "d)    You’re right..."
+        }
+      ]
+    },
+    {
+      "page": 11,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "The Tenants' Association newsletter"
+        },
+        {
+          "t": "p",
+          "v": "Read this extract from the Brookton Tenants' Association."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/f11.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Read about Michael Henry and identify the part of the text which tells you:"
+        },
+        {
+          "t": "p",
+          "v": "a)    why he joined the Tenants’ Association"
+        },
+        {
+          "t": "p",
+          "v": "b)    what he thinks the main problem is on the estate"
+        },
+        {
+          "t": "p",
+          "v": "c)    how he thinks the association can help with the problem"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "Suggested answer:"
+        },
+        {
+          "t": "p",
+          "v": "When there was talk about closing the youth centre"
+        },
+        {
+          "t": "p",
+          "v": "… had a voice"
+        },
+        {
+          "t": "p",
+          "v": "… the real problem is unemployment"
+        },
+        {
+          "t": "p",
+          "v": "That’s what the association is about – making sure people have proper facilities."
+        }
+      ]
+    },
+    {
+      "page": 12,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "A committee meeting"
+        },
+        {
+          "t": "p",
+          "v": "Listen to part of a meeting of the committee of the Brookton Tenants Association:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Complete the table with the actions taken (or to be taken) by the tenants to try to improve things on the estate."
+          ]
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/f12.jpg"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "Noise:"
+        },
+        {
+          "t": "p",
+          "v": "Action taken: wrote to council about hiring out community centre for parties"
+        },
+        {
+          "t": "p",
+          "v": "Action to be taken: write to them again to ask for their reply; ask tenants to keep a record of noise"
+        },
+        {
+          "t": "p",
+          "v": "Rubbish:"
+        },
+        {
+          "t": "p",
+          "v": "Action taken: asked council to put up sign; asked for more bins"
+        },
+        {
+          "t": "p",
+          "v": "Action to be taken: write to tenants asking them not to dump rubbish"
+        },
+        {
+          "t": "p",
+          "v": "Community day:"
+        },
+        {
+          "t": "p",
+          "v": "Action taken: invited MP, careers adviser, business centre manager; raised money"
+        },
+        {
+          "t": "p",
+          "v": "Action to be taken: organise food and music; ask the council for money"
+        },
+        {
+          "t": "p",
+          "v": "Listen to the meeting again"
+        },
+        {
+          "t": "h3",
+          "v": "Fill in the blanks with question words that you heard in the meeting, and say what tense it is"
+        },
+        {
+          "t": "p",
+          "v": "' you written to the council about that?' - This question is in the . ' we receive a reply or not?' - This question is in the . ' we need to ask tenants to keep a record of the noise?' - This question is in the . ' we calling it 'It’s Your Community’ or ‘Community Matters'?' - This question is in the ."
+        }
+      ]
+    },
+    {
+      "page": 13,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Direct and reported speech"
+        },
+        {
+          "t": "p",
+          "v": "Look at the extract below from the minutes of the meeting. The questions are written in reported speech, this is used when we want to report what has been said."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/f13.jpg"
+        },
+        {
+          "t": "p",
+          "v": "a)    How do the tenses change in each of these reported questions?"
+        },
+        {
+          "t": "p",
+          "v": "b)    What verb is used to report questions in this extract?"
+        },
+        {
+          "t": "p",
+          "v": "c)    Which two words are used after the verb to introduce the questions?"
+        },
+        {
+          "t": "p",
+          "v": "d)    How do the pronouns change?"
+        },
+        {
+          "t": "p",
+          "v": "e)    How does the word order change in some of the reported questions?"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "a)    Tense changes"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Present perfect changes to past perfect",
+            "Past simple changes to past perfect",
+            "Present simple changes to past simple",
+            "Present continuous changes to past continuous"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "b)    asked"
+        },
+        {
+          "t": "p",
+          "v": "c)    if or whether"
+        },
+        {
+          "t": "p",
+          "v": "d)    you changes to she; we changes to they"
+        },
+        {
+          "t": "p",
+          "v": "e)    In reported questions the word order is the same as in statements, with the subject before the verb."
+        }
+      ]
+    },
+    {
+      "page": 14,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "Find out more about reported speech at:"
+        },
+        {
+          "t": "link",
+          "v": "https://esol.britishcouncil.org/content/learners/grammar-and-vocabulary/english-grammar/reported-speech",
+          "label": "https://esol.britishcouncil.org/content/learners/grammar-and-vocabulary/english-grammar/reported-speech"
+        },
+        {
+          "t": "p",
+          "v": "Watch this video about direct and indirect speech:"
+        },
+        {
+          "t": "vid",
+          "v": "382420259"
+        },
+        {
+          "t": "link",
+          "v": "https://player.youku.com/embed/XNTEyNjA2OTM3Ng",
+          "label": "优酷视频云 (youku.com)"
+        }
+      ]
+    },
+    {
+      "page": 15,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Are you an active citizen?"
+        },
+        {
+          "t": "p",
+          "v": "The heading of the Brookton Tenants' Association newsletter is:"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/f14.jpg"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "What steps can you take to be an active citizen shaping the future?",
+            "You are going to interview a friend/neighbour to find out if he or she is an active citizen. Use the ideas in the table below. What questions will you need to ask?"
+          ]
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/f15.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Look at these examples of reported questions and answers. When do we use tell and when do we use say?"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/f16.jpg"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "Use tell when the person who is the object of the verb tell is stated."
+        },
+        {
+          "t": "p",
+          "v": "Use say when there is no object or person stated."
+        },
+        {
+          "t": "p",
+          "v": "We use say and tell for certain expressions,"
+        },
+        {
+          "t": "p",
+          "v": "a)    say a prayer"
+        },
+        {
+          "t": "p",
+          "v": "b)    tell a joke"
+        },
+        {
+          "t": "p",
+          "v": "c)    say goodbye"
+        },
+        {
+          "t": "p",
+          "v": "d)    tell someone off"
+        },
+        {
+          "t": "h3",
+          "v": "Fill in the blanks below:"
+        },
+        {
+          "t": "p",
+          "v": "You should always  what you think."
+        },
+        {
+          "t": "p",
+          "v": "Some people think that newspapers always  the truth. I certainly don't agree."
+        },
+        {
+          "t": "p",
+          "v": "The woman next door is very strange. She says you shouldn't talk to your neighbours as they might  stories about you!"
+        },
+        {
+          "t": "p",
+          "v": "My son says there's no point in voting. He says politicians just  lies."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Do you agree that there is no point in voting because politicians just tell lies?",
+            "Write a brief statement expressing your views"
+          ]
+        }
+      ]
+    },
+    {
+      "page": 16,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Sample IELTS Writing Exam"
+        },
+        {
+          "t": "p",
+          "v": "Sample Question and Answer"
+        },
+        {
+          "t": "p",
+          "v": "You should spend about 40 minutes on this task."
+        },
+        {
+          "t": "p",
+          "v": "In general, people do not have such a close relationship with their neighbours as they did in the past. Why is this so, and what can be done to improve contact between neighbours?"
+        },
+        {
+          "t": "p",
+          "v": "Write at least 250 words."
+        },
+        {
+          "t": "p",
+          "v": "Model answer"
+        },
+        {
+          "t": "p",
+          "v": "In the past, neighbours formed an important part of people's social lives and they helped them when they had problems. Nowadays, people often do not even know their neighbours and in consequence they live much more isolated lives."
+        },
+        {
+          "t": "p",
+          "v": "There are a number of reasons why we have less contact with our neighbours. Firstly, our lifestyles are more mobile. This means people may change the area where they live quite frequently and this causes their relationships with their neighbours to be more superficial. Secondly, nowadays people often live and work in different places. This leads to people forming closer relationships with work colleagues than the ones they have with their neighbours. Finally, modern lifestyles make us spend more time inside our houses watching television, and when we go out, we travel by car. Consequently, we do not speak to the people in our neighbourhood so much."
+        },
+        {
+          "t": "p",
+          "v": "There are a number of ways in which I think contact between neighbours can be improved. First of all, local authorities can provide communal areas such as playgrounds for children and community halls so that there are places where neighbours can meet and make friends. Next, I think that when new neighbours come to a street, the people living there ought to introduce themselves and welcome them. Lastly, people living in a street or small district should form neighbourhood associations and meet regularly to discuss the things which affect them."
+        },
+        {
+          "t": "p",
+          "v": "In conclusion, these suggestions will probably not make neighbours as important in our lives as they were in the past. However, they will help our relationships with our neighbours to become more useful and valuable."
+        },
+        {
+          "t": "p",
+          "v": "(270 words)"
+        }
+      ]
+    },
+    {
+      "page": 17,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Getting things done"
+        },
+        {
+          "t": "p",
+          "v": "The Brookton Tenants’ Association applied to the National Lottery Fund for a grant. Michael Henry wrote an article for the Tenants’ Association newsletter about the application."
+        },
+        {
+          "t": "p",
+          "v": "The article has its paragraphs in the wrong order!"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/f18.jpg"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Read the article and decide the correct order."
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Order the paragraphs"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "paragraph A",
+            "paragraph C",
+            "paragraph D",
+            "paragraph B"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "paragraph C",
+            "paragraph A",
+            "paragraph D",
+            "paragraph B"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Which words or phrases helped you to decide the ordering of the paragraphs?"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Look at the first paragraph of the text (C), and notice how it is organised."
+        },
+        {
+          "t": "p",
+          "v": "1st sentence: A topic sentence – telling you what the paragraph is about."
+        },
+        {
+          "t": "p",
+          "v": "2nd sentence: Adds more information about the topic."
+        },
+        {
+          "t": "p",
+          "v": "3rd sentence: Gives specific examples."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Now read the rest of the text and check if the other paragraphs are organised in the same way."
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "Paragraph A: Yes"
+        },
+        {
+          "t": "p",
+          "v": "Paragraph B: No (it’s the concluding paragraph, so has concluding sentence)"
+        },
+        {
+          "t": "p",
+          "v": "Paragraph D: Yes"
+        }
+      ]
+    },
+    {
+      "page": 18,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "The US City and the Natural Environment"
+        },
+        {
+          "t": "p",
+          "v": "A) While cities and their metropolitan areas have always interacted with and shaped the natural environment, it is only recently that historians have begun to consider this relationship. During our own time, the tension between natural and urbanized areas has increased, as the spread of metropolitan populations and urban land uses has reshaped and destroyed natural landscapes and environments."
+        },
+        {
+          "t": "p",
+          "v": "B) The relationship between the city and the natural environment has actually been circular, with cities having massive effects on the natural environment, while the natural environment, in turn, has profoundly shaped urban configurations. Urban history is filled with stories about how city dwellers contended with the forces of nature that threatened their lives. Nature not only caused many of the annoyances of daily urban life, such as bad weather and pests, but it also gave rise to natural disasters and catastrophes such as floods, fires, and earthquakes. In order to protect themselves and their settlements against the forces of nature, cities built many defences including flood walls and dams, earthquake-resistant buildings, and storage places for food and water. At times, such protective steps sheltered urbanites against the worst natural furies, but often their own actions – such as building under the shadow of volcanoes, or in earthquake-prone zones – exposed them to danger from natural hazards."
+        },
+        {
+          "t": "p",
+          "v": "C) City populations require food, water, fuel, and construction materials, while urban industries need natural materials for production purposes. In order to fulfil these needs, urbanites increasingly had to reach far beyond their boundaries. In the nineteenth century, for instance, the demands for food from city dwellers produced rings of garden farms around cities. In the twentieth century, as urban populations increased, the demand for food drove the rise of large factory farms. Cities also require fresh water supplies in order to exist – engineers built waterworks, dug wells deeper and deeper into the earth looking for groundwater, and dammed and diverted rivers to obtain water supplies for domestic and industrial uses. In the process of obtaining water from distant locales, cities often transformed them, making deserts where there had been fertile agricultural areas."
+        },
+        {
+          "t": "p",
+          "v": "D) Urbanites had to seek locations to dispose of the wastes they produced. Initially, they placed wastes on sites within the city, polluting the air, land, and water with industrial and domestic effluents. As cities grew larger, they disposed of their wastes by transporting them to more distant locations. Thus, cities constructed sewerage systems for domestic wastes. They usually discharged the sewage into neighbouring waterways, often polluting the water supply of downstream cities. The air and the land also became dumps for waste disposal. In the late nineteenth century, coal became the preferred fuel for industrial, transportation, and domestic use. But while providing an inexpensive and plentiful energy supply, coal was also very dirty. The cities that used it suffered from air contamination and reduced sunlight, while the cleaning tasks of householders were greatly increased."
+        },
+        {
+          "t": "p",
+          "v": "E) In the late nineteenth and early twentieth centuries, reformers began demanding urban environmental cleanups and public health improvements. Women's groups often took the lead in agitating for clean air and clean water, showing a greater concern than men in regard to quality of life and health-related issues. The replacement of the horse, first by electric trolleys and then by the car, brought about substantial improvements in street and air sanitation. The movements demanding clean air, however, and reduction of waterway pollution were largely unsuccessful. On balance, urban sanitary conditions were probably somewhat better in the 1920s than in the late nineteenth century, but the cost of improvement often was the exploitation of urban hinterlands for water supplies, increased downstream water pollution, and growing automobile congestion and pollution."
+        },
+        {
+          "t": "p",
+          "v": "F) In the decades after the 1940s, city environments suffered from heavy pollution as they sought to cope with increased automobile usage, pollution from industrial production, new varieties of chemical pesticides and the wastes of an increasingly consumer-oriented economy. Cleaner fuels and smoke control laws largely freed cities during the 1940s and 1950s of the dense smoke that they had previously suffered from. Improved urban air quality resulted largely from the substitution of natural gas and oil for coal and the replacement of the steam locomotive by the diesel-electric. However, great increases in automobile usage in some larger cities produced the new phenomenon of smog, and air pollution replaced smoke as a major concern."
+        },
+        {
+          "t": "p",
+          "v": "G) During these decades, the suburban out-migration, which had begun in the nineteenth century with commuter trains and streetcars and accelerated because of the availability and convenience of the automobile, now increased to a torrent, putting major strains on the formerly rural and undeveloped metropolitan fringes. To a great extent, suburban layouts ignored environmental considerations, making little provision for open space, producing endless rows of resource-consuming and fertilizer-dependent lawns, contaminating groundwater through leaking septic tanks, and absorbing excessive amounts of fresh water and energy. The growth of the outer city since the 1970s reflected a continued preference on the part of many people in the western world for space-intensive single-family houses surrounded by lawns, for private automobiles over public transit, and for the development of previously untouched areas. Without better planning for land use and environmental protection, urban life will, as it has in the past, continue to damage and stress the natural environment."
+        },
+        {
+          "t": "p",
+          "v": "Which of the following statements is true? tick the correct boxes."
+        }
+      ]
+    }
+  ]
+}

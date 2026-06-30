@@ -2,6 +2,8 @@
 
 import { getCurrentUser } from '@/lib/auth';
 import { type AdminCourse } from './types';
+import { mergeBuiltins } from './builtin';
+import { pushLocalVersion } from '@/lib/versions/client';
 
 /**
  * Browser CRUD for courses. Talks to the PostgreSQL-backed /api/courses; when
@@ -44,17 +46,17 @@ export async function listCourses(): Promise<{ courses: AdminCourse[]; mode: Sav
   try {
     const res = await fetch('/api/courses', { headers: adminKeyHeaders() });
     const data = (await res.json().catch(() => null)) as { ok?: boolean; courses?: AdminCourse[] } | null;
-    if (data?.ok) return { courses: data.courses || [], mode: 'cloud' };
+    if (data?.ok) return { courses: mergeBuiltins(data.courses || []), mode: 'cloud' };
   } catch {
     /* fall back to local */
   }
-  return { courses: readLocal(), mode: 'local' };
+  return { courses: mergeBuiltins(readLocal()), mode: 'local' };
 }
 
 export async function getCourse(id: string): Promise<AdminCourse | null> {
-  const { courses, mode } = await listCourses();
-  if (mode === 'cloud') return courses.find((c) => c.id === id) || null;
-  return readLocal().find((c) => c.id === id) || null;
+  // Uses the already-merged list so built-in courses resolve in both modes.
+  const { courses } = await listCourses();
+  return courses.find((c) => c.id === id) || null;
 }
 
 /** localStorage trial save (merge by id). */
@@ -76,7 +78,15 @@ function saveLocal(course: AdminCourse): SaveMode {
 
 export async function saveCourse(course: AdminCourse): Promise<SaveMode> {
   const user = await getCurrentUser();
-  const payload: AdminCourse = { ...course, updatedBy: user?.email || user?.name || 'unknown' };
+  const savedBy = user?.email || user?.name || 'unknown';
+  const payload: AdminCourse = { ...course, updatedBy: savedBy };
+  // Trial-mode save also records a local version snapshot (the cloud path is
+  // versioned server-side inside upsertCourse).
+  const saveTrial = (): SaveMode => {
+    saveLocal(course);
+    pushLocalVersion('course', course.id, payload, savedBy, Date.now());
+    return 'local';
+  };
   let data: { ok?: boolean; error?: string } | null = null;
   try {
     const res = await fetch('/api/courses', {
@@ -86,10 +96,10 @@ export async function saveCourse(course: AdminCourse): Promise<SaveMode> {
     });
     data = (await res.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
   } catch {
-    return saveLocal(course); // no response (offline) → trial
+    return saveTrial(); // no response (offline) → trial
   }
   if (data?.ok) return 'cloud';
-  if (data?.error === 'not_configured') return saveLocal(course); // genuine trial mode
+  if (data?.error === 'not_configured') return saveTrial(); // genuine trial mode
   // Backend rejected the write (unauthorized / unavailable) — surface it instead
   // of silently saving locally and claiming success.
   throw new Error(data?.error || 'course_save_failed');

@@ -1,0 +1,1346 @@
+{
+  "pageTypes": {
+    "1": null,
+    "2": "Show Me",
+    "3": "Show Me",
+    "4": "Show Me",
+    "5": "Show Me More",
+    "6": "Tell Me",
+    "7": "Show Me",
+    "8": "Show Me More",
+    "9": "Involve Me",
+    "10": "Show Me",
+    "11": "Show Me More",
+    "12": "Tell Me",
+    "13": "Involve Me",
+    "14": "Involve Me",
+    "15": "Show Me",
+    "16": "Involve Me",
+    "17": "Involve Me",
+    "18": "Tell Me",
+    "19": "Involve Me",
+    "20": "Tell Me",
+    "21": "Show Me",
+    "22": "Involve Me",
+    "23": "Involve Me",
+    "24": "Summary"
+  },
+  "pages": [
+    {
+      "page": 1,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Overview"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/o1_1.jpg"
+        },
+        {
+          "t": "p",
+          "v": "This module is about reading newspapers and finding out about socio-cultural and political issues from TV, radio and the Internet."
+        },
+        {
+          "t": "p",
+          "v": "We will use pictures and audio to help you in your learning."
+        },
+        {
+          "t": "p",
+          "v": "In Listening and Speaking, you will learn how to:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Listen for information in news programmes",
+            "Understand and retell a news story",
+            "Analyse radio interview techniques",
+            "Respond in interviews"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "In Reading and Writing, you will learn how to:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Obtain information from newspapers",
+            "Understand how newspapers present information",
+            "Understand the special language of newspapers"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Watch a video on relative pronouns here"
+        },
+        {
+          "t": "yt",
+          "v": "j25CFx-4g0I",
+          "label": "RELATIVE PRONOUNS | RELATIVE CLAUSES | ADJECTIVE CLAUSES - who, which, that, whose, whom (youtube.com)"
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Newspapers and Their Contents"
+        },
+        {
+          "t": "h2",
+          "v": "Introduction"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/o2_1.jpg"
+        },
+        {
+          "t": "p",
+          "v": "A tabloid newspaper is sensational and often exaggerates news to attract a large audience. A broadsheet will be more factual and formal in its presentation of news items."
+        },
+        {
+          "t": "p",
+          "v": "There are also differences between broadsheets and tabloids newspapers, in layout, font and colour."
+        },
+        {
+          "t": "p",
+          "v": "Today you can access newspapers on the Internet.  Checkout a few:"
+        },
+        {
+          "t": "h3",
+          "v": "Broadsheets:"
+        },
+        {
+          "t": "link",
+          "v": "http://www.theguardian.com/uk",
+          "label": "http://www.theguardian.com/uk"
+        },
+        {
+          "t": "link",
+          "v": "http://www.thetimes.co.uk/tto/news/",
+          "label": "http://www.thetimes.co.uk/tto/news/"
+        },
+        {
+          "t": "h3",
+          "v": "Tabloids:"
+        },
+        {
+          "t": "link",
+          "v": "http://www.dailymail.co.uk/home/index.html",
+          "label": "http://www.dailymail.co.uk/home/index.html"
+        },
+        {
+          "t": "link",
+          "v": "http://www.express.co.uk/",
+          "label": "http://www.express.co.uk/"
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Academic Reading Passage"
+        },
+        {
+          "t": "p",
+          "v": "LIFE WITHOUT DEATH"
+        },
+        {
+          "t": "p",
+          "v": "by Duncan Turner"
+        },
+        {
+          "t": "p",
+          "v": "Until recently, the thought that there might ever be a cure for ageing seemed preposterous. Growing older and more decrepit appeared to be an inevitable and necessary part of being human. Over the last decade, however, scientists have begun to see ageing differently. Some now believe that the average life-expectancy may soon be pushed up to 160 years; others think that it may be extended to 200 or 300 years. A handful even wonder whether we might one day live for a millennium or more."
+        },
+        {
+          "t": "p",
+          "v": "Behind this new excitement is the theory that the primary cause of ageing lies in highly reactive molecules called free radicals, left behind by the oxygen we breathe. Free radicals react with the molecules in our bodies, damaging DNA, proteins and other cell tissues, and are known to be implicated in diseases as diverse as cataracts, cancer and Alzheimer's. The body does its best to protect itself against free radicals by producing its own chemicals to prevent ageing, such as vitamins E and C, but it is always fighting a losing battle."
+        },
+        {
+          "t": "p",
+          "v": "A year ago Gordon Lithgow of the University of Manchester discovered a way to help combat free radicals. Using one of these anti-ageing chemicals. he managed to increase the lifespan of one species of earthworm by 50 per cent. Despite cautionary words from the scientists, many welcomed this as the first step towards a drug which would extend life. Research involving the mutation of genes has also thrown up fascinating results: after identifying two of the genes that appear to control how long the earthworm lives, similar genes were found in organisms as various as fruit-flies, mice and human beings. When one considers the vast evolutionary distances that separate these species, it suggests that we may have discovered a key to how ageing is regulated throughout the entire animal kingdom."
+        },
+        {
+          "t": "p",
+          "v": "In June last year a small American company called Eukarion sought permission to carry out the first trials of an anti-ageing drug, SCS, on human beings. Although it will initially be used to treat diseases associated with old age, Eukarion said, that 'if the effect of treating diseases of old age is to extend life, everyone's going to be happy.'"
+        },
+        {
+          "t": "p",
+          "v": "Some scientists, however, are quick to discourage extravagant speculation. 'There is no evidence whatsoever that swallowing any chemical would have an effect on mammals', says Rich Miller of the University of Michigan. 'And those people who claim it might need to go out and do some experimenting'. Some research, moreover, has produced alarming results. As well as controlling ageing, these, genes also partly control the hormones which regulate growth. The upshot of this is that although the lives of mutant mice can be extended by up to 80 percent, they remain smaller than normal."
+        },
+        {
+          "t": "p",
+          "v": "Quite apart from these sorts of horrors, the ethical implications of extending human lifespan are likely to worry many people. Even if the falling birth-rates reported in the world's developed nations were to be repeated throughout the world, would this be sufficient to compensate for massively extended life-expectancy, and would we be willing to see the demographic balance of our society change out of all recognition? David Gems, the head of the Centre for Research into Ageing at University College, London, is enthusiastic about the opportunities opened up by extended life, but even he observes, 'If people live much longer, the proportion of children would. of course, he very small. It strikes me that it might feel rather claustrophobic: all those middle-aged people and very few children or young people.'"
+        },
+        {
+          "t": "p",
+          "v": "The philosopher John Polkinghorne emphasises that any discussion of the merits of life-extending therapies must take into account the quality of the life that is lived: 'One would not wish to prolong life beyond the point it had ceased to be creative and fulfilling and meaningful,' he says. 'Presumably, there would have to come a point at which life ceased to be creative and became just repetition. Clearly, there are only so many rounds of golf one would want to play.'"
+        },
+        {
+          "t": "p",
+          "v": "But Polkinghorne, a member of the Human Genetics Commission, also observes that so far our experience of extended life-expectancy has not resulted in world-weariness. Throughout the last century, life-expectancy rose consistently, thanks to improved diet, better hygiene, continuous medical innovation and the provision of free or subsidised healthcare. In 1952 the Queen sent out 225 telegrams to people on their 100th birthday; in 1996 she sent out 5218. 'Consider also, the lives of our Roman and Anglo-Saxon ancestors' he says. By and large, the doubling of human lifespan we have seen since then has not been a bad thing. Life has not become frustrating and boring. For example, we now live to see our children's children, and this is good.'"
+        },
+        {
+          "t": "h3",
+          "v": "Questions"
+        },
+        {
+          "t": "p",
+          "v": "Do the following statements agree with the views of the writer in the Reading Passage? click:"
+        },
+        {
+          "t": "p",
+          "v": "YES"
+        },
+        {
+          "t": "p",
+          "v": "if the statement agrees with the views of the writer."
+        },
+        {
+          "t": "p",
+          "v": "NO"
+        },
+        {
+          "t": "p",
+          "v": "if the statement contradicts what the writer thinks."
+        },
+        {
+          "t": "p",
+          "v": "Which of the following is correct?"
+        },
+        {
+          "t": "p",
+          "v": "Which TWO of the following are characteristics of free radicals?"
+        },
+        {
+          "t": "p",
+          "v": "Complete the following summary of the scientific progress towards extending life expectancy."
+        },
+        {
+          "t": "p",
+          "v": "Choose your answers from the box below the summary.  NB There are more words than spaces, so you will not use them all."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "chemicals",
+            "earthworms",
+            "Fruit flies",
+            "genes",
+            "hormones",
+            "human beings",
+            "mice",
+            "organisms"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Exam Tip"
+        },
+        {
+          "t": "p",
+          "v": "Here, you can find a number of techniques:1) Putting the words in the boxes in categories e.g. names of animals, words referring to chemicals, other words etc. before you start.2) Looking for synonyms of particular words and phrases e.g. by half (by 50 per cent), growing, growth, live more, live up to 80 per cent longer."
+        },
+        {
+          "t": "p",
+          "v": "3) Reading through the summary when you have finished and deciding whether it makes sense both for meaning and grammar."
+        },
+        {
+          "t": "p",
+          "v": "Watch this video on the reading section of the the exam paper:"
+        },
+        {
+          "t": "vid",
+          "v": "382421056"
+        },
+        {
+          "t": "link",
+          "v": "https://player.youku.com/embed/XNTEyNzExNzIzMg",
+          "label": "优酷视频云 (youku.com)"
+        },
+        {
+          "t": "p",
+          "v": "Now look at this video on how to prepare for the reading exam:"
+        },
+        {
+          "t": "vid",
+          "v": "387654807"
+        },
+        {
+          "t": "link",
+          "v": "https://player.youku.com/embed/XNTEyNzEyMTA5Mg",
+          "label": "优酷视频云 (youku.com)"
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "How tabloid newspapers use language"
+        },
+        {
+          "t": "p",
+          "v": "Read this article from a tabloid newspaper."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/o4.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Is the writer for or against the government’s ‘think tank’ idea? Which words or phrases give this impression?"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "Against the idea. Use of adjective daft (stupid) to describe the idea in first sentence; focus on negative consequences only (motorists will pay extra, shopkeepers will go out of business, drivers will stop shopping in city centres, police won’t have time to deal with crime). Choice of emotive vocabulary, e.g. fork out (pay for), go bust (go bankrupt), abandon (leave), soar (go up)."
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "Do you ever read advice sections in newspapers? Find out more at:"
+        },
+        {
+          "t": "link",
+          "v": "https://learnenglish.britishcouncil.org/skills/speaking/b2-speaking/giving-advice",
+          "label": "https://learnenglish.britishcouncil.org/skills/speaking/b2-speaking/giving-advice"
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "Listening to the main points of the news"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/o5.jpg"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Listen carefully to the headlines at the beginning of the news bulletin. How many news headlines are there?"
+          ]
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Listen again and note the key words in each headline. Example:"
+          ]
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Headline 1 – Heavy snow",
+            "Headline 2 - PM, Brussels",
+            "Headline 3 - Election, India",
+            "Headline 4 - Lottery jackpot"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Which type of news story is the headline of the PM in Brussels?"
+        },
+        {
+          "t": "h3",
+          "v": "Which type of news story is the headline of the lottery jackpot?"
+        },
+        {
+          "t": "p",
+          "v": "Listen to the full news stories:"
+        }
+      ]
+    },
+    {
+      "page": 7,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Relative clauses"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Look at this sentence from one of the news headlines we looked at earlier."
+          ]
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/o6.jpg"
+        },
+        {
+          "t": "p",
+          "v": "The underlined part of the sentence is called a defining relative clause. It gives information about the first part of the sentence. In this sentence, it is linked by the word who because it refers to the factory workers, i.e. people."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Listen to the news bulletin again. Were there any relative pronouns?"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Match each relative pronoun to what it refers to."
+        },
+        {
+          "t": "h3",
+          "v": "Relative Pronouns"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "things only",
+            "places",
+            "people, when we talk about something that is connected or belongs to thempeople, when we talk about something that is connected or belongs to them",
+            "things and people",
+            "time"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "places",
+            "things and people",
+            "time",
+            "people, when we talk about something that is connected or belongs to thempeople, when we talk about something that is connected or belongs to them",
+            "things only"
+          ]
+        }
+      ]
+    },
+    {
+      "page": 8,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "Find out how relative clauses are used to describe a hospital ward at:"
+        },
+        {
+          "t": "link",
+          "v": "https://esol.britishcouncil.org/content/learners/skills/speaking/hospital-ward",
+          "label": "https://esol.britishcouncil.org/content/learners/skills/speaking/hospital-ward"
+        },
+        {
+          "t": "p",
+          "v": "Watch this video on relative pronouns:"
+        },
+        {
+          "t": "vid",
+          "v": "382426037"
+        },
+        {
+          "t": "link",
+          "v": "https://player.youku.com/embed/XNTEyNjQwNDAyOA",
+          "label": "优酷视频云 (youku.com)"
+        },
+        {
+          "t": "p",
+          "v": "Also, watch this video on relative clauses:"
+        },
+        {
+          "t": "vid",
+          "v": "382424058"
+        },
+        {
+          "t": "link",
+          "v": "https://player.youku.com/embed/XNTEyNzExNTQ4MA",
+          "label": "优酷视频云 (youku.com)"
+        }
+      ]
+    },
+    {
+      "page": 9,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Using relative clauses"
+        },
+        {
+          "t": "p",
+          "v": "Rewrite these pairs of sentences to make one sentence using a defining relative clause."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "The news contains a lot of stories. The stories are disturbing.",
+            "A man in Russia reveals his secret for long life. He is 120 today.",
+            "We bought this scanner with the money. You donated the money.",
+            "The Prime Minister is in Paris. World leaders are meeting to discuss the oil crisis in Paris.",
+            "There was a story about an opera singer. Her dog can bark the national anthem."
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "The news contains a lot of stories which are disturbing.",
+            "A man in Russia who is 120 today reveals his secret for long life.",
+            "This is the scanner (that/which) we bought with the money (that/which) you donated. OR We bought this scanner with the money (that/which) you donated.",
+            "The Prime Minister is in Paris, where world leaders are meeting to discuss the oil crisis.",
+            "There was a story about an opera singer whose dog can bark the national anthem."
+          ]
+        }
+      ]
+    },
+    {
+      "page": 10,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Language using the past perfect tense"
+        },
+        {
+          "t": "p",
+          "v": "Look at these pair of sentences about the recent heavy snow falls."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/o7.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Now answer these questions."
+        },
+        {
+          "t": "p",
+          "v": "1. Which event happened first in each pair of sentences?2. Is the order of events easier to understand in sentence A1 or in sentence A2?3. In sentences A2 and B2, which tense is used for the:"
+        },
+        {
+          "t": "p",
+          "v": "a. first event?b. second event?"
+        },
+        {
+          "t": "p",
+          "v": "4. Sentences A2 and B2 use the past perfect. How is it formed?"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Events that happened first"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "A – cars stalled"
+        },
+        {
+          "t": "p",
+          "v": "B – maintenance crews didn’t grit the roads"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Sentence 2",
+            "first event: past perfect. second event: past simple"
+          ]
+        },
+        {
+          "t": "ol",
+          "items": [
+            "had/hadn’t + participle"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Complete this extract from a newspaper using the past perfect or past simple"
+        },
+        {
+          "t": "p",
+          "v": "The workers  the lottery for the previous five years but this   the first time they   any big money. They  a few small wins of £10 before, but never anything like this."
+        }
+      ]
+    },
+    {
+      "page": 11,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "Find out more about using the past perfect at:"
+        },
+        {
+          "t": "link",
+          "v": "https://esol.britishcouncil.org/content/learners/grammar-and-vocabulary/english-grammar/past-perfect",
+          "label": "https://esol.britishcouncil.org/content/learners/grammar-and-vocabulary/english-grammar/past-perfect"
+        }
+      ]
+    },
+    {
+      "page": 12,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Talking about the News"
+        },
+        {
+          "t": "h2",
+          "v": "Introduction"
+        },
+        {
+          "t": "p",
+          "v": "Often discussions with friends and neighbours are about the news. How do we retell a news story and talk about news items?"
+        },
+        {
+          "t": "p",
+          "v": "Retelling a news story"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/o8.jpg"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Listen to the conversation in which Jenny is telling a friend about a story she heard on the news. How well does she do it?"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "Not well - it sounds confused and she hasn't got her facts straight."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "What questions would you ask her to understand the story better?",
+            "Listen to another conversation Jenny has with Oliver. Is she more successful this time? Think about:"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "a. how she introduced the topicb. how she explained the context and storyc. any additional information she gave"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "a. Topic – engages listener; names well-known person central to story; suggests it’s a humorous storyb. Context and story – clear scene setting: who, where, when, what happened leading up to the incident, what happened during the incident, and the resultc. Additional information – expensive sports car; TV presenter; running after the car; money involved; insurance company’s response"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "How does the Oliver show he’s interested in what Jenny is telling him?"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "Oliver uses short exclamations to show he’s following the story – No! Oh, no! How awful! Yeah, I can imagine."
+        },
+        {
+          "t": "p",
+          "v": "He repeats key information – £11,000! That’s a lot of money."
+        },
+        {
+          "t": "p",
+          "v": "He also asks for more information – No, what was that? Why won’t they pay?"
+        }
+      ]
+    },
+    {
+      "page": 13,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Retelling a news story"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "What do you think are the key points in their story? Make notes.",
+            "If you were to retell the story, decide in which order you will tell them."
+          ]
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/o9.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Look through a current newspaper, either local or national. Choose a story which interests you. Make some notes using key words to help you retell it."
+        }
+      ]
+    },
+    {
+      "page": 14,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Using the passive"
+        },
+        {
+          "t": "p",
+          "v": "Read these pairs of sentences."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/o10.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Now answer these questions."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Which verbs are passive and which are active? What tense are they in?",
+            "How do you form the passive?",
+            "Which sentence in each pair sounds more formal?"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "1. passive and active verbs"
+        },
+        {
+          "t": "p",
+          "v": "blocked (active), were blocked (passive) – simple pasthas won (active), has been won (passive) – present perfect"
+        },
+        {
+          "t": "p",
+          "v": "2. Verb be (in the appropriate tense) + past participle3. Sentence 2"
+        },
+        {
+          "t": "p",
+          "v": "Look at this extract from a newspaper article. Some verbs are missing - they are verbs in the passive or active form."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/o11.jpg"
+        },
+        {
+          "t": "h3",
+          "v": "Here is the extract again. Fill in the blanks using the passive or active form of the verb."
+        },
+        {
+          "t": "p",
+          "v": "An earth tremor measuring 4.8 on the Richter scale  parts of England and Wales in the early hours of Monday 23rd October. The earthquake  just before 1 o’clock in the morning. Fortunately, no serious injuries . The centre of the earthquake  Birmingham in the West Midlands but the tremors  by people hundreds of miles away. Thousands of people  by the tremors and more than 5000 people  the West Midlands police and ambulance services. The earthquake  for about 15 seconds. Experts say that this is the largest earthquake that  in the UK in the last ten years. According to John Taylor of First Insurance, some properties in the area  and companies like his expect that many claims  over the coming weeks."
+        }
+      ]
+    },
+    {
+      "page": 15,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Weather Reports"
+        },
+        {
+          "t": "h2",
+          "v": "Introduction"
+        },
+        {
+          "t": "p",
+          "v": "The weather in Britain changes a lot, even within one day. It can be sunshine in the morning and heavy rain and grey skies in the afternoon. Knowing the weather forecast is therefore important so you can be prepared."
+        },
+        {
+          "t": "p",
+          "v": "Do you ever listen to the weather forecast? Access the link below; that will help you understand weather forecasts."
+        },
+        {
+          "t": "link",
+          "v": "https://learnenglish.britishcouncil.org/skills/listening/b1-listening/weather-forecast",
+          "label": "https://learnenglish.britishcouncil.org/skills/listening/b1-listening/weather-forecast"
+        }
+      ]
+    },
+    {
+      "page": 16,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Reading weather reports in newspapers"
+        },
+        {
+          "t": "p",
+          "v": "Look at the weather map from a daily newspaper."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/o12.jpg"
+        },
+        {
+          "t": "h3",
+          "v": "In which area are the winds strongest?"
+        },
+        {
+          "t": "h3",
+          "v": "Which area has the most sunshine?"
+        }
+      ]
+    },
+    {
+      "page": 17,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Vocabulary for the weather"
+        },
+        {
+          "t": "p",
+          "v": "Read an extract from the district forecasts for the UK from the same newspaper."
+        },
+        {
+          "t": "h3",
+          "v": "Match the word underlined with a word that has the same meaning in the newspaper extract (of the weather forecast)."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "bitterly",
+            "gale force",
+            "northerly",
+            "isolated",
+            "sunny spells"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "northerly",
+            "sunny spells",
+            "bitterly",
+            "gale force",
+            "isolated"
+          ]
+        }
+      ]
+    },
+    {
+      "page": 18,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Listening to a weather forecast"
+        },
+        {
+          "t": "p",
+          "v": "Symbols such as these are used in weather forecasts."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/o13.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Now listen to the weather forecast for the next day:"
+        },
+        {
+          "t": "h3",
+          "v": "Which symbol describes the weather forecast for Eastern England and the London Area?"
+        },
+        {
+          "t": "h3",
+          "v": "Which symbol describes the weather forecast for Scotland and Northern Ireland?"
+        }
+      ]
+    },
+    {
+      "page": 19,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Comparing news stories"
+        },
+        {
+          "t": "p",
+          "v": "Read the two newspaper articles shown next."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/o14.jpg"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "What are the newspaper articles about?",
+            "Which do you think is from a broadsheet and which is from a tabloid newspaper? How do you know?",
+            "In what way are the two articles different?"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Now look at a tabloid and broadsheet newspaper published on the same day. Choose a news story and compare how it is dealt with by the two newspapers. Look at the following:"
+          ]
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/o15.jpg"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Look at these words and phrases from article A. Find a word or phrase in article B with a similar meaning."
+          ]
+        },
+        {
+          "t": "ol",
+          "items": [
+            "line 4 - introducing stricter measures",
+            "line 8 - continually",
+            "line 12 - offenders",
+            "line 12 - detained",
+            "line 51 - criticised"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "introducing stricter measures – tighten up laws",
+            "continually – time and time again",
+            "offenders – thugs, hooligans, tearaway",
+            "detained – banged up, locked up",
+            "criticised – slammed"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Some words often occur together. Match the verbs with the nouns."
+        },
+        {
+          "t": "h3",
+          "v": "Verbs"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "the law",
+            "a crime",
+            "on trial",
+            "a law",
+            "offenders"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "the law",
+            "a crime",
+            "offenders",
+            "a law",
+            "on trial"
+          ]
+        }
+      ]
+    },
+    {
+      "page": 20,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Listening to a radio interview"
+        },
+        {
+          "t": "p",
+          "v": "The topic of young offenders was discussed in an early morning radio news programme, News and Views. Listen to an extract from the programme"
+        },
+        {
+          "t": "p",
+          "v": "Rob Macgregor is interviewing a spokesperson from the Home Office, Sonia Suryabandara."
+        },
+        {
+          "t": "p",
+          "v": "What does Rob want to find out?"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "Information about the new proposals, and the Government’s reasons for introducing them"
+        },
+        {
+          "t": "p",
+          "v": "Do you think he is a good interviewer? Why?"
+        },
+        {
+          "t": "h3",
+          "v": "Which words best describe his style of questioning?"
+        },
+        {
+          "t": "p",
+          "v": "Listen again:"
+        },
+        {
+          "t": "p",
+          "v": "Rob uses a lot of ‘leading questions’. These are questions that aim to produce the answers he wants to hear. Listen for examples  in the interview."
+        },
+        {
+          "t": "p",
+          "v": "Example"
+        },
+        {
+          "t": "p",
+          "v": "So you’re going to lock them up?"
+        },
+        {
+          "t": "p",
+          "v": "What other examples of leading questions did you hear?"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "So you’re going to lock them up?"
+        },
+        {
+          "t": "p",
+          "v": "But doesn’t that mean a lot more youngsters locked away?"
+        },
+        {
+          "t": "p",
+          "v": "But this is going to cost a lot of money, isn’t it?"
+        },
+        {
+          "t": "p",
+          "v": "So you’re going to have to build new units?"
+        },
+        {
+          "t": "p",
+          "v": "But this has been tried before and it hasn’t worked, has it?"
+        },
+        {
+          "t": "p",
+          "v": "Listen and repeat Rob’s questions paying attention to the intonation."
+        }
+      ]
+    },
+    {
+      "page": 21,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Dealing with an interview"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/o17.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Listen to the interview again"
+        },
+        {
+          "t": "h3",
+          "v": "How does Sonia react to Rob’s style of questioning?"
+        },
+        {
+          "t": "p",
+          "v": "These are some of Sonia’s replies."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/o18.jpg"
+        },
+        {
+          "t": "h3",
+          "v": "What does Sonia say when correcting a misinterpretation?"
+        }
+      ]
+    },
+    {
+      "page": 22,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Academic Reading Passage"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/corn.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Maize is Mexico’s lifeblood – the country’s history and identity are entwined with it. But this centuries-old relationship is now threatened by free trade. Laura Carlsen investigates the threat and profiles a growing activist movement."
+        },
+        {
+          "t": "p",
+          "v": "On a mountain top in southern Mexico, Indian families gather. They chant and sprinkle cornmeal in consecration, praying for the success of their new crops, the unity of their communities and the health of their families. In this village in Oaxaca people eat corn tamales, sow maize plots and teach children to care for the plant. The cultural rhythms of this community, its labours, rituals and celebrations will be defined – as they have been for millennia – by the lifecycle of corn. Indeed, if it weren’t for the domestication of teocintle (the ancestor of modern maize) 9,000 years ago mesoamerican civilization could never have developed. In the Mayan sacred book, the Popol Vuh, the gods create people out of cornmeal. The ‘people of corn’ flourished and built one of the most remarkable cultures in human history."
+        },
+        {
+          "t": "p",
+          "v": "But in Mexico and Central America today maize has come under attack. As a result of the North American Free Trade Agreement (NAFTA) Mexico has been flooded with imported corn from north of the border in the US. The contamination of native varieties with genetically modified imported maize could have major consequences for Mexican campesinos (farmers), for local biodiversity and for the world’s genetic reserves."
+        },
+        {
+          "t": "p",
+          "v": "A decade ago Mexican bureaucrats and business people had it all figured out. NAFTA would drive ‘uncompetitive’ maize farmers from the countryside to work in booming assembly factories across the country. Their standard of living would rise as the cost of providing services like electricity and water to scattered rural communities would fall. Best of all, cheap imported maize from the US – the world’s most efficient and most heavily subsidized producer – would be a benefit to Mexican consumers."
+        },
+        {
+          "t": "p",
+          "v": "Unfortunately, it didn’t turn out that way. There weren’t quite enough of those factory jobs and the ones that did materialize continued to be along the US border, not further in Mexico. And despite a huge drop in the price farmers received for their corn, consumers often ended up paying more. The price of tortillas – the country’s staple food – rose nearly fivefold as the Government stopped domestic subsidies and giant agribusiness firms took over the market. Free trade defenders like Mexico’s former Under-Secretary of Agriculture Luis Tellez suggest: ‘It’s not that NAFTA failed, it’s just that reality didn’t turn out the way we planned it.’ Part of that reality was that the Government did nothing to help campesinos in the supposed transition. Nor did NAFTA recognize inequalities or create compensation funds to help the victims of free trade – unlike what occurred with economic integration in the European Union."
+        },
+        {
+          "t": "p",
+          "v": "Basically, Mexico adopted a sink-or-swim policy for small farmers, opening the floodgates to tons of imported US corn. Maize imports tripled under NAFTA and producer prices fell by half. The drop in income immediately hit the most vulnerable and poorest members of rural society. While more than a third of the corn grown by small farmers is used to feed their families, the rest is sold on local markets. Without this critical cash, rural living standards plunged."
+        },
+        {
+          "t": "p",
+          "v": "Maize is at the heart of indigenous and campesino identity. José Carrillo de la Cruz, a Huichol Indian from northern Jalisco, describes that relationship: ‘Corn is the force, the life and the strength of the Huichol. If there were a change, if someone from outside patented our corn, it would end our life and existence.’"
+        },
+        {
+          "t": "p",
+          "v": "The good news is that the free-trade threat to Mexico’s culture and food security has sparked a lively resistance. ‘In Defence of Corn’, a movement to protect local maize varieties, is not a membership organization but a series of forums and actions led by campesinos themselves. It’s a direct challenge to both free trade and the dictums of corporate science."
+        },
+        {
+          "t": "p",
+          "v": "The farmers’ tenacity and refusal to abandon the crop of their ancestors is impressive. But larger economic conditions continue to shape their lives. Rural poverty and hunger have soared under free trade – and placed a heavier burden on women left to work the land. The battle for food sovereignty continues. Movement leaders insist that the Government reassess its free trade policies and develop a real rural development programme."
+        },
+        {
+          "t": "p",
+          "v": "Questions"
+        },
+        {
+          "t": "p",
+          "v": "Do the following statements agree with the information given in the passage above"
+        }
+      ]
+    },
+    {
+      "page": 23,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "IELTS Writing strategies"
+        },
+        {
+          "t": "p",
+          "v": "Political, social and cultural issues get tested very regularly in the Academic IELTS . Here are some helpful tips to consider."
+        },
+        {
+          "t": "p",
+          "v": "Task 1"
+        },
+        {
+          "t": "p",
+          "v": "Before you write"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Read the task and make a mental summary of the key points and overall trends/stages. Why? Because if you misinterpret the data or diagram, you will lose a lot of marks for content."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "As you write"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Introduce the information, in a sentence or two, using your own words. Why? Because if you copy the question, the examiner will not count these words.",
+            "Summarise the key points and use data to illustrate these. Why? Because you will lose marks if you miss key points or fail to illustrate them.",
+            "Include an overview of the information - either in your introduction or conclusion. Why? Because you will lose marks if your answer does not contain an overview."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "How you write"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Try to show that you can use your own words (wherever possible) and a range of grammatical structures. Why? Because you will get more marks for vocabulary and grammar if you can do this.",
+            "Divide your answer into paragraphs and use linkers to connect your ideas. Why? Because you will get more marks if you can organise your answer well and use a range of linking and reference words."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "When you have finished"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Count your words to make sure you have written enough. Why? Because short answers lose marks. (There are no extra marks for long answers.)",
+            "Check your grammar, spelling and punctuation. Why? Because mistakes in these areas can reduce your marks."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Task 2"
+        },
+        {
+          "t": "p",
+          "v": "Spend 20 minutes on Task 1 (150 words) and 40 minutes on Task 2 (250 words). Task 2 is longer than Task 1 and is worth twice as many marks."
+        },
+        {
+          "t": "p",
+          "v": "Before you write"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Read the task carefully to decide how many parts it has and what your position is. Why? Because you will lose marks if you do not address all the parts of the question relevantly.",
+            "Make a quick plan either mentally or on rough paper. Decide on your main ideas. Why? Because the examiner will be looking for a number of clear main ideas."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "As you write"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Introduce your answer in your own words and make your position clear. You may state your position here as well. Why? Because the examiner will not count copied material as part of your total word count.",
+            "Present your main ideas clearly and use examples to support them. Why? Because you will get more marks if your ideas are clear and well supported.",
+            "Write a conclusion and re-state your position.  Why? Because your examiner will expect to find a logical conclusion and a consistent position."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "How you write"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Try to show that you can use your own words (wherever possible) and a range of grammatical structures. Why? Because you will get more marks for vocabulary and grammar if you can do this.",
+            "Divide your answer into paragraphs and use linkers to connect your ideas. Why? Because you will get more marks if you can organise your answer well and use a range of linking and reference words."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "When you have finished"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Count your words to make sure you have written enough. Why? Because short answers lose marks. (There are no extra marks for long answers.)",
+            "Check your grammar, spelling and punctuation. Why? Because mistakes in these areas can reduce your marks."
+          ]
+        },
+        {
+          "t": "h2",
+          "v": "Sample Writing Task"
+        },
+        {
+          "t": "p",
+          "v": "You should spend about 20 minutes on this task."
+        },
+        {
+          "t": "p",
+          "v": "The bar chart below shows the percentage of students who passed their high school competency exams, by subject and gender, during the period 2010-2011.  Summarise the information by selecting and reporting the main features, and make comparisons where relevant."
+        },
+        {
+          "t": "p",
+          "v": "Write at least 150 words."
+        },
+        {
+          "t": "p",
+          "v": "Students passing high school competency exams, by subject and gender, 2010-2011"
+        },
+        {
+          "t": "p",
+          "v": "IMAGE OF BAR CHART NEEDS TO GO HERE"
+        },
+        {
+          "t": "p",
+          "v": "*includes French, German and Spanish"
+        },
+        {
+          "t": "p",
+          "v": "Sample Question"
+        },
+        {
+          "t": "p",
+          "v": "Write a brief report for your professor to explain what bar chart illustrates  (150 words)"
+        },
+        {
+          "t": "p",
+          "v": "Sample Answer"
+        },
+        {
+          "t": "p",
+          "v": "The graph shows the percentages of male and female students who successfully completed their high school examinations from 2010 to 2011, by subject."
+        },
+        {
+          "t": "p",
+          "v": "There were a number of subjects where both sexes recorded considerably successful results, namely Mathematics, Foreign Languages, French, German and Spanish with Computer Sciences showing considerably strong result especially for female students."
+        },
+        {
+          "t": "p",
+          "v": "There were subjects that notably recorded lower results, for example Chemistry for male students with only 14.1% passing their exams and 20.1% of female students passing Geography. All in all, it could be fair to say that across many subjects there is very little difference among how male and female students perform in examinations.  However, the clear popularity of students studying Computer Science should not be surprising, especially in the 21st century where nearly all careers and professions are heavily influenced by technology.  More traditional subjects like History and Geography with lower percentages of students passing these exams, illustrates perhaps the lack of importance now placed in schools and college on such subjects."
+        }
+      ]
+    },
+    {
+      "page": 24,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "So what have you learnt?"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "You can listen to news bulletins and identify the main points of the news.",
+            "You can compare the differences between tabloid and broadsheet newspapers.",
+            "You can use the past perfect tense in new,s e.g."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "The maintenance crews didn't manage to grit the roads before the snow fell."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "You can talk about news items and retell a news story.",
+            "You can read weather reports and understand the vocabulary and symbols used in weather forecasts.",
+            "You can compare newspaper articles and give an opinion on a news item.",
+            "You can interview someone else and know the purpose of leading questions.",
+            "You also know how to respond confidently to interview questions, particularly when the interviewer is aggressive/critical, e.g."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "If I could just finish, please."
+        },
+        {
+          "t": "p",
+          "v": "No, that's not what I am saying."
+        }
+      ]
+    }
+  ]
+}

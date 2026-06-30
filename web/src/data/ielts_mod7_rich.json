@@ -1,0 +1,1731 @@
+{
+  "pageTypes": {
+    "1": null,
+    "2": "Show Me",
+    "3": "Involve Me",
+    "4": "Tell Me",
+    "5": "Involve Me",
+    "6": "Tell Me",
+    "7": "Involve Me",
+    "8": "Involve Me",
+    "9": "Show Me More",
+    "10": "Show Me",
+    "11": "Show Me",
+    "12": "Involve Me",
+    "13": "Show Me More",
+    "14": "Tell Me",
+    "15": "Show Me",
+    "16": "Show Me",
+    "17": "Tell Me",
+    "18": "Show Me",
+    "19": "Tell Me",
+    "20": "Involve Me",
+    "21": "Involve Me",
+    "22": "Show Me More",
+    "23": "Test Me",
+    "24": "Test Me",
+    "25": "Remind Me"
+  },
+  "pages": [
+    {
+      "page": 1,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Unit Overview"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/v1_1.jpg"
+        },
+        {
+          "t": "p",
+          "v": "This unit is about environmental problems and what we can do about them."
+        },
+        {
+          "t": "p",
+          "v": "We will use pictures and audio to help you in your learning."
+        },
+        {
+          "t": "p",
+          "v": "In Listening and Speaking, you will learn how to:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Listen to a radio interview about a local issues and answer questions",
+            "Learn some new phrases and vocabulary useful for the IELTS speaking exam"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "In Reading and Writing, you will learn how to:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Read about environmental issues and practice your comprehension",
+            "Read some sample IELTS questions relating to environmental issues"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Read and write letters and e-mails"
+          ]
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "How Green are We?"
+        },
+        {
+          "t": "h2",
+          "v": "Introduction"
+        },
+        {
+          "t": "p",
+          "v": "There is a lot of awareness about environmental issues and how the way we live affects the environment. But how green are we really?"
+        },
+        {
+          "t": "p",
+          "v": "Do you care about environmental issues? Watch the next video on Britain's environmental issues."
+        },
+        {
+          "t": "link",
+          "v": "https://esol.britishcouncil.org/content/learners/uk-life/video-uk/britain%E2%80%99s-environmental-issues",
+          "label": "https://esol.britishcouncil.org/content/learners/uk-life/video-uk/britain%E2%80%99s-environmental-issues"
+        },
+        {
+          "t": "p",
+          "v": "Do the tasks that follow. (Feedback is given.)"
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "How green are you?"
+        },
+        {
+          "t": "p",
+          "v": "How much do you care about the environment?"
+        },
+        {
+          "t": "p",
+          "v": "Try the next quiz to find out how green you are. Read the situations and choose one of the options."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/v2_1.jpg"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "If you answered 1(a), 2(a) or (b) and 3(a) or (c) - you are doing well!"
+        },
+        {
+          "t": "p",
+          "v": "Look through the quiz and score sheet again."
+        },
+        {
+          "t": "p",
+          "v": "Can you work out which words belonging to the ‘word families’ in the table shown?"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/v3_1.jpg"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "pollute, pollution, polluting, polluted"
+        },
+        {
+          "t": "p",
+          "v": "efficiency, efficient"
+        },
+        {
+          "t": "p",
+          "v": "emit, emission"
+        },
+        {
+          "t": "p",
+          "v": "waste, waste, wasteful"
+        },
+        {
+          "t": "p",
+          "v": "package, packaging, packaged"
+        },
+        {
+          "t": "p",
+          "v": "recycle, recycling, recycled"
+        },
+        {
+          "t": "p",
+          "v": "consume, consumer, consumption"
+        },
+        {
+          "t": "p",
+          "v": "environment, environmental"
+        },
+        {
+          "t": "h3",
+          "v": "Fill in the blanks of these extracts from a report written a few years ago, using some of  the words provided above."
+        },
+        {
+          "t": "p",
+          "v": "All cars  harmful gases, but  are lower than they once were."
+        },
+        {
+          "t": "p",
+          "v": "Only 10% of our waste is now  for further use, but in the next five years  will increase to 36%."
+        },
+        {
+          "t": "p",
+          "v": "We need to  the planet much less and clean up existing ."
+        },
+        {
+          "t": "p",
+          "v": "Everyone is a  of natural resources, and most of us  more than the planet can afford."
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "How green is the Council?"
+        },
+        {
+          "t": "p",
+          "v": "Sita Gupta is a local councillor in Swinford. She is particularly concerned about the environment."
+        },
+        {
+          "t": "p",
+          "v": "Listen to an extract from a radio interview in which she talks about how the council is dealing with environmental issues:"
+        },
+        {
+          "t": "p",
+          "v": "a)    What is the environmental problem the interviewer raises?"
+        },
+        {
+          "t": "p",
+          "v": "b)    The councillor suggests four possible solutions. What are they?"
+        },
+        {
+          "t": "p",
+          "v": "c)    What action has the council taken recently?"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "a)    rubbish/refuse"
+        },
+        {
+          "t": "p",
+          "v": "b)    People should produce less rubbish. They should re-use what they can. They should recycle what they cannot re-use. They should recover energy from rubbish by burning it."
+        },
+        {
+          "t": "p",
+          "v": "c)    They have bought a large-scale incinerator."
+        },
+        {
+          "t": "p",
+          "v": "The next diagram shows the process the council uses for recovering energy from refuse. How do you think it works?"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/v5_1.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Listen to Sita Gupta explaining the process and list:"
+        },
+        {
+          "t": "p",
+          "v": "a)    the verbs she uses, e.g. mix"
+        },
+        {
+          "t": "p",
+          "v": "b)    the phrases she uses to make the order of steps clear."
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "a)    mix, feed, burn, heats up, produces"
+        },
+        {
+          "t": "p",
+          "v": "b)    Well, the first thing they have to do is …"
+        },
+        {
+          "t": "p",
+          "v": "... and then they …"
+        },
+        {
+          "t": "p",
+          "v": "What happens next is …"
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Describing a process"
+        },
+        {
+          "t": "p",
+          "v": "Read a written description of part of the same process. In what way is it different from the spoken version?"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/v6_1.jpg"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "The language is more formal.",
+            "The passive is used."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Listen to Sita Gupta again. Take notes and prepare a written description for the rest of the process."
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Noting steps in an explanation"
+        },
+        {
+          "t": "p",
+          "v": "Look at the photo of graffiti. If you were a Swinford councillor, what would you try to do about this sort of problem?"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/v7_1.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Listen to the second part of the interview with Sita Gupta"
+        },
+        {
+          "t": "p",
+          "v": "a)    What is the council doing?"
+        },
+        {
+          "t": "p",
+          "v": "b)    Does the interviewer feel the council is doing enough?"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "a)    They have an experimental graffiti wall programme and they have an experimental clean-up programme for young offenders doing community service."
+        },
+        {
+          "t": "p",
+          "v": "b)    No."
+        },
+        {
+          "t": "p",
+          "v": "Listen again and write notes under the headings below."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Main problem",
+            "Arguments for taking action",
+            "Arguments against taking action",
+            "Measures the council has taken",
+            "Future plans"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "You will need your notes for another activity. So make sure you keep them!"
+        }
+      ]
+    },
+    {
+      "page": 7,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Tag questions"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Compare the two sentences below, what differences do you notice in the structure and meaning?"
+          ]
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/v8.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Listen to the complete interview again. Stop the audio when you hear a tag question."
+        },
+        {
+          "t": "p",
+          "v": "Listen to the tag questions repeated"
+        },
+        {
+          "t": "p",
+          "v": "Does the interviewer’s voice rise (go up) or does it fall (go down)? Repeat the questions, using the same intonation."
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "You’ve just become the new chairperson of the council’s Environmental Services Committee, haven’t you? (falling)",
+            "So you’re in a good position to tell us what the council is doing in this area, aren’t you? (falling)",
+            "The council isn’t doing anything like that, is it? (rising)",
+            "I mean, we can’t go on like this, can we? (falling)",
+            "It’s all over the place, isn’t it? (falling)",
+            "You don’t really believe that it’s all right for these hooligans to go on defacing buildings like this, do you? (rising)"
+          ]
+        }
+      ]
+    },
+    {
+      "page": 8,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "Use the notes you made after listening to the complete interview with Sita Gupta in"
+        },
+        {
+          "t": "p",
+          "v": "and"
+        },
+        {
+          "t": "p",
+          "v": "to write Councillor Gupta’s short, two-paragraph report to the council on Graffiti – problems and possible solutions. Include linking words to show the relationship between the points."
+        }
+      ]
+    },
+    {
+      "page": 9,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "Recycling waste is an important way of protecting our environment. Councils produce leaflets on recycling. Find out more at:"
+        },
+        {
+          "t": "link",
+          "v": "https://esol.britishcouncil.org/content/learners/uk-life/local-services/reading-leaflet-about-recycling",
+          "label": "https://esol.britishcouncil.org/content/learners/uk-life/local-services/reading-leaflet-about-recycling"
+        },
+        {
+          "t": "p",
+          "v": "Do the tasks that follow. (Feedback is given.)"
+        }
+      ]
+    },
+    {
+      "page": 10,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Action in the Community"
+        },
+        {
+          "t": "h2",
+          "v": "Introduction"
+        },
+        {
+          "t": "p",
+          "v": "Working as a community, rather than as individuals, has a greater impact. This is especially so with matters concerning the local environment."
+        },
+        {
+          "t": "p",
+          "v": "A community group's web page"
+        },
+        {
+          "t": "p",
+          "v": "Look at the picture. What kinds of problem can you find on an estate like this? Are there similar problems in your area?"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/v9.jpg"
+        },
+        {
+          "t": "p",
+          "v": "The Eastwood Community Group (ECG) was set up to improve conditions for people on the Eastwood estate. Before reading the text from their web page, quickly look through just the headings. Can you predict where you will find information about the following?"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "How ECG got started",
+            "Facilities for teenagers and children",
+            "The sort of place Eastwood is",
+            "What ECG is now working towards."
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Now read the web page and check your predictions."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/v10.jpg"
+        }
+      ]
+    },
+    {
+      "page": 11,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "The third conditional"
+        },
+        {
+          "t": "p",
+          "v": "Do you know how to use sentences starting with 'If'?"
+        },
+        {
+          "t": "p",
+          "v": "Sentences that start with 'If' are called third conditionals. Find out more by watching the video at:"
+        },
+        {
+          "t": "link",
+          "v": "https://esol.britishcouncil.org/content/learners/grammar-and-vocabulary/english-grammar/third-and-mixed-conditionals",
+          "label": "https://esol.britishcouncil.org/content/learners/grammar-and-vocabulary/english-grammar/third-and-mixed-conditionals"
+        },
+        {
+          "t": "p",
+          "v": "Do the tasks that follow. (Feedback is given.)"
+        }
+      ]
+    },
+    {
+      "page": 12,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Using the third conditional"
+        },
+        {
+          "t": "p",
+          "v": "Read these sentences analysing mistakes that were made on the Eastwood estate."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/v11.jpg"
+        },
+        {
+          "t": "p",
+          "v": "1. Answer the questions"
+        },
+        {
+          "t": "p",
+          "v": "a)    Did the council spend money? Were conditions good?"
+        },
+        {
+          "t": "p",
+          "v": "b)    Was there a lot of crime? Did people feel safe?"
+        },
+        {
+          "t": "p",
+          "v": "2. Find other examples of the third conditional in the text. What verb form is used with the if clause and the result clause?"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "1. Question1"
+        },
+        {
+          "t": "p",
+          "v": "a)    The council didn’t spend money on the estate and conditions were bad."
+        },
+        {
+          "t": "p",
+          "v": "b)    There was vandalism and petty crime on the estate and people did not feel safe."
+        },
+        {
+          "t": "p",
+          "v": "2. Question 2"
+        },
+        {
+          "t": "p",
+          "v": "This would never have happened if we hadn’t succeeded with our first campaign."
+        },
+        {
+          "t": "p",
+          "v": "If anybody had told me about this a year ago, I’d have laughed."
+        },
+        {
+          "t": "p",
+          "v": "If I hadn’t moved fast, I’d have been in hospital, or worse."
+        },
+        {
+          "t": "p",
+          "v": "If clause – past perfect"
+        },
+        {
+          "t": "p",
+          "v": "Result clause – present perfect"
+        }
+      ]
+    },
+    {
+      "page": 13,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "Watch and listen to Anne tell a story about mistakes that could have cost someone's life! This video focuses on the use of the third conditional."
+        },
+        {
+          "t": "link",
+          "v": "https://esol.britishcouncil.org/content/learners/grammar-and-vocabulary/grammar-lessons/regrets-third-conditional",
+          "label": "https://esol.britishcouncil.org/content/learners/grammar-and-vocabulary/grammar-lessons/regrets-third-conditional"
+        },
+        {
+          "t": "p",
+          "v": "Do the tasks that follow. (Feedback is given.)"
+        }
+      ]
+    },
+    {
+      "page": 14,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "A public meeting: arriving for the meeting"
+        },
+        {
+          "t": "p",
+          "v": "Look at a plan of the Eastwood estate."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/v12.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Since the estate was built, Wood Lane has become a very busy road. Why do you think it is a problem for the estate?"
+        },
+        {
+          "t": "p",
+          "v": "Sita Gupta has been invited to a meeting of ECG. Before the meeting, she meets Winston Okri, chair of ECG. Listen to their conversation"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "What is the purpose of the meeting?",
+            "Why have they invited Sita?"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "To decide on a solution to the Wood Lane traffic problem.",
+            "To help find a solution that the council would be willing to pay for."
+          ]
+        }
+      ]
+    },
+    {
+      "page": 15,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Watch this video on modal verbs:"
+        },
+        {
+          "t": "vid",
+          "v": "382422881"
+        },
+        {
+          "t": "h3",
+          "v": "If you are in Mainland China, please watch this video here: https://player.youku.com/embed/XNTEyNjA3MDM2NA"
+        },
+        {
+          "t": "h3",
+          "v": "Now watch this video on past modal verbs:"
+        },
+        {
+          "t": "vid",
+          "v": "387655177"
+        },
+        {
+          "t": "h3",
+          "v": "If you are in Mainland China, please watch this video here: https://player.youku.com/embed/XNTEyNjA3MDk2MA"
+        },
+        {
+          "t": "p",
+          "v": "Listen again"
+        },
+        {
+          "t": "p",
+          "v": "Does Sita know exactly why the council haven’t dealt with the problem so far?"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "How does she analyse and explain what she thinks happened when this road was widened?"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "No, she doesn’t. She wasn’t there at the time."
+        },
+        {
+          "t": "h3",
+          "v": "Fill in the blanks below:"
+        },
+        {
+          "t": "p",
+          "v": "The planners  about access from the estate, of course."
+        },
+        {
+          "t": "p",
+          "v": "The planners  how much traffic would build up."
+        },
+        {
+          "t": "p",
+          "v": "The council had big financial problems around that time, so they  of money."
+        }
+      ]
+    },
+    {
+      "page": 16,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "Find out more about using modals in deduction by watching the next video"
+        },
+        {
+          "t": "link",
+          "v": "https://esol.britishcouncil.org/content/learners/grammar-and-vocabulary/english-grammar/modals-deduction",
+          "label": "https://esol.britishcouncil.org/content/learners/grammar-and-vocabulary/english-grammar/modals-deduction"
+        },
+        {
+          "t": "p",
+          "v": "Do the tasks that follow. (Feedback is given.)"
+        }
+      ]
+    },
+    {
+      "page": 17,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Noting and discussing proposals"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Listen to an extract from the ECG meeting about traffic on Wood Lane.  Make brief notes about the speakers’ key points."
+          ]
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/v13.jpg"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "a) Jenny Brown"
+        },
+        {
+          "t": "p",
+          "v": "Proposal – close Wood Lane and turn into pedestrian area"
+        },
+        {
+          "t": "p",
+          "v": "Supporting argument – the area would be safe for children and everybody"
+        },
+        {
+          "t": "p",
+          "v": "b) Ahmed Hussain"
+        },
+        {
+          "t": "p",
+          "v": "Counter argument – all the traffic would go down other roads in the area"
+        },
+        {
+          "t": "p",
+          "v": "Proposal – a footbridge with ramps"
+        },
+        {
+          "t": "p",
+          "v": "Supporting argument – easier and cheaper than Jenny’s solution"
+        },
+        {
+          "t": "p",
+          "v": "c) Sally Bolton"
+        },
+        {
+          "t": "p",
+          "v": "Counter argument – high bridge, long ramps, not practical"
+        },
+        {
+          "t": "p",
+          "v": "Proposal - subway"
+        },
+        {
+          "t": "p",
+          "v": "Supporting argument – would only need to go down 2.5 metres"
+        },
+        {
+          "t": "p",
+          "v": "d) Dave Bell"
+        },
+        {
+          "t": "p",
+          "v": "Counter argument – not safe, muggings, graffiti"
+        },
+        {
+          "t": "p",
+          "v": "Proposal – zebra crossing"
+        },
+        {
+          "t": "p",
+          "v": "Supporting argument – cheap, the council won’t say no."
+        },
+        {
+          "t": "p",
+          "v": "Listen to the extract again"
+        },
+        {
+          "t": "p",
+          "v": "Listen for these expressions. What are the speakers doing?"
+        },
+        {
+          "t": "p",
+          "v": "Now, let’s go on to talk about..."
+        },
+        {
+          "t": "p",
+          "v": "Jenny, why don’t you start?"
+        },
+        {
+          "t": "p",
+          "v": "Sorry to interrupt but..."
+        },
+        {
+          "t": "p",
+          "v": "Just let me finish."
+        },
+        {
+          "t": "h3",
+          "v": "Match each expression with its purposes"
+        },
+        {
+          "t": "h3",
+          "v": "Expression"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Re-focusing a discussion",
+            "Encouraging others to speak",
+            "Interrupting",
+            "Taking back control after an interruption"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Encouraging others to speak",
+            "Interrupting",
+            "Taking back control after an interruption",
+            "Re-focusing a discussion"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Listen again for other expressions with the same purpose."
+        },
+        {
+          "t": "p",
+          "v": "What else did you identify?"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Interrupting"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Can I just stop you for a minute …",
+            "Dave, I’m sorry, but …"
+          ]
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Taking back control after an interruption"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "But wait. I haven’t finished …"
+          ]
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Encouraging others to speak"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Do you have a suggestion yourself …?",
+            "So what would you suggest …?",
+            "Any reactions?"
+          ]
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Re-focusing the discussion"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Can we move on?",
+            "Let’s go back to talk a bit more about …"
+          ]
+        }
+      ]
+    },
+    {
+      "page": 18,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Letters and News Stories on Environmental Issues"
+        },
+        {
+          "t": "h2",
+          "v": "Introduction"
+        },
+        {
+          "t": "p",
+          "v": "To actively participate in matters concerning the environment, you must be able to read and analyse letters and news stories on environmental issues. You must also be able to respond appropriately - assertively but politely."
+        },
+        {
+          "t": "p",
+          "v": "Reading and writing: analysing a letter"
+        },
+        {
+          "t": "p",
+          "v": "Look quickly at the next letter."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/v14.jpg"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Who is it to and who is it from?",
+            "What’s the purpose of the letter?",
+            "Is the style of the letter formal or informal? How can you tell just by looking at it?"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "To Mr Okri, from David Carter.",
+            "To reject ECG’s request for a crossing point on Wood Lane.",
+            "Formal. You can tell from the way the letter is laid out and the closing salutation."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Every letter has different parts to it."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Identify the following parts of the letter:"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "a)    closing salutation"
+        },
+        {
+          "t": "p",
+          "v": "b)    greeting line"
+        },
+        {
+          "t": "p",
+          "v": "c)    recipient’s name and address"
+        },
+        {
+          "t": "p",
+          "v": "d)    reference"
+        },
+        {
+          "t": "p",
+          "v": "e)    subject line"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Who else has been sent a copy of the letter? How do we know?"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "a)    Yours sincerely,"
+        },
+        {
+          "t": "p",
+          "v": "b)    Dear Mr Okri"
+        },
+        {
+          "t": "p",
+          "v": "c)    Eastwood Community Group"
+        },
+        {
+          "t": "p",
+          "v": "Flat 37, Beech Tower Close"
+        },
+        {
+          "t": "p",
+          "v": "Eastwood Estate"
+        },
+        {
+          "t": "p",
+          "v": "Swinford SF4 8NJ"
+        },
+        {
+          "t": "p",
+          "v": "d)    Ref: SSITA 2AB"
+        },
+        {
+          "t": "p",
+          "v": "e)    Wood Lane crossing point"
+        },
+        {
+          "t": "p",
+          "v": "Councillor S Gupta has been sent a copy. Her name appears beside ‘cc’ at the bottom of the letter."
+        },
+        {
+          "t": "p",
+          "v": "Now read the body of the letter quickly and answer these questions."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "What main point does each paragraph aim to communicate?",
+            "Why has the letter been copied to somebody else?",
+            "Read the letter again carefully and identify points that refer to Winston’s previous letter."
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Points communicated:"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Paragraph 1 – explains the reason for writing the letter"
+        },
+        {
+          "t": "p",
+          "v": "Paragraph 2 – rejects the suggestion made by ECG"
+        },
+        {
+          "t": "p",
+          "v": "Paragraph 3 – gives reasons for rejecting the suggestions"
+        },
+        {
+          "t": "p",
+          "v": "Paragraph 4 – explains why there is no point in having a meeting"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Copied to anyone?"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "It has been copied to Councillor Gupta because she passed ECG’s request on to the Planning Department."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Points that refer to Winston's previous letter:"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "I am writing in response to your letter …"
+        },
+        {
+          "t": "p",
+          "v": "As you rightly point out …"
+        },
+        {
+          "t": "p",
+          "v": "… as you suggest …"
+        },
+        {
+          "t": "p",
+          "v": "… as you have requested …"
+        },
+        {
+          "t": "h3",
+          "v": "Find formal words and expressions in the letter with these meanings. The first one has been done for you."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Line 1 – about ...concerning................................................................",
+            "Line 4 – can now get back to you .....................................................",
+            "Line 4 – after thinking carefully about what you want .......................",
+            "Line 6 – But this time ........................................................................",
+            "Line 7 – decided this ........................................................................",
+            "Line 12 – sadly .................................................................................",
+            "Line 13 – for a long time to come .....................................................",
+            "Line 16 – more helpful .......................................................................",
+            "Line 17 – at the moment ....................................................................",
+            "Line 18 – Best wishes ........................................................................"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "concerning",
+            "now able to respond",
+            "having given the request careful consideration",
+            "However, on this occasion",
+            "reached this conclusion",
+            "regretfully",
+            "for the foreseeable future",
+            "of greater assistance",
+            "at present",
+            "Yours sincerely"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Watch this vdeo on formal and informal language:"
+        },
+        {
+          "t": "vid",
+          "v": "382427340"
+        },
+        {
+          "t": "link",
+          "v": "https://player.youku.com/embed/XNTEyNjA2ODk4NA",
+          "label": "https://player.youku.com/embed/XNTEyNjA2ODk4NA"
+        }
+      ]
+    },
+    {
+      "page": 19,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Vocabulary useful when discussing environmental issues in your IELTS speaking exam"
+        },
+        {
+          "t": "p",
+          "v": "Air quality: the cleanliness of the air we breathe"
+        },
+        {
+          "t": "p",
+          "v": "Example: Air qualities in our cities is usually more of a concern than in the countryside."
+        },
+        {
+          "t": "p",
+          "v": "To become extinct: to no longer exist"
+        },
+        {
+          "t": "p",
+          "v": "Example: If we do not look after our environment properly, it is possible that many animal species will become extinct."
+        },
+        {
+          "t": "p",
+          "v": "To be under threat: to be in danger of becoming extinct"
+        },
+        {
+          "t": "p",
+          "v": "Example: Many of the world’s rainforests are under threat."
+        },
+        {
+          "t": "p",
+          "v": "Climate change: the change in worldwide weather patterns"
+        },
+        {
+          "t": "link",
+          "v": "http://dictionary.cambridge.org/search/british/direct/",
+          "label": ""
+        },
+        {
+          "t": "p",
+          "v": "Endangered species: categories of animals or plants that are in danger of becoming extinct"
+        },
+        {
+          "t": "p",
+          "v": "Example: You could argue that zoos are important for the protection of endangered species."
+        },
+        {
+          "t": "p",
+          "v": "Energy conservation: the careful management of energy resources to ensure they last as long as possible"
+        },
+        {
+          "t": "p",
+          "v": "Example: Energy conservation has become such a global issue especially as the cost of fuel continues to rise."
+        },
+        {
+          "t": "p",
+          "v": "Environmentally friendly: behaviour and products that do not harm the environment"
+        },
+        {
+          "t": "p",
+          "v": "Example: We all have a responsibility to be environmentally friendly."
+        },
+        {
+          "t": "p",
+          "v": "Exhaust fumes: the toxic gases given off by vehicles powered by petrol"
+        },
+        {
+          "t": "p",
+          "v": "Example: SUVs have higher road taxes in the UK because of the exhaust fumes they emit."
+        },
+        {
+          "t": "p",
+          "v": "Future generations: the people who live after us"
+        },
+        {
+          "t": "p",
+          "v": "Example: We have to ease pollution in order to protect future generations."
+        },
+        {
+          "t": "p",
+          "v": "To get back to nature: to live a life that is closer to nature"
+        },
+        {
+          "t": "p",
+          "v": "Example: We need to get back to nature and stop relying so much on modern technology."
+        },
+        {
+          "t": "p",
+          "v": "Global warming: the increasing temperature of the world brought about by gases such as carbon"
+        },
+        {
+          "t": "p",
+          "v": "Example: Global Warming is changing our weather patterns and, in turn, our seasons."
+        },
+        {
+          "t": "p",
+          "v": "Heavy industry: the manufacture of heavy articles and materials in large numbers"
+        },
+        {
+          "t": "p",
+          "v": "Example: Heavy industry has much to answer for our problems with pollution today."
+        },
+        {
+          "t": "p",
+          "v": "Natural disaster: an event such as an earthquake, flood or hurricane which causes widespread damage or loss of life"
+        },
+        {
+          "t": "p",
+          "v": "Example: Asian countries would appear to experience a disproportionate number of natural disasters."
+        },
+        {
+          "t": "p",
+          "v": "Natural environment: the place where animals and plants would normally be found in nature"
+        },
+        {
+          "t": "p",
+          "v": "Example: We very often take our natural environment for granted and in doing so risk the lives of many species of wildlife."
+        },
+        {
+          "t": "p",
+          "v": "Pollution levels: the amount of toxic waste"
+        },
+        {
+          "t": "p",
+          "v": "Example: America and Asia are still contributing more to the world’s pollution levels than other continents."
+        },
+        {
+          "t": "h3",
+          "v": "Questions you should be able to answer in your speaking exam. Using the vocabulary listed, here are some sample answers:"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Do you think governments are doing enough to combat environmental pollution?"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Answer:"
+        },
+        {
+          "t": "p",
+          "v": "I think that the governments of the world appear to be trying to help reduce environmental pollution, however, sometimes it is hard to see if they are actually making much of an impact. When the world leaders come together to discuss global warming and climate change each year, they announce some very encouraging global initiatives, like reducing heavy manufacturing and taxing those sources of pollution that negatively have the greatest impact on the environment. However, there still appears to be a problem across Asia, in particular, where they demand heavy industry, making reducing outputs and therefore pollution an almost impossible task."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "What can people do to help protect their local wildlife and rural areas?"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Answer:"
+        },
+        {
+          "t": "p",
+          "v": "We all have a responsibility to ensure we protect our local environments. We can do this by trying to reduce the waste we produce daily by buying products with limited packaging, buying recyclable or biodegradable items and trying to engage in energy conservation."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "How do we protect our world for future generations?"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Answer:"
+        },
+        {
+          "t": "p",
+          "v": "Today we have to protect our environment in order to ensure future generations can live in a safe and healthy world.  This means that reducing pollution, conserving energy and tackling climate change are fundamental to the existence of life on earth for hundreds of years to come.  If we do not take care of our environment now and tackle global warming, we will fundamentally be destroying the world that our children and grandchildren will have to live in, meaning their lives and the environment in which they will live will be unrecognisable from today."
+        }
+      ]
+    },
+    {
+      "page": 20,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Reading arguments for and against"
+        },
+        {
+          "t": "p",
+          "v": "Genetically modified (GM) crops are plants with genes changed by scientists in order to improve their performance, for example to make them produce more food or to survive in hard conditions. GM technology is widely accepted in the USA, but is very controversial in Europe and other parts of the world. What is the truth? You are going to summarise some important pros and cons."
+        },
+        {
+          "t": "p",
+          "v": "Here are two newspaper cuttings: Greens Protest GM Trial (Article A) and GM Crops Become Superweeds (Article B)"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Read the newspaper protest story, Greens Protest GM Trial (article A). Note the arguments for and against GM."
+          ]
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/v15.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Now here are three more newspaper cuttings."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/v16.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Read the newspaper cuttings (B, C, D and E) and make notes on the arguments of supporters and opponents that answer the following questions."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Does the world really need GM crops?",
+            "Are GM crops safe for humanity?",
+            "Are GM crops safe for the environment?",
+            "Recent GM developments."
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "There aren't always 'right' and 'wrong' answers for these types of questions. Experts present views and people form opinions on what they read. What views did you obtain from reading the information? Think about how that has influenced your own opinion."
+        }
+      ]
+    },
+    {
+      "page": 21,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Writing a summary"
+        },
+        {
+          "t": "p",
+          "v": "1. Use the information you have collected on GM crops. Write a brief summary using the headings."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Does the world really need GM crops?",
+            "Are GM crops safe for humanity?",
+            "Are GM crops safe for the environment?",
+            "Recent GM"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Use phrases like these:"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/v17.jpg"
+        },
+        {
+          "t": "p",
+          "v": "2. Add a conclusion to your summary. State, with supporting arguments, what you believe should be done about GM food."
+        }
+      ]
+    },
+    {
+      "page": 22,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "Here is a success story of a project that is raising the awareness of the British public on environmental issues. It is Eden Project. Find out more at:"
+        },
+        {
+          "t": "link",
+          "v": "https://esol.britishcouncil.org/content/learners/uk-life/video-uk/eden-project-cornwall",
+          "label": "https://esol.britishcouncil.org/content/learners/uk-life/video-uk/eden-project-cornwall"
+        },
+        {
+          "t": "p",
+          "v": "Do the tasks that follow. (Feedback is given.)"
+        }
+      ]
+    },
+    {
+      "page": 23,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Read some advice from a website for new community groups."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/v18.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Which is the better of the two connecting phrases to complete each extract?"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Provided that, and however, Of course, such as, but",
+            "In order to, so, and, and",
+            "and, Therefore, so that"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "The third conditional:"
+        },
+        {
+          "t": "p",
+          "v": "You are an ECG member. Respond to other members/|/ comments using the third conditional."
+        },
+        {
+          "t": "p",
+          "v": "Example If we hadn/|/t set it up, we/|/d never have got to know each other so well."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "/|/When I think about it, it/|/s the community group that really brought us together./|/",
+            "/|/Looking back, I/|/m so glad we stopped that road through the estate all those years ago./|/",
+            "/|/And I/|/m really happy that the group didn/|/t just break up after doing that./|/",
+            "/|/It was very important getting Sita Gupta on our side. Her support made a big difference./|/"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "Possible answers:"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "If we hadn/|/t set it up, we/|/d never have got to know each other so well.",
+            "If we hadn/|/t stopped that road going through the estate, things would be much worse today.",
+            "If the group had stopped after we/|/d done that, we wouldn/|/t have gone on to do the other things afterwards.",
+            "We wouldn/|/t have got so far if we hadn/|/t had the support of Sita Gupta."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Past modals:"
+        },
+        {
+          "t": "p",
+          "v": "Look at these comments, analysing why an accident happened on Wood Lane."
+        },
+        {
+          "t": "p",
+          "v": "Rephrase them using must have / can/|/t have / might have + participle."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "I suppose it/|/s possible that something fell out of her shopping bag and she stopped to pick it up. There was shopping all over the road.",
+            "I/|/m certain she didn/|/t see the car coming. There/|/s a big bend in the road.",
+            "I/|/m sure the car was travelling much too fast. It just appeared from nowhere."
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "I suppose something might have fallen out of her shopping bag ...",
+            "She can/|/t have seen the car coming ...",
+            "The car must have been travelling much too fast ..."
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Mini Project1: Collect information on an environmental issue"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Select a /|/big/|/ environmental issue that is in the news at the moment, e.g. global warming, sustainable development, pollution, conventional and renewable energy sources.",
+            "Find some interesting information about the environmental issue you have chosen, e.g. a newspaper or magazine article about it or some background information on a website.",
+            "Prepare a summary of the information you have found.."
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Mini Project 2: Collect useful vocabulary for talking about the environment"
+        },
+        {
+          "t": "p",
+          "v": "1. Go through this unit and find any specific words to do with the environment. Organise them in your notebook in a way that will be memorable for you, e.g. by topic or using a word diagram.2. Choose one or two environmental issues you are interested in, e.g. renewable energy sources."
+        },
+        {
+          "t": "p",
+          "v": "Write down any relevant words you already know in English. Add any words you know in your own language and find out what they are in English, using your dictionary. Make sure you know how to pronounce them."
+        },
+        {
+          "t": "p",
+          "v": "3. Create a word diagram with all the words you have gathered.4. Research some more articles on the environmental issues you have chosen. Read them and add any new and important words to your word diagram."
+        }
+      ]
+    },
+    {
+      "page": 24,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Sample IELTS Reading Comprehension."
+        },
+        {
+          "t": "p",
+          "v": "Read the text and answer the multiple choice questions"
+        },
+        {
+          "t": "p",
+          "v": "Dockside Green"
+        },
+        {
+          "t": "p",
+          "v": "The green movement is catching on in many pockets of the world. This is especially true in the construction industry. Today's buzz words, which include global warming and zero emissions, are causing everyday people (not just celebrities) to look for ways to reduce their carbon footprint. Purchasing environmentally-friendly property is a good investment for those who are concerned about their own health and the well-being of the earth. Based on this trend, entire districts, known as eco-communities, are being designed with green initiatives in mind. Dockside Green in Victoria, British Columbia, Canada is one of these communities. Its goal is to become the world's first zero-emissions neighbourhood."
+        },
+        {
+          "t": "p",
+          "v": "If everything goes according to plan, Dockside Green will be a self-sufficient community along the harbour front of British Columbia's capital city. The community will be home to 2500 people and will consist of residential, office, and retail space. The plans describe a variety of environmental features, some of which are unprecedented."
+        },
+        {
+          "t": "p",
+          "v": "Builders of Dockside Green have the environment in mind with every choice they make. They ensure proper ventilation, and guarantee residents 100% fresh indoor air. Interior and exterior building materials, such as paints and wood, are natural and non-toxic. Eco-conscious builders use bamboo wherever possible because it is durable and does not require pesticides to grow."
+        },
+        {
+          "t": "p",
+          "v": "Energy efficiency is one of the top priorities in eco-communities, such as Dockside Green. Not only do energy-efficient appliances and light fixtures reduce the environmental impact of heating and hot water, they also save residents and business owners money. Dockside Green claims that home owners will use 55% less energy than average residents in Canada. Though they are sharing space by investing in condo-style living, residents will have individual utility metres. Studies show that people use approximately 20% less energy when they are billed for exactly what they use. In addition, water is treated at Dockside Green and reused on site for flushing toilets."
+        },
+        {
+          "t": "p",
+          "v": "Planners of eco-communities such as Dockside Green must take the future into account. Dockside Green plans on reusing 90% of its construction waste. They also plan to continue using local suppliers for all of their transport and maintenance needs. This is a great way to reduce emissions. Dockside residents will be encouraged to make use of a mini transit system and buy into the community's car share program. Finally, plans are in the works for a high-tech heating system that will use renewable biomass instead of fossil fuels."
+        },
+        {
+          "t": "p",
+          "v": "The first two stages of development at Dockside Green have already been completed, and many other plans are in the works. Other smaller eco-villages can be found around the world. These are also known as intentional communities. Most have a small population of 50-150 residents. Residents of these communities aim to reduce their carbon footprint and be models for sustainable living."
+        },
+        {
+          "t": "p",
+          "v": "Answer the following Multiple Choice Questions:"
+        },
+        {
+          "t": "h3",
+          "v": "What is Dockside Green?"
+        },
+        {
+          "t": "h3",
+          "v": "Why is bamboo an environmentally friendly choice for builders?"
+        },
+        {
+          "t": "h3",
+          "v": "According to the article, what percentage of energy savings is there in condos with single unit utility meters?"
+        }
+      ]
+    },
+    {
+      "page": 25,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Summary"
+        },
+        {
+          "t": "p",
+          "v": "So what have you learnt?"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "You have assessed how green you are. Being green means doing things to protect and sustain the natural environment.",
+            "You can understand articles and TV/radio programmes on green initiatives. These initiatives may be locally or country-wide.",
+            "You know how to describe a process, noting steps in an explanation.",
+            "You know how to use tag questions, e.g."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Have you just become the chair of the Environment Committee?"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "You have learnt how to participate in initiatives to take action in the community. For example, you can use the third conditional is discussions."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "If the council had invested more money on street lighting, crime might have been lower."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "You have learnt how to read and analyse proposals. You can also discuss proposals in meeting and keep meetings focused by using expressions such as:"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Now, let's go on to talk about..."
+        },
+        {
+          "t": "p",
+          "v": "Sorry to interrupt but..."
+        },
+        {
+          "t": "p",
+          "v": "Ashok, why don't you tell us what you discovered..."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "You can read and write letters. You know how to appeal against decisions by being assertive but polite.",
+            "You can read and analyse arguments for and against controversial subjects concerning the environment. You can form you own opinion based on these arguments."
+          ]
+        }
+      ]
+    }
+  ]
+}

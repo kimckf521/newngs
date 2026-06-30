@@ -1,5 +1,6 @@
 import 'server-only';
 import { query } from '@/lib/db/pg';
+import { addVersion } from '@/lib/versions/store';
 import type { AdminCourse } from './types';
 
 /**
@@ -49,6 +50,12 @@ export async function upsertCourse(input: AdminCourse, updatedBy: string): Promi
        SET data = EXCLUDED.data, published = EXCLUDED.published, updated_at = now()`,
     [course.id, JSON.stringify(course), Boolean(course.published)],
   );
+  // Auto-backup a snapshot for version history (best-effort — never fail the save).
+  try {
+    await addVersion('course', course.id, course, updatedBy);
+  } catch {
+    /* versioning is non-critical */
+  }
   return course;
 }
 

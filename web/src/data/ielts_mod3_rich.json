@@ -1,0 +1,1808 @@
+{
+  "pageTypes": {
+    "1": null,
+    "2": "Show Me",
+    "3": "Tell Me",
+    "4": "Involve Me",
+    "5": "Show Me More",
+    "6": "Tell Me",
+    "7": "Show Me",
+    "8": "Tell Me",
+    "9": "Show Me",
+    "10": "Involve Me",
+    "11": "Involve Me",
+    "12": "Show Me",
+    "13": "Show Me",
+    "14": "Tell Me",
+    "15": "Involve Me",
+    "16": "Involve Me",
+    "17": "Show Me",
+    "18": "Involve Me",
+    "19": "Involve Me",
+    "20": "Tell Me",
+    "21": "Involve Me",
+    "22": "Show Me",
+    "23": "Involve Me",
+    "24": "Show Me More",
+    "25": "Show Me More",
+    "26": "Test Me",
+    "27": "Remind Me"
+  },
+  "pages": [
+    {
+      "page": 1,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "This Module is about a developing your communication skills on the topics of  Work and Professions."
+        },
+        {
+          "t": "p",
+          "v": "We will use pictures, text and audio to help you in your learning."
+        },
+        {
+          "t": "p",
+          "v": "In Listening and Speaking, you will learn how to:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Listen to voicemail messages",
+            "Use formal and informal language",
+            "Develop your vocabulary relating to work and professions"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "In Reading and Writing, you will learn how to:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Read emails",
+            "Read a magazine article"
+          ]
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "The workplace"
+        },
+        {
+          "t": "p",
+          "v": "There are different types of workplace. Some people work in hospitals, others in shops, others in garages, others in building yards and many in offices. We shall be looking at what working in an office involves."
+        },
+        {
+          "t": "p",
+          "v": "Before we look at what is involved in working in an office, let's look at working as a mechanic in a garage."
+        },
+        {
+          "t": "link",
+          "v": "https://esol.britishcouncil.org/content/learners/skills/speaking/work",
+          "label": "https://esol.britishcouncil.org/content/learners/skills/speaking/work"
+        },
+        {
+          "t": "p",
+          "v": "Watch this video about phrasal verbs:"
+        },
+        {
+          "t": "vid",
+          "v": "382423626"
+        },
+        {
+          "t": "link",
+          "v": "https://player.youku.com/embed/XNTEyNzExNjM1Ng",
+          "label": "优酷视频云 (youku.com)"
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Arriving at work"
+        },
+        {
+          "t": "p",
+          "v": "Fiona, Sui and Magid all work for Lawfords. It is Monday morning. A new employee, Daniel, is starting today."
+        },
+        {
+          "t": "p",
+          "v": "Listen to the conversation and answer the questions."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Who has just arrived at the office?",
+            "Does this person know the other person in the office?",
+            "How do they greet each other?"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Sui - \"Morning Fiorna\"",
+            "Yes - Fiona \"Hi, morning Sui. Good weekend?\"",
+            "Greetings - Sui \"Yes, great thanks. Yours?\""
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Sui is fed up about her journey and uses exaggerated phrases to express her feelings. Listen and note the phrases she uses."
+        },
+        {
+          "t": "h3",
+          "v": "Match the phrases with the phrase that Sui uses."
+        },
+        {
+          "t": "h3",
+          "v": "phrase 1"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "a nightmare journey",
+            "I had to wait for ages",
+            "it's freezing cold",
+            "you have to fight to get on",
+            "hours",
+            "I thought I'd die of boredom",
+            "you pay a fortune"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "you have to fight to get on",
+            "a nightmare journey",
+            "I thought I'd die of boredom",
+            "it's freezing cold",
+            "I had to wait for ages",
+            "you pay a fortune",
+            "hours"
+          ]
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Useful Vocabulary when discussing work"
+        },
+        {
+          "t": "p",
+          "v": "In the IELTS examination, especially in the speaking exam, examiners may ask you questions relating to work and your professional ambitions. The following vocabulary and sample questions and answers is worth considering."
+        },
+        {
+          "t": "p",
+          "v": "Perk ="
+        },
+        {
+          "t": "p",
+          "v": "extra benefits given to employees besides their salary, for example, use of company car or mobile phone"
+        },
+        {
+          "t": "p",
+          "v": "Example: The only perk I have is free parking in our basement. I wish I had a better job with a multinational company."
+        },
+        {
+          "t": "p",
+          "v": "I love my new job; the perks are great. They’ve given me a brand new car, a mobile phone and a laptop."
+        },
+        {
+          "t": "p",
+          "v": "Promotion= getting a higher ranking position at a workplace"
+        },
+        {
+          "t": "p",
+          "v": "Example: I’ve just got a promotion: I’ve been promoted to Key Account Manager."
+        },
+        {
+          "t": "p",
+          "v": "Job satisfaction= it means how happy you are with the way things are at your workplace"
+        },
+        {
+          "t": "p",
+          "v": "Example: I’ve been asked to fill out a job satisfaction survey. I’m not sure what to write. I don’t want to offend my bosses."
+        },
+        {
+          "t": "p",
+          "v": "Rewarding (adj.)= something that makes you feel satisfied and happy"
+        },
+        {
+          "t": "p",
+          "v": "Example: Teaching is such a rewarding job. I love the look on my students’ face when they get good grades."
+        },
+        {
+          "t": "p",
+          "v": "Example:I’m not sure what job I’d like to do after I graduate, but has to be challenging and rewarding at the same time."
+        },
+        {
+          "t": "p",
+          "v": "be made redundant= be dismissed from work, because you’re no longer needed"
+        },
+        {
+          "t": "p",
+          "v": "Example: My company downsized last year and I was made redundant."
+        },
+        {
+          "t": "p",
+          "v": "Example: Being made redundant is better than being fired- you get redundancy payment."
+        },
+        {
+          "t": "p",
+          "v": "Workaholic= a person who has a strong desire to work and doesn’t like doing other things"
+        },
+        {
+          "t": "p",
+          "v": "Example: My friends think I’m a workaholic, just because I often work late hours."
+        },
+        {
+          "t": "p",
+          "v": "Example: My boss is a workaholic and he obviously thinks nobody in the office minds working unsocial hours."
+        },
+        {
+          "t": "p",
+          "v": "to deal with…=  to handle/ to have to do with"
+        },
+        {
+          "t": "p",
+          "v": "Example: I have good communication skills. I deal with customers on a daily basis."
+        },
+        {
+          "t": "p",
+          "v": "Example: As a housing manager I have to deal with repairs and conflicts between neighbours."
+        },
+        {
+          "t": "p",
+          "v": "to involve= to contain/ to include"
+        },
+        {
+          "t": "p",
+          "v": "Example: My job involves travel. I love it, because I get to see new places and to meet new people."
+        },
+        {
+          "t": "p",
+          "v": "To be called for an interview: to be invited to attend an interview"
+        },
+        {
+          "t": "p",
+          "v": "Example: Although he has been called for an interview, he hasn’t got a job yet."
+        },
+        {
+          "t": "p",
+          "v": "To be your own boss/run your own business/be self-employed: to have your own business"
+        },
+        {
+          "t": "p",
+          "v": "Example: It has been my dream is to be my own boss, because I can do everything in my way If I run my own business."
+        },
+        {
+          "t": "p",
+          "v": "To be stuck behind a desk: to be unhappy in office job"
+        },
+        {
+          "t": "p",
+          "v": "Example: Working full-time in an office can lead to being stuck behind a desk."
+        },
+        {
+          "t": "p",
+          "v": "Job satisfaction: the feeling of enjoying a job"
+        },
+        {
+          "t": "p",
+          "v": "Example: Job satisfaction is the most important factor when a person chooses a job."
+        },
+        {
+          "t": "p",
+          "v": "Manual work: work that requires physical activities"
+        },
+        {
+          "t": "p",
+          "v": "Example: Many people have manual work that requires them to work in a dangerous environment."
+        },
+        {
+          "t": "p",
+          "v": "Temporary work: work done for a limited time only"
+        },
+        {
+          "t": "p",
+          "v": "Example: Taxi drivers is just my temporary work, I am applying for a better job."
+        },
+        {
+          "t": "p",
+          "v": "Voluntary work: to work without pay"
+        },
+        {
+          "t": "p",
+          "v": "Example: In my free time, I join in voluntary work to help the society."
+        },
+        {
+          "t": "p",
+          "v": "To be well paid: to earn a good salary"
+        },
+        {
+          "t": "p",
+          "v": "Example: Working in auditing area will be well paid."
+        },
+        {
+          "t": "p",
+          "v": "Working conditions: the hours, salary and other entitlements that comes with the job"
+        },
+        {
+          "t": "p",
+          "v": "Example: Employer should spend more money on improving the working conditions."
+        },
+        {
+          "t": "p",
+          "v": "To meet a deadline: to finish a job on time"
+        },
+        {
+          "t": "p",
+          "v": "Example: Last week she was really stress, because she had to work too hard to meet the deadlines."
+        },
+        {
+          "t": "p",
+          "v": "To take early retirement: to retire early"
+        },
+        {
+          "t": "p",
+          "v": "Example: Recently, a large number of older worker tend to take early retirement, then they will have more time to travel."
+        },
+        {
+          "t": "p",
+          "v": "A heavy workload: to have a lot of work to do"
+        },
+        {
+          "t": "p",
+          "v": "Example: Many worker are complaining the heavy workload, and they asking for higher salary."
+        },
+        {
+          "t": "p",
+          "v": "Shift work: a system in which different groups of workers work somewhere at different times of the day and night"
+        },
+        {
+          "t": "p",
+          "v": "Example: Many industries rely heavily on shift work, and millions of people work in jobs that require shift schedules."
+        },
+        {
+          "t": "p",
+          "v": "Land a new job: get a new (and usually a good) job"
+        },
+        {
+          "t": "p",
+          "v": "Example: After graduating, I did the usual things of putting together my CV & applying for jobs. Luckily, I landed a fantastic new job at a tourism company."
+        },
+        {
+          "t": "p",
+          "v": "Living wage: enough money to live on"
+        },
+        {
+          "t": "p",
+          "v": "Example: After doing a job swap, I just got a living wage which didn’t commensurate with my experience & ability."
+        },
+        {
+          "t": "p",
+          "v": "Take up the post: start work"
+        },
+        {
+          "t": "p",
+          "v": "Example: After being laid off, I went back to my old job and took up the post of editor of a leading fashion journal."
+        },
+        {
+          "t": "p",
+          "v": "Do a job-share: situation where 2 people share equal parts of the same job"
+        },
+        {
+          "t": "p",
+          "v": "Example: I decided to go part-time and do a job-share with my friend after returning from maternity leave."
+        },
+        {
+          "t": "p",
+          "v": "Lay off staff: dismiss staff because there is no work for them to do"
+        },
+        {
+          "t": "p",
+          "v": "Example: My start-up went through a difficult period and had to lay off staff"
+        },
+        {
+          "t": "h2",
+          "v": "Sample IELTS questions for the speaking examination."
+        },
+        {
+          "t": "p",
+          "v": "Do you work or study?I graduated a few years ago and I’m now in full time employment."
+        },
+        {
+          "t": "p",
+          "v": "What is your job?I’m currently an English teacher working for the British Council in Ho Chi Minh City."
+        },
+        {
+          "t": "p",
+          "v": "Why did you choose that job?I was previously a lawyer and found it to be really stressful and never had any free time, so after quitting that job I thought teaching might be the complete opposite of being a lawyer, you know not as stressful and more time off."
+        },
+        {
+          "t": "p",
+          "v": "Are there lots of English teachers in Ho Chi Minh City?Oh yes! There is a such a big demand for English as a second language here and it’s also quite a cheap place to live compared to many other big cities in Asia."
+        },
+        {
+          "t": "p",
+          "v": "Do you enjoy your job?Most of the time. It’s very rewarding to be able to help people every day and the students here are very hardworking and fun to teach, but you sometimes have lessons that do go so well and the money could always be better."
+        },
+        {
+          "t": "p",
+          "v": "Do you get on well with your co-workers?Yes, fine. I don’t really see work as part of my social life, so I don’t socialise with them, so I suppose I could be more friendly, but it’s just my nature to be a bit colder with colleagues. I think it’s more professional to be that way."
+        },
+        {
+          "t": "p",
+          "v": "What was your first day at work like?There were lots of teachers starting at the same time as me, 10 I think, so we all had a big induction day. The more senior teachers ran workshops with us to familarise us with the different systems they had and then we went for a team dinner in the evening."
+        },
+        {
+          "t": "p",
+          "v": "What responsibilities do you have at work?All of the teachers main responsibility is to plan good lessons and then teach them to the best of our ability. On top of that we have several admin tasks to carry out like mark homework, fill out attendance sheets and write reports."
+        },
+        {
+          "t": "p",
+          "v": "Would you like to change your job in the future?Yes, as I said before, I like working by myself, so I would like to be my own boss. I’m currently developing my own website, so if it’s successful I will leave teaching and work on it full time. This will also give me more time to work on other projects."
+        },
+        {
+          "t": "p",
+          "v": "What is your typical day like in work?I normally have 2 or 3 classes in the evening and I start the day by doing all the planning at home. This normally takes between an hour or two depending on the lessons. I then take the rest of the day to spend with my family, before going to work around 3 to print off my materials and then I teach all evening."
+        },
+        {
+          "t": "p",
+          "v": "What would you change about your job?As with most English teachers, we have to teach what is on the curriculum and this can mean that you are teaching some things that are quite boring or not very useful for your students, so I would like to have more freedom to teach outside the syllabus."
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "Listen to Ann talking about her journey to work:"
+        },
+        {
+          "t": "link",
+          "v": "https://esol.britishcouncil.org/content/learners/skills/speaking/my-journey-work",
+          "label": "https://esol.britishcouncil.org/content/learners/skills/speaking/my-journey-work"
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Describing jobs to a new member of staff"
+        },
+        {
+          "t": "p",
+          "v": "Daniel has arrived at the office. Fiona shows him round and introduces him to the other staff."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/g3_1.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Listen to the conversation"
+        },
+        {
+          "t": "p",
+          "v": "What are Fiona, Sui and Magid’s job titles?"
+        },
+        {
+          "t": "p",
+          "v": "What do the staff at Lawfords do?"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Fiona – Office manager",
+            "Sui – Order clerk",
+            "Magid – Warehouse manager"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Match the phrases to make complete sentences."
+        },
+        {
+          "t": "h3",
+          "v": "Phrase 1"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "for the orders",
+            "with any unexpected problems",
+            "anything financial.",
+            "of the warehouse.",
+            "work closely of the warehouse."
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "of the warehouse.",
+            "for the orders",
+            "with any unexpected problems",
+            "anything financial.",
+            "work closely of the warehouse."
+          ]
+        }
+      ]
+    },
+    {
+      "page": 7,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "Expand you vocabulary about jobs at:"
+        },
+        {
+          "t": "link",
+          "v": "https://uk.indeed.com/career-advice/career-development/improve-vocabulary",
+          "label": "8 ways to improve your vocabulary: a guide | Indeed.com UK"
+        }
+      ]
+    },
+    {
+      "page": 8,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Checking what you have to do"
+        },
+        {
+          "t": "p",
+          "v": "Fiona delegates five tasks to Daniel. Listen and put them in the order in which he must do them."
+        },
+        {
+          "t": "h3",
+          "v": "Put the tasks in order"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "sorting the post",
+            "helping Sui",
+            "photocopying",
+            "filing",
+            "checking invoices"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "sorting the post",
+            "checking invoices",
+            "helping Sui",
+            "photocopying",
+            "filing"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Listen again, How does Daniel make sure that he fully understands what to do?"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "He listens carefully."
+        },
+        {
+          "t": "p",
+          "v": "He asks questions to find out:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "more details about the tasks",
+            "what the deadlines are",
+            "what the priorities are."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "He repeats what he’s understood from time to time."
+        },
+        {
+          "t": "p",
+          "v": "He summarises at the end."
+        },
+        {
+          "t": "p",
+          "v": "Now imagine you are a manager, write out a list of four tasks for your team member."
+        },
+        {
+          "t": "p",
+          "v": "A: Write an explanation of the tasks."
+        },
+        {
+          "t": "p",
+          "v": "B: Write down questions you would anticipate to receive, to make sure your team member fully understands what to do."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/g4_1.jpg"
+        }
+      ]
+    },
+    {
+      "page": 9,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Listening to voicemail messages"
+        },
+        {
+          "t": "p",
+          "v": "Fiona always arrives first in the office. The first thing she does is to play back any voicemail messages."
+        },
+        {
+          "t": "p",
+          "v": "Fiona finds three messages."
+        },
+        {
+          "t": "p",
+          "v": "Listen to the first message:"
+        },
+        {
+          "t": "h3",
+          "v": "Which of these statements are True?"
+        },
+        {
+          "t": "p",
+          "v": "Listen to the two other two voicemail messages:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Can you complete the next table?"
+          ]
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/g5.jpg"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "Message 2 (Balvinder Singh)"
+        },
+        {
+          "t": "p",
+          "v": "Order number: 632860"
+        },
+        {
+          "t": "p",
+          "v": "Items ordered: document wallets, highlighter pens, ring binders"
+        },
+        {
+          "t": "p",
+          "v": "Problem: he has not received the order"
+        },
+        {
+          "t": "p",
+          "v": "Message 3 (Julie Baker)"
+        },
+        {
+          "t": "p",
+          "v": "Order number: 649382"
+        },
+        {
+          "t": "p",
+          "v": "Items ordered: plastic wallets, document wallets"
+        },
+        {
+          "t": "p",
+          "v": "Problem: she has not received the order"
+        },
+        {
+          "t": "p",
+          "v": "Think about the first message"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Will Lawfords be able to meet these orders?"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "They will be able to supply Balvinder Singh with document wallets and highlighter pens, but not with ring binders."
+        },
+        {
+          "t": "p",
+          "v": "They will be able to supply Julie Baker’s order."
+        }
+      ]
+    },
+    {
+      "page": 10,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Writing a message"
+        },
+        {
+          "t": "p",
+          "v": "Look at the two notes (A and B) for the first message"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/g6.jpg"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Which note do you think is better? Why?"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "A – it just gives key information. Fiona would not have time to write down every word in note B while she is listening."
+        },
+        {
+          "t": "p",
+          "v": "Listen to another message, from Ian Mellor"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Have a go at writing a message."
+          ]
+        }
+      ]
+    },
+    {
+      "page": 11,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Passing on messages"
+        },
+        {
+          "t": "p",
+          "v": "When Fiona sees Sui, she passes on the messages and explains the situation about the orders. What do you think she says?"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/g7.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Listen and then complete the sentences in the task below."
+        },
+        {
+          "t": "h3",
+          "v": "Fill in the blanks and complete the sentences."
+        },
+        {
+          "t": "p",
+          "v": "Balvinder wants  to ."
+        },
+        {
+          "t": "p",
+          "v": "Julie Baker and Ian Mellor have asked  to ."
+        },
+        {
+          "t": "p",
+          "v": "I’d like  to find out  the delivery ."
+        },
+        {
+          "t": "p",
+          "v": "Look at some requests in the next pictures."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Write down the action to take for each request."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "For example, A - She wants him to send her an invoice for the request."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/g8.jpg"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Request in B: He wants her to phone him back.",
+            "Request in C: She wants (her to get) Magid to send them a stock report.",
+            "Request in D: She wants (her to ask) Daniel to do some photocopying for her."
+          ]
+        }
+      ]
+    },
+    {
+      "page": 12,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Getting the style right"
+        },
+        {
+          "t": "p",
+          "v": "Sui knows Magid well, so when she talks to him her style is informal. Julie Baker is a customer and Sui doesn’t know her well, so her style is more formal."
+        },
+        {
+          "t": "p",
+          "v": "Listen for the differences between the more formal call to Julie Baker and Sui’s more informal conversation with Magid"
+        },
+        {
+          "t": "p",
+          "v": "What do they say?"
+        },
+        {
+          "t": "h3",
+          "v": "Complete the table."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/g10.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Did you notice any other words or phrases in the conversations that you think are typical of formal or informal conversation?"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "Formal conversation:"
+        },
+        {
+          "t": "p",
+          "v": "Hello./Good morning./My name’s …"
+        },
+        {
+          "t": "p",
+          "v": "I believe you left a message about ..."
+        },
+        {
+          "t": "p",
+          "v": "I do apologise …"
+        },
+        {
+          "t": "p",
+          "v": "I’m pleased to say ..."
+        },
+        {
+          "t": "p",
+          "v": "Thank you for calling. Goodbye."
+        },
+        {
+          "t": "p",
+          "v": "Informal conversation:"
+        },
+        {
+          "t": "p",
+          "v": "Hi, Magid, it’s Sui."
+        },
+        {
+          "t": "p",
+          "v": "It’s about ..."
+        },
+        {
+          "t": "p",
+          "v": "I’m really sorry."
+        },
+        {
+          "t": "p",
+          "v": "The good news is …"
+        },
+        {
+          "t": "p",
+          "v": "OK, then. Bye for now."
+        }
+      ]
+    },
+    {
+      "page": 13,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Reporting people's words"
+        },
+        {
+          "t": "p",
+          "v": "When you pass a message on, the reporting verb is often in the present tense and you can use the same tense as the original speaker used. Look at the example."
+        },
+        {
+          "t": "p",
+          "v": "Fiona: You sent them the wrong invoice."
+        },
+        {
+          "t": "p",
+          "v": "Sui: Fiona says I sent them the wrong invoice."
+        },
+        {
+          "t": "h3",
+          "v": "Listen to three messages He/she says"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "Suggested answers:"
+        },
+        {
+          "t": "p",
+          "v": "Message 1: He says he really needs his order for ring binders and lever arch files urgently."
+        },
+        {
+          "t": "p",
+          "v": "Message 2: He says they put in two separate orders a couple of weeks ago, but one of the orders hasn’t arrived yet."
+        },
+        {
+          "t": "p",
+          "v": "Message 3: She says she’s sorry. Her train’s been cancelled, so she’s going to be late again."
+        }
+      ]
+    },
+    {
+      "page": 14,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Phoning about a delivery"
+        },
+        {
+          "t": "p",
+          "v": "Listen to the voicemail message from Magid again"
+        },
+        {
+          "t": "p",
+          "v": "Sui has to phone Julie Baker and her colleague Magid. Why do you think she needs to phone them?"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "She needs to tell Julie Baker that her order can be supplied."
+        },
+        {
+          "t": "p",
+          "v": "She needs to find out when the suppliers can deliver the ring binders and lever arch files."
+        },
+        {
+          "t": "h3",
+          "v": "Listen to the two phone calls"
+        },
+        {
+          "t": "p",
+          "v": "These are some of the actions they talk about during the calls. How certain is each one?"
+        },
+        {
+          "t": "h3",
+          "v": "Match each action with the level of certainty"
+        },
+        {
+          "t": "h3",
+          "v": "Action"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "certain to happen",
+            "planned to happen, but not 100% certain",
+            "certain not to happen",
+            "planned to happen, but not 100% certain"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "certain to happen",
+            "planned to happen, but not 100% certain",
+            "planned to happen, but not 100% certain",
+            "certain not to happen"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "What did they say?"
+        },
+        {
+          "t": "p",
+          "v": "Role play short phone calls for these situations using should, will/won’t be able and should be able."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "deliveries",
+            "orders",
+            "payments"
+          ]
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/g9.jpg"
+        }
+      ]
+    },
+    {
+      "page": 15,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Emails, Letters and Other Communications"
+        },
+        {
+          "t": "h2",
+          "v": "Introduction"
+        },
+        {
+          "t": "p",
+          "v": "There are a number of ways of communicating with customers. Some ways are email, letters, articles and websites."
+        },
+        {
+          "t": "h3",
+          "v": "Reading emails and letters"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/g12.jpg"
+        },
+        {
+          "t": "p",
+          "v": "What are the e-mail and letter about?"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "Letter: late payment of an invoice"
+        },
+        {
+          "t": "p",
+          "v": "Email: thanking for a delivery and asking for a catalogue"
+        },
+        {
+          "t": "h3",
+          "v": "Some of the sentences below are formal and others informal. Which sentences are formal?"
+        }
+      ]
+    },
+    {
+      "page": 16,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Correcting mistakes in spelling"
+        },
+        {
+          "t": "p",
+          "v": "Sui has to reply to some other enquiries. As she is very busy, she asks Daniel to help her. He writes a good reply to the first enquiry, except for some mistakes in spelling and punctuation. Can you find and correct his mistakes?"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/g13.jpg"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "In reply to your request for information about the products we sell, I am pleased to enclose our current catalogue. As you can see, we stock a wide range of printer inks and cartridges."
+        },
+        {
+          "t": "p",
+          "v": "We look forward to receiving your order."
+        },
+        {
+          "t": "p",
+          "v": "Yours sincerely"
+        }
+      ]
+    },
+    {
+      "page": 17,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Reading Exercise"
+        },
+        {
+          "t": "p",
+          "v": "Is it any wonder that there are teacher shortages? Daily, the press carries reports of schools going on four-day weeks simply because they cannot recruit enough teachers. But why? There is no straightforward answer. For a start, fewer students are entering teacher-training courses when they leave school. But can you blame young people after the barracking faced by the teaching profession in the UK over the last decade? The attack, relentless in the extreme, has been on several fronts. Government inspectors, by accident or design, have been feeding the media a constant stream of negative information about the teaching establishments in this country. Teachers also come in for a lot of flak from politicians. And the government wonders why there are problems in schools."
+        },
+        {
+          "t": "p",
+          "v": "The government's obvious contempt for the teaching profession was recently revealed by one of the most powerful people in government when she referred to schools as 'bog standard comprehensives'. Hardly the sort of comment to inspire parents or careers advisers seeking to direct young people's future. Would you want to spend your working life in a dead-end profession? The government doesn't seem to want you to either."
+        },
+        {
+          "t": "p",
+          "v": "On the administrative side, most teachers are weighed down by an increasing flow of bureaucracy. Cynicism would have me believe that this stops teachers from fomenting dissent as they are worn out by useless administrative exercises. Most teachers must then also be cynics!"
+        },
+        {
+          "t": "p",
+          "v": "Teacher bashing has, unfortunately, spread to youngsters in schools as the recent catalogue of physical attacks on teachers will testify. If grown-ups have no respect for the teaching profession, young people can hardly be expected to think any differently. The circle is then squared when, as well as experienced, competent teachers being driven out of the profession by the increased pressure and stress; fewer students are applying for teacher-training courses."
+        },
+        {
+          "t": "p",
+          "v": "Increased salaries are certainly welcome, but they are not the complete answer to a sector in crisis. Addressing the standing of the profession in the eyes of the public is crucial to encourage experienced teachers to remain in the classroom and to make it an attractive career option for potential teachers once again."
+        },
+        {
+          "t": "p",
+          "v": "It might also be a good idea for the relevant ministers to go on a fact-finding mission and find out from teachers in schools, rather than relying overmuch on advisers, as to what changes could be brought about to improve the quality of the education service. Initiatives in the educational' field surprisingly come from either politicians who know little about classroom practice or educational theorists who know even less, but are more dangerous because they work in the rarefied air of universities largely ignorant of classroom practice."
+        },
+        {
+          "t": "p",
+          "v": "Making sure that nobody without recent classroom experience is employed as a teacher-trainer at any tertiary institution would further enhance the teaching profession. If someone does not have practical experience in the classroom, they cannot in all seriousness propound theories about it. Instead of being given sabbaticals to write books or papers, lecturers in teacher-training establishments should be made to spend a year at the blackboard or, these days, the whiteboard. This would give them practical insights into current classroom practice. Student teachers could then be given the chance to come and watch the specialists in the classroom: a much more worthwhile experience than the latter sitting thinking up ideas far removed from the classroom. Then we would have fewer initiatives like the recent government proposal to teach thinking in school. Prima facie, this is a laudable recommendation. But, as any practising teacher will tell you, this is done in every class. Perhaps someone needs to point out to the academic who thought up the scheme that the wheel has been around for some time."
+        },
+        {
+          "t": "p",
+          "v": "In the educational field, there is surprisingly constant tension between the educational theorists and government officials on the one hand, who would like to see teachers marching in unison to some greater Utopian abstraction and, on the other, practising teachers. Any experienced classroom practitioner knows that the series of initiatives on teaching and learning that successive governments have tried to foist on schools and colleges do not work."
+        },
+        {
+          "t": "h3",
+          "v": "Questions:"
+        },
+        {
+          "t": "p",
+          "v": "Fill in the blanks below:"
+        },
+        {
+          "t": "p",
+          "v": "Is it surprising that there is a  of teachers? Schools do not have enough teachers, but what are the reasons for this? To begin with, fewer students are going into  after finishing school. But this is not young people's fault. The  of teaching has been under constant attack over the last ten years. The government's lack of respect for the profession is . Moreover, administratively, the flow of bureaucracy is . Even pupils in schools have no respect for those who teach them, as a  series of assaults on teachers shows. The growing strain and stress means that, as well as fewer applications for teacher-training courses, teachers who have experience and are  are also being driven out."
+        },
+        {
+          "t": "p",
+          "v": "FillBlanks Widget"
+        },
+        {
+          "t": "p",
+          "v": "Which one of the following is the most suitable title for the passage?"
+        }
+      ]
+    },
+    {
+      "page": 18,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Sample IELTS Academic Writing Task."
+        },
+        {
+          "t": "h2",
+          "v": "The graph below shows female unemployment rates in each country of the United Kingdom in 2013 and 2014."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/123_1.jpg"
+        },
+        {
+          "t": "p",
+          "v": "Write at least 150 words."
+        },
+        {
+          "t": "p",
+          "v": "Model answer"
+        },
+        {
+          "t": "p",
+          "v": "The bar chart shows the unemployment rates among women in the countries that make up the United Kingdom, both in 2013 and in 2014. There has generally been a small decrease in female unemployment rates from 2013 to 2014, except in Scotland. In 2013, 5.6% of women in Northern Ireland were unemployed. The only country with a smaller percentage of women unemployed was Wales, with a rate of 5.4%. Both countries saw a decrease in the percentage of unemployed women in 2014. In Northern Ireland, the percentage fell to 4.6% and in Wales it fell to 5%. England had the greatest percentage of unemployed women in 2013, with 6.8%. However, this decreased by 0.3% in 2014. Lastly, Scotland was the only country which had an increasing percentage of unemployed women. In 2013, it had 6.1% of women out of work. This increased to 6.7% in 2014, making it the country with the highest female unemployment rate of the four countries."
+        },
+        {
+          "t": "p",
+          "v": "(160 words)"
+        }
+      ]
+    },
+    {
+      "page": 19,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "IELTS PREPARATION TIPS"
+        },
+        {
+          "t": "p",
+          "v": "HOW TO APPROACH QUESTION 1 IN THE ACADEMIC WRITING PAPER"
+        },
+        {
+          "t": "h2",
+          "v": "Language used to compare and contract information"
+        },
+        {
+          "t": "p",
+          "v": "Communicating Change"
+        },
+        {
+          "t": "p",
+          "v": "It is important to learn how to use language correctly in order to successfully compare data and information on charts and graphs in the Academic IELTS Writing Examination."
+        },
+        {
+          "t": "p",
+          "v": "Useful language when describing change"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "gradually increasing",
+            "a slight fall",
+            "kept rising",
+            "reached a peak",
+            "increased at a steady rate",
+            "fell",
+            "increased sharply",
+            "a low of",
+            "finish at",
+            "stood at",
+            "finishing the period at"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Using language when making comparisons"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "most popular/ least popular",
+            "similar patterns",
+            "higher than/ lower than",
+            "in contract to",
+            "in comparison with"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Using language when discussing Amounts and Numbers"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "a considerably greater amount",
+            "a considerably fewer number",
+            "significantly more/ less",
+            "slightly / marginally more",
+            "slightly/ marginally less",
+            "marginally more/ less"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Using language when discussing variations of difference"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "considerably difference",
+            "notably difference",
+            "slight difference",
+            "some variance",
+            "fairly similar to",
+            "broadly similar/ aligned",
+            "identical"
+          ]
+        }
+      ]
+    },
+    {
+      "page": 20,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Instructions and Procedures"
+        },
+        {
+          "t": "h2",
+          "v": "Introduction"
+        },
+        {
+          "t": "p",
+          "v": "Being able to follow instructions is essential when you work in an office. So is giving instructions - verbally and written."
+        },
+        {
+          "t": "p",
+          "v": "In an office, there will also be procedures that staff have to follow. For example, there will be a procedure to claim expenses."
+        },
+        {
+          "t": "p",
+          "v": "Listening to instructions:"
+        },
+        {
+          "t": "p",
+          "v": "Daniel has started his photocopying task, but he needs to put more paper into the photocopier. Listen to his conversation with Fiona:"
+        },
+        {
+          "t": "p",
+          "v": "1. What are the four things she explains to him?"
+        },
+        {
+          "t": "p",
+          "v": "2. Look at the diagram of a photocopier, and listen for the parts that Fiona mentions"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/g18.jpg"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "What exactly does she say about each one?"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "3. Use the diagram to help you write out a set of instructions yourself."
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Four things explained are:"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Where to put the paper",
+            "What to do if the paper jams",
+            "Where to put a new ink cartridge",
+            "How to replace the staples"
+          ]
+        },
+        {
+          "t": "ol",
+          "items": [
+            "What Fiona says about the parts:"
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "… you open this door at the side, and put the paper in there.",
+            "… you have to wait for the trays to move up.",
+            ".... If it jams, you open this top cover here and see if you can pull it out …",
+            "… if you can’t, you might have to open the front cover",
+            "… you lift this lid here at the side of the copier, and there’s a place to put the ink cartridge.",
+            "… at the top – there’s a small lid, you lift it and put the staples in there."
+          ]
+        }
+      ]
+    },
+    {
+      "page": 21,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Writing instructions"
+        },
+        {
+          "t": "p",
+          "v": "Read these instructions."
+        },
+        {
+          "t": "ol",
+          "items": [
+            "You open this door at the side, and put the paper in there. You need to push it down to make sure it locks into place, then you have to wait for the trays to move up.",
+            "To replace paper, open side door, push paper down and wait for trays to move up."
+          ]
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Are they examples of spoken or written instructions?"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "The first is a spoken instruction; the second is a written instruction."
+        },
+        {
+          "t": "p",
+          "v": "Read the instructions again."
+        },
+        {
+          "t": "h3",
+          "v": "Which of these statements are true?"
+        },
+        {
+          "t": "h3",
+          "v": "Daniel has started to write the instructions. Can you complete them?"
+        },
+        {
+          "t": "p",
+          "v": "Example: To replace paper, open side door, push paper down and wait for trays to move up."
+        },
+        {
+          "t": "p",
+          "v": "a In case of paper jam, …"
+        },
+        {
+          "t": "p",
+          "v": "b To replace ink cartridge, …"
+        },
+        {
+          "t": "p",
+          "v": "c To replace staples, …"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "a)    In case of paper jam, open top cover and remove paper. If necessary, open front cover and remove paper."
+        },
+        {
+          "t": "p",
+          "v": "b)    To replace ink cartridge, lift lid at side of copier."
+        },
+        {
+          "t": "p",
+          "v": "c)    To replace staples, lift small lid at top of copier and insert staples."
+        }
+      ]
+    },
+    {
+      "page": 22,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Understanding office procedures"
+        },
+        {
+          "t": "p",
+          "v": "Daniel is at the warehouse to find out more about the procedure for ordering and despatching goods. Read an extract from a leaflet Magid gives him."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/g19.jpg"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "What are the responsibilities of the office staff?",
+            "What are the responsibilities of the warehouse manager and staff?"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Process orders; send order details and delivery instructions to the warehouse manager",
+            "Inform manager if stocks are low; order replacement stock (manager); pack, despatch and unload goods"
+          ]
+        }
+      ]
+    },
+    {
+      "page": 23,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Using the passive in language"
+        },
+        {
+          "t": "p",
+          "v": "Read the leaflet again."
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/g19.jpg"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Which are examples of the passive?",
+            "Why is the passive used in the leaflet?"
+          ]
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "are sent; are packed; (are) despatched; is informed; (is) made; are delivered; are unloaded; (are) taken; (are) stored"
+        },
+        {
+          "t": "p",
+          "v": "The passive is often used in descriptions of processes and procedures because we want to focus more on the task than on the person who does it."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Change these sentences to the passive."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "The office staff send the order details on to the warehouse manager."
+        },
+        {
+          "t": "p",
+          "v": "People unload the goods."
+        },
+        {
+          "t": "p",
+          "v": "People inform the office manager."
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "The order details are sent on to the warehouse manager (by the office staff)."
+        },
+        {
+          "t": "p",
+          "v": "The goods are unloaded."
+        },
+        {
+          "t": "p",
+          "v": "The office manager is informed."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "The procedure below shows how a company leaflet, such as the one on this page, is produced. Write a description of the procedure."
+          ]
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/g20.jpg"
+        },
+        {
+          "t": "h3",
+          "v": "Feedback"
+        },
+        {
+          "t": "p",
+          "v": "Suggested answer:"
+        },
+        {
+          "t": "p",
+          "v": "The text is written and checked. The leaflet is then designed. Next, the leaflets are printed. Finally, they are distributed to staff."
+        },
+        {
+          "t": "h3",
+          "v": "Active and passive verbs"
+        },
+        {
+          "t": "p",
+          "v": "Watch this video about how and when to use the active and passive verbs:"
+        },
+        {
+          "t": "vid",
+          "v": "382422454"
+        },
+        {
+          "t": "link",
+          "v": "https://player.youku.com/embed/XNTEyNjA3MTM4NA",
+          "label": "https://player.youku.com/embed/XNTEyNjA3MTM4NA"
+        }
+      ]
+    },
+    {
+      "page": 24,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "John Dawson, a company manager, is retiring from work. Listen to his retirement speech which uses the active and passive."
+        },
+        {
+          "t": "link",
+          "v": "https://esol.britishcouncil.org/content/learners/skills/listening/retirement-speech",
+          "label": "https://esol.britishcouncil.org/content/learners/skills/listening/retirement-speech"
+        }
+      ]
+    },
+    {
+      "page": 25,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "In workplaces, the performance of staff is checked annually by a supervisor or manager. The purpose is for employees to know how they are doing and how they can improve. This is called performance evaluation. Every company will have a procedure for performance evaluation. If you supervise people at work, you will need to know how to do this. Find out more at:"
+        },
+        {
+          "t": "link",
+          "v": "https://esol.britishcouncil.org/content/learners/english-work/cleaners/evaluating-performance",
+          "label": "https://esol.britishcouncil.org/content/learners/english-work/cleaners/evaluating-performance"
+        }
+      ]
+    },
+    {
+      "page": 26,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "Employment in Japan"
+        },
+        {
+          "t": "p",
+          "v": "A.  Every autumn, when recruitment of new graduates and school leavers begins, major cities in Japan are flooded with students hunting for a job. Wearing suits for the first time, they run from one interview to another. The season is crucial for many students, as their whole lives may be determined during this period."
+        },
+        {
+          "t": "p",
+          "v": "B.  In Japan, lifetime employment is commonly practised by large companies. While people working in small companies and those working for sub-contractors do not in general enjoy the advantages conferred by the large companies, there is a general expectation that employees will in fact remain more or less permanently in the same job."
+        },
+        {
+          "t": "p",
+          "v": "C.  Unlike in many Western countries where companies employ people whose skills can be effective immediately, Japanese companies select applicants with potential who can be trained to become suitable employees. For this reason, recruiting employees is an important exercise for companies, as they invest a lot of time and money in training new staff. This is basically true both for factory workers and for professionals. Professionals who have studied subjects which are of immediate use in the workplace, such as industrial engineers, are very often placed in factories and transferred from one section to another. By gaining experience in several different areas and by working in close contact with workers, the engineers are believed, in the long run, to become more effective members of the company. Workers too feel more involved by working with professionals and by being allowed to voice their opinions. Loyalty is believed to be cultivated in this type of egalitarian working environment."
+        },
+        {
+          "t": "p",
+          "v": "D.  Because of this system of training employees to be all-rounders, mobility between companies is low. Wages are set according to educational background or initial field of employment, ordinary graduates being employed in administration, engineers in engineering and design departments and so on. Both promotions and wage increases tend to be tied to seniority, though some differences may arise later on as a result of ability and business performance. Wages are paid monthly, and the net sum, after the deduction of tax, is usually paid directly into a bank account. As well as salary, a bonus is usually paid twice a year. This is a custom that dates back to the time when employers gave special allowances so that employees could properly celebrate bon, a Buddhist festival held in mid-July in Tokyo, but on other dates in other regions. The festival is held to appease the souls of ancestors. The second bonus is distributed at New Year. Recently, bonuses have also been offered as a way of allowing workers a share in the profits that their hard work has gained."
+        },
+        {
+          "t": "p",
+          "v": "E.  Many female graduates complain that they are not given equal training and equal opportunity in comparison to male graduates. Japanese companies generally believe that female employees will eventually leave to get married and have children. It is also true that, as well as the still-existing belief among women themselves that nothing should stand in the way of child-rearing, the extended hours of work often do not allow women to continue their careers after marriage."
+        },
+        {
+          "t": "p",
+          "v": "F.  Disappointed career-minded female graduates often opt to work for foreign firms. Since most male graduates prefer to join Japanese firms with their guaranteed security, foreign firms are often keen to employ female graduates as their potential tends to be greater than that of male applicants."
+        },
+        {
+          "t": "p",
+          "v": "G.  Some men, however, do leave their companies in spite of future prospects, one reason being to take over the family business. The eldest sons in families that own family companies or businesses such as stores are normally expected to take over the business when their parents retire. It is therefore quite common to see a businessman, on succeeding to his parents' business, completely change his professional direction by becoming, for example, a shopkeeper."
+        },
+        {
+          "t": "p",
+          "v": "H.  On the job, working relationships tend to be very close because of the long hours of work and years of service in common. Social life in fact is frequently based on the workplace. Restaurants and nomi-ya, \"pubs\", are always crowded at night with people enjoying an evening out with their colleagues. Many companies organise trips and sports days for their employees. Senior staff often play the role of mentor. This may mean becoming involved in the lives of junior staff in such things as marriage and the children's education."
+        },
+        {
+          "t": "p",
+          "v": "I.  The average age of retirement is between 55 and 60. For most Westerners, retirement may be an eagerly awaited time to undertake such things as travel and hobbies. Many Japanese, however, simply cannot get used to the freedom of retirement and they look for ways of constructively using their time. Many look for new jobs, feeling that if they do not work they will be abandoned by society. This has recently led to the development in some municipalities of municipal job centres which advertise casual work such as cleaning and lawn mowing. Given that Japan is facing the problem of an increasingly ageing society, such activities may be vital in the future."
+        },
+        {
+          "t": "p",
+          "v": "The Reading Passage has nine paragraphs A–I.  Choose the correct section for each paragraph from the list of sections below."
+        },
+        {
+          "t": "p",
+          "v": "Complete the sentences below with words taken from the reading passage. Use NO MORE THAN THREE WORDS for each answer."
+        },
+        {
+          "t": "p",
+          "v": "10) Japanese employers believe that moving professionals within companies and listening to workers' views leads to ."
+        },
+        {
+          "t": "p",
+          "v": "11) Employees receive their wages monthly and a bonus ."
+        },
+        {
+          "t": "p",
+          "v": "12) Japanese workers often form close personal relationships and older staff may even become a  to junior staff."
+        },
+        {
+          "t": "p",
+          "v": "Company training in Japan"
+        },
+        {
+          "t": "p",
+          "v": "Japanese people continue to work after retirement because"
+        }
+      ]
+    },
+    {
+      "page": 27,
+      "blocks": [
+        {
+          "t": "h2",
+          "v": "1.4 Summary"
+        },
+        {
+          "t": "p",
+          "v": "So what have you learnt?"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "You have learnt about discussing journeys to work and using exaggerated phrases, e.g."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "I had a nightmare journey to work."
+        },
+        {
+          "t": "p",
+          "v": "I had to wait for ages for the bus to arrive."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "You can understand and talk about different job roles, e.g."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "Ashok is responsible for financial matters."
+        },
+        {
+          "t": "p",
+          "v": "Su-min is in charge of all orders."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "You know how to check you have understood tasks correctly by asking questions, e.g."
+          ]
+        },
+        {
+          "t": "p",
+          "v": "When do you want the report by?"
+        },
+        {
+          "t": "p",
+          "v": "So you would like me to deal with all the e-mails by the end of the day?"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "You can listen and understand voicemail. You know how to take and pass on messages.",
+            "In telephone conversations, you know how to use the right style - either formal or informal, depending on how well you know the customer and the matter you are dealing with.",
+            "You can read and write emails and letters.",
+            "You know how to skim read, as well as to read for detail.",
+            "You can read instructions/procedures, as well as explain instructions/procedures.",
+            "You can participate in social conversations at work."
+          ]
+        }
+      ]
+    }
+  ]
+}

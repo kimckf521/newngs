@@ -1,0 +1,229 @@
+{
+  "pageTypes": {
+    "1": null,
+    "2": "Show Me",
+    "3": "Show Me",
+    "4": "Show Me More",
+    "5": "Show Me",
+    "6": "Tell Me",
+    "7": "Show Me",
+    "8": "Show Me",
+    "9": "Involve Me",
+    "10": "Show Me",
+    "11": "Show Me",
+    "12": "Involve Me",
+    "13": "Involve Me",
+    "14": "Summary"
+  },
+  "pages": [
+    {
+      "page": 1,
+      "blocks": [
+        {"t":"p","v":"This module is about developing your communication skills and extending your vocabulary on the topic of Home, Family and Daily life. We will use pictures and audio to help you in your learning."},
+        {"t":"p","v":"In Listening and Speaking, you will learn how to:"},
+        {"t":"ul","items":["Understand and give a factual account of social trends","Listen to explanations and presentations","Give and follow a talk"]},
+        {"t":"p","v":"In Reading and Writing, you will learn how to:"},
+        {"t":"ul","items":["Read about statistics and social trends","Understand the structure of a text presenting advantages and disadvantages","Extend vocabulary useful when communicating about Home and Family life","Familiarisation of sample IELTS tasks along with sample answers"]},
+        {"t":"p","v":"Giving opinions"},
+        {"t":"vid","v":"387654970"}
+      ]
+    },
+    {
+      "page": 2,
+      "blocks": [
+        {"t":"h2","v":"Changes in the UK"},
+        {"t":"p","v":"Change is unavoidable. Life has changed in the UK in many ways - in age distribution, in lifestyle, in types of families, in the types of work people do, and in many other ways."},
+        {"t":"h3","v":"Reading about changes."},
+        {"t":"p","v":"The article shown compares different aspects of life in the UK between 1953 and 2003."},
+        {"t":"p","v":"Before you read the article, make a list of changes that have happened over the last 65 years. Include the following points: life expectancy, spending, family life, and lifestyle."},
+        {"t":"p","v":"Now read the below article. How many of the changes you listed are mentioned?"},
+        {"t":"img","v":"https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/i2.jpg"},
+        {"t":"h3","v":"Feedback"},
+        {"t":"p","v":"Of course, there are even more changes that have occurred since 2003. You may have picked these up, e.g. new ways of communicating/interacting using social media."},
+        {"t":"ul","items":["Make a note of any of the changes mentioned in the report which you found surprising or interesting."]},
+        {"t":"p","v":"While reading the article you will have noticed different structures are used to compare life between 1953 and the time the newspaper article was written, we have listed some below:"},
+        {"t":"ol","items":["much longer than","considerably better off","more than twice as much","a significantly lower proportion","substantially more","23 million fewer","far more","compared with","bigger","better","higher"]},
+        {"t":"p","v":"Find four other words in the text with the same meaning as 'much'."},
+        {"t":"h3","v":"Feedback"},
+        {"t":"p","v":"considerably, significantly, substantially, far"},
+        {"t":"p","v":"Read the text again. The table below is incomplete - what values should be entered in the blank space?"},
+        {"t":"img","v":"https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/i3.jpg"},
+        {"t":"h3","v":"Feedback"},
+        {"t":"img","v":"https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/i4.jpg"},
+        {"t":"h3","v":"Describing trends"},
+        {"t":"vid","v":"382427726"}
+      ]
+    },
+    {
+      "page": 3,
+      "blocks": [
+        {"t":"p","v":"The 1960s were a time of significant change. It was known as the swinging 60s."},
+        {"t":"p","v":"Find out more at:"},
+        {"t":"link","v":"https://www.walks.com/blog/swinging-60s/"},
+        {"t":"link","v":"https://www.studysmarter.co.uk/explanations/history/modern-britain/the-swinging-sixties/"}
+      ]
+    },
+    {
+      "page": 4,
+      "blocks": [
+        {"t":"p","v":"Life has changed a lot since the 1940s in Britain. Read below about how has life in Britain changed since 1948."},
+        {"t":"link","v":"https://www.downsjuniormusic.com/uploads/7/8/6/4/786420/britain_since_1948.pdf"}
+      ]
+    },
+    {
+      "page": 5,
+      "blocks": [
+        {"t":"h2","v":"How We Spend Our Time"},
+        {"t":"p","v":"How we spend our time is changing in Britain. Let's find out in what ways it is different to what it was years ago."},
+        {"t":"h3","v":"Reading statistical information"},
+        {"t":"p","v":"Recently, Quest, a market research company, was asked to carry out a survey to find out how people in the UK spend their time. They interviewed 2,800 people and the report that follows is a summary of their findings."},
+        {"t":"p","v":"Read the Report below and answer the following questions:"},
+        {"t":"img","v":"https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/i8.jpg"},
+        {"t":"p","v":"Now listen to these sentences:"}
+      ]
+    },
+    {
+      "page": 6,
+      "blocks": [
+        {"t":"p","v":"It is particularly important, in your IELTS speaking exam, to be able to describe people such as your friends and family."},
+        {"t":"p","v":"Below are lists of useful vocabulary that are worth noting"},
+        {"t":"h3","v":"Types of family"},
+        {"t":"img","v":"https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/1_5.jpg"},
+        {"t":"h3","v":"Family relations"},
+        {"t":"img","v":"https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/2_6.jpg"},
+        {"t":"p","v":"Sample questions you should prepare for your IELTS examination, in particular for your speaking examination:"},
+        {"t":"p","v":"\"I'd like to move on and ask you some questions about your family....\""},
+        {"t":"ol","items":["How many people are there in your family?","Do you all live in the same house? (Why/why not)?","What things do you like doing together?","Who is your favourite family member?"]}
+      ]
+    },
+    {
+      "page": 7,
+      "blocks": [
+        {"t":"h2","v":"The nuclear family"},
+        {"t":"p","v":"The extract below is from a sociology textbook and discusses the nuclear family."},
+        {"t":"img","v":"https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/i13.jpg"},
+        {"t":"ol","items":["The writer describes some of the advantages and disadvantages of the nuclear family. How many advantages and disadvantages are mentioned? What are they?","What phrases does the writer use to introduce each advantage and disadvantage and to link ideas?","Choose another of these situations:"]},
+        {"t":"ul","items":["Living alone or in a residential home when you are older","Living alone or sharing accommodation when you are single","Sharing with people who speak your own language or different languages","Living with your family or leaving home after you leave school"]},
+        {"t":"p","v":"Plan and write a paragraph explaining the advantages and disadvantages of the situation you have chosen."},
+        {"t":"h3","v":"Feedback"},
+        {"t":"p","v":"Three advantages:"},
+        {"t":"ol","items":["Constant contact with both parents who can be positive role models","Best chance of growing up in a loving, stable environment","Physical and economic support during early years of dependence"]},
+        {"t":"p","v":"Three disadvantages:"},
+        {"t":"ol","items":["Nuclear family can be isolated and lacking support","Conflict if one parent does not take responsibility expected by the other","Lower chance of happy and stable atmosphere if parent(s) unhappy"]},
+        {"t":"p","v":"Suggested answers for phrases:"},
+        {"t":"ul","items":["For example","In addition","Most importantly","On the other hand","Another disadvantage","Added to this"]}
+      ]
+    },
+    {
+      "page": 8,
+      "blocks": [
+        {"t":"p","v":"Although fathers play an important role in the home, in some families they feel left out in the bringing up of children. Read the study below to learn more"},
+        {"t":"link","v":"https://www.piecestudy.org/what-a-difference-a-dad-makes-engaging-with-fathers-as-well-as-mothers"}
+      ]
+    },
+    {
+      "page": 9,
+      "blocks": [
+        {"t":"h2","v":"Giving your views about change"},
+        {"t":"p","v":"1. The UK has the highest divorce rate in Europe, and it is increasing. Why do you think this is?\n2. Listen to four people explaining why they think the divorce rate is so high."},
+        {"t":"p","v":"Are any of your points the same?"},
+        {"t":"img","v":"https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/i14.jpg"},
+        {"t":"p","v":"3. Listen again and make brief notes about each person's answers."},
+        {"t":"h3","v":"Feedback"},
+        {"t":"ul","items":["Liz – divorce is easy and cheap","Joel – women have higher expectations","Connie – women are more (financially) independent and less reliant on men","Terry – society has changed to accept divorce"]},
+        {"t":"p","v":"4. Do you agree with their views?"},
+        {"t":"p","v":"These words are useful for talking about changes. Complete the chart below in your notebook."},
+        {"t":"img","v":"https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/i15.jpg"},
+        {"t":"h3","v":"Feedback"},
+        {"t":"img","v":"https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/i16.jpg"}
+      ]
+    },
+    {
+      "page": 10,
+      "blocks": [
+        {"t":"h2","v":"Describing change"},
+        {"t":"img","v":"https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/i17.jpg"},
+        {"t":"p","v":"The graph shows figures for marriages in the UK. Look at it carefully and then answer the questions."},
+        {"t":"ol","items":["Does the graph show the figures for all marriages?","How many years does the graph cover?","In which year were there most marriages?","What was the approximate figure for marriages in 1999?","Did the number of marriages go up or down between 1999 and 2001?"]},
+        {"t":"h3","v":"Feedback"},
+        {"t":"ol","items":["No – first marriages only","40 years – 1961–2001","1971","About 180,000","It went up a little bit."]}
+      ]
+    },
+    {
+      "page": 11,
+      "blocks": [
+        {"t":"h2","v":"Children's Health"},
+        {"t":"p","v":"Research shows that children in Britain today are unhealthier than in the past. This is because children are eating unhealthy food, consuming sugary drinks and not taking as much exercise. Let's find out more."},
+        {"t":"h3","v":"A report on childhood obesity"},
+        {"t":"img","v":"https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/i19.jpg"},
+        {"t":"p","v":"A million children in the UK are seriously overweight. Write notes highlighting the following points:"},
+        {"t":"ul","items":["What do you think are the main causes of this problem?","What are the effects?","What are the possible solutions?"]},
+        {"t":"p","v":"Now read the report about obesity in children and compare your answers."},
+        {"t":"img","v":"https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/i20.jpg"},
+        {"t":"p","v":"Read the report again. Look at the underlined words. These are used to connect the ideas in the text. Decide which words have the following purposes:"},
+        {"t":"ul","items":["Organise information, e.g. secondly, finally","Add more information","Show contrast","Give reasons","Introduce an example","Show the result of actions"]},
+        {"t":"h3","v":"Feedback"},
+        {"t":"ul","items":["Organise information – secondly, finally","Add more information – and also, even more important, in addition","Show contrast – however, but, even though, although","Giving reasons – one of the main causes, the second major cause, as a result of","Introduce an example – for example, for instance, such as","Show the result of actions – as a result"]}
+      ]
+    },
+    {
+      "page": 12,
+      "blocks": [
+        {"t":"h2","v":"Planning a short report"},
+        {"t":"p","v":"Read about some other changes which are having a negative effect on children today."},
+        {"t":"img","v":"https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/i21.jpg"},
+        {"t":"p","v":"Choose two of the situations above. Make a list of possible causes and effects. Now prepare three paragraphs for a short report about one of the situations."},
+        {"t":"ul","items":["Paragraph 1 – causes","Paragraph 2 – effects","Paragraph 3 – solutions"]},
+        {"t":"p","v":"Write your paragraphs. Include connecting words."}
+      ]
+    },
+    {
+      "page": 13,
+      "blocks": [
+        {"t":"p","v":"Read the passage below and answer the 10 questions at the bottom of the page:"},
+        {"t":"h2","v":"The Pursuit of Happiness"},
+        {"t":"p","v":"\"New research uncovers some anti-intuitive insights into how many people are happy - and why.\""},
+        {"t":"p","v":"Compared with misery, happiness is a relatively unexplored terrain for social scientists. Between 1967 and 1994, 46,380 articles indexed in Psychological Abstracts mentioned depression, 36,851 anxiety, and 5,099 anger. Only 2,389 spoke of happiness, 2,340 life satisfaction, and 405 joy."},
+        {"t":"p","v":"Recently we and other researchers have begun a systematic study of happiness. During the past two decades, dozens of investigators throughout the world have asked several hundred thousand representative sampled people to reflect on their happiness and satisfaction with life or what psychologists call \"subjective well-being\". In the US the National Opinion Research Center at the University of Chicago has surveyed a representative sample of Americans annually since 1957."},
+        {"t":"p","v":"We have uncovered some surprising findings. People are happier than one might expect, and happiness does not appear to depend significantly on external circumstances. Although viewing life as a tragedy has a long and honourable history, the responses of random samples of people around the world about their happiness paints a much rosier picture. In the University of Chicago surveys, three in 10 Americans say they are very happy, for example. Only one in 10 chooses the most negative description \"not too happy\". The majority describe themselves as \"pretty happy\"."},
+        {"t":"p","v":"How can social scientists measure something as hard to pin down as happiness? Most researchers simply ask people to report their feelings of happiness or unhappiness and to assess how satisfying their lives are. Such self-reported well-being is moderately consistent over years of retesting. Furthermore, those who say they are happy and satisfied seem happy to their close friends and family members and to a psychologist interviewer. Those who say they are happy also have relatively few psychiatric symptoms."},
+        {"t":"p","v":"Wealth is also a poor predictor of happiness. People have not become happier over time as their cultures have become more affluent. Even though Americans earn twice as much in today's dollars as they did in 1957, the proportion of those telling surveyors from the National Opinion Research Center that they are \"very happy\" has declined from 35 to 29 percent."},
+        {"t":"p","v":"Even very rich people - those surveyed among Forbes magazine's 100 wealthiest Americans - are only slightly happier than the average American. Those whose income has increased over a 10-year period are not happier than those whose income is stagnant. Indeed, in most nations the correlation between income and happiness is negligible - only in the poorest countries, such as Bangladesh and India, is income a good measure of emotional well-being."},
+        {"t":"p","v":"Although happiness is not easy to predict from material circumstances, it seems consistent for those who have it. In one National Institute on Aging study of 5,000 adults, the happiest people in 1973 were still relatively happy a decade later, despite changes in work, residence and family status."},
+        {"t":"p","v":"[From \"The Pursuit of Happiness\" by David G. Myers and Ed Diener. Copyright © May 1996 by Scientific American, Inc. All rights reserved.]"},
+        {"t":"h3","v":"Questions"},
+        {"t":"ol","items":[
+          "What point are the writers making in the opening paragraph?",
+          "According to the text, what does 'subjective well-being' mean?",
+          "In the fourth paragraph, what does the reader learn about the research method used?",
+          "Which two of the following statements are true, according to paragraph four?",
+          "What does the writer say about wealthy Americans?",
+          "In which countries is income a good measure of emotional well-being?",
+          "What is the main point of the final paragraph?",
+          "Find a word in the text that means 'small' or 'not significant'.",
+          "Find a phrase in the text that means 'not getting richer'.",
+          "What is the purpose of this text?"
+        ]}
+      ]
+    },
+    {
+      "page": 14,
+      "blocks": [
+        {"t":"h2","v":"So what have you learnt?"},
+        {"t":"ul","items":[
+          "You have learnt to read and write about changes in Britain. You have also learnt to listen to reports and talk to others about changes.",
+          "You can read statistical information about social trends, using pie charts, bar charts, etc.",
+          "You can design a questionnaire to gather information about social trends, e.g. how people spend their time today.",
+          "You can give your own opinions and views about social issues, e.g. marriage and divorce, the nuclear family."
+        ]},
+        {"t":"p","v":"You can use these expressions to talk about advantages and disadvantages:"},
+        {"t":"ul","items":["What's good about.... is....","The trouble with... is...","Another thing I'd say is..."]},
+        {"t":"p","v":"You can also use the past continuous when talking about the past. For example,"},
+        {"t":"ul","items":["I was living with...","When I was working...","We were sharing a flat..."]},
+        {"t":"p","v":"You know about these words for describing change:"},
+        {"t":"ul","items":["increase / decrease","rise / fall","go up / go down","dramatic / gradual","sharp / slight"]},
+        {"t":"p","v":"Congratulations on completing Module 1!"}
+      ]
+    }
+  ]
+}

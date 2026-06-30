@@ -98,6 +98,22 @@ CREATE TABLE IF NOT EXISTS pages (
   updated_at timestamptz NOT NULL DEFAULT now(),
   PRIMARY KEY (route, locale)
 );
+CREATE TABLE IF NOT EXISTS ielts_content (
+  mod_id     text PRIMARY KEY,
+  data       jsonb NOT NULL,
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
+CREATE TABLE IF NOT EXISTS content_versions (
+  id        bigserial PRIMARY KEY,
+  kind      text NOT NULL,           -- 'course' | 'ielts_module'
+  ref_id    text NOT NULL,           -- course slug, or module id
+  data      jsonb NOT NULL,          -- full snapshot at save time
+  label     text,
+  saved_by  text,
+  saved_at  timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS content_versions_ref_idx
+  ON content_versions (kind, ref_id, id DESC);
 `;
 
 /** Create the tables once per process (idempotent). Awaited by query(). */

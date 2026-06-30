@@ -30,5 +30,9 @@ yarn-error.log*
 # Source archive snapshot (redundant with tracked source; too large for git)
 ngs-redesign-source.zip
 
+# Raw IELTS extraction output (Cambridge tests etc.) — large, regenerable,
+# not a runtime dependency of the app.
+ielts-questions/
+
 # Vercel
 .vercel

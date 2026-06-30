@@ -1,0 +1,649 @@
+{
+  "pageTypes": {
+    "1": null,
+    "2": "Tell Me",
+    "3": "Tell Me",
+    "4": "Tell Me",
+    "5": "Show Me",
+    "6": "Involve Me",
+    "7": "Involve Me",
+    "8": "Involve Me"
+  },
+  "pages": [
+    {
+      "page": 1,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "This Unit is about Crime and Punishment"
+        },
+        {
+          "t": "img",
+          "v": "https://learn-mediafiles.s3.amazonaws.com/magento/wysiwyg/IMG_1384.JPG"
+        },
+        {
+          "t": "p",
+          "v": "We will use comprehension exercises and audio to help you in your learning."
+        },
+        {
+          "t": "p",
+          "v": "In Listening and Speaking, you will learn how to:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Listen to and follow a discussion regarding a crime",
+            "Gain a broader understanding of vocabulary relating to crime and punishment",
+            "Gain a greater understanding of the types of questions that can be asked about citizenship and politics in the IELTS Speaking Exam"
+          ]
+        },
+        {
+          "t": "p",
+          "v": "In Reading and Writing, you will learn how to:"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Read articles and text about crime",
+            "Practice reading comprehension skills"
+          ]
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "Read the following text and answer the questions below."
+        },
+        {
+          "t": "p",
+          "v": "Is There Really a War on Drugs?"
+        },
+        {
+          "t": "p",
+          "v": "AIn our contemporary society, the media constantly bombards us with horror stories about drugs like crack-cocaine. From them, and probably from no other source, we learn that crack is immediately addictive in every case, we learn that it causes corruption, crazed violence, and almost always leads to death. The government tells us that we are busy fighting a war on drugs and so it gives us various iconic models to despise and detest: we learn to stereotype inner-city minorities as being of drug-infested wastelands and we learn to \"witchhunt\" drug users within our own communities under the belief that they represent moral sin and pure evil. I believe that these titles and ideals are preposterous and based entirely upon unnecessary and even detrimental ideals promoted by the government to achieve purposes other than those they claim.  BIn Craig Renarman's and Harry Levine's article entitled \"The Crack Attack: Politics and Media in America's Latest Drug Scare,\" the authors attempt to expose and to deal with some of the societal problems that have resulted from the over-exaggeration of crack-cocaine as an \"epidemic problem\" in our country. Without detracting attention away from the serious health risks for those few individuals who do use the drug, Renarman and Levine demonstrate how minimally detrimental the current \"epidemic\" actually is."
+        },
+        {
+          "t": "p",
+          "v": "CEarly in the article, the authors summarize crack-cocaine's evolutionary history in the U.S. They specifically discuss how the crack-related deaths of two star-athletes which first called wide-spread attention to the problem during the mid 1980's. Since then, the government has reportedly used crack-cocaine as a political scapegoat for many of the nation's larger inner-city problems. Thefts, violence, and even socioeconomic depression have been blamed on crack. They assert that the government has invested considerably in studies whose results could be used to wage the constant \"war on drugs\" while to politicians, that war has amounted to nothing more than a perceptual war on poverty and urban crime.  DSince politicians have had little else of marketable interest to debate over the years, this aggressive attack on drugs has existed as one of their only colourful means by which to create debate, controversy, and campaign fuel. In other words, when balancing the budget and maintaining an effective foreign policy became too boring to handle, Reinarman and Levine assert that the \"crack epidemic\" became the focus of politicians with the intent of luring public interest to their flashy anti-drug campaigns.  E Finally, in addition to the media's excess attention on the 'war against drugs,'Reinarman and Levine make the point the constant coverage of crack in the news media has only been counterproductive to the alleged goals of any anti-drug program. With descriptions of the \"crack high\" that glorify it considerably-the politically-charged media campaigns to fight drugs have worked somewhat ironically as huge advertising campaigns for crack-increasing public awareness and stimulating the interests of venturous junkies.  FWhile Reinarman and Levine are rather adamant about their findings, they do maintain an overt respect for the reality that crack has had other causal factors and outcomes besides those described by them. Their main concern seems to be calling for a more realistic spotlight to be placed upon the problem- so that we can begin to deal with it as no more and no less than what should be.  GThe \"war on drugs\" is indeed based upon an exaggeration of facts. Although it is also evident that substances such as crack-cocaine may serve to pose great health risks to those that use them, there is not any widespread \"epidemic\" use of the drug nor any validity to the apparent myths that it causes such immediate devastation and is life-wrecking in every single case. It is obvious that we do indeed need to maintain a greater and more focused emphasis on the important and more widespread problems in society. Important energies and well-needed monies are being diverted from them to fight in an almost-imaginary battle against a controlled substance. Conclusively, we should allow drugs like crack-cocaine receive their due attention as social problems, but let them receive no more than that!"
+        },
+        {
+          "t": "h3",
+          "v": "Answer the following questions"
+        },
+        {
+          "t": "p",
+          "v": "1. From the media we learn that crack-cocaine..."
+        },
+        {
+          "t": "p",
+          "v": "3. Based on Paragraph C, we know that ..."
+        },
+        {
+          "t": "p",
+          "v": "Do the following statements agree with the views of the writer in Reading Passage 123?"
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Vocabulary useful when discussing Crime and Punishment"
+        },
+        {
+          "t": "p",
+          "v": "Commit: To do something illegal or something that is considered wrong."
+        },
+        {
+          "t": "p",
+          "v": "Example: People who commit serious crimes should be given lengthy (long) prison sentences."
+        },
+        {
+          "t": "p",
+          "v": "Community Service: Work that people do to help other people without payment and which young criminals, whose crime was not serious enough for them to be put in prison, are sometimes ordered to do."
+        },
+        {
+          "t": "p",
+          "v": "Example: Community service is a good alternative to prison for minor offences."
+        },
+        {
+          "t": "p",
+          "v": "Criminal: A person who commits a crime."
+        },
+        {
+          "t": "p",
+          "v": "Example: Criminals who commit violent crimes should not be given probation."
+        },
+        {
+          "t": "p",
+          "v": "Convict: To decide officially in a court of law that someone is guilty of a crime."
+        },
+        {
+          "t": "p",
+          "v": "Example: He has been convicted of arson (starting a fire intentionally to damage something) two times now."
+        },
+        {
+          "t": "p",
+          "v": "Deter: To make someone less enthusiastic about doing something by threatening bad results if they do it."
+        },
+        {
+          "t": "p",
+          "v": "Example: Tougher prison sentences may be a deterrent to other would-be offenders"
+        },
+        {
+          "t": "p",
+          "v": "Fine: Being made to pay money for breaking the law."
+        },
+        {
+          "t": "p",
+          "v": "Example: Motorists should be given a fine if they are caught speeding."
+        },
+        {
+          "t": "p",
+          "v": "Guilt: Having done something wrong or committed a crime."
+        },
+        {
+          "t": "p",
+          "v": "Example: If jurors (the members of a jury) find a defendant guilty, then that person must be punished."
+        },
+        {
+          "t": "p",
+          "v": "Imprisonment: Being put in prison."
+        },
+        {
+          "t": "p",
+          "v": "Example: Murderers are usually given life imprisonment."
+        },
+        {
+          "t": "p",
+          "v": "Justice: Fairness in the way people are dealt with."
+        },
+        {
+          "t": "p",
+          "v": "Example: Those who commit assaults must be imprisoned because the victims want justice."
+        },
+        {
+          "t": "p",
+          "v": "Legislation: A law or set of laws suggested by a government and made official by a parliament."
+        },
+        {
+          "t": "p",
+          "v": "Example: There need to be changes made to the crime-related legislation."
+        },
+        {
+          "t": "p",
+          "v": "Offender: Someone who is guilty of a crime."
+        },
+        {
+          "t": "p",
+          "v": "Example: Prison should not be used for first-time offenders."
+        },
+        {
+          "t": "p",
+          "v": "Prevention: When you stop something from happening or stop someone from doing something."
+        },
+        {
+          "t": "p",
+          "v": "Example: The government should focus on the prevention of crime rather than introducing harsher prison sentences."
+        },
+        {
+          "t": "p",
+          "v": "Punish: To cause someone who has done something wrong or committed a crime to suffer by hurting them, forcing them to pay money or sending them to prison etc."
+        },
+        {
+          "t": "p",
+          "v": "Example: Those responsible for serious crimes must be punished."
+        },
+        {
+          "t": "p",
+          "v": "Rehabilitate: To return someone or something to a good or healthy condition, state or way of living."
+        },
+        {
+          "t": "p",
+          "v": "Example: It is important to rehabilitate criminals while they are in prison otherwise they may re-offend (commit a crime again) when they are released from prison."
+        },
+        {
+          "t": "p",
+          "v": "Victim: Someone who has suffered because of the actions of someone else"
+        },
+        {
+          "t": "p",
+          "v": "Example: The victims of crime often need help and support to recover from their bad experience."
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "blocks": [
+        {
+          "t": "p",
+          "v": "Listening Assessment"
+        },
+        {
+          "t": "p",
+          "v": "Policeman: Hello sir, I believe you observed the incident here today?"
+        },
+        {
+          "t": "p",
+          "v": "Bystander: Yes unfortunately I did but hopefully I can be of some help"
+        },
+        {
+          "t": "p",
+          "v": "Policeman: Ok, let me start by taking your name and number and full address please?"
+        },
+        {
+          "t": "p",
+          "v": "Bystander: Jack Smith, 0775 456 6785  do you want my landline number as well"
+        },
+        {
+          "t": "p",
+          "v": "Policeman: yes I will please"
+        },
+        {
+          "t": "p",
+          "v": "Bystander: 0161 445 7865"
+        },
+        {
+          "t": "p",
+          "v": "Policeman: And your address please"
+        },
+        {
+          "t": "p",
+          "v": "Bystander: 45 New Street, Manchester, M13, 2DA"
+        },
+        {
+          "t": "p",
+          "v": "Policeman: Ok, thank you. So I understand you were walking along the road here when the incident occurred.  Can you tell me what you saw?"
+        },
+        {
+          "t": "p",
+          "v": "Bystander:  Well yes…..I was coming out of the supermarket here just beside the gardening shop and I heard this almighty crashing sound from across the road. When I looked over, a large van had driven into the front of the Bank and a man came running out of bank shouting with what appear to be a big black bag in his hand."
+        },
+        {
+          "t": "p",
+          "v": "Policeman: So can you recall the model of van?"
+        },
+        {
+          "t": "p",
+          "v": "Bystander: I am nearly sure it was a Mercedes, one of those ones with the blacked out windows, you sometimes see taxi men using.  It was black in colour if I remember rightly."
+        },
+        {
+          "t": "p",
+          "v": "Policeman: Ok and what about the person you saw running out of the bank, what did he look like?"
+        },
+        {
+          "t": "p",
+          "v": "Bystander: Oh I wouldn’t know, he had a hat and scarf around his neck and he was wearing sunglasses. But it was definitely a man, as he was easily over 6ft and very broad shoulders."
+        },
+        {
+          "t": "p",
+          "v": "Policeman: So could you describe what else he was wearing?"
+        },
+        {
+          "t": "p",
+          "v": "Bystander: I cant really remember to be honest…… I think some sort of jacket but I couldn’t be sure"
+        },
+        {
+          "t": "p",
+          "v": "Policeman: Ok, and what happened once he ran out of the bank?"
+        },
+        {
+          "t": "p",
+          "v": "Bystander: He was shouting at the top of his voice, get out of my way to people on the pavement and he then jumped into the passenger side of the van, it reversed out and sped off down the road."
+        },
+        {
+          "t": "p",
+          "v": "Policeman: In which direction?"
+        },
+        {
+          "t": "p",
+          "v": "Bystander: towards the town centre, so basically left down this road and then it took the first right hand turn."
+        },
+        {
+          "t": "p",
+          "v": "Policeman: Ok is there anything else at all you recall?"
+        },
+        {
+          "t": "p",
+          "v": "Bystander: I am really sorry but I don’t think I do, it all happened so quickly and then after they left it literally started to pour down and I had to run for shelter to get in out of the rain. But as I said it all happened so quickly and it was so unexpected. I have never witnessed anything like that before."
+        },
+        {
+          "t": "p",
+          "v": "Policeman: Ok well you have been very helpful.  We may need to contact you again in case we do find the van or if we are lucky , we may even find the culprit ."
+        },
+        {
+          "t": "p",
+          "v": "Bystander: No problem at all, happy to help if I can. Do you know if there were any injuries inside the bank itself?"
+        },
+        {
+          "t": "p",
+          "v": "Policeman: Yes unfortunately two of the cashier have had injuries but the other member of staff , the bank manager escaped unharmed."
+        },
+        {
+          "t": "p",
+          "v": "Bystander: I do hope the two cashiers will be ok, nothing very serious I hope?"
+        },
+        {
+          "t": "p",
+          "v": "Policeman: I am not quite sure at this moment in time, we are just waiting for the ambulance to arrive and my colleague is currently with the two cashier taking a statement."
+        },
+        {
+          "t": "p",
+          "v": "Bystander: Well I am sorry I cannot be of much more help."
+        },
+        {
+          "t": "p",
+          "v": "Policeman: Not at all your statement has been very helpful and much appreciated. As I said we will possibly be in touch later today or tomorrow if we have any developments."
+        },
+        {
+          "t": "p",
+          "v": "Bystander: Well if you need me probably best to ring my mobile phone as I am on my way to the train station to get to London."
+        },
+        {
+          "t": "p",
+          "v": "Policeman: That’s great thank you, I will bare that in mind. Take care now."
+        },
+        {
+          "t": "h3",
+          "v": "Answer the following questions"
+        },
+        {
+          "t": "h3",
+          "v": "What is the name of the eyewitness?"
+        },
+        {
+          "t": "h3",
+          "v": "What shop was the eye witness walking out of when the incident occurred?"
+        },
+        {
+          "t": "p",
+          "v": "Which of the following are true?"
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Sample IELTS Writing Question and Answer"
+        },
+        {
+          "t": "p",
+          "v": "Sample Question:"
+        },
+        {
+          "t": "p",
+          "v": "Governments need to tackle criminal behaviour more aggressively. Do you Agree or Disagree?"
+        },
+        {
+          "t": "p",
+          "v": "Sample Answer:"
+        },
+        {
+          "t": "p",
+          "v": "One could strongly argue that governments around the world need to tackle criminal behaviours more aggressively but what exactly can they do?"
+        },
+        {
+          "t": "p",
+          "v": "First of all, governments need to ensure that the punishment fits the crime.  It is well known that when a criminal commits a crime, they don’t always serve their full sentence when they are imprisoned. This essentially sends a message out to people who are considering to commit a crime, that even if they get caught, they will not necessarily be imprisoned. Therefore, it could be argued that people who engage in risky and illegal activities may not be punished correctly and this contributes to the growing rate of crime. One could argue that governments need to enforce longer prison sentences and ensure the full sentences are served."
+        },
+        {
+          "t": "p",
+          "v": "Secondly, it could be argued that prevention is better than a cure, so governments need to think about how they prevent people entering into criminal activities. Poverty is possibly the main reason why people commit a crime, as a means of earning money. Therefore, governments need to tackle poverty head-on, creating more opportunities for people in disadvantaged areas to gain an education and training so that crime does not become their only route to making money and surviving.  Governments need to look at how they empower people to help themselves get out of poverty, perhaps with tax breaks or financial incentives."
+        },
+        {
+          "t": "p",
+          "v": "To conclude, crime is on the rise and governments around the world need to change their approach to tackling it. Until they do one could argue that is highly unlikely that this worrying trend will change."
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Reading task"
+        },
+        {
+          "t": "p",
+          "v": "Read the following text and answer the questions below."
+        },
+        {
+          "t": "p",
+          "v": "Siddhartha Bandyopadhyay writes: Community punishments do not have a significant impact on crime rates, but neither does prison..."
+        },
+        {
+          "t": "p",
+          "v": "This is the first of four pieces we are publishing, the product of a partnership with the University of Birmingham, discussing correlations between police recorded crime, criminal justice activity and social factors."
+        },
+        {
+          "t": "p",
+          "v": "Crime policy is never far from the forefront in public debate but the conversation often seems to occur in parallel worlds."
+        },
+        {
+          "t": "p",
+          "v": "Searches on whether prison works for example reveal diametrically opposing views, from prison really works to prisons never work and each side conveniently finds figures to back up their argument. It is perhaps no wonder that there is such a distrust in the mind of the general population about statistics, (lies, damned lies and statistics)."
+        },
+        {
+          "t": "p",
+          "v": "Yet, careful analysis of the data is one of the best ways to understand the debate. And that means not just looking at raw figures and making up a story that suits one’s ideology but careful statistical modelling that considers major factors that can affect crime."
+        },
+        {
+          "t": "p",
+          "v": "That necessarily includes understanding the effectiveness of prison but also alternatives to prison. It must also include other factors that can affect criminal behaviour, such as policing activity (summarised by detection rates for example) as well the socio-economic factors such as employment opportunities and the distribution of wages that are widely thought to affect criminal behaviour. Putting them together into a model allows us to understand how each affect crime rates."
+        },
+        {
+          "t": "p",
+          "v": "Raw figures can be misleading, as it masks the differences that arise between, say, those who go to prison and those who don’t, by not accounting for differences in say socio-economic status between the two groups. Such differences, rather than whether they have or have not been given a prison sentence, may explain differences in behaviour of the two groups. This is something that will be overlooked if we simply look at raw data."
+        },
+        {
+          "t": "p",
+          "v": "Interesting patterns"
+        },
+        {
+          "t": "p",
+          "v": "Using a large dataset on recorded crime in England and Wales over a 20 year period, we found some interesting patterns."
+        },
+        {
+          "t": "p",
+          "v": "First, apart from violence against the person, detection rates have a crime lowering effect for all crime categories. Policing activity seems to matter."
+        },
+        {
+          "t": "p",
+          "v": "However, prison does not fare too well in the analysis. Broadly speaking, prison does not do much to reduce crime, though when one considers variations in sentencing length, there is some impact for longer sentences. It fares worst against young offenders."
+        },
+        {
+          "t": "p",
+          "v": "Does this mean non-custodial sentences work? In this case the answer varies: on juveniles, non-custodial sentences do not seem to work either, but for adults it seems to be effective in reducing violence against the person and sexual offences."
+        },
+        {
+          "t": "p",
+          "v": "Does this hide more than it reveals? For sure, it cannot answer the question around the effectiveness of either conclusively as looking at numbers on either type of sentence cannot answer questions around its quality: how effective is probation for instance or how well supervised is community punishment. Yet, as it currently stands while non-custodial sentences do not have a huge impact on crime, neither does prison. And this is particularly true for young offenders."
+        },
+        {
+          "t": "p",
+          "v": "The results around youth offending are of particular note and makes us realise we must move beyond debating how effective are post-crime interventions. If being in contact with the criminal justice system increases criminal activity, we need to look at how to prevent youth from coming into such contact in the first place."
+        },
+        {
+          "t": "p",
+          "v": "The broad criminal justice model that criminalises youthful activity must be reconsidered, along with a more positive agenda that can help divert youth from pursing a criminal career. There is scope for fruitful debate and evidence based research of what such an agenda will look like. More contact with the criminal justice system does not look like the answer though."
+        },
+        {
+          "t": "h3",
+          "v": "Answer the following questions"
+        },
+        {
+          "t": "p",
+          "v": "True or False"
+        }
+      ]
+    },
+    {
+      "page": 7,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Listening Assignment"
+        },
+        {
+          "t": "p",
+          "v": "Understanding the British Legal System: A tutor and his students discuss this topic..."
+        },
+        {
+          "t": "p",
+          "v": "Tutor: “Good morning everyone and thank you for attending our focus group discussion on Understanding the British Legal System.To understand fully any country's political system, you need to understand something of its history, so this is where we will begin. Like its constitution, the British state evolved over time. We probably need to start in 1066 when William the Conqueror from Normandy invaded what we now call England, defeated the Anglo-Saxon King Harold and established a Norman dynasty. This all sounds very dramatic I know, but this is actually very important in understanding why the United Kingdom and its legal system evolved the way it did. So can anyone tell me what happened after The Normans tried to conquer Ireland, Wales and Scotland? Did they succeed? “"
+        },
+        {
+          "t": "p",
+          "v": "Student 1 “ I believe they succeeded in taking over all of the British Isles, didn’t they?"
+        },
+        {
+          "t": "p",
+          "v": "Student 2 “ No I think they never took control of Scotland”"
+        },
+        {
+          "t": "p",
+          "v": "Tutor: “ That’s correct they succeeded with the first two and failed with the last despite several wars over the centuries. However, when Queen Elizabeth 1st of England died in 1603 she was succeeded by her cousin, James VI King of Scots, who moved down from Edinburgh and settled in London as King James I of England. Now can anyone tell me what was unique about King James VI ?”"
+        },
+        {
+          "t": "p",
+          "v": "Student 3 “ He had two titles, King of England and King of Scotland ?”"
+        },
+        {
+          "t": "p",
+          "v": "Tutor “ That’s very true and it would be another 100 years later that the Union of England and Scotland would come about, basically because Scotland was suffering economically and therefore needed to become one nation so to speak, forming Great Britain and operating under one monarchy and parliamentary system. So you may ask how has all this history shaped the political system and ultimately our judiciary system? Any ideas anyone?"
+        },
+        {
+          "t": "p",
+          "v": "Student 1 “ Well, Britain has no written constitution which is unique as only two other such nations, Israel & New Zealand, are in the same situation”"
+        },
+        {
+          "t": "p",
+          "v": "Student 2  “Many think our political system is not neat or logical or not always fully democratic or particularly efficient, perhaps this is because we don’t have a written constitution?”"
+        },
+        {
+          "t": "p",
+          "v": "Tutor “ Yes you are both quite right and the constant shifting of political power from one king to another and then to an all governing parliament has meant that in fact, we today have a political system that is unique. So moving forward to 1973, the UK became a member of the European Union and this meant that, when it came to making laws, the UK had to now take into consideration the EU Legislative process. So we come full circle really, from a period when laws are created by our kings and queens to an era when our parliaments take full controls of making laws to finally having many of our laws written outside of our own country.  Basically governed by Europe. So can anyone tell me what happens if a new law needs to get passed ?”."
+        },
+        {
+          "t": "p",
+          "v": "Student 2  “ Well the house of commons and its ministers propose new laws and then if agreed by a majority, these laws get passed to the House of Lords”"
+        },
+        {
+          "t": "p",
+          "v": "Tutor:  “Ok, and then the Judiciary then ensure the laws are put into force and obeyed. Any questions?”"
+        },
+        {
+          "t": "p",
+          "v": "Student 1: “What is the judiciary?”"
+        },
+        {
+          "t": "p",
+          "v": "Tutor: “They are the judges who hold the most senior positions in our courts and they essentially are the legal experts who advise the government on new laws but also ensure these laws then approved get enforced.”"
+        },
+        {
+          "t": "p",
+          "v": "Student 1: “Cheers”"
+        },
+        {
+          "t": "p",
+          "v": "Tutor: “ So consider the scenario, we want to introduce new laws to curb violent crime. How would this happen?”"
+        },
+        {
+          "t": "p",
+          "v": "Student 2 “both Houses of Parliament would need to agree to the new law and then our most senior judges need to debate the new law before we then have to present the law for approval by the EU Parliament”."
+        },
+        {
+          "t": "p",
+          "v": "Tutor: “And perhaps this is one of the reasons why BREXIT has become a reality, because even if we want to introduce new laws to curb violent crime  The House of Lords and The House of Commons have limited legislative powers. So BREXIT essentially means we could pass laws a little more quickly and without the European Court of Justice getting involved. Right we are running out of time now, so we will have to wrap up.  For next week can you all complete the following assessment, 2000 words on the following topic…..What is the real effect of Brexit on our rule making capabilities. Good day”"
+        },
+        {
+          "t": "h3",
+          "v": "Please answer the following questions"
+        },
+        {
+          "t": "p",
+          "v": "When did William the conqueror take control of England?"
+        },
+        {
+          "t": "h3",
+          "v": "Why was King James Unique?"
+        }
+      ]
+    },
+    {
+      "page": 8,
+      "blocks": [
+        {
+          "t": "h3",
+          "v": "Link the following paragraph with the appropriate statements below"
+        },
+        {
+          "t": "p",
+          "v": "Paragraph 1"
+        },
+        {
+          "t": "p",
+          "v": "Many offenders are sentenced to \"life\". After serving a certain minimum tariff, which might be 10, 15 or 30 years, they become eligible for parole: a portion of their sentence is punitive, and after that, the length of their stay in prison depends on the prospect of rehabilitation. One can see why many argue that the Criminal Justice System is flawed."
+        },
+        {
+          "t": "p",
+          "v": "Paragraph 2"
+        },
+        {
+          "t": "p",
+          "v": "When the judge passes down a whole-life sentence the expectation should be that the offender is never released from prison, regardless of subsequent good behaviour. This, unfortunately, is not the case and many campaign, with great frustration, to change the Justice System to reflect that a punishment should fit the crime.  However, there are cynical critics who would suggest that sentences are always cut short because the current prison system cannot cope with the influx of prisoners."
+        },
+        {
+          "t": "p",
+          "v": "Paragraph 3"
+        },
+        {
+          "t": "p",
+          "v": "There has been a considerable recent debate about overcrowding in UK prisons. The system is struggling to accommodate the growing number of young offenders being given custodial sentences. The research sets out the scale of the problem and looks at recent trends in sentencing, with a particular focus on young offenders. It examines the factors linked with offending and asks whether better understanding of these can be used to target early actions aimed at deterring young people from offending.  However, despite initiatives to reduce crime, critics argue that punishments are too lenient and this is ultimately contributing to our crime rates."
+        },
+        {
+          "t": "p",
+          "v": "Paragraph 4"
+        },
+        {
+          "t": "p",
+          "v": "So, does research suggest that longer prisons reduce crime? Research in the UK does indicate that tougher prison sentences do indeed reduce crime, particularly burglary. The studies, by academics at Birmingham University, also found that during periods when police detect more offences, crime tends to fall overall, suggesting that levels of police activity – and therefore of staffing – have a direct impact on criminal activity. The findings are likely to be seized on by critics of the government's plans for reducing the number of police officers as part of spending cuts."
+        },
+        {
+          "t": "p",
+          "v": "Paragraph 5"
+        },
+        {
+          "t": "p",
+          "v": "Research, carried out for Civitas, an independent 'think tank', used local sentencing data released by the Ministry of Justice under freedom of information requests to track the effectiveness of penal policy and policing on recorded crime across the 43 forces in England and Wales between 1993 and 2008. The researchers concluded that prison was particularly effective in reducing property crime when targeted at serious and repeat offenders. They concluded that an increase of just one month in the average sentence length for burglaries – from 15.4 to 16.4 months – would reduce burglaries in the following year by 4,800, out of an annual total of 962,700."
+        },
+        {
+          "t": "p",
+          "v": "Paragraph 6"
+        },
+        {
+          "t": "p",
+          "v": "For fraud, an increase in sentences from 9.7 to 10.7 months would result in a reduction of 4,700 offences a year, out of 242,400. The report declares this to be \"a substantial effect, especially when we consider that the length of the sentence usually corresponds to approximately half the actual time spent in custody\". The study also estimates that a policy of forcing offenders to serve a higher proportion of their sentences in prison would have a further dramatic effect on cutting crime, in part because more offenders would be behind bars for longer. If offenders were made to serve two-thirds of their sentence in custody, rather than the current half, it suggests that there would be 21,000 fewer recorded burglaries and 11,000 fewer recorded frauds in England and Wales."
+        },
+        {
+          "t": "p",
+          "v": "Paragraph 7"
+        },
+        {
+          "t": "p",
+          "v": "So it only goes to reinforce that sentences should be longer and when sentences are for life, they definitely should not be reduced.  However, if this was the case, the government would need to find more money to build bigger prisons and this in itself is a bone of contention. Many argue that the longer offenders are removed from society and incarcerated the less likely they will be able to integrate fully into their communities when they get released.  In doing so they are more likely to fall back into old habits and criminal behaviour and the vicious cycle continues. Reoffending and reimprisonment almost become inevitable."
+        },
+        {
+          "t": "p",
+          "v": "Statements"
+        }
+      ]
+    }
+  ]
+}

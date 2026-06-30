@@ -62,7 +62,13 @@ export function CoursesSection({ locale, onMode }: { locale: Locale; onMode?: (m
       ) : (
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {courses.map((c) => (
-            <CourseListCard key={c.id} c={c} labels={t.courses} onOpen={open} onDelete={onDelete} />
+            <CourseListCard
+              key={c.id}
+              c={c}
+              labels={{ ...t.courses, builtin: locale === 'zh' ? '内置' : 'Built-in' }}
+              onOpen={open}
+              onDelete={onDelete}
+            />
           ))}
         </div>
       )}

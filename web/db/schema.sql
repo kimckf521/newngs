@@ -39,6 +39,30 @@ CREATE TABLE IF NOT EXISTS question_bank (
   updated_at timestamptz NOT NULL DEFAULT now()
 );
 
+-- SAT (Digital / Bluebook) tables. Same JSONB convention as `courses`.
+-- sat_questions: the reusable item pool (one SatQuestion per row, RW or Math).
+CREATE TABLE IF NOT EXISTS sat_questions (
+  id         text PRIMARY KEY,           -- slug, e.g. 'rw-0001'
+  data       jsonb NOT NULL,
+  published  boolean NOT NULL DEFAULT false,
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
+-- sat_forms: a full 4-module practice test (RW M1/M2 + Math M1/M2, with the
+-- upper/lower Module-2 variants), referencing sat_questions by id.
+CREATE TABLE IF NOT EXISTS sat_forms (
+  id         text PRIMARY KEY,           -- slug, e.g. 'practice-test-1'
+  data       jsonb NOT NULL,
+  published  boolean NOT NULL DEFAULT false,
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
+-- sat_attempts: one student's run of a form (answers + computed estimated score).
+CREATE TABLE IF NOT EXISTS sat_attempts (
+  id         text PRIMARY KEY,           -- uuid/slug
+  data       jsonb NOT NULL,
+  published  boolean NOT NULL DEFAULT false, -- unused; kept for convention parity
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
+
 -- Visual page-builder (Puck) documents, one row per (route, locale).
 CREATE TABLE IF NOT EXISTS pages (
   route      text NOT NULL,

@@ -81,7 +81,8 @@ type Strings = {
   members: {
     title: string;
     sub: string;
-    th: { member: string; email: string; role: string };
+    th: { member: string; login: string; contact: string; lastLogin: string; role: string };
+    via: { wechat: string; email: string; phone: string; account: string; other: string };
     keyLabel: string;
     keyPh: string;
     keySet: string;
@@ -163,7 +164,8 @@ export const adminConsoleContent: Record<Locale, Strings> = {
     members: {
       title: 'Members',
       sub: 'Manage all members, including admins.',
-      th: { member: 'Member', email: 'Email', role: 'Role' },
+      th: { member: 'Member', login: 'Login', contact: 'Contact', lastLogin: 'Last login', role: 'Role' },
+      via: { wechat: 'WeChat', email: 'Email', phone: 'Phone', account: 'Account', other: 'Other' },
       keyLabel: 'Admin key',
       keyPh: 'Enter ADMIN_API_KEY',
       keySet: 'Set',
@@ -245,7 +247,8 @@ export const adminConsoleContent: Record<Locale, Strings> = {
     members: {
       title: '成员',
       sub: '管理所有成员，包括管理员。',
-      th: { member: '成员', email: '邮箱', role: '角色' },
+      th: { member: '成员', login: '登录方式', contact: '联系方式', lastLogin: '最后登录', role: '角色' },
+      via: { wechat: '微信', email: '邮箱', phone: '手机', account: '账号', other: '其他' },
       keyLabel: '管理密钥',
       keyPh: '输入 ADMIN_API_KEY',
       keySet: '确定',

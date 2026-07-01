@@ -7,6 +7,7 @@ import type { Block, RichPage, RichData } from '@/lib/ielts/contentTypes';
 import { BUILTIN_RICH, MODULE_TITLES, MODULE_IDS, moduleHasTest } from '@/lib/ielts/builtinContent';
 import { loadModuleContent } from '@/lib/ielts/content';
 import { getCloudBaseApp } from '@/lib/cloudbase';
+import { isCorrect, stripCJK, hasCJK, cellKey } from '@/lib/ielts/tablefill';
 
 type Lang = 'en' | 'zh';
 type Theme = 'light' | 'dark';
@@ -285,6 +286,26 @@ function AudioNotice({ lang }: { lang: Lang }) {
 
 /* ── Audio player (admin-attached audio) ──────────────────────────────────── */
 function AudioPlayer({ src, label }: { src: string; label?: string }) {
+  // CloudBase-uploaded audio is stored as a cloud:// fileID; resolve it to a
+  // temporary playable URL (same pattern as VideoFile). Plain http(s) URLs and
+  // app-relative paths pass straight through.
+  const [url, setUrl] = useState(src.startsWith('cloud://') ? '' : src);
+  useEffect(() => {
+    if (!src.startsWith('cloud://')) { setUrl(src); return; }
+    let active = true;
+    void (async () => {
+      const app = await getCloudBaseApp();
+      if (!app) return;
+      try {
+        const r = await app.getTempFileURL({ fileList: [src] });
+        const u = r?.fileList?.[0]?.tempFileURL;
+        if (active && u) setUrl(u);
+      } catch {
+        /* leave unresolved */
+      }
+    })();
+    return () => { active = false; };
+  }, [src]);
   if (!src) return null;
   return (
     <div className="my-3 rounded-xl border border-slate-200 bg-slate-50 p-3 dark:border-white/10 dark:bg-white/5">
@@ -292,8 +313,272 @@ function AudioPlayer({ src, label }: { src: string; label?: string }) {
         <span className="text-base leading-none">🔊</span>
         {label || 'Audio'}
       </div>
-      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-      <audio controls preload="none" src={src} className="w-full" />
+      {url ? (
+        // eslint-disable-next-line jsx-a11y/media-has-caption
+        <audio controls preload="none" src={url} className="w-full" />
+      ) : (
+        <div className="grid h-12 place-items-center text-xs text-slate-400 dark:text-slate-500">…</div>
+      )}
+    </div>
+  );
+}
+
+/* ── Fill-in table (TableFillCheck) ───────────────────────────────────────── */
+type TFBlock = Extract<Block, { t: 'tablefill' }>;
+
+const TF_STR = {
+  en: {
+    check: 'Check Answers', reset: 'Reset',
+    score: 'Score', accuracy: 'Accuracy', wrongTitle: 'Review these',
+    your: 'you', correct: 'answer', copy: 'Copy mistakes', copied: 'Copied', time: 'Time',
+    cjkWarn: 'Please enter a number, fraction or English value with unit.',
+    allCorrect: 'Perfect — every answer is correct! 🎉',
+  },
+  zh: {
+    check: '核对答案', reset: '重置',
+    score: '正确', accuracy: '正确率', wrongTitle: '需复习',
+    your: '你的', correct: '正确', copy: '复制错题', copied: '已复制', time: '用时',
+    cjkWarn: '请输入数字、分数或带单位英文数值',
+    allCorrect: '全部正确，太棒了！🎉',
+  },
+} as const;
+
+function rowLabel(r: TableFillRowLite): string {
+  const g = (r.group || '').trim();
+  return g ? `${r.indicator} (${g})` : r.indicator;
+}
+type TableFillRowLite = { indicator: string; group?: string };
+
+function TableFillCheck({ block, lang }: { block: TFBlock; lang: Lang }) {
+  const t = TF_STR[lang];
+  const cols = block.cols ?? [];
+  const rows = useMemo(() => block.rows ?? [], [block.rows]);
+  const hasGroups = rows.some((r) => (r.group || '').trim());
+
+  const [vals, setVals] = useState<Record<string, string>>({});
+  const [checked, setChecked] = useState(false);
+  const [warn, setWarn] = useState(false);
+  const [startedAt, setStartedAt] = useState<number | null>(null);
+  const [elapsed, setElapsed] = useState(0);
+  const [copied, setCopied] = useState(false);
+
+  /* Tick the timer while the student is working (stops once checked). */
+  useEffect(() => {
+    if (startedAt == null || checked) return;
+    const id = window.setInterval(() => setElapsed(Math.floor((Date.now() - startedAt) / 1000)), 1000);
+    return () => window.clearInterval(id);
+  }, [startedAt, checked]);
+
+  /* Every cell the student is meant to fill (has a standard answer). */
+  const inputCells = useMemo(() => {
+    const out: { r: number; c: number; answer: string }[] = [];
+    rows.forEach((row, r) =>
+      (row.cells || []).forEach((cell, c) => {
+        if (cell && typeof cell.a === 'string' && cell.a.trim()) out.push({ r, c, answer: cell.a });
+      }),
+    );
+    return out;
+  }, [rows]);
+
+  const onInput = (key: string, raw: string) => {
+    const clean = stripCJK(raw);
+    setWarn(hasCJK(raw)); // flag if Chinese was typed/pasted (and stripped)
+    if (startedAt == null) setStartedAt(Date.now());
+    setVals((v) => ({ ...v, [key]: clean }));
+    if (checked) setChecked(false); // editing after a check clears the colours
+  };
+
+  const total = inputCells.length;
+  const correctCount = checked
+    ? inputCells.filter((ic) => isCorrect(vals[cellKey(ic.r, ic.c)] || '', ic.answer)).length
+    : 0;
+  const pct = total ? Math.round((correctCount / total) * 100) : 0;
+  const wrong = checked
+    ? inputCells.filter((ic) => !isCorrect(vals[cellKey(ic.r, ic.c)] || '', ic.answer))
+    : [];
+
+  const onReset = () => {
+    setVals({});
+    setChecked(false);
+    setWarn(false);
+    setStartedAt(null);
+    setElapsed(0);
+    setCopied(false);
+  };
+
+  const onCopy = () => {
+    const text = wrong
+      .map((ic) => `${rowLabel(rows[ic.r])} · ${cols[ic.c]}: ${t.correct} = ${ic.answer}`)
+      .join('\n');
+    try {
+      void navigator.clipboard?.writeText(text);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      /* clipboard blocked — no-op */
+    }
+  };
+
+  const mmss = `${String(Math.floor(elapsed / 60)).padStart(2, '0')}:${String(elapsed % 60).padStart(2, '0')}`;
+
+  if (!cols.length || !rows.length) return null;
+
+  return (
+    <div className="my-4 overflow-hidden rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-night-700">
+      {/* Title bar + actions */}
+      <div className="flex flex-wrap items-center gap-3 border-b border-slate-100 px-4 py-3 dark:border-white/10">
+        <span className="min-w-0 flex-1 font-grotesk text-sm font-bold text-slate-800 dark:text-slate-100">
+          {block.title || ' '}
+        </span>
+        {startedAt != null && (
+          <span className="hidden items-center gap-1 text-xs tabular-nums text-slate-400 dark:text-slate-500 sm:inline-flex">
+            <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+            {t.time} {mmss}
+          </span>
+        )}
+        <button
+          type="button"
+          onClick={() => { setChecked(true); }}
+          className="rounded-lg bg-[#1e40af] px-3.5 py-1.5 text-xs font-bold text-white transition hover:bg-[#1d4ed8] dark:bg-[#2563eb] dark:hover:bg-[#3b82f6]"
+        >
+          {t.check}
+        </button>
+        <button
+          type="button"
+          onClick={onReset}
+          className="rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 transition hover:bg-slate-100 dark:border-white/15 dark:text-slate-300 dark:hover:bg-white/5"
+        >
+          {t.reset}
+        </button>
+      </div>
+
+      {/* Table */}
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse text-sm">
+          <thead>
+            <tr className="bg-slate-100 text-left text-xs font-semibold uppercase tracking-wide text-slate-500 dark:bg-white/10 dark:text-slate-300">
+              <th className="border border-slate-200 px-3 py-2 dark:border-white/10">{block.indicatorLabel || 'Indicator'}</th>
+              {hasGroups && <th className="border border-slate-200 px-3 py-2 dark:border-white/10">{block.groupLabel || 'Group'}</th>}
+              {cols.map((c, i) => (
+                <th key={i} className="border border-slate-200 px-3 py-2 text-center dark:border-white/10">{c}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, r) => {
+              const isStart = r === 0 || rows[r - 1].indicator !== row.indicator;
+              let span = 1;
+              if (isStart) { for (let j = r + 1; j < rows.length && rows[j].indicator === row.indicator; j++) span++; }
+              const zh = row.indicatorZh && row.indicatorZh.trim() ? row.indicatorZh.trim() : '';
+              return (
+                <tr key={r} className="odd:bg-white even:bg-slate-50/70 dark:odd:bg-transparent dark:even:bg-white/[0.03]">
+                  {isStart && (
+                    <td
+                      rowSpan={span}
+                      title={zh || undefined}
+                      className={`border border-slate-200 px-3 py-2 align-top font-medium text-slate-700 dark:border-white/10 dark:text-slate-200 ${zh ? 'cursor-help' : ''}`}
+                    >
+                      {row.indicator}
+                      {zh && <span className="ml-1 align-middle text-[10px] text-slate-400 dark:text-slate-500">ⓘ</span>}
+                    </td>
+                  )}
+                  {hasGroups && (
+                    <td className="border border-slate-200 px-3 py-2 text-slate-500 dark:border-white/10 dark:text-slate-400">{row.group || ''}</td>
+                  )}
+                  {cols.map((_, c) => {
+                    const cell = (row.cells || [])[c] ?? null;
+                    const key = cellKey(r, c);
+                    // Not-applicable cell (no input, no value)
+                    if (!cell || (!cell.a && !cell.given)) {
+                      return <td key={c} className="border border-slate-200 bg-slate-50/40 px-3 py-2 text-center text-slate-300 dark:border-white/10 dark:bg-white/[0.02] dark:text-slate-500" aria-label="N/A">—</td>;
+                    }
+                    // Pre-given read-only value (shown, never graded)
+                    if (cell.given && !cell.a) {
+                      return <td key={c} className="border border-slate-200 px-3 py-2 text-center font-medium text-slate-600 dark:border-white/10 dark:text-slate-300">{cell.given}</td>;
+                    }
+                    // Editable answer cell
+                    const val = vals[key] || '';
+                    const ok = isCorrect(val, cell.a as string);
+                    const blank = !val.trim();
+                    const tdBg = !checked
+                      ? ''
+                      : ok
+                        ? 'bg-[#d9f7dd] dark:bg-emerald-500/15'
+                        : blank
+                          ? 'bg-slate-100 dark:bg-white/5'
+                          : 'bg-[#ffe8e8] dark:bg-rose-500/15';
+                    return (
+                      <td key={c} className={`border border-slate-200 px-2 py-1.5 text-center align-top dark:border-white/10 ${tdBg}`}>
+                        <input
+                          value={val}
+                          onChange={(e) => onInput(key, e.target.value)}
+                          inputMode="text"
+                          aria-label={`${rowLabel(row)} ${cols[c]}`}
+                          className="w-full min-w-[3.5rem] rounded-sm border-b border-slate-300 bg-transparent py-0.5 text-center text-sm text-slate-800 outline-none transition focus:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500 dark:border-white/20 dark:text-slate-100 dark:focus:border-blue-400 dark:focus-visible:ring-blue-400"
+                        />
+                        {checked && !ok && (
+                          <div className="mt-1 text-[11px] font-semibold text-[#c82423] dark:text-rose-300">{cell.a}</div>
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      {/* CJK warning */}
+      {warn && (
+        <div role="alert" aria-live="assertive" className="border-t border-slate-100 px-4 py-2 text-xs font-medium text-[#c82423] dark:border-white/10 dark:text-rose-300">
+          ⚠ {t.cjkWarn}
+        </div>
+      )}
+
+      {/* Feedback */}
+      {checked && (
+        <div role="status" aria-live="polite" className="border-t border-slate-100 px-4 py-3 dark:border-white/10">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-sm">
+            <span className="font-semibold text-slate-700 dark:text-slate-200">
+              {t.score}: <span className="tabular-nums">{correctCount}/{total}</span>
+            </span>
+            <span className={`font-semibold tabular-nums ${pct === 100 ? 'text-emerald-600 dark:text-emerald-400' : pct >= 60 ? 'text-amber-600 dark:text-amber-400' : 'text-rose-600 dark:text-rose-400'}`}>
+              {t.accuracy}: {pct}%
+            </span>
+            {startedAt != null && <span className="text-xs text-slate-400 dark:text-slate-500">{t.time}: {mmss}</span>}
+            {wrong.length > 0 && (
+              <button
+                type="button"
+                onClick={onCopy}
+                className="ml-auto rounded-lg border border-slate-200 px-2.5 py-1 text-xs font-semibold text-slate-500 transition hover:bg-slate-100 dark:border-white/10 dark:text-slate-400 dark:hover:bg-white/5"
+              >
+                {copied ? t.copied : t.copy}
+              </button>
+            )}
+          </div>
+          {wrong.length === 0 ? (
+            <p className="mt-2 text-sm font-medium text-emerald-600 dark:text-emerald-400">{t.allCorrect}</p>
+          ) : (
+            <div className="mt-2.5">
+              <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">{t.wrongTitle}</p>
+              <ul className="space-y-1">
+                {wrong.map((ic) => {
+                  const yv = (vals[cellKey(ic.r, ic.c)] || '').trim();
+                  return (
+                    <li key={`${ic.r}-${ic.c}`} className="flex flex-wrap items-baseline gap-x-2 text-xs text-slate-600 dark:text-slate-300">
+                      <span className="font-semibold text-slate-700 dark:text-slate-200">{rowLabel(rows[ic.r])}</span>
+                      <span className="text-slate-400 dark:text-slate-500">· {cols[ic.c]}</span>
+                      {yv && <span className="text-[#c82423] line-through dark:text-rose-300">{t.your}: {yv}</span>}
+                      <span className="font-semibold text-emerald-600 dark:text-emerald-400">{t.correct}: {ic.answer}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -342,6 +627,7 @@ function RichBlocks({
         if (block.t === 'bili') return <BilibiliEmbed key={i} id={block.v} label={block.label} />;
         if (block.t === 'video') return <VideoFile key={i} src={block.v} />;
         if (block.t === 'audio') return <AudioPlayer key={i} src={block.v} label={block.label} />;
+        if (block.t === 'tablefill') return <TableFillCheck key={i} block={block} lang={lang} />;
         if (block.t === 'link') return <LinkCard key={i} url={block.v} label={block.label} lang={lang} />;
         if (block.t === 'h2') return <h2 key={i} className="mt-4 font-grotesk text-lg font-bold text-slate-900 dark:text-white">{block.v}</h2>;
         if (block.t === 'h3') return <h3 key={i} className="mt-3 font-grotesk text-sm font-bold text-slate-800 dark:text-slate-200">{block.v}</h3>;

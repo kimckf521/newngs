@@ -1,0 +1,267 @@
+{
+  "form": {
+    "id": "demo-practice-1",
+    "name": "Bluebook-Style Practice Test 1 (Demo)",
+    "description": "A short demo form that exercises the full Digital SAT runner. Real forms have 27 RW + 22 Math questions per module; this demo uses fewer so the flow can be clicked end-to-end. Replace with extracted questions via /admin/sat.",
+    "published": true,
+    "createdAt": 1782800000000,
+    "modules": {
+      "rwM1": { "id": "rw-m1", "section": "reading_writing", "index": 1, "difficultyForm": "fixed", "timeLimitSec": 1920, "questionIds": ["rw-m1-01", "rw-m1-02", "rw-m1-03", "rw-m1-04", "rw-m1-05", "rw-m1-06"] },
+      "rwM2Upper": { "id": "rw-m2-upper", "section": "reading_writing", "index": 2, "difficultyForm": "upper", "timeLimitSec": 1920, "questionIds": ["rw-m2u-01", "rw-m2u-02", "rw-m2u-03", "rw-m2u-04", "rw-m2u-05"] },
+      "rwM2Lower": { "id": "rw-m2-lower", "section": "reading_writing", "index": 2, "difficultyForm": "lower", "timeLimitSec": 1920, "questionIds": ["rw-m2l-01", "rw-m2l-02", "rw-m2l-03", "rw-m2l-04", "rw-m2l-05"] },
+      "mathM1": { "id": "math-m1", "section": "math", "index": 1, "difficultyForm": "fixed", "timeLimitSec": 2100, "questionIds": ["math-m1-01", "math-m1-02", "math-m1-03", "math-m1-04", "math-m1-05"] },
+      "mathM2Upper": { "id": "math-m2-upper", "section": "math", "index": 2, "difficultyForm": "upper", "timeLimitSec": 2100, "questionIds": ["math-m2u-01", "math-m2u-02", "math-m2u-03", "math-m2u-04"] },
+      "mathM2Lower": { "id": "math-m2-lower", "section": "math", "index": 2, "difficultyForm": "lower", "timeLimitSec": 2100, "questionIds": ["math-m2l-01", "math-m2l-02", "math-m2l-03", "math-m2l-04"] }
+    }
+  },
+  "questions": [
+    {
+      "id": "rw-m1-01", "section": "reading_writing", "domain": "craft_and_structure", "skill": "words_in_context", "difficulty": "easy", "format": "mc",
+      "passage": "While several of her colleagues dismissed the survey data as ______, Dr. Okafor argued that the few inconsistencies were minor and that the overall pattern they revealed was unmistakable.",
+      "stem": "Which choice completes the text with the most logical and precise word or phrase?",
+      "choices": [ { "id": "A", "text": "conclusive" }, { "id": "B", "text": "unreliable" }, { "id": "C", "text": "exhaustive" }, { "id": "D", "text": "abundant" } ],
+      "correct": "B",
+      "explanation": "The colleagues 'dismissed' the data, and Dr. Okafor counters by insisting the inconsistencies were minor — so the colleagues regarded the data as not trustworthy. 'Unreliable' fits. 'Conclusive' is the opposite of dismissing it.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "rw-m1-02", "section": "reading_writing", "domain": "information_and_ideas", "skill": "central_ideas_and_details", "difficulty": "medium", "format": "mc",
+      "passage": "Honeybees communicate the location of food through a 'waggle dance.' The duration of the straight 'waggle' portion encodes the distance to the food source, while the angle of the dance relative to vertical signals its direction relative to the sun. Other foragers read these cues in the dark hive by touch and vibration, then fly out to the indicated spot.",
+      "stem": "Which choice best states the main idea of the text?",
+      "choices": [ { "id": "A", "text": "Honeybees can navigate only when the sun is visible." }, { "id": "B", "text": "The waggle dance conveys both the distance and the direction of food." }, { "id": "C", "text": "Foragers rely on sight rather than touch to interpret the dance." }, { "id": "D", "text": "The waggle dance is the slowest of several bee communication methods." } ],
+      "correct": "B",
+      "explanation": "The text says duration encodes distance and angle signals direction — together that is distance and direction. The other options contradict or overstate details in the passage.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "rw-m1-03", "section": "reading_writing", "domain": "information_and_ideas", "skill": "command_of_evidence_quantitative", "difficulty": "medium", "format": "mc",
+      "passage": "A researcher measured germination rates for a wildflower at four soil temperatures. At 10°C, 18% of seeds germinated; at 15°C, 47%; at 20°C, 71%; and at 25°C, 52%. The researcher concluded that the species has an intermediate optimal germination temperature rather than a steadily increasing one.",
+      "stem": "Which choice most effectively uses data from the text to support the researcher's conclusion?",
+      "choices": [ { "id": "A", "text": "Germination rose from 10°C to 20°C but then fell at 25°C." }, { "id": "B", "text": "Germination was highest at the lowest temperature tested." }, { "id": "C", "text": "Germination increased steadily across all four temperatures." }, { "id": "D", "text": "Germination was identical at 15°C and 25°C." } ],
+      "correct": "A",
+      "explanation": "An intermediate optimum means germination peaks in the middle (20°C, 71%) and declines afterward (25°C, 52%) — exactly what choice A reports. The others misstate the figures.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "rw-m1-04", "section": "reading_writing", "domain": "expression_of_ideas", "skill": "transitions", "difficulty": "medium", "format": "mc",
+      "passage": "The new alloy is far lighter than steel, making it attractive for aircraft frames. ______ it is considerably more expensive to produce, which has slowed its adoption.",
+      "stem": "Which choice completes the text with the most logical transition?",
+      "choices": [ { "id": "A", "text": "For example," }, { "id": "B", "text": "Likewise," }, { "id": "C", "text": "However," }, { "id": "D", "text": "Therefore," } ],
+      "correct": "C",
+      "explanation": "The second sentence presents a drawback that contrasts with the advantage in the first. A contrast transition ('However') is needed.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "rw-m1-05", "section": "reading_writing", "domain": "standard_english_conventions", "skill": "boundaries", "difficulty": "easy", "format": "mc",
+      "passage": "The museum's new wing houses works by contemporary sculptors ______ many of them have never been exhibited in the region before.",
+      "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "choices": [ { "id": "A", "text": "sculptors;" }, { "id": "B", "text": "sculptors" }, { "id": "C", "text": "sculptors, and" }, { "id": "D", "text": "sculptors, which" } ],
+      "correct": "A",
+      "explanation": "Two independent clauses must be joined by a semicolon (or a comma + coordinating conjunction). A semicolon after 'sculptors' correctly separates them. Choice C adds an extra comma; B creates a run-on.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "rw-m1-06", "section": "reading_writing", "domain": "craft_and_structure", "skill": "text_structure_and_purpose", "difficulty": "hard", "format": "mc",
+      "passage": "Early critics praised the novelist's debut for its tidy resolutions. In her later work, however, she deliberately leaves conflicts unresolved, trusting readers to sit with ambiguity. What once looked like a flaw — an ending that withholds closure — has come to be seen as the signature of her mature style.",
+      "stem": "Which choice best describes the overall structure of the text?",
+      "choices": [ { "id": "A", "text": "It catalogs a writer's works in strict chronological order without evaluation." }, { "id": "B", "text": "It traces how a feature once judged negatively was later reinterpreted as a strength." }, { "id": "C", "text": "It argues that the novelist's debut remains her finest achievement." }, { "id": "D", "text": "It compares two novelists with opposing approaches to plot." } ],
+      "correct": "B",
+      "explanation": "The text moves from early praise to a later technique that 'once looked like a flaw' but is now 'the signature of her mature style' — a reinterpretation from negative to positive.",
+      "source": "NGS demo", "published": true
+    },
+
+    {
+      "id": "rw-m2u-01", "section": "reading_writing", "domain": "craft_and_structure", "skill": "words_in_context", "difficulty": "hard", "format": "mc",
+      "passage": "Far from being ______, the committee's report was studded with reservations and qualifications, each finding hedged so carefully that readers struggled to extract a single firm recommendation.",
+      "stem": "Which choice completes the text with the most logical and precise word or phrase?",
+      "choices": [ { "id": "A", "text": "categorical" }, { "id": "B", "text": "tedious" }, { "id": "C", "text": "erroneous" }, { "id": "D", "text": "voluminous" } ],
+      "correct": "A",
+      "explanation": "'Far from being ___' signals the opposite of what follows. The report was full of hedges and qualifications, so it was NOT 'categorical' (unqualified, absolute). 'Categorical' is the precise antonym the context demands.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "rw-m2u-02", "section": "reading_writing", "domain": "information_and_ideas", "skill": "inferences", "difficulty": "hard", "format": "mc",
+      "passage": "In deep caves where no light penetrates, certain fish species have evolved without functional eyes. Yet these same species retain genes for eye development, and when researchers restore a single regulatory protein during embryonic growth, partial eyes form. This suggests that the loss of vision in these fish reflects ______",
+      "stem": "Which choice most logically completes the text?",
+      "choices": [ { "id": "A", "text": "the permanent deletion of all eye-related genes from their genome." }, { "id": "B", "text": "the suppression, rather than the disappearance, of an intact developmental program." }, { "id": "C", "text": "a recent migration of the fish into illuminated waters." }, { "id": "D", "text": "an inability of the species to reproduce in darkness." } ],
+      "correct": "B",
+      "explanation": "The fish keep the genes and can grow partial eyes when one protein is restored — so the program is intact but switched off (suppressed), not deleted. B is the supported inference.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "rw-m2u-03", "section": "reading_writing", "domain": "expression_of_ideas", "skill": "rhetorical_synthesis", "difficulty": "medium", "format": "mc",
+      "passage": "Notes: A student is writing about urban rooftop gardens. • Rooftop gardens insulate buildings, lowering cooling costs. • They absorb rainwater, easing strain on storm drains. • They provide habitat for pollinators. • The student wants to emphasize the environmental benefits beyond the building itself.",
+      "stem": "Which choice most effectively uses the notes to accomplish the student's goal?",
+      "choices": [ { "id": "A", "text": "Rooftop gardens lower a building's cooling costs by adding insulation." }, { "id": "B", "text": "Beyond the buildings they sit on, rooftop gardens absorb stormwater and shelter pollinators." }, { "id": "C", "text": "Rooftop gardens are increasingly common in dense cities." }, { "id": "D", "text": "Insulation is the primary reason building owners install rooftop gardens." } ],
+      "correct": "B",
+      "explanation": "The goal is benefits BEYOND the building. Only B uses the stormwater and pollinator notes, which extend past the building itself. A and D focus on the building's own costs.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "rw-m2u-04", "section": "reading_writing", "domain": "standard_english_conventions", "skill": "form_structure_and_sense", "difficulty": "medium", "format": "mc",
+      "passage": "Neither the lead engineer nor the junior technicians ______ able to reproduce the error, so the team postponed the launch.",
+      "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "choices": [ { "id": "A", "text": "was" }, { "id": "B", "text": "were" }, { "id": "C", "text": "being" }, { "id": "D", "text": "has been" } ],
+      "correct": "B",
+      "explanation": "With 'neither…nor,' the verb agrees with the nearer subject — 'technicians' (plural) — so 'were' is correct.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "rw-m2u-05", "section": "reading_writing", "domain": "craft_and_structure", "skill": "cross_text_connections", "difficulty": "hard", "format": "mc",
+      "passage": "Text 1: Economist Lewin argues that remote work durably raises productivity, citing firms that cut office costs while output held steady.\n\nText 2: Researcher Adeyemi cautions that early productivity gains from remote work often fade as informal mentoring and spontaneous collaboration erode, weakening teams over several years.",
+      "stem": "Based on the texts, how would Adeyemi (Text 2) most likely respond to the argument in Text 1?",
+      "choices": [ { "id": "A", "text": "By agreeing that office-cost savings are the main benefit of remote work." }, { "id": "B", "text": "By noting that Lewin's steady short-term output may not persist as collaboration erodes." }, { "id": "C", "text": "By denying that remote work ever raises productivity." }, { "id": "D", "text": "By recommending that all firms immediately return to the office." } ],
+      "correct": "B",
+      "explanation": "Adeyemi accepts early gains but warns they 'fade' over years. He would question whether Lewin's steady output lasts — choice B. He does not deny gains entirely (C) or make the blanket claims in A and D.",
+      "source": "NGS demo", "published": true
+    },
+
+    {
+      "id": "rw-m2l-01", "section": "reading_writing", "domain": "craft_and_structure", "skill": "words_in_context", "difficulty": "easy", "format": "mc",
+      "passage": "The coach was known for being ______: she encouraged her players warmly and rarely raised her voice, even after a loss.",
+      "stem": "Which choice completes the text with the most logical and precise word or phrase?",
+      "choices": [ { "id": "A", "text": "supportive" }, { "id": "B", "text": "indifferent" }, { "id": "C", "text": "demanding" }, { "id": "D", "text": "unpredictable" } ],
+      "correct": "A",
+      "explanation": "She 'encouraged her players warmly' and stayed calm — that describes a supportive coach.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "rw-m2l-02", "section": "reading_writing", "domain": "information_and_ideas", "skill": "central_ideas_and_details", "difficulty": "easy", "format": "mc",
+      "passage": "Sea otters eat large numbers of sea urchins. Where otters are abundant, urchin populations stay low, and the kelp forests the urchins would otherwise overgraze remain healthy and dense.",
+      "stem": "Which choice best states the main idea of the text?",
+      "choices": [ { "id": "A", "text": "Kelp forests grow best without any animals nearby." }, { "id": "B", "text": "By keeping urchin numbers down, sea otters help kelp forests thrive." }, { "id": "C", "text": "Sea urchins are the main predators of sea otters." }, { "id": "D", "text": "Otters prefer kelp to sea urchins as food." } ],
+      "correct": "B",
+      "explanation": "Otters eat urchins, keeping them low, which protects the kelp. B captures that chain. The others reverse or contradict the text.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "rw-m2l-03", "section": "reading_writing", "domain": "expression_of_ideas", "skill": "transitions", "difficulty": "easy", "format": "mc",
+      "passage": "The bakery sells out of croissants almost every morning. ______ the owner has decided to double the batch she bakes each day.",
+      "stem": "Which choice completes the text with the most logical transition?",
+      "choices": [ { "id": "A", "text": "Nevertheless," }, { "id": "B", "text": "As a result," }, { "id": "C", "text": "In contrast," }, { "id": "D", "text": "For instance," } ],
+      "correct": "B",
+      "explanation": "Doubling the batch is a consequence of selling out. A cause-and-effect transition ('As a result') fits.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "rw-m2l-04", "section": "reading_writing", "domain": "standard_english_conventions", "skill": "boundaries", "difficulty": "easy", "format": "mc",
+      "passage": "After the storm passed ______ the volunteers gathered to clear fallen branches from the road.",
+      "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "choices": [ { "id": "A", "text": "passed," }, { "id": "B", "text": "passed" }, { "id": "C", "text": "passed;" }, { "id": "D", "text": "passed:" } ],
+      "correct": "A",
+      "explanation": "A comma sets off the introductory dependent clause 'After the storm passed' from the main clause. A semicolon or colon would be incorrect here.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "rw-m2l-05", "section": "reading_writing", "domain": "craft_and_structure", "skill": "text_structure_and_purpose", "difficulty": "medium", "format": "mc",
+      "passage": "The article first describes how plastic waste accumulates in the ocean. It then explains a new enzyme that breaks plastic down. Finally, it considers whether the enzyme could be produced cheaply enough to use at scale.",
+      "stem": "Which choice best describes the overall structure of the text?",
+      "choices": [ { "id": "A", "text": "It presents a problem, introduces a possible solution, and weighs the solution's practicality." }, { "id": "B", "text": "It lists unrelated facts about the ocean." }, { "id": "C", "text": "It argues that plastic waste cannot be reduced." }, { "id": "D", "text": "It compares two competing enzymes in detail." } ],
+      "correct": "A",
+      "explanation": "Problem (waste) → solution (enzyme) → practicality (cost at scale). That is choice A.",
+      "source": "NGS demo", "published": true
+    },
+
+    {
+      "id": "math-m1-01", "section": "math", "domain": "algebra", "skill": "linear_equations_in_one_variable", "difficulty": "easy", "format": "mc",
+      "stem": "If 5x − 3 = 22, what is the value of x?",
+      "choices": [ { "id": "A", "text": "3.8" }, { "id": "B", "text": "5" }, { "id": "C", "text": "19" }, { "id": "D", "text": "25" } ],
+      "correct": "B",
+      "explanation": "5x − 3 = 22 → 5x = 25 → x = 5.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "math-m1-02", "section": "math", "domain": "algebra", "skill": "linear_functions", "difficulty": "medium", "format": "spr",
+      "stem": "A line in the xy-plane passes through the points (0, 1) and (4, 3). What is the slope of the line?",
+      "answer": { "accepted": ["1/2", ".5", "0.5"], "tolerance": 0.001 },
+      "explanation": "Slope = (3 − 1)/(4 − 0) = 2/4 = 1/2. The grid-in accepts 1/2, .5, or 0.5.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "math-m1-03", "section": "math", "domain": "advanced_math", "skill": "nonlinear_equations_and_systems", "difficulty": "medium", "format": "spr",
+      "stem": "If 3x² = 48 and x > 0, what is the value of x?",
+      "answer": { "accepted": ["4"] },
+      "explanation": "3x² = 48 → x² = 16 → x = 4 (positive root).",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "math-m1-04", "section": "math", "domain": "problem_solving_and_data_analysis", "skill": "percentages", "difficulty": "medium", "format": "mc",
+      "stem": "A jacket originally priced at $80 is on sale for $60. What is the percent decrease in price?",
+      "choices": [ { "id": "A", "text": "20%" }, { "id": "B", "text": "25%" }, { "id": "C", "text": "33%" }, { "id": "D", "text": "75%" } ],
+      "correct": "B",
+      "explanation": "Decrease = (80 − 60)/80 = 20/80 = 0.25 = 25%.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "math-m1-05", "section": "math", "domain": "geometry_and_trigonometry", "skill": "circles", "difficulty": "medium", "format": "spr",
+      "stem": "A circle has a radius of 7. The circumference of the circle is kπ. What is the value of k?",
+      "answer": { "accepted": ["14"] },
+      "explanation": "Circumference = 2πr = 2π(7) = 14π, so k = 14.",
+      "source": "NGS demo", "published": true
+    },
+
+    {
+      "id": "math-m2u-01", "section": "math", "domain": "advanced_math", "skill": "nonlinear_functions", "difficulty": "hard", "format": "mc",
+      "stem": "The function f is defined by f(x) = 2x² − 12x + 7. For what value of x does f reach its minimum?",
+      "choices": [ { "id": "A", "text": "−3" }, { "id": "B", "text": "3" }, { "id": "C", "text": "6" }, { "id": "D", "text": "7" } ],
+      "correct": "B",
+      "explanation": "The vertex of ax² + bx + c is at x = −b/(2a) = 12/(2·2) = 3.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "math-m2u-02", "section": "math", "domain": "algebra", "skill": "systems_of_two_linear_equations_in_two_variables", "difficulty": "hard", "format": "spr",
+      "stem": "The system 2x + y = 11 and x − y = 1 has solution (x, y). What is the value of x?",
+      "answer": { "accepted": ["4"] },
+      "explanation": "Add the equations: 3x = 12 → x = 4 (then y = 3).",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "math-m2u-03", "section": "math", "domain": "problem_solving_and_data_analysis", "skill": "probability_and_conditional_probability", "difficulty": "medium", "format": "mc",
+      "stem": "A bag contains 3 red, 4 blue, and 5 green marbles. If one marble is drawn at random, what is the probability it is blue?",
+      "choices": [ { "id": "A", "text": "1/4" }, { "id": "B", "text": "1/3" }, { "id": "C", "text": "4/12" }, { "id": "D", "text": "5/12" } ],
+      "correct": "B",
+      "explanation": "P(blue) = 4 / (3 + 4 + 5) = 4/12 = 1/3. (Choice C equals 1/3 unreduced, but 1/3 is the intended simplest form.)",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "math-m2u-04", "section": "math", "domain": "geometry_and_trigonometry", "skill": "right_triangles_and_trigonometry", "difficulty": "hard", "format": "mc",
+      "stem": "In a right triangle, the legs have lengths 6 and 8. What is the length of the hypotenuse?",
+      "choices": [ { "id": "A", "text": "10" }, { "id": "B", "text": "12" }, { "id": "C", "text": "14" }, { "id": "D", "text": "48" } ],
+      "correct": "A",
+      "explanation": "By the Pythagorean theorem, c = √(6² + 8²) = √(36 + 64) = √100 = 10.",
+      "source": "NGS demo", "published": true
+    },
+
+    {
+      "id": "math-m2l-01", "section": "math", "domain": "algebra", "skill": "linear_equations_in_one_variable", "difficulty": "easy", "format": "mc",
+      "stem": "If x + 9 = 15, what is the value of x?",
+      "choices": [ { "id": "A", "text": "5" }, { "id": "B", "text": "6" }, { "id": "C", "text": "7" }, { "id": "D", "text": "24" } ],
+      "correct": "B",
+      "explanation": "x + 9 = 15 → x = 6.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "math-m2l-02", "section": "math", "domain": "problem_solving_and_data_analysis", "skill": "ratios_rates_proportional_relationships_and_units", "difficulty": "easy", "format": "mc",
+      "stem": "A car travels 150 miles in 3 hours at a constant speed. What is its speed in miles per hour?",
+      "choices": [ { "id": "A", "text": "45" }, { "id": "B", "text": "50" }, { "id": "C", "text": "60" }, { "id": "D", "text": "450" } ],
+      "correct": "B",
+      "explanation": "Speed = 150 miles ÷ 3 hours = 50 miles per hour.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "math-m2l-03", "section": "math", "domain": "algebra", "skill": "linear_functions", "difficulty": "easy", "format": "spr",
+      "stem": "The function g is defined by g(x) = 3x + 2. What is the value of g(4)?",
+      "answer": { "accepted": ["14"] },
+      "explanation": "g(4) = 3(4) + 2 = 12 + 2 = 14.",
+      "source": "NGS demo", "published": true
+    },
+    {
+      "id": "math-m2l-04", "section": "math", "domain": "geometry_and_trigonometry", "skill": "area_and_volume", "difficulty": "easy", "format": "mc",
+      "stem": "A rectangle has a length of 9 and a width of 4. What is its area?",
+      "choices": [ { "id": "A", "text": "13" }, { "id": "B", "text": "26" }, { "id": "C", "text": "36" }, { "id": "D", "text": "40" } ],
+      "correct": "C",
+      "explanation": "Area = length × width = 9 × 4 = 36.",
+      "source": "NGS demo", "published": true
+    }
+  ]
+}

@@ -8,8 +8,12 @@ import { getCurrentUser } from '@/lib/auth';
 import { ROLE_LABELS, ROLES, type Role } from '@/lib/roles';
 import { adminConsoleContent } from './adminConsole.content';
 
-type MemberRow = { uid: string; email: string; name: string; role: Role };
+type LoginVia = 'wechat' | 'email' | 'phone' | 'account' | 'other';
+type MemberRow = { uid: string; email: string; name: string; phone: string; role: Role; loginVia: LoginVia; lastLogin: string };
 type State = 'loading' | 'ok' | 'not_configured' | 'unauthorized';
+
+/** WeChat stands out (emerald) since most CN users sign in with it. */
+const viaCls = (v: LoginVia) => (v === 'wechat' ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-500');
 
 export function MembersSection({ locale }: { locale: Locale }) {
   const t = adminConsoleContent[locale];
@@ -31,7 +35,7 @@ export function MembersSection({ locale }: { locale: Locale }) {
       /* ignore */
     }
     void getCurrentUser().then((u) => {
-      if (u) setMe({ uid: u.uid || '', email: u.email, name: u.name, role: u.role });
+      if (u) setMe({ uid: u.uid || '', email: u.email, name: u.name, phone: '', role: u.role, loginVia: u.email ? 'email' : 'other', lastLogin: '' });
     });
   }, []);
 
@@ -135,7 +139,9 @@ export function MembersSection({ locale }: { locale: Locale }) {
           <thead>
             <tr className="border-b border-slate-100 text-left text-[12px] uppercase tracking-wide text-slate-400">
               <th className="px-5 py-3 font-semibold">{t.members.th.member}</th>
-              <th className="px-5 py-3 font-semibold">{t.members.th.email}</th>
+              <th className="px-5 py-3 font-semibold">{t.members.th.login}</th>
+              <th className="px-5 py-3 font-semibold">{t.members.th.contact}</th>
+              <th className="hidden px-5 py-3 font-semibold md:table-cell">{t.members.th.lastLogin}</th>
               <th className="px-5 py-3 font-semibold">{t.members.th.role}</th>
             </tr>
           </thead>
@@ -153,7 +159,11 @@ export function MembersSection({ locale }: { locale: Locale }) {
                     </span>
                   </div>
                 </td>
-                <td className="px-5 py-3 text-slate-500">{m.email || '—'}</td>
+                <td className="px-5 py-3">
+                  <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${viaCls(m.loginVia)}`}>{t.members.via[m.loginVia]}</span>
+                </td>
+                <td className="px-5 py-3 text-slate-500">{m.email || m.phone || '—'}</td>
+                <td className="hidden px-5 py-3 text-xs text-slate-400 md:table-cell">{m.lastLogin || '—'}</td>
                 <td className="px-5 py-3">
                   {state === 'ok' ? (
                     <select
@@ -175,7 +185,7 @@ export function MembersSection({ locale }: { locale: Locale }) {
             ))}
             {rows.length === 0 && (
               <tr>
-                <td colSpan={3} className="px-5 py-8 text-center text-sm text-slate-400">
+                <td colSpan={5} className="px-5 py-8 text-center text-sm text-slate-400">
                   {state === 'loading' ? t.members.loading : '—'}
                 </td>
               </tr>

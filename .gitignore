@@ -34,5 +34,9 @@ ngs-redesign-source.zip
 # not a runtime dependency of the app.
 ielts-questions/
 
+# Downloaded IELTS lesson audio (SoundCloud tracks) — large media, not a
+# runtime dependency; upload to CloudBase rather than committing to git.
+ielts-audio/
+
 # Vercel
 .vercel

@@ -1,9 +1,10 @@
 'use client';
 
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import rawTest from './data/cam15-test1-reading.json';
 import type { ColorTheme, Passage, QGroup, ReadingTest, TextSize } from './types';
 import { scoreGroup, type Verdict } from './scoring';
+import { recordAutoGradedAttempt } from '@/lib/ielts/progress';
 import {
   BottomNav, GroupView, ResultsOverlay, SettingsPanel, SIZE, THEME, TopBar, academicReadingBand, range, useCountdown,
 } from './shared';
@@ -40,6 +41,16 @@ export function ReadingSection({
   const [secs, setSecs] = useCountdown(test.timeLimitMinutes * 60, !submitted, () => setSubmitted(true));
   const [timerHidden, setTimerHidden] = useState(false);
   const idRef = useRef(0);
+  const recordedRef = useRef(false);
+
+  // Persist the attempt (band + per-question mistakes) once, the first time the
+  // test is submitted. Reset on restart so a fresh sitting records again.
+  useEffect(() => {
+    if (!submitted || recordedRef.current) return;
+    recordedRef.current = true;
+    recordAutoGradedAttempt({ skill: 'reading', book: String(test.book), test: test.test, groups: test.questionGroups, answers });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [submitted]);
 
   const passageById = useMemo(() => {
     const m = new Map<number, Passage>();
@@ -268,6 +279,7 @@ export function ReadingSection({
           answered={answeredCount}
           onReview={() => setSubmitted(false)}
           onRestart={() => {
+            recordedRef.current = false;
             setAnswers({});
             setFlagged(new Set());
             setHighlights([]);

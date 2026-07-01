@@ -6,7 +6,7 @@ import { gradeSpr, isValidSprEntry } from '@/lib/sat/scoring';
 import { C, SERIF, ChoiceList, QuestionChip } from './shared';
 import { useSatLang, COMMON, domLabel, skillLabel, diffLabel } from './i18n';
 import { AskAI } from './AskAI';
-import { VocabAdd } from './VocabBook';
+import { useSelectionMenu } from './SelectionMenu';
 
 /**
  * A self-contained question card with INSTANT feedback — used by skill-drill
@@ -26,6 +26,7 @@ export function PracticeQuestion({
   enableAi?: boolean;
 }) {
   const { lang } = useSatLang();
+  const { onContextMenu: onSelectionContextMenu, overlay: selectionOverlay } = useSelectionMenu();
   const spr = isSpr(question);
   const correctMc = !spr ? (question as { correct?: string }).correct : undefined;
 
@@ -41,13 +42,13 @@ export function PracticeQuestion({
       </div>
 
       {isRw(question) ? (
-        <div className="mb-4 rounded-lg border p-5 text-[16px] leading-[1.7]" style={{ borderColor: C.hairline, background: C.raised, fontFamily: SERIF, color: C.ink, whiteSpace: 'pre-wrap' }}>
+        <div onContextMenu={onSelectionContextMenu} className="mb-4 rounded-lg border p-5 text-[16px] leading-[1.7]" style={{ borderColor: C.hairline, background: C.raised, fontFamily: SERIF, color: C.ink, whiteSpace: 'pre-wrap' }}>
           {question.passage}
           {question.passageB ? <div className="mt-4 border-t pt-4" style={{ borderColor: C.hairline }}>{question.passageB}</div> : null}
         </div>
       ) : null}
 
-      <p className="text-[17px] font-semibold leading-relaxed" style={{ color: C.ink, fontFamily: isRw(question) ? undefined : SERIF }}>{question.stem}</p>
+      <p onContextMenu={onSelectionContextMenu} className="text-[17px] font-semibold leading-relaxed" style={{ color: C.ink, fontFamily: isRw(question) ? undefined : SERIF }}>{question.stem}</p>
 
       {spr ? (
         <SprPractice value={selected || ''} onChange={onSelect} revealed={revealed} q={question as SatQuestion & { answer: { accepted: string[] } }} />
@@ -73,7 +74,8 @@ export function PracticeQuestion({
       ) : null}
 
       {revealed && enableAi ? <AskAI question={question} chosen={aiChosen ?? selected} /> : null}
-      {revealed && isRw(question) ? <VocabAdd question={question} /> : null}
+
+      {selectionOverlay}
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import type { SatRwQuestion } from '@/lib/sat/types';
 import { C, SERIF, ChoiceList, QuestionChip, MarkForReview, EliminatorToggle } from './shared';
 import { useSatLang, COMMON } from './i18n';
+import { useSelectionMenu } from './SelectionMenu';
 
 export type Highlight = { id: string; start: number; end: number; color: string; underline?: boolean; note?: string };
 
@@ -46,6 +47,7 @@ export function RwModule({
   reveal?: boolean;
 }) {
   const { lang } = useSatLang();
+  const { onContextMenu: onSelectionContextMenu, overlay: selectionOverlay } = useSelectionMenu();
   const splitRef = useRef<HTMLDivElement>(null);
   const passRef = useRef<HTMLDivElement>(null);
   const [popover, setPopover] = useState<{ x: number; y: number; start: number; end: number; existing?: string } | null>(null);
@@ -65,7 +67,8 @@ export function RwModule({
     window.addEventListener('pointerup', up);
   }
 
-  function onMouseUp() {
+  function onMouseUp(e: React.MouseEvent) {
+    if (e.button !== 0) return; // ignore right/middle click — that drives the translate menu, not annotate
     if (!annotateOn || reveal) return;
     const sel = window.getSelection();
     if (!sel || sel.isCollapsed || !passRef.current) { return; }
@@ -111,7 +114,7 @@ export function RwModule({
   return (
     <div ref={splitRef} className="relative flex min-h-0 flex-1">
       {/* passage pane */}
-      <section className="min-h-0 overflow-y-auto px-7 py-6" style={{ width: `${split}%` }}>
+      <section onContextMenu={onSelectionContextMenu} className="min-h-0 overflow-y-auto px-7 py-6" style={{ width: `${split}%` }}>
         <div className="mb-3 text-[12px] font-semibold uppercase tracking-wide" style={{ color: C.muted }}>
           {question.passageB ? (lang === 'zh' ? '文本 1 和 文本 2' : 'Text 1 & Text 2') : (lang === 'zh' ? '文章' : 'Passage')}
         </div>
@@ -178,7 +181,7 @@ export function RwModule({
           <EliminatorToggle on={eliminatorOn} onToggle={() => setEliminatorOn(!eliminatorOn)} />
         </div>
 
-        <p className="mt-5 text-[17px] font-semibold leading-relaxed" style={{ color: C.ink }}>{question.stem}</p>
+        <p onContextMenu={onSelectionContextMenu} className="mt-5 text-[17px] font-semibold leading-relaxed" style={{ color: C.ink }}>{question.stem}</p>
 
         <ChoiceList
           choices={question.choices}
@@ -198,6 +201,8 @@ export function RwModule({
           </div>
         ) : null}
       </section>
+
+      {selectionOverlay}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { SatQuestion } from '@/lib/sat/types';
 import { isRw, isMc, isSpr } from '@/lib/sat/types';
 import { C } from './shared';
@@ -15,14 +15,40 @@ export function AskAI({ question, chosen }: { question: SatQuestion; chosen?: st
   const [text, setText] = useState('');
   const [state, setState] = useState<'idle' | 'loading' | 'done' | 'error'>('idle');
   const [lang, setLang] = useState<'zh' | 'en'>('zh');
+  const [cache, setCache] = useState<{ en?: string; zh?: string }>({});
   const started = useRef(false);
+  const gen = useRef(0); // bumped per ask(); an older stream stops writing once superseded
+  const ctrlRef = useRef<AbortController | null>(null);
   const { lang: uiLang } = useSatLang();
 
+  // Reset everything when navigating to a different question — clears both
+  // cached languages and any displayed explanation so the next question is fresh.
+  useEffect(() => {
+    ctrlRef.current?.abort();
+    gen.current += 1;
+    setCache({});
+    setText('');
+    setState('idle');
+    setOpen(false);
+    started.current = false;
+  }, [question.id]);
+
   async function ask(locale: 'zh' | 'en') {
+    const myGen = ++gen.current;
+    ctrlRef.current?.abort(); // supersede any in-flight stream (e.g. switching language mid-stream)
     setOpen(true);
     setLang(locale);
+    // Cache hit: show the stored explanation and skip the network entirely.
+    const cached = cache[locale];
+    if (cached !== undefined) {
+      setText(cached);
+      setState('done');
+      return;
+    }
     setState('loading');
     setText('');
+    const ctrl = new AbortController();
+    ctrlRef.current = ctrl;
     const payload = {
       section: question.section,
       skill: question.skill,
@@ -41,18 +67,27 @@ export function AskAI({ question, chosen }: { question: SatQuestion; chosen?: st
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
+        signal: ctrl.signal,
       });
+      if (myGen !== gen.current) return; // superseded while awaiting the response
       if (!res.ok || !res.body) { setState('error'); return; }
       const reader = res.body.getReader();
       const dec = new TextDecoder();
+      let acc = '';
       for (;;) {
         const { done, value } = await reader.read();
         if (done) break;
-        if (value) setText((t) => t + dec.decode(value, { stream: true }));
+        if (myGen !== gen.current) return; // a newer ask() / question change took over — stop writing
+        if (value) {
+          acc += dec.decode(value, { stream: true });
+          setText(acc);
+        }
       }
+      if (myGen !== gen.current) return;
+      setCache((c) => ({ ...c, [locale]: acc }));
       setState('done');
     } catch {
-      setState('error');
+      if (myGen === gen.current) setState('error'); // ignore aborts from being superseded
     }
   }
 

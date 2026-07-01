@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { ColorTheme, TextSize } from './types';
 import { SettingsPanel, SIZE, THEME, TopBar, useMic } from './shared';
+import { recordAiAttempt } from '@/lib/ielts/progress';
 import { startPcmRecording, type PcmRecorder } from './pcmRecorder';
 import { startRealtimeAsr, type RealtimeAsr } from './realtimeAsr';
 import { ExaminerAvatar } from './ExaminerAvatar';
@@ -492,6 +493,7 @@ export function AiExaminer({
       const b = (await res.json()) as Bands;
       setBands(b);
       setPhase('report');
+      recordAiAttempt({ skill: 'speaking', band: b.overall });
       // best-effort: persist the session to CloudBase (never blocks / never surfaced).
       const audio = voiceAnswers.current
         .filter((a) => a.wavB64 && a.text.trim())

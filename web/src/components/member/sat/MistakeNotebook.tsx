@@ -97,14 +97,29 @@ export function MistakeNotebook({ pool, onPractice, onBack, renderExtra }: {
                 const isOpen = open === m.id;
                 return (
                   <div key={m.id} className="rounded-lg border" style={{ borderColor: C.border, background: C.panel }}>
-                    <div className="flex items-center gap-3 px-4 py-3">
-                      <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full text-[13px] font-bold text-white" style={{ background: m.mastered ? C.good : C.flag }}>{m.mastered ? '✓' : '✕'}</span>
+                    <div className="flex items-start gap-3 px-4 py-3">
+                      <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full text-[13px] font-bold text-white" style={{ background: m.mastered ? C.good : C.flag }}>{m.mastered ? '✓' : '✕'}</span>
                       <button type="button" onClick={() => setOpen(isOpen ? null : m.id)} className="min-w-0 flex-1 text-left">
                         <div className="flex flex-wrap items-center gap-1.5">
                           <span className="rounded-full px-1.5 py-0.5 text-[10px] font-semibold" style={{ background: C.tint, color: C.blue }}>{domLabel(q.domain, lang)}</span>
                           <span className="text-[11px]" style={{ color: C.muted }}>{skillLabel(q.skill, lang)} · {diffLabel(q.difficulty, lang)} · {lang === 'zh' ? `错 ×${m.wrongCount}` : `missed ×${m.wrongCount}`}</span>
                         </div>
-                        <div className="mt-0.5 truncate text-[13px]" style={{ color: C.ink }}>{q.stem}</div>
+                        {(() => {
+                          // Stems often lead with a short math expression on its own
+                          // line ("3x - 7 ≤ 11\n\nWhat is…"). Show that expression as a
+                          // clean mono line, then the question wrapped to two lines —
+                          // instead of crushing it all into one truncated row.
+                          const parts = q.stem.split(/\n+/).map((s) => s.trim()).filter(Boolean);
+                          const hasLead = parts.length > 1 && parts[0].length <= 48 && !/[?.]$/.test(parts[0]);
+                          const lead = hasLead ? parts[0] : '';
+                          const body = hasLead ? parts.slice(1).join('  ') : parts.join('  ');
+                          return (
+                            <div className="mt-1 space-y-0.5">
+                              {lead ? <div className="font-mono text-[13px] font-semibold tracking-tight" style={{ color: C.blueDeep }}>{lead}</div> : null}
+                              <div className="line-clamp-2 text-[13px] leading-snug" style={{ color: C.ink }}>{body}</div>
+                            </div>
+                          );
+                        })()}
                       </button>
                       <div className="flex shrink-0 items-center gap-2">
                         <span className="hidden text-[12px] sm:block" style={{ color: C.muted }}>{lang === 'zh' ? '你:' : 'you: '}<b style={{ color: C.flag }}>{m.lastAnswer}</b> · {lang === 'zh' ? '答案:' : 'ans: '}<b style={{ color: C.good }}>{correctOf(q)}</b></span>

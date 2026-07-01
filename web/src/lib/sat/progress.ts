@@ -44,10 +44,25 @@ export type AnswerEvent = {
   ms?: number; // time spent on the question, if measured
 };
 
+/** AI-generated structured definition for a saved word — fills both language
+ *  faces of the vocab card from one generation (English def + 中文 gloss +
+ *  synonyms/antonyms + a bilingual example, and a 中文 rendering of the sentence
+ *  the student saved it from). */
+export type VocabDef = {
+  glossEn: string;
+  glossZh: string;
+  synonyms: string[];
+  antonyms: string[];
+  example: string;
+  exampleZh: string;
+  sourceZh?: string;
+};
+
 export type VocabEntry = {
   word: string;
   context?: string;
-  note?: string;
+  note?: string; // legacy / manual free-text meaning (rendered when no `def`)
+  def?: VocabDef; // AI-generated structured definition (preferred)
   addedAt: number;
   questionId?: string;
 };
@@ -214,6 +229,27 @@ export function removeVocab(word: string): void {
   write(s);
 }
 
+/** Update a saved word's meaning/note (used by inline edit + AI 释义). No-op if
+ *  the word isn't in the book. */
+export function updateVocabNote(word: string, note: string): void {
+  const s = read();
+  const entry = s.vocab.find((v) => v.word.toLowerCase() === word.toLowerCase());
+  if (!entry) return;
+  entry.note = note.trim() || undefined;
+  write(s);
+}
+
+/** Store the AI-generated structured definition for a saved word. No-op if the
+ *  word isn't in the book (e.g. it was removed while the call was in flight). */
+export function setVocabDef(word: string, def: VocabDef): void {
+  const s = read();
+  const entry = s.vocab.find((v) => v.word.toLowerCase() === word.toLowerCase());
+  if (!entry) return;
+  entry.def = def;
+  entry.note = undefined; // structured def supersedes any legacy note
+  write(s);
+}
+
 /* --------------------------------------------------------------- stats */
 
 export type SkillStat = { skill: SatSkill; section: SatSection; attempted: number; correct: number };
@@ -356,7 +392,18 @@ function mergeStores(a: Store, b: Store): Store {
   for (const v of [...a.vocab, ...b.vocab]) {
     const key = v.word.toLowerCase();
     const cur = vocabByWord.get(key);
-    if (!cur || v.addedAt < cur.addedAt) vocabByWord.set(key, v); // keep earliest
+    if (!cur) { vocabByWord.set(key, v); continue; }
+    // Keep the earliest entry for stable identity/order, but never drop an
+    // enrichment (def / note / context) that only the other side generated —
+    // otherwise a definition made on one device is lost on merge.
+    const base = v.addedAt < cur.addedAt ? v : cur;
+    const other = base === v ? cur : v;
+    vocabByWord.set(key, {
+      ...base,
+      def: base.def ?? other.def,
+      note: base.note ?? other.note,
+      context: base.context ?? other.context,
+    });
   }
   const mockSeen = new Set<string>();
   const mocks: MockScore[] = [];

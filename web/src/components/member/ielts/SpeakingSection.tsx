@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import rawTest from './data/cam15-test1-speaking.json';
 import type { ColorTheme, SpeakingTest, TextSize } from './types';
 import { SettingsPanel, SIZE, THEME, TopBar } from './shared';
+import { AiExaminer } from './AiExaminer';
 
 const test = rawTest as unknown as SpeakingTest;
 
@@ -224,21 +225,85 @@ function Interview({ questions, sp }: { questions: { topic?: string; text: strin
   );
 }
 
-/* ---------- section ---------- */
+/* ---------- section: mode chooser + the two speaking modes ---------- */
 
-export function SpeakingSection({
-  theme,
-  size,
-  setTheme,
-  setSize,
-  onExit,
-}: {
+type SpeakingProps = {
   theme: ColorTheme;
   size: TextSize;
   setTheme: (t: ColorTheme) => void;
   setSize: (s: TextSize) => void;
   onExit: () => void;
-}) {
+};
+
+type Mode = 'choose' | 'guided' | 'examiner';
+
+// One Speaking entry, two ways to practise. The chooser sits between the launcher
+// and the two modes; each mode's Exit returns here (not all the way out) so the
+// student can switch between guided practice and the AI examiner freely.
+export function SpeakingSection(props: SpeakingProps) {
+  const [mode, setMode] = useState<Mode>('choose');
+  if (mode === 'guided') return <GuidedSpeaking {...props} onExit={() => setMode('choose')} />;
+  if (mode === 'examiner') return <AiExaminer {...props} onExit={() => setMode('choose')} />;
+  return <SpeakingChooser {...props} onPick={setMode} />;
+}
+
+const MODE_CARDS: { key: Exclude<Mode, 'choose'>; icon: string; title: string; meta: string; blurb: string }[] = [
+  {
+    key: 'guided',
+    icon: '🎙️',
+    title: 'Guided practice',
+    meta: '~11–14 min · 3 parts · record',
+    blurb: 'The examiner reads each prompt and the cue card with the real 1-min prep / 2-min talk timers. Record yourself and play it back.',
+  },
+  {
+    key: 'examiner',
+    icon: '🤖',
+    title: 'AI Examiner',
+    meta: 'live conversation · band score',
+    blurb: 'A talking AI examiner asks, listens to your spoken answers, adapts to your level, then grades you on the four IELTS criteria.',
+  },
+];
+
+function SpeakingChooser({ theme, size, setTheme, setSize, onExit, onPick }: SpeakingProps & { onPick: (m: Exclude<Mode, 'choose'>) => void }) {
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const th = THEME[theme];
+  return (
+    <div className="fixed inset-0 z-[60] flex flex-col bg-white text-[#1a1a1a]" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
+      <TopBar label="IELTS Speaking" onSettings={() => setSettingsOpen(true)} onExit={onExit} />
+      <div className="min-h-0 flex-1 overflow-y-auto" style={{ background: th.bg, color: th.fg }}>
+        <div className="mx-auto max-w-2xl px-6 py-8" style={{ fontSize: SIZE[size], lineHeight: 1.6 }}>
+          <h2 className="text-[1.35em] font-bold">Choose how to practise Speaking</h2>
+          <p className="mt-1.5 text-[0.9em] opacity-70">Both cover the three IELTS parts. Do a guided run through the real format, or sit a live interview with an AI examiner that marks you.</p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            {MODE_CARDS.map((c) => (
+              <button
+                key={c.key}
+                type="button"
+                onClick={() => onPick(c.key)}
+                className="flex flex-col rounded-lg border-2 border-current/20 p-5 text-left transition-colors hover:border-[#1976d2] hover:bg-current/[0.03]"
+              >
+                <span className="text-[1.6em]" aria-hidden>{c.icon}</span>
+                <span className="mt-2 text-[1.1em] font-bold">{c.title}</span>
+                <span className="mt-1 text-[0.72em] font-bold uppercase tracking-[0.06em] text-[#1565c0]">{c.meta}</span>
+                <span className="mt-2 text-[0.85em] opacity-75">{c.blurb}</span>
+                <span className="mt-4 text-[0.85em] font-bold text-[#1565c0]">Start →</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+      {settingsOpen ? <SettingsPanel theme={theme} setTheme={setTheme} size={size} setSize={setSize} onClose={() => setSettingsOpen(false)} /> : null}
+    </div>
+  );
+}
+
+function GuidedSpeaking({
+  theme,
+  size,
+  setTheme,
+  setSize,
+  onExit,
+}: SpeakingProps) {
   const [part, setPart] = useState(1);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const sp = useSpeak();

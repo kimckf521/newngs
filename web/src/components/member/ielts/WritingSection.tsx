@@ -4,6 +4,7 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import rawTest from './data/cam15-test1-writing.json';
 import type { ColorTheme, TextSize, WritingTest } from './types';
 import { SettingsPanel, SIZE, THEME, TopBar, useCountdown } from './shared';
+import { recordAiAttempt } from '@/lib/ielts/progress';
 
 const test = rawTest as unknown as WritingTest;
 
@@ -102,7 +103,9 @@ export function WritingSection({
         const data = (await res.json().catch(() => ({}))) as { error?: string };
         throw new Error(data.error || 'grade_failed');
       }
-      setBands((await res.json()) as WBands);
+      const graded = (await res.json()) as WBands;
+      setBands(graded);
+      recordAiAttempt({ skill: 'writing', band: graded.overall, book: String(test.book), test: test.test });
     } catch (e) {
       setGradeError(
         String(e).includes('grader_unavailable')

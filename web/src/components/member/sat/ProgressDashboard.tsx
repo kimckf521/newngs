@@ -94,10 +94,10 @@ export function ProgressDashboard({ onBack, onPracticeSkill }: { onBack: () => v
               </div>
             </div>
 
-            {/* time per question + activity */}
+            {/* time per section + activity */}
             <div className="mt-6 grid gap-5 sm:grid-cols-2">
               <div className="rounded-xl border p-4" style={{ background: C.panel, borderColor: C.border }}>
-                <h3 className="mb-3 text-[14px] font-bold" style={{ color: C.ink }}>{lang === 'zh' ? '每题用时' : 'Time per question'}</h3>
+                <h3 className="mb-3 text-[14px] font-bold" style={{ color: C.ink }}>{lang === 'zh' ? '每部分用时' : 'Time per section'}</h3>
                 {stats.bySection.filter((s) => s.avgMs > 0).length ? stats.bySection.map((s) => (
                   <div key={s.section} className="flex items-center justify-between py-1.5 text-[13px]">
                     <span style={{ color: C.muted }}>{secLabel(s.section, lang)}</span>

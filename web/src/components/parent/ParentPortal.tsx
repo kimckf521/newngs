@@ -21,6 +21,7 @@ const C = {
   zh: {
     sample: '示例数据 —— 真实的家长中心会显示你已绑定孩子的真实学习数据',
     title: '家长中心',
+    theme: '切换主题',
     nav: { overview: '概览', courses: '课程进度', scores: '考试成绩', logout: '退出登录' },
     children: '我的孩子',
     bind: '绑定孩子',
@@ -49,6 +50,7 @@ const C = {
   en: {
     sample: 'Sample data — the real parent portal shows your linked children’s live study data',
     title: 'Parent Hub',
+    theme: 'Toggle theme',
     nav: { overview: 'Overview', courses: 'Course progress', scores: 'Test scores', logout: 'Sign out' },
     children: 'My children',
     bind: 'Link a child',
@@ -104,10 +106,15 @@ function WeekChart({ week, days7 }: { week: number[]; days7: readonly string[] }
 export function ParentPortal({ locale }: { locale: Locale }) {
   useAdminGuard(); // admins belong in /admin, not the parent portal
   const [lang, setLang] = useState<Locale>(locale);
+  // Dark by default (the portal's signature look); persisted per-browser so a
+  // parent who prefers light doesn't have to re-toggle each visit.
+  const [dark, setDark] = useState(true);
   useEffect(() => {
     try {
       const s = localStorage.getItem('ngs:lang');
       if (s === 'en' || s === 'zh') setLang(s);
+      const th = localStorage.getItem('ngs:parent-theme');
+      if (th === 'light' || th === 'dark') setDark(th === 'dark');
     } catch {
       /* ignore */
     }
@@ -119,6 +126,17 @@ export function ParentPortal({ locale }: { locale: Locale }) {
     } catch {
       /* ignore */
     }
+  };
+  const toggleTheme = () => {
+    setDark((v) => {
+      const next = !v;
+      try {
+        localStorage.setItem('ngs:parent-theme', next ? 'dark' : 'light');
+      } catch {
+        /* ignore */
+      }
+      return next;
+    });
   };
 
   const t = C[lang];
@@ -143,7 +161,7 @@ export function ParentPortal({ locale }: { locale: Locale }) {
   );
 
   return (
-    <div className="dv1 dv1-dark min-h-screen font-sans antialiased">
+    <div className={`dv1 ${dark ? 'dv1-dark' : ''} min-h-screen font-sans antialiased`}>
       <div className="mx-auto flex max-w-[1200px]">
         {/* Sidebar */}
         <aside className="sticky top-0 hidden h-screen w-[256px] shrink-0 flex-col border-r border-slate-200/70 bg-white px-4 py-5 lg:flex">
@@ -201,12 +219,23 @@ export function ParentPortal({ locale }: { locale: Locale }) {
               <Image src="/static/img/big_n.png" alt="NextGen Scholars" width={26} height={26} className="h-6 w-6 object-contain" />
             </Link>
             <p className="font-grotesk text-sm font-bold text-slate-900">{t.nav[section]}</p>
-            <div className="ml-auto flex items-center rounded-lg border border-slate-200 p-0.5">
-              {(['en', 'zh'] as const).map((ll) => (
-                <button key={ll} type="button" onClick={() => changeLang(ll)} className={`rounded-md px-2 py-1 text-xs font-bold transition ${lang === ll ? 'bg-ngs-gradient text-white' : 'text-slate-500 hover:text-slate-900'}`}>
-                  {ll === 'en' ? 'EN' : '中'}
-                </button>
-              ))}
+            <div className="ml-auto flex items-center gap-2">
+              <button
+                type="button"
+                onClick={toggleTheme}
+                aria-label={t.theme}
+                title={t.theme}
+                className="grid h-8 w-8 place-items-center rounded-lg border border-slate-200 bg-white text-slate-500 transition-colors hover:text-slate-900"
+              >
+                <Icon name={dark ? 'sun' : 'moon'} className="h-[18px] w-[18px]" />
+              </button>
+              <div className="flex items-center rounded-lg border border-slate-200 p-0.5">
+                {(['en', 'zh'] as const).map((ll) => (
+                  <button key={ll} type="button" onClick={() => changeLang(ll)} className={`rounded-md px-2 py-1 text-xs font-bold transition ${lang === ll ? 'bg-ngs-gradient text-white' : 'text-slate-500 hover:text-slate-900'}`}>
+                    {ll === 'en' ? 'EN' : '中'}
+                  </button>
+                ))}
+              </div>
             </div>
           </header>
 
@@ -347,7 +376,7 @@ export function ParentPortal({ locale }: { locale: Locale }) {
       {/* Bind-child modal (scaffold) */}
       {binding && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/50 p-4" onClick={() => setBinding(false)}>
-          <div className="w-full max-w-md rounded-2xl border border-slate-200/70 bg-white p-6 shadow-2xl dv1 dv1-dark" onClick={(e) => e.stopPropagation()}>
+          <div className={`w-full max-w-md rounded-2xl border border-slate-200/70 bg-white p-6 shadow-2xl dv1 ${dark ? 'dv1-dark' : ''}`} onClick={(e) => e.stopPropagation()}>
             <h2 className="font-grotesk text-lg font-bold text-slate-900">{t.bindTitle}</h2>
             <p className="mt-1.5 text-sm text-slate-500">{t.bindHint}</p>
             <input placeholder={t.bindPh} className="mt-4 w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-700 outline-none focus:border-ngs-violet/60" />

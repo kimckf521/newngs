@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import rawTest from './data/cam15-test1-listening.json';
 import type { ColorTheme, ListeningTest, QGroup, TextSize } from './types';
 import { scoreGroup, type Verdict } from './scoring';
+import { recordAutoGradedAttempt } from '@/lib/ielts/progress';
 import { BottomNav, GroupView, ResultsOverlay, SettingsPanel, SIZE, THEME, TopBar, listeningBand, range, useCountdown } from './shared';
 
 const test = rawTest as unknown as ListeningTest;
@@ -36,6 +37,15 @@ export function ListeningSection({
   const [practice, setPractice] = useState(false);
   const [vol, setVol] = useState(1);
   const [reviewMode, setReviewMode] = useState(false);
+  const recordedRef = useRef(false);
+
+  // Persist the attempt (band + per-question mistakes) once on first submit.
+  useEffect(() => {
+    if (!submitted || recordedRef.current) return;
+    recordedRef.current = true;
+    recordAutoGradedAttempt({ skill: 'listening', book: String(test.book), test: test.test, groups: test.questionGroups, answers });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [submitted]);
 
   const groupOfQ = useMemo(() => {
     const m = new Map<number, QGroup>();
@@ -134,6 +144,7 @@ export function ListeningSection({
           answered={answeredCount}
           onReview={() => setSubmitted(false)}
           onRestart={() => {
+            recordedRef.current = false;
             setAnswers({});
             setFlagged(new Set());
             setSecs(test.timeLimitMinutes * 60);

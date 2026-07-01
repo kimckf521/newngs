@@ -43,11 +43,14 @@ export function QuestionBankPage({ id, locale }: { id: string; locale: Locale })
   const [lang, setLang] = useState<Locale>(locale);
   const changeLang = (nl: Locale) => { setLang(nl); try { localStorage.setItem('ielts:lang', nl); } catch {} };
   const l = L[lang];
+  const [dark, setDark] = useState(true);
+  const toggleTheme = () => setDark((v) => { const n = !v; try { localStorage.setItem('qbank:dark', n ? '1' : '0'); } catch {} return n; });
   const [bank, setBank] = useState<BankSummary | null>(null);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     try { const s = localStorage.getItem('ielts:lang'); if (s === 'en' || s === 'zh') setLang(s as Locale); } catch {}
+    try { const d = localStorage.getItem('qbank:dark'); if (d === '0' || d === '1') setDark(d === '1'); } catch {}
   }, []);
 
   useEffect(() => {
@@ -60,7 +63,7 @@ export function QuestionBankPage({ id, locale }: { id: string; locale: Locale })
   }, [id]);
 
   const shell = (children: ReactNode) => (
-    <div className="dv1 dv1-dark min-h-screen bg-[#0a0a12] font-sans antialiased">{children}</div>
+    <div className={`dv1 ${dark ? 'dv1-dark' : ''} min-h-screen font-sans antialiased`}>{children}</div>
   );
 
   if (!loaded) return shell(<div className="p-10 text-sm text-slate-400">{l.loading}</div>);
@@ -98,6 +101,9 @@ export function QuestionBankPage({ id, locale }: { id: string; locale: Locale })
                 <Icon name="arrow" className="h-3.5 w-3.5 -rotate-45" />
               </a>
             )}
+            <button type="button" onClick={toggleTheme} aria-label="Toggle theme" className="grid h-8 w-8 place-items-center rounded-lg border border-slate-200 text-slate-500 transition-colors hover:text-slate-900">
+              <Icon name={dark ? 'sun' : 'moon'} className="h-4 w-4" />
+            </button>
             <div className="flex items-center rounded-lg border border-slate-200 p-0.5">
               {(['en', 'zh'] as const).map((ll) => (
                 <button key={ll} type="button" onClick={() => changeLang(ll)} className={`rounded-md px-2 py-1 text-xs font-bold transition ${lang === ll ? 'bg-ngs-gradient text-white' : 'text-slate-500 hover:text-slate-900'}`}>

@@ -1,6 +1,7 @@
 'use client';
 
 import type { SatQuestion, SatForm, SatAttempt } from './types';
+import originalBank from '@/components/member/sat/data/originalBank.json';
 
 /**
  * Browser CRUD for the SAT bank. Talks to the PostgreSQL-backed /api/sat; when
@@ -151,6 +152,19 @@ export async function deleteForm(id: string): Promise<SaveMode> {
 
 /* --------------------------------------------------------------- runner */
 
+/** The full published question pool for practice / notebook / dashboard. Falls
+ *  back to the bundled original bank when the cloud has none. */
+export async function fetchPublishedQuestions(): Promise<SatQuestion[]> {
+  try {
+    const res = await fetch('/api/sat?resource=questions&scope=published');
+    const data = (await res.json().catch(() => null)) as { ok?: boolean; items?: SatQuestion[] } | null;
+    if (data?.ok && Array.isArray(data.items) && data.items.length) return data.items;
+  } catch {
+    /* fall back to the bundled bank */
+  }
+  return (originalBank as unknown as { questions: SatQuestion[] }).questions;
+}
+
 /** Load a form + its question pool for the player. Returns null when the cloud
  *  has no published bundle, so the caller falls back to the bundled sample. */
 export async function loadRunnerForm(
@@ -166,6 +180,34 @@ export async function loadRunnerForm(
     /* fall back to bundled sample */
   }
   return null;
+}
+
+/* --------------------------------------------------------- progress sync */
+
+/** Pull a student's cloud progress blob (null if none / unconfigured). */
+export async function fetchProgress(uid: string): Promise<unknown | null> {
+  try {
+    const res = await fetch(`/api/sat?resource=progress&uid=${encodeURIComponent(uid)}`);
+    const data = (await res.json().catch(() => null)) as { ok?: boolean; data?: unknown } | null;
+    return data?.ok ? (data.data ?? null) : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Push a student's progress blob to the cloud (best-effort). */
+export async function pushProgress(uid: string, data: unknown): Promise<boolean> {
+  try {
+    const res = await fetch('/api/sat?resource=progress', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ uid, data }),
+    });
+    const j = (await res.json().catch(() => null)) as { ok?: boolean } | null;
+    return Boolean(j?.ok);
+  } catch {
+    return false;
+  }
 }
 
 /** Persist a student's attempt (best-effort — never blocks the results screen). */

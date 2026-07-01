@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import type { SatRwQuestion } from '@/lib/sat/types';
 import { C, SERIF, ChoiceList, QuestionChip, MarkForReview, EliminatorToggle } from './shared';
+import { useSatLang, COMMON } from './i18n';
 
 export type Highlight = { id: string; start: number; end: number; color: string; underline?: boolean; note?: string };
 
@@ -44,6 +45,7 @@ export function RwModule({
   setSplit: (n: number) => void;
   reveal?: boolean;
 }) {
+  const { lang } = useSatLang();
   const splitRef = useRef<HTMLDivElement>(null);
   const passRef = useRef<HTMLDivElement>(null);
   const [popover, setPopover] = useState<{ x: number; y: number; start: number; end: number; existing?: string } | null>(null);
@@ -96,7 +98,7 @@ export function RwModule({
       {/* passage pane */}
       <section className="min-h-0 overflow-y-auto px-7 py-6" style={{ width: `${split}%` }}>
         <div className="mb-3 text-[12px] font-semibold uppercase tracking-wide" style={{ color: C.muted }}>
-          {question.passageB ? 'Text 1 & Text 2' : 'Passage'}
+          {question.passageB ? (lang === 'zh' ? '文本 1 和 文本 2' : 'Text 1 & Text 2') : (lang === 'zh' ? '文章' : 'Passage')}
         </div>
         <div ref={passRef} onMouseUp={onMouseUp} className="whitespace-pre-wrap text-[17px] leading-[1.7]" style={{ fontFamily: SERIF, color: C.ink }}>
           {segments.map((s, i) =>
@@ -115,16 +117,16 @@ export function RwModule({
         ) : null}
 
         {popover ? (
-          <div className="absolute z-[76] -translate-x-1/2 -translate-y-full rounded-lg border bg-white p-1.5 shadow-xl"
-            style={{ left: popover.x, top: popover.y, borderColor: C.border }} onMouseDown={(e) => e.preventDefault()}>
+          <div className="absolute z-[76] -translate-x-1/2 -translate-y-full rounded-lg border p-1.5 shadow-xl"
+            style={{ left: popover.x, top: popover.y, borderColor: C.border, background: C.panel }} onMouseDown={(e) => e.preventDefault()}>
             <div className="flex items-center gap-1.5">
               {HL_COLORS.map((col) => (
                 <button key={col} type="button" onClick={() => (popover.existing ? clearAt(popover.start, popover.end) : applyHighlight(col))}
-                  className="h-6 w-6 rounded-full border" style={{ background: col, borderColor: C.border }} title="Highlight" />
+                  className="h-6 w-6 rounded-full border" style={{ background: col, borderColor: C.border }} title={lang === 'zh' ? '高亮' : 'Highlight'} />
               ))}
               <button type="button" onClick={() => applyHighlight(C.hl.yellow, true)} className="rounded px-2 py-1 text-[12px] font-semibold underline" style={{ color: C.ink }}>U</button>
               <button type="button" onClick={() => (popover.existing ? clearAt(popover.start, popover.end) : setPopover(null))} className="rounded px-2 py-1 text-[12px]" style={{ color: C.muted }}>
-                {popover.existing ? 'Remove' : 'Cancel'}
+                {popover.existing ? COMMON[lang].remove : COMMON[lang].cancel}
               </button>
             </div>
           </div>
@@ -132,7 +134,7 @@ export function RwModule({
       </section>
 
       {/* divider */}
-      <div onPointerDown={onDragDivider} className="w-1.5 shrink-0 cursor-col-resize" style={{ background: C.hairline }} title="Drag to resize" />
+      <div onPointerDown={onDragDivider} className="w-1.5 shrink-0 cursor-col-resize" style={{ background: C.hairline }} title={lang === 'zh' ? '拖动以调整宽度' : 'Drag to resize'} />
 
       {/* question pane */}
       <section className="min-h-0 flex-1 overflow-y-auto px-7 py-6">
@@ -158,8 +160,8 @@ export function RwModule({
         />
 
         {reveal && question.explanation ? (
-          <div className="mt-5 rounded-lg border p-4 text-[14px] leading-relaxed" style={{ borderColor: C.border, background: '#f7f8fb', color: C.ink }}>
-            <div className="mb-1 font-bold">Explanation</div>
+          <div className="mt-5 rounded-lg border p-4 text-[14px] leading-relaxed" style={{ borderColor: C.border, background: C.panel2, color: C.ink }}>
+            <div className="mb-1 font-bold">{COMMON[lang].explanation}</div>
             {question.explanation}
           </div>
         ) : null}

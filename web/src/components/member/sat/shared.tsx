@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useSatLang, useSatTheme, COMMON, type Lang } from './i18n';
 
 /**
  * Shared, STANDALONE white Bluebook chrome for the SAT runner. Deliberately
@@ -13,18 +14,36 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 
 /* ----------------------------------------------------------------- tokens */
 
+// All colours resolve to CSS variables defined in globals.css under `.sat-app`
+// (light) / `.sat-app.sat-dark` (dark). Keeping the same token keys means every
+// existing `C.ink` etc. becomes theme-aware with no change at the call site.
+// (SVG note: var() does NOT work in SVG *presentation attributes* — use
+// currentColor there and set `color` on the SVG/container instead.)
 export const C = {
-  blue: '#324dc7',
-  blueDeep: '#1e1e64',
-  link: '#0a66c2',
-  tint: '#e8eeff',
-  ink: '#1e1e1e',
-  muted: '#5b5b5b',
-  border: '#c7c9cf',
-  hairline: '#d6d6d6',
-  barBg: '#ffffff',
-  flag: '#cc1f3b',
-  elim: '#8a8d93',
+  blue: 'var(--sat-blue)',
+  blueDeep: 'var(--sat-blue-deep)',
+  link: 'var(--sat-link)',
+  tint: 'var(--sat-tint)',
+  ink: 'var(--sat-ink)',
+  muted: 'var(--sat-muted)',
+  border: 'var(--sat-border)',
+  hairline: 'var(--sat-hairline)',
+  barBg: 'var(--sat-bar-bg)',
+  flag: 'var(--sat-flag)',
+  elim: 'var(--sat-elim)',
+  // surfaces (previously hardcoded #fff / #f4f5f8 / … in components)
+  bg: 'var(--sat-bg)',
+  panel: 'var(--sat-panel)',
+  panel2: 'var(--sat-panel-2)',
+  soft: 'var(--sat-soft)',
+  raised: 'var(--sat-raised)',
+  track: 'var(--sat-track)',
+  hover: 'var(--sat-hover)',
+  // semantic
+  good: 'var(--sat-good)',
+  goodBg: 'var(--sat-good-bg)',
+  badBg: 'var(--sat-bad-bg)',
+  aiBg: 'var(--sat-ai-bg)',
   hl: { yellow: '#fff38c', pink: '#ffc0da', blue: '#abdcff' },
 } as const;
 
@@ -71,8 +90,10 @@ export const Icon = {
     </svg>
   ),
   flag: (p: { filled?: boolean; size?: number }) => (
+    // filled → red (its own colour, so it reads on any parent); outline → inherits currentColor
     <svg width={p.size ?? 16} height={p.size ?? 16} viewBox="0 0 24 24" aria-hidden
-      fill={p.filled ? C.flag : 'none'} stroke={p.filled ? C.flag : 'currentColor'} strokeWidth={1.7} strokeLinejoin="round">
+      style={p.filled ? { color: 'var(--sat-flag)' } : undefined}
+      fill={p.filled ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth={1.7} strokeLinejoin="round">
       <path d="M6 21V4h11l-2 4 2 4H6" />
     </svg>
   ),
@@ -100,12 +121,41 @@ export const Icon = {
     <svg width="14" height="14" viewBox="0 0 24 24" {...stroke} aria-hidden><path d="M6 15l6-6 6 6" /></svg>
   ),
   pin: () => (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill={C.ink} aria-hidden>
-      <path d="M12 2c-3.3 0-6 2.7-6 6 0 4.5 6 12 6 12s6-7.5 6-12c0-3.3-2.7-6-6-6z" />
-      <circle cx="12" cy="8" r="2.2" fill="#fff" />
+    // style-based fills so the CSS vars resolve (var() is ignored in SVG attrs)
+    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden style={{ color: 'var(--sat-ink)' }}>
+      <path d="M12 2c-3.3 0-6 2.7-6 6 0 4.5 6 12 6 12s6-7.5 6-12c0-3.3-2.7-6-6-6z" fill="currentColor" />
+      <circle cx="12" cy="8" r="2.2" style={{ fill: 'var(--sat-panel)' }} />
     </svg>
   ),
 };
+
+/* -------------------------------------------------- theme + language toggle */
+
+/** Sun/moon theme toggle + EN/中 language toggle. Drop into any SAT header. */
+export function ThemeLangToggle() {
+  const { dark, toggle } = useSatTheme();
+  const { lang, setLang } = useSatLang();
+  return (
+    <div className="flex items-center gap-1.5">
+      <button type="button" onClick={toggle} aria-label="Toggle light/dark theme" title="Light / dark"
+        className="grid h-8 w-8 place-items-center rounded-md border" style={{ borderColor: C.border, color: C.ink, background: C.panel }}>
+        {dark ? (
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4" /></svg>
+        ) : (
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M20 14.5A8 8 0 0 1 9.5 4 7 7 0 1 0 20 14.5z" /></svg>
+        )}
+      </button>
+      <div className="flex items-center rounded-md border p-0.5" style={{ borderColor: C.border, background: C.panel }}>
+        {(['en', 'zh'] as Lang[]).map((l) => (
+          <button key={l} type="button" onClick={() => setLang(l)} className="rounded px-2 py-0.5 text-[12px] font-bold"
+            style={lang === l ? { background: C.blue, color: '#fff' } : { color: C.muted }}>
+            {l === 'en' ? 'EN' : '中'}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 /* --------------------------------------------------------------- top bar */
 
@@ -114,7 +164,7 @@ export function ToolButton({ icon, label, active, onClick }: { icon: ReactNode; 
     <button type="button" onClick={onClick}
       className="flex h-11 min-w-[58px] flex-col items-center justify-center rounded px-2 text-[11px] font-medium transition-colors"
       style={{ color: active ? C.blue : C.ink, background: active ? C.tint : 'transparent' }}
-      onMouseEnter={(e) => { if (!active) e.currentTarget.style.background = '#f1f2f5'; }}
+      onMouseEnter={(e) => { if (!active) e.currentTarget.style.background = 'var(--sat-hover)'; }}
       onMouseLeave={(e) => { if (!active) e.currentTarget.style.background = 'transparent'; }}>
       <span aria-hidden>{icon}</span>
       <span className="mt-0.5">{label}</span>
@@ -134,16 +184,18 @@ export function TopBar({
   moreItems: { label: string; onClick: () => void }[];
 }) {
   const [moreOpen, setMoreOpen] = useState(false);
+  const { lang } = useSatLang();
+  const t = COMMON[lang];
   const hasTimer = typeof secs === 'number';
   const danger = hasTimer && secs! <= 300;
   return (
     <header className="relative flex h-[60px] shrink-0 items-stretch justify-between px-4" style={{ borderBottom: `1px solid ${C.hairline}`, background: C.barBg }}>
       {/* left: module label + directions */}
-      <div className="flex min-w-[260px] flex-col justify-center">
+      <div className="flex min-w-[220px] flex-col justify-center">
         <span className="text-[15px] font-bold" style={{ color: C.ink }}>{sectionLabel}</span>
         {onDirections ? (
           <button type="button" onClick={onDirections} className="mt-0.5 flex w-fit items-center gap-1 text-[13px] font-medium hover:underline" style={{ color: C.ink }}>
-            Directions <span style={{ fontSize: 10 }}>▾</span>
+            {t.directions} <span style={{ fontSize: 10 }}>▾</span>
           </button>
         ) : null}
       </div>
@@ -153,33 +205,33 @@ export function TopBar({
         {hasTimer ? (
           hidden ? (
             <button type="button" onClick={toggleHidden} className="flex items-center gap-2 rounded px-3 py-1.5 text-[15px] font-semibold" style={{ color: C.ink }} aria-label="Show timer">
-              <Icon.clock /> <span style={{ color: C.muted }}>Show</span>
+              <Icon.clock /> <span style={{ color: C.muted }}>{lang === 'zh' ? '显示' : 'Show'}</span>
             </button>
           ) : (
             <>
               <div className="flex items-center gap-2 text-[22px] font-bold tabular-nums" style={{ color: danger ? C.flag : C.ink }}>
                 {fmtClock(secs!)}
               </div>
-              <button type="button" onClick={toggleHidden} className="rounded border px-3 text-[12px] font-medium leading-5 hover:bg-[#f1f2f5]" style={{ borderColor: C.border, color: C.ink }}>
-                Hide
+              <button type="button" onClick={toggleHidden} className="rounded border px-3 text-[12px] font-medium leading-5" style={{ borderColor: C.border, color: C.ink }}>
+                {lang === 'zh' ? '隐藏' : 'Hide'}
               </button>
             </>
           )
         ) : null}
       </div>
 
-      {/* right: section tools + more */}
-      <div className="flex min-w-[260px] items-center justify-end gap-1">
+      {/* right: section tools + more + theme/lang */}
+      <div className="flex min-w-[220px] items-center justify-end gap-1">
         {rightTools}
         <div className="relative">
-          <ToolButton icon={<Icon.more />} label="More" active={moreOpen} onClick={() => setMoreOpen((v) => !v)} />
+          <ToolButton icon={<Icon.more />} label={t.more} active={moreOpen} onClick={() => setMoreOpen((v) => !v)} />
           {moreOpen ? (
             <>
               <div className="fixed inset-0 z-[70]" onClick={() => setMoreOpen(false)} />
-              <div className="absolute right-0 top-[52px] z-[71] w-56 overflow-hidden rounded-md border bg-white py-1 shadow-lg" style={{ borderColor: C.border }}>
+              <div className="absolute right-0 top-[52px] z-[71] w-56 overflow-hidden rounded-md border py-1 shadow-lg" style={{ borderColor: C.border, background: C.panel }}>
                 {moreItems.map((it) => (
                   <button key={it.label} type="button" onClick={() => { setMoreOpen(false); it.onClick(); }}
-                    className="block w-full px-4 py-2 text-left text-[14px] hover:bg-[#f1f2f5]" style={{ color: C.ink }}>
+                    className="sat-hover block w-full px-4 py-2 text-left text-[14px]" style={{ color: C.ink }}>
                     {it.label}
                   </button>
                 ))}
@@ -187,6 +239,7 @@ export function TopBar({
             </>
           ) : null}
         </div>
+        <div className="ml-1"><ThemeLangToggle /></div>
       </div>
     </header>
   );
@@ -206,19 +259,21 @@ export function BottomNav({
   backDisabled?: boolean;
   nextLabel?: string;
 }) {
+  const { lang } = useSatLang();
+  const t = COMMON[lang];
   return (
     <footer className="relative flex h-[64px] shrink-0 items-center justify-between px-5" style={{ borderTop: `1px solid ${C.hairline}`, background: C.barBg }}>
       <div className="hidden text-[14px] font-semibold sm:block" style={{ color: C.ink }}>{studentName}</div>
       <button type="button" onClick={onOpenNavigator}
-        className="absolute left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-md px-4 py-2 text-[14px] font-semibold text-white"
-        style={{ background: C.blueDeep }}>
-        Question {current} of {total} <Icon.chevronUp />
+        className="absolute left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-md px-4 py-2 text-[14px] font-semibold"
+        style={{ background: C.blueDeep, color: 'var(--sat-panel)' }}>
+        {t.questionOf(current, total)} <Icon.chevronUp />
       </button>
       <div className="ml-auto flex items-center gap-3">
         <button type="button" onClick={onBack} disabled={backDisabled}
           className="rounded-full px-6 py-2.5 text-[14px] font-bold disabled:opacity-40"
           style={{ background: C.tint, color: C.blue }}>
-          Back
+          {t.back}
         </button>
         <button type="button" onClick={onNext}
           className="rounded-full px-7 py-2.5 text-[14px] font-bold text-white"
@@ -261,7 +316,7 @@ export function NavGrid({
             style={
               isAns
                 ? { background: C.blue, color: '#fff', border: `1px solid ${C.blue}` }
-                : { background: '#fff', color: C.ink, border: `1px dashed ${C.blue}` }
+                : { background: C.panel, color: C.ink, border: `1px dashed ${C.blue}` }
             }>
             {isCur ? <span className="absolute -top-3.5" style={{ color: C.ink }}><Icon.pin /></span> : null}
             {n}
@@ -285,22 +340,24 @@ export function NavigatorPopup({
   onReview: () => void;
   onClose: () => void;
 }) {
+  const { lang } = useSatLang();
+  const leg = lang === 'zh' ? { c: '当前', u: '未作答', r: '待复查' } : { c: 'Current', u: 'Unanswered', r: 'For Review' };
   return (
     <>
       <div className="fixed inset-0 z-[74]" onClick={onClose} />
-      <div className="absolute bottom-[72px] left-1/2 z-[75] w-[min(560px,92vw)] -translate-x-1/2 rounded-lg border bg-white p-4 shadow-2xl" style={{ borderColor: C.border }}>
+      <div className="absolute bottom-[72px] left-1/2 z-[75] w-[min(560px,92vw)] -translate-x-1/2 rounded-lg border p-4 shadow-2xl" style={{ borderColor: C.border, background: C.panel }}>
         <div className="mb-2 text-center text-[14px] font-bold" style={{ color: C.ink }}>{sectionLabel}</div>
         <div className="mb-3 flex items-center justify-center gap-4 border-y py-1.5" style={{ borderColor: C.hairline }}>
-          <LegendDot label="Current"><Icon.pin /></LegendDot>
-          <LegendDot label="Unanswered"><span className="h-5 w-5 rounded" style={{ border: `1px dashed ${C.blue}` }} /></LegendDot>
-          <LegendDot label="For Review"><Icon.flag filled size={14} /></LegendDot>
+          <LegendDot label={leg.c}><Icon.pin /></LegendDot>
+          <LegendDot label={leg.u}><span className="h-5 w-5 rounded" style={{ border: `1px dashed ${C.blue}` }} /></LegendDot>
+          <LegendDot label={leg.r}><Icon.flag filled size={14} /></LegendDot>
         </div>
         <div className="max-h-[40vh] overflow-y-auto px-1 pt-2">
           <NavGrid total={total} current={current} answered={answered} marked={marked} onJump={onJump} />
         </div>
         <div className="mt-4 flex justify-center">
           <button type="button" onClick={onReview} className="rounded-full px-6 py-2 text-[14px] font-bold text-white" style={{ background: C.blue }}>
-            Go to Review Page
+            {lang === 'zh' ? '前往复查页' : 'Go to Review Page'}
           </button>
         </div>
       </div>
@@ -321,20 +378,23 @@ export function ReviewPage({
   onSubmit: () => void;
   submitLabel: string;
 }) {
+  const { lang } = useSatLang();
+  const leg = lang === 'zh' ? { c: '当前', u: '未作答', r: '待复查' } : { c: 'Current', u: 'Unanswered', r: 'For Review' };
   const unanswered = range(1, total).filter((n) => !answered.has(n)).length;
   return (
     <div className="flex min-h-0 flex-1 flex-col items-center overflow-y-auto px-6 py-10">
-      <h1 className="text-[26px] font-bold" style={{ color: C.ink }}>Check Your Work</h1>
+      <h1 className="text-[26px] font-bold" style={{ color: C.ink }}>{lang === 'zh' ? '检查你的作答' : 'Check Your Work'}</h1>
       <p className="mt-2 max-w-xl text-center text-[14px]" style={{ color: C.muted }}>
-        On test day, you won&apos;t be able to move on to the next module until time expires.
-        {unanswered > 0 ? ` You have ${unanswered} unanswered question${unanswered === 1 ? '' : 's'}.` : ' For these questions, you can review your answers.'}
+        {lang === 'zh'
+          ? `真实考试中,在本模块时间结束前你无法进入下一模块。${unanswered > 0 ? `你还有 ${unanswered} 题未作答。` : '你可以复查这些题目的答案。'}`
+          : `On test day, you won't be able to move on to the next module until time expires.${unanswered > 0 ? ` You have ${unanswered} unanswered question${unanswered === 1 ? '' : 's'}.` : ' For these questions, you can review your answers.'}`}
       </p>
-      <div className="mt-6 w-[min(560px,92vw)] rounded-lg border bg-white p-4" style={{ borderColor: C.border }}>
+      <div className="mt-6 w-[min(560px,92vw)] rounded-lg border p-4" style={{ borderColor: C.border, background: C.panel }}>
         <div className="mb-3 text-center text-[14px] font-bold" style={{ color: C.ink }}>{sectionLabel}</div>
         <div className="mb-3 flex items-center justify-center gap-4 border-y py-1.5" style={{ borderColor: C.hairline }}>
-          <LegendDot label="Current"><Icon.pin /></LegendDot>
-          <LegendDot label="Unanswered"><span className="h-5 w-5 rounded" style={{ border: `1px dashed ${C.blue}` }} /></LegendDot>
-          <LegendDot label="For Review"><Icon.flag filled size={14} /></LegendDot>
+          <LegendDot label={leg.c}><Icon.pin /></LegendDot>
+          <LegendDot label={leg.u}><span className="h-5 w-5 rounded" style={{ border: `1px dashed ${C.blue}` }} /></LegendDot>
+          <LegendDot label={leg.r}><Icon.flag filled size={14} /></LegendDot>
         </div>
         <NavGrid total={total} current={0} answered={answered} marked={marked} onJump={onJump} />
       </div>
@@ -349,23 +409,25 @@ export function ReviewPage({
 
 export function QuestionChip({ n }: { n: number }) {
   return (
-    <span className="grid h-7 min-w-7 place-items-center rounded px-1.5 text-[14px] font-bold text-white" style={{ background: C.ink }}>{n}</span>
+    <span className="grid h-7 min-w-7 place-items-center rounded px-1.5 text-[14px] font-bold text-white" style={{ background: C.blue }}>{n}</span>
   );
 }
 
 export function MarkForReview({ on, onToggle }: { on: boolean; onToggle: () => void }) {
+  const { lang } = useSatLang();
   return (
     <button type="button" onClick={onToggle} className="flex items-center gap-1.5 text-[13px] font-medium" style={{ color: on ? C.flag : C.ink }}>
-      <Icon.flag filled={on} /> Mark for Review
+      <Icon.flag filled={on} /> {lang === 'zh' ? '标记复查' : 'Mark for Review'}
     </button>
   );
 }
 
 export function EliminatorToggle({ on, onToggle }: { on: boolean; onToggle: () => void }) {
+  const { lang } = useSatLang();
   return (
-    <button type="button" onClick={onToggle} title="Cross out answer choices"
+    <button type="button" onClick={onToggle} title={lang === 'zh' ? '划掉选项' : 'Cross out answer choices'}
       className="flex h-7 items-center gap-1 rounded border px-2 text-[13px] font-bold"
-      style={{ borderColor: on ? C.blue : C.border, color: on ? C.blue : C.ink, background: on ? C.tint : '#fff' }}>
+      style={{ borderColor: on ? C.blue : C.border, color: on ? C.blue : C.ink, background: on ? C.tint : C.panel }}>
       <span style={{ textDecoration: 'line-through' }}>ABC</span>
     </button>
   );
@@ -398,10 +460,10 @@ export function ChoiceList({
         const isElim = eliminated.has(c.id);
         const isCorrect = reveal && correct === c.id;
         const isWrongPick = reveal && isSel && correct !== c.id;
-        let border: string = C.border, bg: string = '#fff', badgeBg: string = '#fff', badgeColor: string = C.ink, badgeBorder: string = C.border;
+        let border: string = C.border, bg: string = C.panel, badgeBg: string = C.panel, badgeColor: string = C.ink, badgeBorder: string = C.border;
         if (isSel) { border = C.blue; bg = C.tint; badgeBg = C.blue; badgeColor = '#fff'; badgeBorder = C.blue; }
-        if (isCorrect) { border = '#1a8a4a'; bg = '#e7f6ec'; badgeBg = '#1a8a4a'; badgeColor = '#fff'; badgeBorder = '#1a8a4a'; }
-        if (isWrongPick) { border = C.flag; bg = '#fdeaed'; badgeBg = C.flag; badgeColor = '#fff'; badgeBorder = C.flag; }
+        if (isCorrect) { border = C.good; bg = C.goodBg; badgeBg = C.good; badgeColor = '#fff'; badgeBorder = C.good; }
+        if (isWrongPick) { border = C.flag; bg = C.badBg; badgeBg = C.flag; badgeColor = '#fff'; badgeBorder = C.flag; }
         return (
           <div key={c.id} className="flex items-stretch gap-2">
             <button type="button" disabled={reveal} onClick={() => onSelect(c.id)}
@@ -430,18 +492,25 @@ export function ChoiceList({
 
 /* -------------------------------------------------------------- modals */
 
-export function Modal({ title, onClose, children, width = 560 }: { title: string; onClose: () => void; children: ReactNode; width?: number }) {
+function CloseLabel() {
+  const { lang } = useSatLang();
+  return <>{lang === 'zh' ? '关闭' : 'Close'}</>;
+}
+
+export function Modal({ title, onClose, children, width = 560, hideClose = false }: { title: string; onClose: () => void; children: ReactNode; width?: number; hideClose?: boolean }) {
   return (
     <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/30 p-4" onClick={onClose}>
-      <div className="max-h-[85vh] overflow-y-auto rounded-lg bg-white p-6 shadow-2xl" style={{ width: `min(${width}px, 94vw)` }} onClick={(e) => e.stopPropagation()}>
+      <div className="max-h-[85vh] overflow-y-auto rounded-lg p-6 shadow-2xl" style={{ width: `min(${width}px, 94vw)`, background: C.panel }} onClick={(e) => e.stopPropagation()}>
         <div className="mb-3 flex items-start justify-between">
           <h2 className="text-[18px] font-bold" style={{ color: C.ink }}>{title}</h2>
-          <button type="button" onClick={onClose} className="rounded p-1 text-[20px] leading-none hover:bg-[#f1f2f5]" style={{ color: C.muted }} aria-label="Close">×</button>
+          <button type="button" onClick={onClose} className="sat-hover rounded p-1 text-[20px] leading-none" style={{ color: C.muted }} aria-label="Close">×</button>
         </div>
         <div className="text-[14px] leading-relaxed" style={{ color: C.ink }}>{children}</div>
-        <div className="mt-5 flex justify-end">
-          <button type="button" onClick={onClose} className="rounded-full px-6 py-2 text-[14px] font-bold text-white" style={{ background: C.blue }}>Close</button>
-        </div>
+        {hideClose ? null : (
+          <div className="mt-5 flex justify-end">
+            <button type="button" onClick={onClose} className="rounded-full px-6 py-2 text-[14px] font-bold text-white" style={{ background: C.blue }}><CloseLabel /></button>
+          </div>
+        )}
       </div>
     </div>
   );

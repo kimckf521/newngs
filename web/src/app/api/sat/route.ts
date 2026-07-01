@@ -13,6 +13,8 @@ import {
   deleteFormById,
   getAttemptById,
   upsertAttempt,
+  getProgress,
+  upsertProgress,
 } from '@/lib/sat/serverStore';
 import type { SatQuestion, SatForm, SatAttempt, SatChoice } from '@/lib/sat/types';
 
@@ -109,6 +111,18 @@ export async function GET(req: NextRequest) {
     }
   }
 
+  // ---- progress: per-user learning state (keyed by client uid, like /api/profile) ----
+  if (resource === 'progress') {
+    const uid = p.get('uid') || '';
+    if (!dbConfigured()) return NextResponse.json({ ok: true, data: null });
+    if (!uid) return badReq;
+    try {
+      return NextResponse.json({ ok: true, data: await getProgress(uid) });
+    } catch {
+      return unavailable();
+    }
+  }
+
   // ---- public reads (published) ----
   if (scope === 'published') {
     if (!dbConfigured()) return unconfiguredRead;
@@ -163,6 +177,19 @@ export async function POST(req: NextRequest) {
     if (!attempt) return badReq;
     try {
       return NextResponse.json({ ok: true, attempt: await upsertAttempt(attempt) });
+    } catch {
+      return unavailable();
+    }
+  }
+
+  // Per-user progress — keyed by the client uid (same trust model as /api/profile).
+  if (resource === 'progress') {
+    const b = body as { uid?: unknown; data?: unknown } | null;
+    const uid = String(b?.uid ?? '');
+    if (!uid || !b?.data || typeof b.data !== 'object') return badReq;
+    try {
+      await upsertProgress(uid, b.data);
+      return NextResponse.json({ ok: true });
     } catch {
       return unavailable();
     }

@@ -7,13 +7,14 @@ import { gradeSpr } from '@/lib/sat/scoring';
 import {
   C, SAT_FONT, TopBar, BottomNav, NavigatorPopup, ReviewPage, ToolButton, Icon, Modal, DIRECTIONS, range,
 } from './shared';
+import { useSatTheme, useSatLang, COMMON } from './i18n';
 import { RwModule, type Highlight } from './RwModule';
 import { MathModule } from './MathModule';
 import { DesmosCalc } from './DesmosCalc';
 import { ReferenceSheet } from './ReferenceSheet';
 
 export function ModuleRunner({
-  module, questions, sectionLabel, studentName, submitLabel, onSubmit,
+  module, questions, sectionLabel, studentName, submitLabel, onSubmit, onExit,
 }: {
   module: SatModule;
   questions: SatQuestion[];
@@ -21,7 +22,11 @@ export function ModuleRunner({
   studentName: string;
   submitLabel: string;
   onSubmit: (result: SatModuleResult) => void;
+  onExit?: () => void;
 }) {
+  const { dark } = useSatTheme();
+  const { lang } = useSatLang();
+  const t = COMMON[lang];
   const total = questions.length;
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -39,6 +44,7 @@ export function ModuleRunner({
   const [refOpen, setRefOpen] = useState(false);
   const [timerHidden, setTimerHidden] = useState(false);
   const [warn5, setWarn5] = useState(false);
+  const [menu, setMenu] = useState<null | 'help' | 'shortcuts' | 'break' | 'exit'>(null);
 
   // per-module countdown (component is keyed per module in SatMock → resets cleanly)
   const startedAt = useMemo(() => Date.now(), []);
@@ -117,25 +123,25 @@ export function ModuleRunner({
   }
 
   const moreItems = [
-    { label: 'Directions', onClick: () => setDirectionsOpen(true) },
-    { label: 'Help', onClick: () => {} },
-    { label: 'Keyboard Shortcuts', onClick: () => {} },
-    { label: 'Unscheduled Break', onClick: () => {} },
-    { label: 'Save and Exit', onClick: () => {} },
+    { label: lang === 'zh' ? '说明' : 'Directions', onClick: () => setDirectionsOpen(true) },
+    { label: lang === 'zh' ? '帮助' : 'Help', onClick: () => setMenu('help') },
+    { label: lang === 'zh' ? '键盘快捷键' : 'Keyboard Shortcuts', onClick: () => setMenu('shortcuts') },
+    { label: lang === 'zh' ? '非计划休息' : 'Unscheduled Break', onClick: () => setMenu('break') },
+    { label: lang === 'zh' ? '保存并退出' : 'Save and Exit', onClick: () => setMenu('exit') },
   ];
 
   const rightTools =
     section === 'math' ? (
       <>
-        <ToolButton icon={<Icon.calc />} label="Calculator" active={calcOpen} onClick={() => setCalcOpen((v) => !v)} />
-        <ToolButton icon={<Icon.ref />} label="Reference" active={refOpen} onClick={() => setRefOpen((v) => !v)} />
+        <ToolButton icon={<Icon.calc />} label={lang === 'zh' ? '计算器' : 'Calculator'} active={calcOpen} onClick={() => setCalcOpen((v) => !v)} />
+        <ToolButton icon={<Icon.ref />} label={lang === 'zh' ? '公式表' : 'Reference'} active={refOpen} onClick={() => setRefOpen((v) => !v)} />
       </>
     ) : (
-      <ToolButton icon={<Icon.pencil />} label="Annotate" active={annotateOn} onClick={() => setAnnotateOn((v) => !v)} />
+      <ToolButton icon={<Icon.pencil />} label={lang === 'zh' ? '批注' : 'Annotate'} active={annotateOn} onClick={() => setAnnotateOn((v) => !v)} />
     );
 
   return (
-    <div className="sat-app fixed inset-0 z-[60] flex flex-col" style={{ background: '#fff', color: C.ink, fontFamily: SAT_FONT }}>
+    <div className={`sat-app fixed inset-0 z-[60] flex flex-col ${dark ? 'sat-dark' : ''}`} style={{ background: C.bg, color: C.ink, fontFamily: SAT_FONT }}>
       <TopBar
         sectionLabel={sectionLabel}
         secs={secs}
@@ -147,9 +153,9 @@ export function ModuleRunner({
       />
 
       {warn5 ? (
-        <div className="absolute left-1/2 top-[68px] z-[77] -translate-x-1/2 rounded-md border bg-white px-4 py-2 text-[13px] shadow-lg" style={{ borderColor: C.border, color: C.ink }}>
-          5 minutes remaining in this module.{' '}
-          <button type="button" onClick={() => setWarn5(false)} className="font-semibold" style={{ color: C.blue }}>Dismiss</button>
+        <div className="absolute left-1/2 top-[68px] z-[77] -translate-x-1/2 rounded-md border px-4 py-2 text-[13px] shadow-lg" style={{ background: C.panel, borderColor: C.border, color: C.ink }}>
+          {lang === 'zh' ? '本模块还剩 5 分钟。' : '5 minutes remaining in this module.'}{' '}
+          <button type="button" onClick={() => setWarn5(false)} className="font-semibold" style={{ color: C.blue }}>{lang === 'zh' ? '知道了' : 'Dismiss'}</button>
         </div>
       ) : null}
 
@@ -205,7 +211,7 @@ export function ModuleRunner({
         onBack={goBack}
         onNext={goNext}
         backDisabled={!reviewOpen && index === 0}
-        nextLabel={reviewOpen ? submitLabel : 'Next'}
+        nextLabel={reviewOpen ? submitLabel : t.next}
       />
 
       {navOpen ? (
@@ -222,8 +228,88 @@ export function ModuleRunner({
       ) : null}
 
       {directionsOpen ? (
-        <Modal title="Directions" onClose={() => setDirectionsOpen(false)} width={640}>
+        <Modal title={t.directions} onClose={() => setDirectionsOpen(false)} width={640}>
           <p className="whitespace-pre-wrap">{DIRECTIONS[section]}</p>
+        </Modal>
+      ) : null}
+
+      {menu === 'help' ? (
+        <Modal title={t.help} onClose={() => setMenu(null)} width={560}>
+          <div className="space-y-2">
+            {lang === 'zh' ? (
+              <>
+                <p><b>导航</b> — 使用底部的<b>返回</b> / <b>下一题</b>,或打开<b>第 X / Y 题</b>跳转到任意题目并进入复查页。</p>
+                <p><b>标记复查</b> — 标记一道题以便稍后回看;被标记的题目会在导航器中显示标记。</p>
+                <p><b>划掉选项</b> — 打开 <b>ABC</b> 开关,然后划掉你已排除的选项。</p>
+                {section === 'reading_writing'
+                  ? <p><b>批注</b> — 在文章中选中文字即可高亮或添加下划线。</p>
+                  : <p><b>计算器与公式表</b> — 从顶栏打开内置的 Desmos 计算器和公式参考表。</p>}
+                <p><b>计时器</b> — 在顶部隐藏/显示倒计时;剩余 5 分钟时会自动显示。</p>
+              </>
+            ) : (
+              <>
+                <p><b>Navigating</b> — Use <b>Back</b> / <b>Next</b> at the bottom, or open <b>Question X of Y</b> to jump to any question and reach the review page.</p>
+                <p><b>Mark for Review</b> — Flag a question to revisit; flagged questions show a marker in the navigator.</p>
+                <p><b>Cross out answers</b> — Turn on the <b>ABC</b> toggle, then cross out choices you&apos;ve ruled out.</p>
+                {section === 'reading_writing'
+                  ? <p><b>Annotate</b> — Select text in the passage to highlight it or underline it.</p>
+                  : <p><b>Calculator &amp; Reference</b> — Open the built-in Desmos calculator and the formula reference sheet from the top bar.</p>}
+                <p><b>Timer</b> — Hide/show the countdown at the top; it reveals automatically with 5 minutes left.</p>
+              </>
+            )}
+          </div>
+        </Modal>
+      ) : null}
+
+      {menu === 'shortcuts' ? (
+        <Modal title={lang === 'zh' ? '键盘快捷键' : 'Keyboard Shortcuts'} onClose={() => setMenu(null)} width={480}>
+          <table className="w-full text-[14px]">
+            <tbody>
+              {(lang === 'zh'
+                ? [
+                    ['下一题', 'Ctrl + Alt + X'],
+                    ['上一题', 'Ctrl + Alt + B'],
+                    ['标记复查', 'Ctrl + Alt + V'],
+                    ['打开 / 关闭导航器', 'Ctrl + Alt + G'],
+                  ]
+                : [
+                    ['Next question', 'Ctrl + Alt + X'],
+                    ['Previous question', 'Ctrl + Alt + B'],
+                    ['Mark for review', 'Ctrl + Alt + V'],
+                    ['Open / close navigator', 'Ctrl + Alt + G'],
+                  ]
+              ).map(([k, v]) => (
+                <tr key={k} className="border-b last:border-0" style={{ borderColor: C.hairline }}>
+                  <td className="py-1.5" style={{ color: C.ink }}>{k}</td>
+                  <td className="py-1.5 text-right font-semibold tabular-nums" style={{ color: C.blue }}>{v}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Modal>
+      ) : null}
+
+      {menu === 'break' ? (
+        <Modal title={lang === 'zh' ? '非计划休息' : 'Unscheduled Break'} onClose={() => setMenu(null)} width={520}>
+          {lang === 'zh'
+            ? <p>你可以暂时离开,但在真实 SAT 考试中,非计划休息期间<b>模块计时会继续走</b> —— 这段时间不会补回。关闭此窗口继续答题,或使用<b>保存并退出</b>离开考试。</p>
+            : <p>You can step away, but on the real SAT the <b>module timer keeps running</b> during an unscheduled break — you don&apos;t get the time back. Close this to keep working, or use <b>Save and Exit</b> to leave the test.</p>}
+        </Modal>
+      ) : null}
+
+      {menu === 'exit' ? (
+        <Modal title={lang === 'zh' ? '保存并退出' : 'Save and Exit'} onClose={() => setMenu(null)} width={480} hideClose>
+          {lang === 'zh'
+            ? <p>确定要退出吗?这是一次练习测试,因此本模块的进度<b>不会被保存</b>。</p>
+            : <p>Are you sure you want to exit? This is a practice test, so your progress in this module <b>won&apos;t be saved</b>.</p>}
+          <div className="mt-5 flex justify-end gap-3">
+            <button type="button" onClick={() => setMenu(null)} className="rounded-full px-5 py-2 text-[14px] font-bold" style={{ background: C.tint, color: C.blue }}>
+              {lang === 'zh' ? '继续答题' : 'Keep Testing'}
+            </button>
+            <button type="button" onClick={() => { setMenu(null); (onExit ?? (() => {}))(); }} className="rounded-full px-5 py-2 text-[14px] font-bold text-white" style={{ background: C.flag }}>
+              {lang === 'zh' ? '保存并退出' : 'Save and Exit'}
+            </button>
+          </div>
         </Modal>
       ) : null}
 

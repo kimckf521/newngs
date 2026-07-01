@@ -112,3 +112,22 @@ export async function upsertAttempt(input: SatAttempt): Promise<SatAttempt> {
   );
   return attempt;
 }
+
+/* ------------------------------------------------------------ progress
+ * Per-student cross-device learning state (mistakes / log / vocab), keyed by
+ * auth uid. The full blob is stored opaque in `data`. */
+
+export async function getProgress(uid: string): Promise<unknown | null> {
+  const rows = await query<{ data: unknown }>('SELECT data FROM sat_progress WHERE uid = $1', [uid]);
+  return rows[0]?.data ?? null;
+}
+
+export async function upsertProgress(uid: string, data: unknown): Promise<void> {
+  await query(
+    `INSERT INTO sat_progress (uid, data, updated_at)
+     VALUES ($1, $2::jsonb, now())
+     ON CONFLICT (uid) DO UPDATE
+       SET data = EXCLUDED.data, updated_at = now()`,
+    [uid, JSON.stringify(data)],
+  );
+}

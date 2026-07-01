@@ -16,6 +16,16 @@ import { VocabBook } from './VocabBook';
 
 type Mode = 'hub' | 'mock' | 'setup' | 'practice' | 'notebook' | 'dashboard' | 'vocab';
 
+/* NGS brand signature — the magenta→violet→cyan "N"-mark gradient, honoured as a
+ * restrained accent on the practice hub so it reads as part of NextGen Scholars.
+ * (The exam runner stays a faithful white Bluebook and never uses these.) */
+const NGS = {
+  magenta: '#ec1c8b',
+  violet: '#8b2fd6',
+  cyan: '#16c8e6',
+  grad: 'linear-gradient(115deg, #ec1c8b 0%, #8b2fd6 50%, #16c8e6 100%)',
+} as const;
+
 /** The /member/sat hub — one home for the full mock, skill-drill practice, and
  *  the 错题本. Holds the published question pool and routes between modes. */
 export function SatApp({ formId }: { formId?: string }) {
@@ -75,35 +85,43 @@ export function SatApp({ formId }: { formId?: string }) {
 
   return (
     <div className={`sat-app fixed inset-0 z-[60] overflow-y-auto ${dark ? 'sat-dark' : ''}`} style={{ background: C.bg, color: C.ink, fontFamily: SAT_FONT }}>
-      {/* ambient premium backdrop */}
+      {/* ambient premium backdrop — NGS brand aurora (magenta → violet → cyan) */}
       <div aria-hidden className="pointer-events-none absolute inset-0" style={{ background:
-        'radial-gradient(60rem 32rem at 12% -8%, color-mix(in srgb, var(--sat-blue) 16%, transparent), transparent 60%),' +
-        'radial-gradient(48rem 30rem at 108% 6%, color-mix(in srgb, #8b5cf6 15%, transparent), transparent 55%)' }} />
+        `radial-gradient(56rem 30rem at 8% -10%, color-mix(in srgb, ${NGS.magenta} ${dark ? 22 : 14}%, transparent), transparent 60%),` +
+        `radial-gradient(52rem 32rem at 104% 2%, color-mix(in srgb, ${NGS.cyan} ${dark ? 20 : 13}%, transparent), transparent 58%),` +
+        `radial-gradient(40rem 28rem at 60% 118%, color-mix(in srgb, ${NGS.violet} ${dark ? 16 : 9}%, transparent), transparent 60%)` }} />
 
       <div className="relative mx-auto w-[min(1040px,94vw)] px-1 py-9">
         {/* header */}
         <header className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
-            <span className="grid h-9 w-9 place-items-center rounded-xl text-white shadow-sm" style={{ background: 'linear-gradient(135deg, var(--sat-blue), #7c3aed)' }}>
+            <span className="grid h-9 w-9 place-items-center rounded-xl text-white shadow-[0_6px_18px_-6px_rgba(236,28,139,0.6)]" style={{ background: NGS.grad }}>
               <HIcon.logo />
             </span>
-            <div className="text-[12px] font-bold uppercase tracking-[0.16em]" style={{ color: C.muted }}>Digital SAT<span style={{ color: C.blue }}> · NextGen Scholars</span></div>
+            <div className="inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.18em]" style={{ color: C.muted }}>
+              <span aria-hidden className="h-1.5 w-1.5 rounded-full" style={{ background: NGS.grad }} />
+              Digital SAT<span className="font-semibold" style={{ color: C.ink }}>· NextGen Scholars</span>
+            </div>
           </div>
           <div className="flex items-center gap-2"><SyncBadge state={sync} /><ThemeLangToggle /></div>
         </header>
 
-        <h1 className="mt-6 text-[34px] font-extrabold leading-[1.05] tracking-[-0.02em] sm:text-[42px]" style={{ color: C.blueDeep }}>
-          {zh ? 'SAT 练习中心' : 'SAT Practice Center'}
+        <h1 className="mt-6 text-[34px] font-extrabold leading-[1.05] tracking-[-0.02em] sm:text-[42px]" style={{ color: C.ink }}>
+          {zh ? (
+            <>SAT <span style={{ backgroundImage: NGS.grad, WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>练习中心</span></>
+          ) : (
+            <>SAT <span style={{ backgroundImage: NGS.grad, WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Practice Center</span></>
+          )}
         </h1>
         <p className="mt-2.5 max-w-xl text-[15px] leading-relaxed" style={{ color: C.muted }}>
           {zh ? '一站式备考：完整自适应模考、按考点无限刷题、错题本与数据看板。' : 'Your prep home — a faithful adaptive mock, unlimited skill drills, a mistake notebook, and a progress dashboard.'}
         </p>
 
         {/* live snapshot */}
-        <section className="mt-7 overflow-hidden rounded-2xl border shadow-[0_24px_60px_-32px_rgba(50,77,199,0.45)]" style={{ borderColor: C.border, background: C.panel }}>
+        <section className="mt-7 overflow-hidden rounded-2xl border shadow-[0_24px_60px_-32px_rgba(139,47,214,0.4)]" style={{ borderColor: C.border, background: C.panel }}>
           <div className="grid gap-px sm:grid-cols-[1.15fr_2fr]" style={{ background: C.hairline }}>
             {/* predicted score */}
-            <div className="flex flex-col justify-center px-6 py-5" style={{ background: 'linear-gradient(135deg, var(--sat-blue), #6d5efc 60%, #8b5cf6)' }}>
+            <div className="flex flex-col justify-center px-6 py-5" style={{ background: NGS.grad }}>
               <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/75">{zh ? '预测总分' : 'Predicted Score'}</div>
               {pred ? (
                 <>
@@ -131,20 +149,20 @@ export function SatApp({ formId }: { formId?: string }) {
           {focus ? (
             <button type="button" onClick={() => drillSkill(focus.skill)} disabled={!pool}
               className="group flex w-full items-center gap-3 border-t px-6 py-3 text-left transition-colors disabled:opacity-60" style={{ borderColor: C.hairline, background: C.panel2 }}>
-              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full" style={{ background: C.tint, color: C.blue }}><HIcon.spark /></span>
+              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-white" style={{ background: NGS.grad }}><HIcon.spark /></span>
               <div className="min-w-0 flex-1">
                 <span className="text-[13px] font-semibold" style={{ color: C.ink }}>{zh ? '建议重点：' : 'Focus area: '}</span>
                 <span className="text-[13px]" style={{ color: C.muted }}>{skillLabel(focus.skill, lang)} · {focus.pct}% {zh ? '正确率' : 'correct'}</span>
               </div>
-              <span className="flex shrink-0 items-center gap-1 text-[13px] font-bold" style={{ color: C.blue }}>{zh ? '去练' : 'Drill it'} <HIcon.arrow /></span>
+              <span className="flex shrink-0 items-center gap-1 text-[13px] font-bold" style={{ color: NGS.violet }}>{zh ? '去练' : 'Drill it'} <HIcon.arrow /></span>
             </button>
           ) : null}
         </section>
 
         {/* hero: full mock */}
         <button type="button" onClick={() => setMode('mock')} disabled={!pool}
-          className="group relative mt-5 flex w-full items-center gap-5 overflow-hidden rounded-2xl px-7 py-6 text-left text-white shadow-[0_28px_70px_-30px_rgba(80,50,220,0.6)] transition-transform hover:-translate-y-0.5 disabled:opacity-60"
-          style={{ background: 'linear-gradient(120deg, var(--sat-blue-deep) 0%, #4f46e5 45%, #7c3aed 100%)' }}>
+          className="group relative mt-5 flex w-full items-center gap-5 overflow-hidden rounded-2xl px-7 py-6 text-left text-white shadow-[0_28px_70px_-30px_rgba(180,30,140,0.6)] transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+          style={{ background: NGS.grad }}>
           <span aria-hidden className="pointer-events-none absolute -right-8 -top-10 h-44 w-44 rounded-full" style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.16), transparent 70%)' }} />
           <span className="relative grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/25 backdrop-blur"><HIcon.exam /></span>
           <div className="relative min-w-0 flex-1">
@@ -154,24 +172,24 @@ export function SatApp({ formId }: { formId?: string }) {
               <span>2 {zh ? '科目 · 自适应模块' : 'sections · adaptive'}</span><span>Desmos</span><span>{zh ? '400–1600 预估分' : '400–1600 estimated'}</span>
             </div>
           </div>
-          <span className="relative flex shrink-0 items-center gap-1.5 rounded-full bg-white px-5 py-2.5 text-[14px] font-bold" style={{ color: C.blueDeep }}>
+          <span className="relative flex shrink-0 items-center gap-1.5 rounded-full bg-white px-5 py-2.5 text-[14px] font-bold" style={{ color: NGS.violet }}>
             {zh ? '开始' : 'Begin'} <span className="transition-transform group-hover:translate-x-0.5"><HIcon.arrow /></span>
           </span>
         </button>
 
         {/* tool grid */}
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          <ToolCard accent="#0ea5e9" icon={<HIcon.target />} title={zh ? '按考点刷题' : 'Practice by Skill'} sub={zh ? '无限时练习' : 'Untimed drills'}
+          <ToolCard accent={NGS.cyan} icon={<HIcon.target />} title={zh ? '按考点刷题' : 'Practice by Skill'} sub={zh ? '无限时练习' : 'Untimed drills'}
             blurb={zh ? '按部分、领域、考点、难度选题，即时批改 + AI 讲解。' : 'Filter by section, domain, skill & difficulty. Instant feedback + AI explanations.'}
             stat={pool ? (zh ? `${pool.length} 题` : `${pool.length} questions`) : undefined} onClick={() => setMode('setup')} disabled={!pool} />
-          <ToolCard accent={C.flag as string} icon={<HIcon.notebook />} title={zh ? '错题本' : 'Mistake Notebook'} sub={zh ? '自动收集' : 'Auto-collected'}
+          <ToolCard accent={NGS.magenta} icon={<HIcon.notebook />} title={zh ? '错题本' : 'Mistake Notebook'} sub={zh ? '自动收集' : 'Auto-collected'}
             blurb={zh ? '做错的题自动归档，可筛选、重做、间隔复习。' : 'Every miss is filed away for focused review and spaced repetition.'}
             stat={counts.mistakes ? (zh ? `${counts.mistakes} 待复习${counts.due ? ` · ${counts.due} 到期` : ''}` : `${counts.mistakes} to review${counts.due ? ` · ${counts.due} due` : ''}`) : undefined}
             statTone="flag" onClick={() => setMode('notebook')} disabled={!pool} />
-          <ToolCard accent="#16a34a" icon={<HIcon.chart />} title={zh ? '数据看板' : 'Progress Dashboard'} sub={zh ? '进度与预估分' : 'Insights'}
+          <ToolCard accent={NGS.violet} icon={<HIcon.chart />} title={zh ? '数据看板' : 'Progress Dashboard'} sub={zh ? '进度与预估分' : 'Insights'}
             blurb={zh ? '各考点正确率、每题用时、进步曲线与预测分。' : 'Accuracy by skill, time per question, trends, and your predicted score.'}
             stat={accuracy == null ? undefined : (zh ? `${accuracy}% 正确率` : `${accuracy}% accuracy`)} statTone="good" onClick={() => setMode('dashboard')} />
-          <ToolCard accent="#7c3aed" icon={<HIcon.vocab />} title={zh ? '生词本' : 'Vocabulary'} sub={zh ? '自测模式' : 'Self-quiz'}
+          <ToolCard accent="#b02fc9" icon={<HIcon.vocab />} title={zh ? '生词本' : 'Vocabulary'} sub={zh ? '自测模式' : 'Self-quiz'}
             blurb={zh ? '收藏阅读中的生词，附语境，支持隐藏释义自测。' : 'Save words from passages with context; hide meanings to test yourself.'}
             stat={counts.vocab ? (zh ? `${counts.vocab} 词` : `${counts.vocab} words`) : undefined} onClick={() => setMode('vocab')} />
         </div>
@@ -198,7 +216,7 @@ function ToolCard({ icon, title, sub, blurb, stat, statTone, onClick, disabled, 
   const statColor = statTone === 'flag' ? C.flag : statTone === 'good' ? C.good : C.blue;
   return (
     <button type="button" onClick={onClick} disabled={disabled}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border p-5 text-left transition-all duration-200 hover:-translate-y-0.5 disabled:opacity-55 hover:shadow-[0_22px_48px_-24px_rgba(50,77,199,0.45)]"
+      className="group relative flex flex-col overflow-hidden rounded-2xl border p-5 text-left transition-all duration-200 hover:-translate-y-0.5 disabled:opacity-55 hover:shadow-[0_22px_48px_-24px_rgba(139,47,214,0.42)]"
       style={{ borderColor: C.border, background: C.panel }}>
       <span aria-hidden className="absolute inset-x-0 top-0 h-1 opacity-0 transition-opacity group-hover:opacity-100" style={{ background: accent }} />
       <div className="flex items-start justify-between">

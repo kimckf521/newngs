@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import type {
   SatQuestion, SatForm, SatSection, SatDomain, SatSkill, SatDifficulty, SatChoiceKey, SatModule,
 } from '@/lib/sat/types';
@@ -24,6 +25,7 @@ const SAMPLE = originalBundle as unknown as { form: SatForm; questions: SatQuest
  * are College Board category names shared with the student runner. */
 const L = {
   en: {
+    back: 'Back',
     title: 'SAT Question Bank', subtitle: 'Digital SAT items + forms · storage:',
     cloud: 'Cloud (Postgres)', local: 'Local (trial)',
     preview: 'Preview as student', import: 'Import 168 original questions', importing: 'Importing…',
@@ -51,6 +53,7 @@ const L = {
     savedForm: (m: string) => `Saved form (${m}).`,
   },
   zh: {
+    back: '返回',
     title: 'SAT 题库', subtitle: '数字 SAT 题目与试卷 · 存储：',
     cloud: '云端 (Postgres)', local: '本地（试用）',
     preview: '学生视角预览', import: '导入 168 道原创题', importing: '导入中…',
@@ -113,6 +116,7 @@ export function SatAdminPage() {
   const [lang, setLang] = useState<Lang>('en');
   const [dark, setDark] = useState(true);
   const l = L[lang];
+  const router = useRouter();
 
   const changeLang = (nl: Lang) => { setLang(nl); try { localStorage.setItem('sat:lang', nl); } catch {} };
   const toggleTheme = () => setDark((v) => { const n = !v; try { localStorage.setItem('qbank:dark', n ? '1' : '0'); } catch {} return n; });
@@ -150,11 +154,17 @@ export function SatAdminPage() {
     <div className={`dv1 ${dark ? 'dv1-dark' : ''} min-h-screen`} style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
       <header className="sticky top-0 z-10 border-b border-slate-200 bg-[var(--dv1-topbar)] px-6 py-3 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3">
-          <div className="min-w-0">
-            <h1 className="text-[18px] font-bold text-slate-900">{l.title}</h1>
-            <p className="text-[12px] text-slate-500">
-              {l.subtitle} <b className={mode === 'cloud' ? 'text-emerald-600' : 'text-amber-600'}>{mode === 'cloud' ? l.cloud : l.local}</b>
-            </p>
+          <div className="flex min-w-0 items-center gap-2.5">
+            <button type="button" onClick={() => router.back()} aria-label={l.back} className="inline-flex shrink-0 items-center gap-1.5 rounded-lg px-2 py-1.5 text-[13px] font-medium text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M19 12H5M11 18l-6-6 6-6" /></svg>
+              {l.back}
+            </button>
+            <div className="min-w-0">
+              <h1 className="text-[18px] font-bold text-slate-900">{l.title}</h1>
+              <p className="text-[12px] text-slate-500">
+                {l.subtitle} <b className={mode === 'cloud' ? 'text-emerald-600' : 'text-amber-600'}>{mode === 'cloud' ? l.cloud : l.local}</b>
+              </p>
+            </div>
           </div>
           <div className="flex shrink-0 items-center gap-2">
             <a href="/student/sat" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 rounded-lg bg-ngs-gradient px-3 py-1.5 text-[13px] font-semibold text-white shadow-[0_8px_20px_-8px_rgba(236,28,139,0.7)] transition-transform hover:-translate-y-0.5">{l.preview} ↗</a>

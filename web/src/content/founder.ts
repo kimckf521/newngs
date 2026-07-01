@@ -3,13 +3,13 @@ import type { Localized } from '@/i18n/types';
 export interface FounderStoryStrings {
   anchorId: string;
   title: string;
-  founders: { name: string; img: string }[];
+  founders: { name: string; img: string; pos?: string }[];
   paragraphs: string[];
 }
 
 const founders = [
   { name: 'Valerie Zhou', img: '/static/img/founders/HailanReal.jpg' },
-  { name: 'Paul Chiu', img: '/static/img/founders/PaulReal.jpg' },
+  { name: 'Paul Chiu', img: '/static/img/founders/PaulReal.jpg', pos: 'center 20%' },
   { name: 'Scarlett Sampson', img: '/static/img/founders/WeixinReal.png' },
   { name: 'Nancy Wu', img: '/static/img/founders/NancyReal.jpeg' },
 ];

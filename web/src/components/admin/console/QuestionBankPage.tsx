@@ -9,11 +9,18 @@ import { CoverPreview } from './CoverPreview';
 import { QuestionBankPanel } from './QuestionBankPanel';
 
 const L = {
-  zh: { back: '题库', loading: '加载中…', notFound: '找不到这个题库。', books: '本', published: '已发布', draft: '草稿', updated: '更新时间', info: '题库信息', id: '题库 ID', bookCount: '书目数量', descTitle: '简介', modulesTitle: '模块' },
-  en: { back: 'Question bank', loading: 'Loading…', notFound: 'Question bank not found.', books: 'books', published: 'Published', draft: 'Draft', updated: 'Updated', info: 'Bank info', id: 'Bank ID', bookCount: 'Books', descTitle: 'Overview', modulesTitle: 'Modules' },
+  zh: { back: '题库', loading: '加载中…', notFound: '找不到这个题库。', books: '本', published: '已发布', draft: '草稿', updated: '更新时间', info: '题库信息', id: '题库 ID', bookCount: '书目数量', descTitle: '简介', modulesTitle: '模块', previewAsStudent: '学生视角预览' },
+  en: { back: 'Question bank', loading: 'Loading…', notFound: 'Question bank not found.', books: 'books', published: 'Published', draft: 'Draft', updated: 'Updated', info: 'Bank info', id: 'Bank ID', bookCount: 'Books', descTitle: 'Overview', modulesTitle: 'Modules', previewAsStudent: 'Preview as student' },
 } as const;
 
 const BACK = '/admin?section=questionBank';
+
+/** The student-facing practice route for each bank, so admins can jump into the
+ *  student view. (member_en/sat doesn't exist yet → EN falls back to the zh route.) */
+const STUDENT_ROUTE: Record<string, { en: string; zh: string }> = {
+  ielts: { en: '/member_en/ielts', zh: '/member/ielts' },
+  sat: { en: '/member/sat', zh: '/member/sat' },
+};
 const sectionTitle = 'font-grotesk text-sm font-bold text-slate-900';
 
 /** Full-page question-bank detail: the book grid + preview, plus the bank's own
@@ -78,12 +85,26 @@ export function QuestionBankPage({ id, locale }: { id: string; locale: Locale })
           <span className={`ml-1 rounded-full px-2 py-0.5 text-[11px] font-semibold ${bank.published ? 'bg-emerald-500/10 text-emerald-600' : 'bg-slate-100 text-slate-500'}`}>
             {bank.published ? l.published : l.draft}
           </span>
-          <div className="ml-auto flex items-center rounded-lg border border-slate-200 p-0.5">
-            {(['en', 'zh'] as const).map((ll) => (
-              <button key={ll} type="button" onClick={() => changeLang(ll)} className={`rounded-md px-2 py-1 text-xs font-bold transition ${lang === ll ? 'bg-ngs-gradient text-white' : 'text-slate-500 hover:text-slate-900'}`}>
-                {ll === 'en' ? 'EN' : '中'}
-              </button>
-            ))}
+          <div className="ml-auto flex items-center gap-2">
+            {STUDENT_ROUTE[bank.id] && (
+              <a
+                href={STUDENT_ROUTE[bank.id][lang]}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-ngs-gradient px-3 py-1.5 text-xs font-bold text-white shadow-[0_8px_20px_-8px_rgba(236,28,139,0.7)] transition-transform hover:-translate-y-0.5"
+                title={l.previewAsStudent}
+              >
+                {l.previewAsStudent}
+                <Icon name="arrow" className="h-3.5 w-3.5 -rotate-45" />
+              </a>
+            )}
+            <div className="flex items-center rounded-lg border border-slate-200 p-0.5">
+              {(['en', 'zh'] as const).map((ll) => (
+                <button key={ll} type="button" onClick={() => changeLang(ll)} className={`rounded-md px-2 py-1 text-xs font-bold transition ${lang === ll ? 'bg-ngs-gradient text-white' : 'text-slate-500 hover:text-slate-900'}`}>
+                  {ll === 'en' ? 'EN' : '中'}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </header>

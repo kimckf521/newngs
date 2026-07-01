@@ -62,6 +62,13 @@ CREATE TABLE IF NOT EXISTS sat_attempts (
   published  boolean NOT NULL DEFAULT false, -- unused; kept for convention parity
   updated_at timestamptz NOT NULL DEFAULT now()
 );
+-- sat_progress: one student's cross-device learning state (mistakes, answer log,
+-- vocab), keyed by auth uid. Merged with the browser's localStorage on sign-in.
+CREATE TABLE IF NOT EXISTS sat_progress (
+  uid        text PRIMARY KEY,           -- CloudBase auth uid
+  data       jsonb NOT NULL,
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
 
 -- Visual page-builder (Puck) documents, one row per (route, locale).
 CREATE TABLE IF NOT EXISTS pages (

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { C } from './shared';
+import { useSatLang } from './i18n';
 import { useDraggable } from './useDraggable';
 
 /**
@@ -45,6 +46,7 @@ export function DesmosCalc({ onClose }: { onClose: () => void }) {
   const [mode, setMode] = useState<'graphing' | 'scientific'>('graphing');
   const [size, setSize] = useState({ w: 420, h: 520 });
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
+  const { lang } = useSatLang();
   const { pos, onHandleDown } = useDraggable(panelRef, { x: Math.max(20, (typeof window !== 'undefined' ? window.innerWidth : 1000) - 460), y: 80 });
 
   // (Re)build the Desmos instance whenever the mode changes.
@@ -83,26 +85,28 @@ export function DesmosCalc({ onClose }: { onClose: () => void }) {
   }, []);
 
   return (
-    <div ref={panelRef} className="fixed z-[79] flex flex-col overflow-hidden rounded-lg border bg-white shadow-2xl"
-      style={{ left: pos.x, top: pos.y, width: size.w, height: size.h, borderColor: C.border }}>
-      <div onPointerDown={onHandleDown} className="flex cursor-move items-center justify-between px-3 py-2" style={{ background: '#f3f4f7', borderBottom: `1px solid ${C.hairline}` }}>
-        <div className="flex items-center gap-1 rounded-md p-0.5" style={{ background: '#e3e5ea' }}>
+    <div ref={panelRef} className="fixed z-[79] flex flex-col overflow-hidden rounded-lg border shadow-2xl"
+      style={{ left: pos.x, top: pos.y, width: size.w, height: size.h, background: C.panel, borderColor: C.border }}>
+      <div onPointerDown={onHandleDown} className="flex cursor-move items-center justify-between px-3 py-2" style={{ background: C.panel2, borderBottom: `1px solid ${C.hairline}` }}>
+        <div className="flex items-center gap-1 rounded-md p-0.5" style={{ background: C.panel2 }}>
           {(['graphing', 'scientific'] as const).map((m) => (
             <button key={m} type="button" onPointerDown={(e) => e.stopPropagation()} onClick={() => setMode(m)}
-              className="rounded px-2.5 py-1 text-[12px] font-semibold capitalize"
-              style={{ background: mode === m ? '#fff' : 'transparent', color: mode === m ? C.blue : C.muted }}>
-              {m}
+              className="rounded px-2.5 py-1 text-[12px] font-semibold"
+              style={{ background: mode === m ? C.panel : 'transparent', color: mode === m ? C.blue : C.muted }}>
+              {m === 'graphing' ? (lang === 'zh' ? '图形' : 'Graphing') : (lang === 'zh' ? '科学' : 'Scientific')}
             </button>
           ))}
         </div>
-        <button type="button" onClick={onClose} className="rounded p-1 text-[18px] leading-none hover:bg-black/5" style={{ color: C.muted }} aria-label="Close calculator">×</button>
+        <button type="button" onClick={onClose} className="rounded p-1 text-[18px] leading-none hover:bg-black/5" style={{ color: C.muted }} aria-label={lang === 'zh' ? '关闭计算器' : 'Close calculator'}>×</button>
       </div>
 
       <div className="relative min-h-0 flex-1">
         <div ref={mountRef} className="h-full w-full" />
         {status !== 'ready' ? (
-          <div className="absolute inset-0 grid place-items-center text-[13px]" style={{ color: C.muted, background: '#fff' }}>
-            {status === 'loading' ? 'Loading calculator…' : 'Calculator unavailable (offline). The real test embeds Desmos here.'}
+          <div className="absolute inset-0 grid place-items-center text-[13px]" style={{ color: C.muted, background: C.panel }}>
+            {status === 'loading'
+              ? (lang === 'zh' ? '正在加载计算器…' : 'Loading calculator…')
+              : (lang === 'zh' ? '计算器不可用（离线）。真实考试会在此嵌入 Desmos。' : 'Calculator unavailable (offline). The real test embeds Desmos here.')}
           </div>
         ) : null}
       </div>

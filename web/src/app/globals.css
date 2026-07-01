@@ -99,6 +99,14 @@ html.ngs-member::-webkit-scrollbar {
 .dv1-dark .hover\:text-slate-800:hover { color: #e4e8f0; }
 .dv1-dark .hover\:text-slate-900:hover { color: #f1f3f9; }
 
+/* Accent tints used by the SAT question-bank editor (dark-tuned) */
+.dv1-dark .bg-blue-50 { background-color: rgba(37, 99, 235, 0.16); }
+.dv1-dark .bg-emerald-100 { background-color: rgba(16, 185, 129, 0.16); }
+.dv1-dark .text-emerald-700 { color: #34d399; }
+.dv1-dark .border-red-300 { border-color: rgba(248, 113, 113, 0.40); }
+.dv1-dark .text-red-600 { color: #f87171; }
+.dv1-dark .hover\:bg-red-50:hover { background-color: rgba(248, 113, 113, 0.12); }
+
 /* ── design-v2 "Learning Hub": light base + dark theme (.dv2-dark) ──
    Same scoped-override approach. Vibrant fills (bg-emerald-500, amber→orange
    gradient, bg-ngs-gradient) and white-on-color utilities are NOT remapped;
@@ -355,4 +363,60 @@ html.ngs-member::-webkit-scrollbar {
 }
 .ngs-form-status--err {
   color: #dc2626;
+}
+
+/* ── Digital SAT app theme tokens ───────────────────────────────────────────
+   The student SAT surface (/member/sat) reads all its colours from these vars
+   via the `C` token object in components/member/sat/shared.tsx. Light is the
+   default (faithful Bluebook white); `.sat-dark` on the same `.sat-app` root
+   flips to a dark palette. Scoped to `.sat-app` so the dark NGS body theme
+   can't leak in and vice-versa. */
+.sat-app {
+  --sat-bg: #ffffff;
+  --sat-panel: #ffffff;
+  --sat-panel-2: #f7f8fb;
+  --sat-soft: #f4f5f8;
+  --sat-raised: #fbfcfe;
+  --sat-track: #eceef3;
+  --sat-hover: #f1f2f5;
+  --sat-ink: #1e1e1e;
+  --sat-muted: #5b5b5b;
+  --sat-border: #c7c9cf;
+  --sat-hairline: #d6d6d6;
+  --sat-bar-bg: #ffffff;
+  --sat-blue: #324dc7;
+  --sat-blue-deep: #1e1e64;
+  --sat-link: #0a66c2;
+  --sat-tint: #e8eeff;
+  --sat-flag: #cc1f3b;
+  --sat-elim: #8a8d93;
+  --sat-good: #1a8a4a;
+  --sat-good-bg: #e7f6ec;
+  --sat-bad-bg: #fdeaed;
+  --sat-ai-bg: #f5f8ff;
+}
+.sat-app .sat-hover:hover { background-color: var(--sat-hover); }
+.sat-app.sat-dark {
+  --sat-bg: #0f1116;
+  --sat-panel: #191c24;
+  --sat-panel-2: #20242e;
+  --sat-soft: #0f1116;
+  --sat-raised: #20242e;
+  --sat-track: #2a2e3d;
+  --sat-hover: #23272f;
+  --sat-ink: #e8eaf0;
+  --sat-muted: #9aa3b2;
+  --sat-border: #363c4c;
+  --sat-hairline: #2a2e3d;
+  --sat-bar-bg: #14161d;
+  --sat-blue: #7a93ff;
+  --sat-blue-deep: #b9c6ff;
+  --sat-link: #7db3ff;
+  --sat-tint: rgba(122, 147, 255, 0.16);
+  --sat-flag: #ff6b7d;
+  --sat-elim: #7f8696;
+  --sat-good: #35c46a;
+  --sat-good-bg: rgba(53, 196, 106, 0.16);
+  --sat-bad-bg: rgba(255, 107, 125, 0.15);
+  --sat-ai-bg: rgba(122, 147, 255, 0.10);
 }

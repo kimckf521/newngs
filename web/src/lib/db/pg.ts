@@ -108,6 +108,11 @@ CREATE TABLE IF NOT EXISTS sat_attempts (
   published  boolean NOT NULL DEFAULT false,
   updated_at timestamptz NOT NULL DEFAULT now()
 );
+CREATE TABLE IF NOT EXISTS sat_progress (
+  uid        text PRIMARY KEY,
+  data       jsonb NOT NULL,
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
 CREATE TABLE IF NOT EXISTS pages (
   route      text NOT NULL,
   locale     text NOT NULL,

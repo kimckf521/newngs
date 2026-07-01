@@ -4,6 +4,7 @@ import type { SatMathQuestion } from '@/lib/sat/types';
 import { isSpr } from '@/lib/sat/types';
 import { gradeSpr, isValidSprEntry } from '@/lib/sat/scoring';
 import { C, SERIF, ChoiceList, QuestionChip, MarkForReview, EliminatorToggle } from './shared';
+import { useSatLang, COMMON } from './i18n';
 
 export function MathModule({
   question, number, answer, onAnswer, marked, onToggleMark,
@@ -21,6 +22,7 @@ export function MathModule({
   onToggleEliminate: (id: string) => void;
   reveal?: boolean;
 }) {
+  const { lang } = useSatLang();
   const spr = isSpr(question);
 
   return (
@@ -59,8 +61,8 @@ export function MathModule({
         )}
 
         {reveal && question.explanation ? (
-          <div className="mt-5 rounded-lg border p-4 text-[14px] leading-relaxed" style={{ borderColor: C.border, background: '#f7f8fb', color: C.ink }}>
-            <div className="mb-1 font-bold">Explanation</div>
+          <div className="mt-5 rounded-lg border p-4 text-[14px] leading-relaxed" style={{ borderColor: C.border, background: C.panel2, color: C.ink }}>
+            <div className="mb-1 font-bold">{COMMON[lang].explanation}</div>
             {question.explanation}
           </div>
         ) : null}
@@ -77,10 +79,12 @@ function SprInput({
   reveal?: boolean;
   question: SatMathQuestion & { format: 'spr' };
 }) {
+  const { lang } = useSatLang();
+  const t = COMMON[lang];
   const correct = reveal ? gradeSpr(value, question.answer) : false;
   return (
     <div className="mt-6 max-w-sm">
-      <label className="mb-1.5 block text-[13px] font-semibold" style={{ color: C.muted }}>Enter your answer</label>
+      <label className="mb-1.5 block text-[13px] font-semibold" style={{ color: C.muted }}>{t.enterAnswer}</label>
       <input
         type="text"
         inputMode="decimal"
@@ -91,16 +95,18 @@ function SprInput({
           if (isValidSprEntry(v)) onChange(v);
         }}
         className="w-full rounded-md border px-3 py-2.5 text-[18px] tabular-nums outline-none"
-        style={{ borderColor: reveal ? (correct ? '#1a8a4a' : C.flag) : C.border, color: C.ink }}
-        placeholder="e.g. 3.5 or 7/2"
+        style={{ borderColor: reveal ? (correct ? C.good : C.flag) : C.border, color: C.ink }}
+        placeholder={lang === 'zh' ? '例如 3.5 或 7/2' : 'e.g. 3.5 or 7/2'}
       />
       <div className="mt-2 flex items-baseline gap-2 text-[14px]" style={{ color: C.muted }}>
-        <span>Answer Preview:</span>
+        <span>{lang === 'zh' ? '答案预览：' : 'Answer Preview:'}</span>
         <span style={{ color: C.ink }}><PreviewValue raw={value} /></span>
       </div>
       {reveal ? (
-        <div className="mt-2 text-[13px] font-semibold" style={{ color: correct ? '#1a8a4a' : C.flag }}>
-          {correct ? 'Correct' : `Incorrect — accepted: ${question.answer.accepted.join(', ')}`}
+        <div className="mt-2 text-[13px] font-semibold" style={{ color: correct ? C.good : C.flag }}>
+          {correct
+            ? t.correct
+            : `${t.incorrect} — ${t.accepted}: ${question.answer.accepted.join(', ')}`}
         </div>
       ) : null}
     </div>

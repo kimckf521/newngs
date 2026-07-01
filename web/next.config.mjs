@@ -7,6 +7,17 @@ const nextConfig = {
   // for every other (self-hosted) build.
   output: process.env.VERCEL ? undefined : 'standalone',
   reactStrictMode: true,
+  // The student portal moved from /member → /student (role-based: /student,
+  // /parent, /admin). Redirect the old paths so existing links/bookmarks keep
+  // working.
+  async redirects() {
+    return [
+      { source: '/member', destination: '/student', permanent: true },
+      { source: '/member/:path*', destination: '/student/:path*', permanent: true },
+      { source: '/member_en', destination: '/student_en', permanent: true },
+      { source: '/member_en/:path*', destination: '/student_en/:path*', permanent: true },
+    ];
+  },
   images: {
     // Self-hosted Next.js image optimizer (sharp). Required by next/image
     // unless we want to ship raw assets. The standalone output already

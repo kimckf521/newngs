@@ -26,7 +26,7 @@ export const siteLinks = {
     login: '/login_en',
     register: '/register_en',
     forgotPassword: '/forgot-password_en',
-    member: '/member_en',
+    member: '/student_en',
     oauthCallback: '/auth/callback_en',
   },
   zh: {
@@ -50,7 +50,7 @@ export const siteLinks = {
     login: '/login',
     register: '/register',
     forgotPassword: '/forgot-password',
-    member: '/member',
+    member: '/student',
     oauthCallback: '/auth/callback',
   },
 } as const;

@@ -110,9 +110,12 @@ async function syncRole(user: AuthUser | null): Promise<AuthUser | null> {
   return { ...user, role: await getUserRole(user.uid, user.email) };
 }
 
-/** Where to land a user after sign-in: admins go straight to the console. */
+/** Where to land a user after sign-in, by role: admin → /admin console,
+ *  parent → /parent hub, student (default) → the member/student portal. */
 export function postLoginDest(user: AuthUser | null, memberLink: string): string {
-  return user?.role === 'admin' ? '/admin' : memberLink;
+  if (user?.role === 'admin') return '/admin';
+  if (user?.role === 'parent') return '/parent';
+  return memberLink;
 }
 
 /** CloudBase v3 methods resolve to a Supabase-style { data, error } object. */

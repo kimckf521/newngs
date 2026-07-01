@@ -19,8 +19,8 @@ const BACK = '/admin?section=questionBank';
 /** The student-facing practice route for each bank, so admins can jump into the
  *  student view. (member_en/sat doesn't exist yet → EN falls back to the zh route.) */
 const STUDENT_ROUTE: Record<string, { en: string; zh: string }> = {
-  ielts: { en: '/member_en/ielts', zh: '/member/ielts' },
-  sat: { en: '/member/sat', zh: '/member/sat' },
+  ielts: { en: '/student_en/ielts', zh: '/student/ielts' },
+  sat: { en: '/student/sat', zh: '/student/sat' },
 };
 const sectionTitle = 'font-grotesk text-sm font-bold text-slate-900';
 

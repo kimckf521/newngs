@@ -157,7 +157,7 @@ export function SatAdminPage() {
             </p>
           </div>
           <div className="flex shrink-0 items-center gap-2">
-            <a href="/member/sat" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 rounded-lg bg-ngs-gradient px-3 py-1.5 text-[13px] font-semibold text-white shadow-[0_8px_20px_-8px_rgba(236,28,139,0.7)] transition-transform hover:-translate-y-0.5">{l.preview} ↗</a>
+            <a href="/student/sat" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 rounded-lg bg-ngs-gradient px-3 py-1.5 text-[13px] font-semibold text-white shadow-[0_8px_20px_-8px_rgba(236,28,139,0.7)] transition-transform hover:-translate-y-0.5">{l.preview} ↗</a>
             <button type="button" disabled={busy} onClick={seedDemo} className="rounded-lg bg-slate-900 px-3 py-1.5 text-[13px] font-semibold text-white disabled:opacity-50">{busy ? l.importing : l.import}</button>
             <button type="button" onClick={toggleTheme} aria-label="Toggle theme" className="grid h-8 w-8 place-items-center rounded-lg border border-slate-300 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900"><SunMoon dark={dark} /></button>
             <div className="flex items-center rounded-lg border border-slate-300 p-0.5">

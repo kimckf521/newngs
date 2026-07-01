@@ -196,25 +196,26 @@ export async function requestEmailSignup({
       const vErr = readError(verifyRes);
       if (vErr) throw new Error(vErr);
       setSessionRemember(true); // a completed sign-up is a remembered session
-      // Resolve the uid from verifyOtp's OWN result (data.user, or data.session.user
-      // like the OAuth path) — getLoginState().user can serialise blank right after
-      // sign-up, which would skip the role write and lose a parent's pick.
-      const state = await auth.getLoginState();
-      const resolved = toAuthUser(
-        verifyRes?.data?.user ?? verifyRes?.data?.session?.user ?? state?.user,
-        email,
-      );
+      // verifyOtp SUCCEEDED → the CloudBase account now exists and the user is
+      // authenticated. From here we must NEVER throw a code-looking error: it would
+      // both mislabel a real success as "invalid code" AND orphan the just-created
+      // account (which then blocks any re-registration with this email). Resolve the
+      // new uid so we can persist the picked role; getLoginState().user can serialise
+      // blank for a tick right after sign-up, so retry briefly before giving up.
+      let resolved = toAuthUser(verifyRes?.data?.user ?? verifyRes?.data?.session?.user, email);
+      for (let i = 0; !resolved?.uid && i < 5; i++) {
+        await new Promise((r) => setTimeout(r, 150));
+        resolved = toAuthUser((await auth.getLoginState())?.user, email);
+      }
       if (resolved?.uid) {
-        // The row doesn't exist yet at sign-up, so this create persists the picked
-        // role. `required` (last arg) surfaces a DB failure to the form instead of
-        // silently signing the user in as a role that was never stored.
-        await setUserRole(resolved.uid, role, { email: resolved.email, name: resolved.name }, true);
+        // Persist the picked role (student/parent). Best-effort (required=false) —
+        // a DB hiccup must NOT fail an already-successful sign-up; getCurrentUser
+        // backfills the row (resolvable by email) on the next load.
+        await setUserRole(resolved.uid, role, { email: resolved.email, name: resolved.name });
         return { ...resolved, role };
       }
-      // No uid resolved → the role write would be skipped. Don't route on a role
-      // we couldn't persist: a non-default (parent) pick fails loudly so the user
-      // retries rather than being silently signed in as a student.
-      if (role !== DEFAULT_ROLE) throw new Error('signup_role_unpersisted');
+      // uid never resolved (rare): the account exists and the user is signed in, so
+      // return the picked role for this session rather than hard-blocking them.
       return { name: name || nameFromEmail(email), email, role };
     },
   };

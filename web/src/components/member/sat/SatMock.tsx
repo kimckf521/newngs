@@ -5,7 +5,7 @@ import type { SatForm, SatQuestion, SatModule, SatModuleResult } from '@/lib/sat
 import { isMc, isSpr, SECTION_LABEL } from '@/lib/sat/types';
 import { routeModule2, scaleSection, scaleTotal, gradeSpr } from '@/lib/sat/scoring';
 import { loadRunnerForm, saveAttempt } from '@/lib/sat/client';
-import { recordMock } from '@/lib/sat/progress';
+import { recordMock, recordMockScore } from '@/lib/sat/progress';
 import { ModuleRunner } from './ModuleRunner';
 import { ResultsScreen } from './ResultsScreen';
 import { C, SAT_FONT, ThemeLangToggle } from './shared';
@@ -50,15 +50,32 @@ export function SatMock({ formId, onBack }: { formId?: string; onBack?: () => vo
     return m;
   }, [bundle]);
 
+  // The final scaled score, computed once results are in — the single source of
+  // truth for both the results screen and the persisted personal-best.
+  const finalScore = useMemo(() => {
+    if (phase !== 'results' || !bundle) return null;
+    const mods = bundle.form.modules;
+    const res = (mod: SatModule) => mod.questionIds.map((id) => byId.get(id)).filter(Boolean) as SatQuestion[];
+    const rwMax = res(mods.rwM1).length + res(rwRoute === 'upper' ? mods.rwM2Upper : mods.rwM2Lower).length;
+    const mathMax = res(mods.mathM1).length + res(mathRoute === 'upper' ? mods.mathM2Upper : mods.mathM2Lower).length;
+    const rwCorrect = results.filter((r) => r.section === 'reading_writing').reduce((a, r) => a + r.operationalCorrect, 0);
+    const mathCorrect = results.filter((r) => r.section === 'math').reduce((a, r) => a + r.operationalCorrect, 0);
+    const rw = scaleSection('reading_writing', rwCorrect, rwRoute, rwMax);
+    const math = scaleSection('math', mathCorrect, mathRoute, mathMax);
+    return { rw, math, total: scaleTotal(rw, math) };
+  }, [phase, bundle, byId, results, rwRoute, mathRoute]);
+
   // When the mock completes, feed every answered question into the progress
-  // store (missed ones land in the 错题本). Guarded so it records exactly once.
+  // store (missed ones land in the 错题本) and persist the scaled score for the
+  // hub's personal-best. Guarded so it records exactly once.
   const recordedRef = useRef(false);
   useEffect(() => {
-    if (phase === 'results' && !recordedRef.current) {
+    if (phase === 'results' && !recordedRef.current && finalScore) {
       recordedRef.current = true;
       recordMock(results, byId);
+      recordMockScore(finalScore);
     }
-  }, [phase, results, byId]);
+  }, [phase, results, byId, finalScore]);
 
   function resolve(mod: SatModule): SatQuestion[] {
     return mod.questionIds.map((id) => byId.get(id)).filter(Boolean) as SatQuestion[];
@@ -168,14 +185,7 @@ export function SatMock({ formId, onBack }: { formId?: string; onBack?: () => vo
   }
 
   // ---- results ----
-  const rwMods = mods;
-  const rwMax = resolve(rwMods.rwM1).length + resolve(rwRoute === 'upper' ? rwMods.rwM2Upper : rwMods.rwM2Lower).length;
-  const mathMax = resolve(rwMods.mathM1).length + resolve(mathRoute === 'upper' ? rwMods.mathM2Upper : rwMods.mathM2Lower).length;
-  const rwCorrect = results.filter((r) => r.section === 'reading_writing').reduce((a, r) => a + r.operationalCorrect, 0);
-  const mathCorrect = results.filter((r) => r.section === 'math').reduce((a, r) => a + r.operationalCorrect, 0);
-  const rwScore = scaleSection('reading_writing', rwCorrect, rwRoute, rwMax);
-  const mathScore = scaleSection('math', mathCorrect, mathRoute, mathMax);
-  const total = scaleTotal(rwScore, mathScore);
+  const { rw: rwScore, math: mathScore, total } = finalScore ?? { rw: 200, math: 200, total: 400 };
 
   return (
     <ResultsScreen

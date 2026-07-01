@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState, type ReactNode } from 'react';
 import type { SatQuestion, SatSkill } from '@/lib/sat/types';
 import { fetchPublishedQuestions } from '@/lib/sat/client';
-import { quickCounts, getStats, predictedScore, configureSync, getSyncState, type SyncState, type ProgressStats } from '@/lib/sat/progress';
+import { quickCounts, getStats, predictedScore, bestMockScore, configureSync, getSyncState, type SyncState, type ProgressStats, type MockScore } from '@/lib/sat/progress';
 import { getCurrentUser } from '@/lib/auth';
 import { C, SAT_FONT, ThemeLangToggle } from './shared';
 import { useSatTheme, useSatLang, skillLabel } from './i18n';
@@ -37,11 +37,12 @@ export function SatApp({ formId }: { formId?: string }) {
   const [counts, setCounts] = useState({ mistakes: 0, due: 0, vocab: 0 });
   const [stats, setStats] = useState<ProgressStats | null>(null);
   const [pred, setPred] = useState<ReturnType<typeof predictedScore>>(null);
+  const [best, setBest] = useState<MockScore | null>(null);
   const [sync, setSync] = useState<SyncState>('off');
 
   useEffect(() => { void fetchPublishedQuestions().then(setPool); }, []);
   const refreshCounts = useCallback(() => {
-    try { setCounts(quickCounts()); setStats(getStats()); setPred(predictedScore()); } catch { /* ssr */ }
+    try { setCounts(quickCounts()); setStats(getStats()); setPred(predictedScore()); setBest(bestMockScore()); } catch { /* ssr */ }
   }, []);
   useEffect(() => { if (mode === 'hub') refreshCounts(); }, [mode, refreshCounts]);
 
@@ -141,7 +142,7 @@ export function SatApp({ formId }: { formId?: string }) {
             <div className="grid grid-cols-2 sm:grid-cols-4" style={{ background: C.hairline, gap: 1 }}>
               <StatTile icon={<HIcon.flame />} value={stats?.streakDays ?? 0} label={zh ? '连续天数' : 'Day streak'} tone={(stats?.streakDays ?? 0) > 0 ? 'flame' : 'muted'} />
               <StatTile icon={<HIcon.check />} value={answered} label={zh ? '已做题' : 'Answered'} />
-              <StatTile icon={<HIcon.gauge />} value={accuracy == null ? '—' : `${accuracy}%`} label={zh ? '正确率' : 'Accuracy'} tone={accuracy == null ? 'muted' : accuracy >= 70 ? 'good' : accuracy >= 40 ? 'blue' : 'flag'} />
+              <StatTile icon={<HIcon.trophy />} value={best ? best.total : '—'} label={zh ? '最高分' : 'Maximum'} tone={best ? 'flame' : 'muted'} />
               <StatTile icon={<HIcon.flag />} value={counts.mistakes} label={zh ? '待复习' : 'To review'} tone={counts.mistakes ? 'flag' : 'muted'} />
             </div>
           </div>
@@ -254,6 +255,7 @@ const HIcon = {
   flame: () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2c1 3-1 4-2 6-1 1.6-1 3 .5 4 .6-1 .8-1.8 1.5-2.4C13 12 14 13.5 14 15a2 2 0 1 1-4 0c0-.4.1-.7.2-1C8.8 15 8 16.4 8 18a4 4 0 1 0 8 0c0-4-2-6-4-8-.6-.6-.9-1.3 0-2z" /></svg>),
   check: () => (<svg width="16" height="16" viewBox="0 0 24 24" {...sp}><path d="M4 12l5 5L20 6" /></svg>),
   gauge: () => (<svg width="16" height="16" viewBox="0 0 24 24" {...sp}><path d="M4 15a8 8 0 0 1 16 0" /><path d="M12 15l4-3" /></svg>),
+  trophy: () => (<svg width="16" height="16" viewBox="0 0 24 24" {...sp}><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z" /><path d="M7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 0-3 3" /></svg>),
   flag: () => (<svg width="16" height="16" viewBox="0 0 24 24" {...sp}><path d="M6 21V4h11l-2 4 2 4H6" /></svg>),
   spark: () => (<svg width="16" height="16" viewBox="0 0 24 24" {...sp}><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18" /></svg>),
   arrow: () => (<svg width="16" height="16" viewBox="0 0 24 24" {...sp}><path d="M5 12h13M13 6l6 6-6 6" /></svg>),

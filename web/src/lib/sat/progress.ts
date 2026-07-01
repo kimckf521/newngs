@@ -15,6 +15,7 @@ import { fetchProgress, pushProgress } from './client';
 
 const KEY = 'ngs-sat-progress';
 const LOG_CAP = 4000;
+const MOCK_CAP = 200;
 
 export type PracticeMode = 'mock' | 'practice';
 
@@ -51,21 +52,25 @@ export type VocabEntry = {
   questionId?: string;
 };
 
+/** A completed full-mock result — kept so the hub can show a personal best. */
+export type MockScore = { at: number; rw: number; math: number; total: number };
+
 type Store = {
   v: 1;
   mistakes: Record<string, MistakeEntry>;
   log: AnswerEvent[];
   vocab: VocabEntry[];
+  mocks: MockScore[];
 };
 
-const EMPTY: Store = { v: 1, mistakes: {}, log: [], vocab: [] };
+const EMPTY: Store = { v: 1, mistakes: {}, log: [], vocab: [], mocks: [] };
 
 function read(): Store {
   try {
     const raw = typeof window !== 'undefined' ? window.localStorage.getItem(KEY) : null;
     if (!raw) return { ...EMPTY };
     const s = JSON.parse(raw) as Partial<Store>;
-    return { v: 1, mistakes: s.mistakes || {}, log: s.log || [], vocab: s.vocab || [] };
+    return { v: 1, mistakes: s.mistakes || {}, log: s.log || [], vocab: s.vocab || [], mocks: s.mocks || [] };
   } catch {
     return { ...EMPTY };
   }
@@ -138,6 +143,21 @@ export function recordMock(results: SatModuleResult[], byId: Map<string, SatQues
       if (q && ans) recordAnswer(q, ans, 'mock');
     }
   }
+}
+
+/** Persist a completed mock's scaled score so the hub can track a personal best. */
+export function recordMockScore(score: { rw: number; math: number; total: number }): void {
+  const s = read();
+  s.mocks.push({ at: Date.now(), rw: score.rw, math: score.math, total: score.total });
+  if (s.mocks.length > MOCK_CAP) s.mocks = s.mocks.slice(-MOCK_CAP);
+  write(s);
+}
+
+/** The student's highest completed-mock result (out of 1600), or null if none yet. */
+export function bestMockScore(): MockScore | null {
+  const mocks = read().mocks;
+  if (!mocks.length) return null;
+  return mocks.reduce((best, m) => (m.total > best.total ? m : best));
 }
 
 /* --------------------------------------------------------------- mistakes */
@@ -338,11 +358,20 @@ function mergeStores(a: Store, b: Store): Store {
     const cur = vocabByWord.get(key);
     if (!cur || v.addedAt < cur.addedAt) vocabByWord.set(key, v); // keep earliest
   }
+  const mockSeen = new Set<string>();
+  const mocks: MockScore[] = [];
+  for (const m of [...a.mocks, ...b.mocks].sort((x, y) => x.at - y.at)) {
+    const k = String(m.at);
+    if (mockSeen.has(k)) continue; // union deduped by completion timestamp
+    mockSeen.add(k);
+    mocks.push(m);
+  }
   return {
     v: 1,
     mistakes,
     log: log.slice(-LOG_CAP),
     vocab: Array.from(vocabByWord.values()).sort((x, y) => y.addedAt - x.addedAt),
+    mocks: mocks.slice(-MOCK_CAP),
   };
 }
 
@@ -368,8 +397,8 @@ export async function configureSync(uid: string): Promise<void> {
   try { window.dispatchEvent(new Event('ngs-sat-sync')); } catch { /* noop */ }
   try {
     const remote = (await fetchProgress(uid)) as Partial<Store> | null;
-    if (remote && (remote.mistakes || remote.log || remote.vocab)) {
-      const merged = mergeStores(read(), { v: 1, mistakes: remote.mistakes || {}, log: remote.log || [], vocab: remote.vocab || [] });
+    if (remote && (remote.mistakes || remote.log || remote.vocab || remote.mocks)) {
+      const merged = mergeStores(read(), { v: 1, mistakes: remote.mistakes || {}, log: remote.log || [], vocab: remote.vocab || [], mocks: remote.mocks || [] });
       write(merged); // persists locally, notifies UI, and schedules a push
     }
     await flushPush(); // ensure remote has the merged/seeded state

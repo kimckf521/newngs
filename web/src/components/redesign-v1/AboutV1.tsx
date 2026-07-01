@@ -63,6 +63,7 @@ export function AboutV1({ locale }: { locale: Locale }) {
                   alt={founder.name}
                   width={96}
                   height={96}
+                  style={founder.pos ? { objectPosition: founder.pos } : undefined}
                   className="h-24 w-24 rounded-full object-cover ring-1 ring-white/15"
                 />
                 <p className="mt-4 font-grotesk text-white">{founder.name}</p>

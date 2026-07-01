@@ -126,13 +126,13 @@ export async function setMemberRole(uid: string, role: Role): Promise<void> {
   if (role === 'admin') {
     await query(
       `INSERT INTO admins (email)
-       SELECT email FROM app_users WHERE uid = $1 AND email IS NOT NULL AND email <> ''
+       SELECT lower(email) FROM app_users WHERE uid = $1 AND email IS NOT NULL AND email <> ''
        ON CONFLICT (email) DO NOTHING`,
       [uid],
     );
   } else {
     await query(
-      `DELETE FROM admins WHERE email = (SELECT email FROM app_users WHERE uid = $1 AND email IS NOT NULL AND email <> '')`,
+      `DELETE FROM admins WHERE lower(email) = (SELECT lower(email) FROM app_users WHERE uid = $1 AND email IS NOT NULL AND email <> '')`,
       [uid],
     );
   }
@@ -141,6 +141,7 @@ export async function setMemberRole(uid: string, role: Role): Promise<void> {
 /** Add an email directly to the `admins` allowlist — makes that account an admin
  *  by email, even before its first login. Idempotent. */
 export async function addAdminEmail(email: string): Promise<void> {
-  await query('INSERT INTO admins (email) VALUES ($1) ON CONFLICT (email) DO NOTHING', [email.trim()]);
-  await query("UPDATE app_users SET role = 'admin', updated_at = now() WHERE email = $1", [email.trim()]);
+  const norm = email.trim().toLowerCase();
+  await query('INSERT INTO admins (email) VALUES ($1) ON CONFLICT (email) DO NOTHING', [norm]);
+  await query("UPDATE app_users SET role = 'admin', updated_at = now() WHERE lower(email) = $1", [norm]);
 }

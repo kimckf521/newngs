@@ -12,10 +12,12 @@ export const dynamic = 'force-dynamic';
  * - GET ?uid=...&email=... → { ok, role }. An email in the `admins` allowlist
  *   resolves to 'admin' (even before the user's first login); otherwise the
  *   app_users.role (DEFAULT_ROLE when no row). not_configured w/o DB.
- * - POST {uid,email,name,role} → upsert. `role` is limited to the SELF-SELECTABLE
- *   roles (student/parent); admin is assigned only via the secret-gated members
- *   route. On an existing row we refresh email/name but NEVER overwrite the role,
- *   so a login can't silently demote an admin.
+ * - POST {uid,email,name,role} → upsert, CREATE-IF-ABSENT for role: a new row
+ *   gets the picked (student/parent) role, but an existing row's role is NEVER
+ *   changed here (email/name are refreshed). This route is unauthenticated, so
+ *   it must not let a caller re-assign anyone's role — role/admin changes go
+ *   through the secret-gated members route. Emails are normalised (trim+lower)
+ *   and matched case-insensitively so reads/writes/allowlist agree.
  */
 export async function GET(req: NextRequest) {
   if (!dbConfigured()) return NextResponse.json({ ok: false, error: 'not_configured' });
@@ -25,12 +27,23 @@ export async function GET(req: NextRequest) {
   try {
     // The admins allowlist (email-keyed) is the source of truth for admin status.
     if (email) {
-      const a = await queryOne<{ x: number }>('SELECT 1 AS x FROM admins WHERE email = $1', [email]);
+      const a = await queryOne<{ x: number }>('SELECT 1 AS x FROM admins WHERE lower(email) = lower($1)', [email]);
       if (a) return NextResponse.json({ ok: true, role: 'admin' });
     }
-    const row = uid
+    let row = uid
       ? await queryOne<{ role: string }>('SELECT role FROM app_users WHERE uid = $1', [uid])
       : null;
+    // Fallback: a blank/unstable uid from the auth controller would miss the
+    // uid-keyed row and misread a parent as student — so resolve by email too.
+    if (!row && email) {
+      // Case-insensitive, and prefer the most-privileged row if an email somehow
+      // has duplicates, so a stale 'student' row can't mask a 'parent'/'admin'.
+      row = await queryOne<{ role: string }>(
+        `SELECT role FROM app_users WHERE lower(email) = lower($1)
+         ORDER BY (role = 'admin') DESC, (role = 'parent') DESC, updated_at DESC LIMIT 1`,
+        [email],
+      );
+    }
     return NextResponse.json({ ok: true, role: row ? normalizeRole(row.role) : DEFAULT_ROLE });
   } catch {
     return NextResponse.json({ ok: false, error: 'unavailable' }, { status: 503 });
@@ -44,12 +57,20 @@ export async function POST(req: NextRequest) {
     | null;
   const uid = String(body?.uid ?? '');
   if (!uid) return NextResponse.json({ ok: false, error: 'bad_request' }, { status: 400 });
-  const email = body?.email ? String(body.email) : null;
-  const name = body?.name ? String(body.name) : null;
+  // Normalise + bound the free-text fields: email is trimmed/lowered and must
+  // look like an email (else dropped to null so garbage/oversized values can't
+  // corrupt the row); name is trimmed and length-capped.
+  const rawEmail = body?.email ? String(body.email).trim().toLowerCase() : '';
+  const email = rawEmail && rawEmail.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rawEmail) ? rawEmail : null;
+  const name = body?.name ? String(body.name).trim().slice(0, 200) || null : null;
   const role: SelectableRole = (SELECTABLE_ROLES as readonly string[]).includes(String(body?.role))
     ? (body!.role as SelectableRole)
     : 'student';
   try {
+    // CREATE-IF-ABSENT for role: a new row gets the picked role; an existing
+    // row's role is NEVER changed here. This route is unauthenticated, so it must
+    // not let any caller re-assign another user's role — role changes go through
+    // the secret-gated members route. email/name are refreshed on conflict.
     await query(
       `INSERT INTO app_users (uid, email, name, role)
        VALUES ($1, $2, $3, $4)

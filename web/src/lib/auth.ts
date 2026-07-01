@@ -192,14 +192,30 @@ export async function requestEmailSignup({
   if (typeof verifyOtp !== 'function') throw new Error('signup_send_failed');
   return {
     verify: async (code: string) => {
-      const vErr = readError(await verifyOtp({ token: code }));
+      const verifyRes = await verifyOtp({ token: code });
+      const vErr = readError(verifyRes);
       if (vErr) throw new Error(vErr);
       setSessionRemember(true); // a completed sign-up is a remembered session
+      // Resolve the uid from verifyOtp's OWN result (data.user, or data.session.user
+      // like the OAuth path) — getLoginState().user can serialise blank right after
+      // sign-up, which would skip the role write and lose a parent's pick.
       const state = await auth.getLoginState();
-      const user = toAuthUser(state?.user, email) ?? { name: name || nameFromEmail(email), email, role };
-      // Persist the chosen role to the `users` collection (best-effort).
-      if (user.uid) await setUserRole(user.uid, role, { email: user.email, name: user.name });
-      return { ...user, role };
+      const resolved = toAuthUser(
+        verifyRes?.data?.user ?? verifyRes?.data?.session?.user ?? state?.user,
+        email,
+      );
+      if (resolved?.uid) {
+        // The row doesn't exist yet at sign-up, so this create persists the picked
+        // role. `required` (last arg) surfaces a DB failure to the form instead of
+        // silently signing the user in as a role that was never stored.
+        await setUserRole(resolved.uid, role, { email: resolved.email, name: resolved.name }, true);
+        return { ...resolved, role };
+      }
+      // No uid resolved → the role write would be skipped. Don't route on a role
+      // we couldn't persist: a non-default (parent) pick fails loudly so the user
+      // retries rather than being silently signed in as a student.
+      if (role !== DEFAULT_ROLE) throw new Error('signup_role_unpersisted');
+      return { name: name || nameFromEmail(email), email, role };
     },
   };
 }
@@ -287,11 +303,15 @@ export async function requestSmsCode(phone: string): Promise<SmsSession> {
   if (typeof verifyOtp !== 'function') throw new Error('sms_send_failed');
   return {
     verify: async (code: string) => {
-      const vErr = readError(await verifyOtp({ token: code }));
+      const verifyRes = await verifyOtp({ token: code });
+      const vErr = readError(verifyRes);
       if (vErr) throw new Error(vErr);
       setSessionRemember(true); // a completed SMS login is a remembered session
+      // Resolve the uid from verifyOtp's own result first (getLoginState().user can
+      // serialise blank right after mint), so a returning parent/admin isn't read
+      // back as the default student for the session.
       const state = await auth.getLoginState();
-      const user = toAuthUser(state?.user, '');
+      const user = toAuthUser(verifyRes?.data?.user ?? state?.user, '');
       return (await syncRole(user)) ?? { name: 'Member', email: '', role: DEFAULT_ROLE };
     },
   };

@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useState, type FormEvent } from 'react';
 import { siteLinks } from '@/lib/siteLinks';
 import type { Locale } from '@/i18n/types';
-import { requestEmailSignup, loginWithProvider, isRealAuth, type OtpSession } from '@/lib/auth';
+import { requestEmailSignup, loginWithProvider, isRealAuth, postLoginDest, type OtpSession } from '@/lib/auth';
 import { SELECTABLE_ROLES, ROLE_LABELS, type SelectableRole } from '@/lib/roles';
 import { AuthShell } from './AuthShell';
 import { AuthField, PasswordField, authLabelClass } from './fields';
@@ -160,8 +160,8 @@ export function RegisterPageV1({ locale }: { locale: Locale }) {
     setStatus('sending');
     setError('');
     try {
-      await session.verify(code);
-      router.push(links.member);
+      const user = await session.verify(code);
+      router.push(postLoginDest(user, links.member));
     } catch {
       setError(t.codeError);
       setStatus('err');

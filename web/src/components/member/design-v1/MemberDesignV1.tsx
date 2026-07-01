@@ -7,6 +7,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import type { Locale } from '@/i18n/types';
 import { initials } from '@/lib/demoAuth';
 import { getCurrentUser, logout, type AuthUser } from '@/lib/auth';
+import { ROLE_LABELS, type Role } from '@/lib/roles';
 import { siteLinks } from '@/lib/siteLinks';
 import { memberContent } from '../memberContent';
 import { dv1, type SectionKey } from './data';
@@ -35,12 +36,15 @@ export function MemberDesignV1({ locale }: { locale: Locale }) {
   const [ready, setReady] = useState(false);
   const loginHref = siteLinks[locale].login;
 
-  // Gate the portal: redirect to login when signed out, otherwise load the real user.
+  // Gate the portal: redirect to login when signed out, bounce admins to their
+  // own /admin console, otherwise load the real user. (Checking here — before
+  // setReady — keeps admins from flashing the student portal on the way out.)
   useEffect(() => {
     let active = true;
     void getCurrentUser().then((u) => {
       if (!active) return;
       if (!u) { router.replace(loginHref); return; }
+      if (u.role === 'admin') { router.replace('/admin'); return; }
       setUser(u);
       setReady(true);
     });
@@ -63,7 +67,7 @@ export function MemberDesignV1({ locale }: { locale: Locale }) {
     );
   }
 
-  const profile = { name: user.name, email: user.email };
+  const profile = { name: user.name, email: user.email, role: user.role };
   const courses = m.progress.courses;
   const overall = Math.round(courses.reduce((a, c) => a + c.progress, 0) / Math.max(1, courses.length));
 
@@ -110,7 +114,7 @@ export function MemberDesignV1({ locale }: { locale: Locale }) {
             <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-ngs-gradient text-sm font-bold text-white">{initials(profile.name)}</span>
             <div className="min-w-0 flex-1 leading-tight">
               <p className="truncate text-sm font-semibold text-slate-900">{profile.name}</p>
-              <p className="truncate text-[11px] text-slate-400">{t.role}</p>
+              <p className="truncate text-[11px] text-slate-400">{ROLE_LABELS[locale][profile.role]}</p>
             </div>
             <button type="button" onClick={signOut} aria-label={t.logout} className="grid h-8 w-8 place-items-center rounded-lg text-slate-400 transition-colors hover:bg-white hover:text-slate-700">
               <Icon name="logout" className="h-[18px] w-[18px]" />
@@ -159,7 +163,7 @@ export function MemberDesignV1({ locale }: { locale: Locale }) {
           <main className="px-5 py-7 sm:px-8 lg:px-10">
             {section === 'dashboard' && <DashboardSection t={t} m={m} courses={courses} overall={overall} name={profile.name} />}
             {section === 'courses' && <CoursesSection t={t} courses={courses} />}
-            {section === 'account' && <AccountSection t={t} profile={profile} />}
+            {section === 'account' && <AccountSection t={t} profile={profile} locale={locale} />}
             {section === 'forums' && <ForumsSection t={t} />}
           </main>
         </div>
@@ -349,7 +353,7 @@ function ReadField({ label, value }: { label: string; value: ReactNode }) {
   );
 }
 
-function AccountSection({ t, profile }: { t: T; profile: { name: string; email: string } }) {
+function AccountSection({ t, profile, locale }: { t: T; profile: { name: string; email: string; role: Role }; locale: Locale }) {
   const [mobile, setMobile] = useState('');
   const [prefs, setPrefs] = useState(t.prefs.map((p) => p.on));
   const [saved, setSaved] = useState(false);
@@ -368,7 +372,7 @@ function AccountSection({ t, profile }: { t: T; profile: { name: string; email: 
             <button type="button" aria-label="Edit" className="absolute bottom-0 right-0 grid h-8 w-8 place-items-center rounded-lg border border-slate-200 bg-white text-slate-500 shadow-sm hover:text-slate-800"><Icon name="edit" className="h-4 w-4" /></button>
           </div>
           <h2 className="mt-4 font-grotesk text-lg font-bold text-slate-900">{profile.name}</h2>
-          <span className="mt-1 inline-block rounded-full bg-ngs-gradient-soft px-3 py-0.5 text-xs font-semibold text-ngs-violet">{t.role}</span>
+          <span className="mt-1 inline-block rounded-full bg-ngs-gradient-soft px-3 py-0.5 text-xs font-semibold text-ngs-violet">{ROLE_LABELS[locale][profile.role]}</span>
           <div className="mt-5 space-y-2.5 border-t border-slate-100 pt-5 text-left text-sm">
             <p className="flex items-center justify-between gap-3"><span className="text-slate-400">{t.email}</span><span className="truncate font-medium text-slate-700">{profile.email}</span></p>
             <p className="flex items-center justify-between gap-3"><span className="text-slate-400">{t.memberSince}</span><span className="font-medium text-slate-700">{t.memberSinceVal}</span></p>

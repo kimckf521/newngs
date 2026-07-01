@@ -26,6 +26,12 @@ export async function setUserRole(
   uid: string,
   role: Role,
   profile: { email?: string; name?: string } = {},
+  /** When true, a failed write THROWS instead of being swallowed — used at
+   *  registration so the user isn't optimistically routed as a role that never
+   *  persisted (a DB hiccup would otherwise silently demote them on next load).
+   *  Best-effort backfills (login/getCurrentUser) leave it false. The server
+   *  only CREATES the role if absent — it never overwrites an existing role. */
+  required = false,
 ): Promise<void> {
   if (!isCloudBaseConfigured()) {
     // Demo mode (no real auth): persist the role on the local demo user.
@@ -34,12 +40,18 @@ export async function setUserRole(
     return;
   }
   try {
-    await fetch('/api/profile', {
+    const res = await fetch('/api/profile', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ uid, email: profile.email, name: profile.name, role }),
     });
+    const data = (await res.json().catch(() => null)) as { ok?: boolean } | null;
+    if (!res.ok || !data?.ok) {
+      if (required) throw new Error('role_write_failed');
+      console.warn('[userProfile] setUserRole write not ok', res.status);
+    }
   } catch (e) {
+    if (required) throw e;
     console.warn('[userProfile] setUserRole failed — is DATABASE_URL set + reachable?', e);
   }
 }

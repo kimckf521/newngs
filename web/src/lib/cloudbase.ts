@@ -50,7 +50,7 @@ export interface CloudBaseAuth {
   // session — verifyOAuth() only signs in users that already exist.
   signUp(p: { email?: string; password?: string; username?: string; provider_token?: string; [k: string]: unknown }): Promise<{
     data?: {
-      verifyOtp?: (q: { token: string; messageId?: string }) => Promise<{ data?: { user?: CloudBaseUser }; error?: unknown }>;
+      verifyOtp?: (q: { token: string; messageId?: string }) => Promise<{ data?: { user?: CloudBaseUser; session?: { user?: CloudBaseUser } }; error?: unknown }>;
       user?: CloudBaseUser;
       session?: { user?: CloudBaseUser };
     };
@@ -84,7 +84,7 @@ export interface CloudBaseAuth {
   // resolves with a verifyOtp() closure that completes the second step.
   // Phone OTP requires region 'ap-shanghai' (set in init).
   signInWithOtp(p: { phone?: string; email?: string }): Promise<{
-    data?: { verifyOtp?: (q: { token: string }) => Promise<{ error?: unknown }> };
+    data?: { verifyOtp?: (q: { token: string }) => Promise<{ data?: { user?: CloudBaseUser }; error?: unknown }> };
     error?: unknown;
   }>;
   // Escape hatch for other SDK methods.

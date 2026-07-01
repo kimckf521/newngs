@@ -8,10 +8,12 @@ import { loadRunnerForm, saveAttempt } from '@/lib/sat/client';
 import { ModuleRunner } from './ModuleRunner';
 import { ResultsScreen } from './ResultsScreen';
 import { C, SAT_FONT } from './shared';
-import sampleBundle from './data/sampleForm.json';
+import defaultBundle from './data/originalForm.json';
 
 type Bundle = { form: SatForm; questions: SatQuestion[] };
-const SAMPLE = sampleBundle as unknown as Bundle;
+// Default content = the NGS-authored original practice test (originalForm.json,
+// 168 original items). The old sampleForm.json remains only as a tiny fixture.
+const SAMPLE = defaultBundle as unknown as Bundle;
 
 type Phase = 'home' | 'rw1' | 'rw2' | 'break' | 'math1' | 'math2' | 'results';
 

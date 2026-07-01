@@ -4,18 +4,60 @@ import { normalizeRole, type Role } from '@/lib/roles';
 
 /**
  * Server-side member management over PostgreSQL (see lib/db/pg.ts).
- * Members live in `app_users` (one row per auth uid); the page-builder
- * allowlist lives in `admins`. When DATABASE_URL is unset, membersConfigured()
- * is false and the API returns a "setup needed" state (the console then shows a
- * demo/local view) — so nothing breaks without a backend.
+ *
+ * The members list is the AUTH DIRECTORY itself — CloudBase's new-gen auth is a
+ * Supabase-style stack in the SAME database, so the source of truth is the
+ * `auth.users` table (every signed-up user, incl. WeChat logins that have no
+ * email/phone). We LEFT JOIN our own role data: `app_users.role` (per uid) and
+ * the `admins` email allowlist. This way the admin Members tab matches the
+ * CloudBase 身份认证 console exactly, instead of only showing users who happened
+ * to trigger a login-sync into `app_users`.
+ *
+ * If the `auth` schema isn't readable (a different DB account / env), we fall
+ * back to listing `app_users` only.
  */
 export function membersConfigured(): boolean {
   return dbConfigured();
 }
 
-export type MemberRow = { uid: string; email: string; name: string; role: Role };
+export type LoginVia = 'wechat' | 'email' | 'phone' | 'account' | 'other';
+export type MemberRow = {
+  uid: string;
+  email: string;
+  name: string;
+  phone: string;
+  role: Role;
+  loginVia: LoginVia;
+  lastLogin: string;
+};
 
-export async function listMembers(): Promise<MemberRow[]> {
+/** CloudBase stores a placeholder like "+86 -" for non-phone accounts. */
+function realPhone(p: string | null): string {
+  const t = (p || '').trim();
+  return /\d{4,}/.test(t) ? t : '';
+}
+
+type AuthRow = {
+  uid: string;
+  name: string | null;
+  email: string | null;
+  phone: string | null;
+  providers: Array<{ id?: string }> | null;
+  stored_role: string | null;
+  in_allowlist: boolean;
+  last_login: string | null;
+};
+
+function deriveLoginVia(u: AuthRow): LoginVia {
+  const ids = (Array.isArray(u.providers) ? u.providers : []).map((p) => String(p?.id || ''));
+  if (ids.some((id) => id.startsWith('wx'))) return 'wechat'; // wx:<openid>
+  if (u.email) return 'email';
+  if (realPhone(u.phone)) return 'phone';
+  if (ids.some((id) => id.startsWith('weda'))) return 'account'; // built-in console account
+  return 'other';
+}
+
+async function listFromAppUsers(): Promise<MemberRow[]> {
   const rows = await query<{ uid: string; email: string | null; name: string | null; role: string }>(
     'SELECT uid, email, name, role FROM app_users ORDER BY updated_at DESC LIMIT 500',
   );
@@ -23,18 +65,65 @@ export async function listMembers(): Promise<MemberRow[]> {
     uid: u.uid,
     email: u.email || '',
     name: u.name || '',
+    phone: '',
     role: normalizeRole(u.role),
+    loginVia: u.email ? 'email' : 'other',
+    lastLogin: '',
   }));
 }
 
-/** Set a member's role, keeping the `admins` allowlist (email-keyed, the source
- *  of truth for admin status) in sync: promoting adds the email, demoting
- *  removes it — so a demote actually revokes admin/editor access. */
+export async function listMembers(): Promise<MemberRow[]> {
+  let rows: AuthRow[];
+  try {
+    rows = await query<AuthRow>(
+      `SELECT u.id::text AS uid, u.name, u.email, u.phone_number AS phone, u.providers,
+              au.role AS stored_role,
+              (a.email IS NOT NULL) AS in_allowlist,
+              to_char(u.last_login, 'YYYY-MM-DD HH24:MI') AS last_login
+       FROM auth.users u
+       LEFT JOIN app_users au ON au.uid = u.id::text
+       LEFT JOIN admins a ON a.email IS NOT NULL AND lower(a.email) = lower(u.email)
+       ORDER BY u.last_login DESC NULLS LAST
+       LIMIT 500`,
+    );
+  } catch {
+    return listFromAppUsers(); // auth schema unavailable → our table only
+  }
+  return rows.map((u) => ({
+    uid: u.uid,
+    email: u.email || '',
+    name: u.name || '',
+    phone: realPhone(u.phone),
+    // The email allowlist wins; otherwise the per-uid stored role (default student).
+    role: u.in_allowlist ? 'admin' : normalizeRole(u.stored_role),
+    loginVia: deriveLoginVia(u),
+    lastLogin: u.last_login || '',
+  }));
+}
+
+/**
+ * Set a member's role. Upserts `app_users` (creating the row from `auth.users`
+ * if the user was never login-synced — e.g. a WeChat user), so the role sticks
+ * for ANY user in the directory. Keeps the `admins` email allowlist in sync for
+ * users that have an email (WeChat users have none — their admin status lives on
+ * `app_users.role`, which the gate also honours).
+ */
 export async function setMemberRole(uid: string, role: Role): Promise<void> {
-  await query('UPDATE app_users SET role = $1, updated_at = now() WHERE uid = $2', [role, uid]);
+  try {
+    await query(
+      `INSERT INTO app_users (uid, email, name, role)
+       SELECT u.id::text, u.email, u.name, $2 FROM auth.users u WHERE u.id::text = $1
+       ON CONFLICT (uid) DO UPDATE SET role = EXCLUDED.role, updated_at = now()`,
+      [uid, role],
+    );
+  } catch {
+    await query(
+      `INSERT INTO app_users (uid, role) VALUES ($1, $2)
+       ON CONFLICT (uid) DO UPDATE SET role = EXCLUDED.role, updated_at = now()`,
+      [uid, role],
+    );
+  }
   if (role === 'admin') {
-    // Copy the member's email into the allowlist in one statement (skips if the
-    // user row has no email, and no-ops if the email is already listed).
     await query(
       `INSERT INTO admins (email)
        SELECT email FROM app_users WHERE uid = $1 AND email IS NOT NULL AND email <> ''
@@ -42,15 +131,16 @@ export async function setMemberRole(uid: string, role: Role): Promise<void> {
       [uid],
     );
   } else {
-    await query('DELETE FROM admins WHERE email = (SELECT email FROM app_users WHERE uid = $1)', [uid]);
+    await query(
+      `DELETE FROM admins WHERE email = (SELECT email FROM app_users WHERE uid = $1 AND email IS NOT NULL AND email <> '')`,
+      [uid],
+    );
   }
 }
 
 /** Add an email directly to the `admins` allowlist — makes that account an admin
- *  by email, even before its first login (app_users is uid-keyed, but admin
- *  status is resolved from this allowlist). Idempotent. */
+ *  by email, even before its first login. Idempotent. */
 export async function addAdminEmail(email: string): Promise<void> {
   await query('INSERT INTO admins (email) VALUES ($1) ON CONFLICT (email) DO NOTHING', [email.trim()]);
-  // If the user has already signed in, reflect it on their row too (cosmetic).
   await query("UPDATE app_users SET role = 'admin', updated_at = now() WHERE email = $1", [email.trim()]);
 }

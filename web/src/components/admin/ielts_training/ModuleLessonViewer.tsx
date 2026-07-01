@@ -286,6 +286,26 @@ function AudioNotice({ lang }: { lang: Lang }) {
 
 /* ── Audio player (admin-attached audio) ──────────────────────────────────── */
 function AudioPlayer({ src, label }: { src: string; label?: string }) {
+  // CloudBase-uploaded audio is stored as a cloud:// fileID; resolve it to a
+  // temporary playable URL (same pattern as VideoFile). Plain http(s) URLs and
+  // app-relative paths pass straight through.
+  const [url, setUrl] = useState(src.startsWith('cloud://') ? '' : src);
+  useEffect(() => {
+    if (!src.startsWith('cloud://')) { setUrl(src); return; }
+    let active = true;
+    void (async () => {
+      const app = await getCloudBaseApp();
+      if (!app) return;
+      try {
+        const r = await app.getTempFileURL({ fileList: [src] });
+        const u = r?.fileList?.[0]?.tempFileURL;
+        if (active && u) setUrl(u);
+      } catch {
+        /* leave unresolved */
+      }
+    })();
+    return () => { active = false; };
+  }, [src]);
   if (!src) return null;
   return (
     <div className="my-3 rounded-xl border border-slate-200 bg-slate-50 p-3 dark:border-white/10 dark:bg-white/5">
@@ -293,8 +313,12 @@ function AudioPlayer({ src, label }: { src: string; label?: string }) {
         <span className="text-base leading-none">🔊</span>
         {label || 'Audio'}
       </div>
-      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-      <audio controls preload="none" src={src} className="w-full" />
+      {url ? (
+        // eslint-disable-next-line jsx-a11y/media-has-caption
+        <audio controls preload="none" src={url} className="w-full" />
+      ) : (
+        <div className="grid h-12 place-items-center text-xs text-slate-400 dark:text-slate-500">…</div>
+      )}
     </div>
   );
 }

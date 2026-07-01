@@ -11,10 +11,11 @@ import {
 import {
   listQuestions, saveQuestion, deleteQuestion, listForms, saveForm, type SaveMode,
 } from '@/lib/sat/client';
-import sampleBundle from '@/components/member/sat/data/sampleForm.json';
+import originalBundle from '@/components/member/sat/data/originalForm.json';
 
 const CHOICE_KEYS: SatChoiceKey[] = ['A', 'B', 'C', 'D'];
-const SAMPLE = sampleBundle as unknown as { form: SatForm; questions: SatQuestion[] };
+// "Import" seeds the cloud DB with the 168 original NGS-authored items + the form.
+const SAMPLE = originalBundle as unknown as { form: SatForm; questions: SatQuestion[] };
 
 const blank = (section: SatSection): SatQuestion => {
   const domain = DOMAINS_BY_SECTION[section][0];
@@ -54,7 +55,7 @@ export function SatAdminPage() {
       for (const q of SAMPLE.questions) await saveQuestion({ ...q, published: true });
       await saveForm({ ...SAMPLE.form, published: true });
       await refresh();
-      flash('Demo content imported.');
+      flash(`Imported ${SAMPLE.questions.length} original questions + 1 form.`);
     } catch (e) {
       flash(`Import failed: ${(e as Error).message}`);
     } finally {
@@ -74,7 +75,7 @@ export function SatAdminPage() {
           </div>
           <div className="flex items-center gap-2">
             <a href="/member/sat" target="_blank" className="rounded-lg border border-slate-300 px-3 py-1.5 text-[13px] font-semibold hover:bg-slate-50">Open runner ↗</a>
-            <button type="button" disabled={busy} onClick={seedDemo} className="rounded-lg bg-slate-900 px-3 py-1.5 text-[13px] font-semibold text-white disabled:opacity-50">Import demo content</button>
+            <button type="button" disabled={busy} onClick={seedDemo} className="rounded-lg bg-slate-900 px-3 py-1.5 text-[13px] font-semibold text-white disabled:opacity-50">{busy ? 'Importing…' : 'Import 168 original questions'}</button>
           </div>
         </div>
       </header>

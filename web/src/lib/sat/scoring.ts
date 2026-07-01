@@ -28,31 +28,54 @@ export function routeModule2(module1Correct: number, module1Total: number): 'upp
 
 /* --------------------------------------------------------- raw → scaled */
 
-/** Scaled band reachable on each Module-2 route. Upper form reaches the top of
- *  the 200–800 range; the lower form is capped (you cannot earn a top score
- *  from the easier second module). */
-const ROUTE_BAND: Record<'upper' | 'lower', { min: number; max: number }> = {
-  upper: { min: 400, max: 800 },
-  lower: { min: 200, max: 650 },
-};
+/**
+ * Official raw → scaled-section-score conversion, from College Board's published
+ * SAT Practice Test scoring guide (digital). Each entry is the [LOWER, UPPER]
+ * section score (200–800) for that raw score; LOWER ≈ routed to the easier
+ * Module 2, UPPER ≈ routed to the harder Module 2 — which is exactly how the
+ * adaptive design caps/unlocks the top of the range. These are factual
+ * conversion data (source: satsuite.collegeboard.org SAT practice-test scoring).
+ * NOTE: the live exam re-equates per form, so platform scores remain an estimate.
+ */
+const RW_CONV: [number, number][] = [
+  [200, 200], [200, 200], [200, 200], [200, 200], [200, 200], [200, 200], [200, 200], [200, 210],
+  [200, 220], [210, 230], [230, 250], [240, 260], [250, 270], [260, 280], [280, 300], [290, 310],
+  [320, 340], [340, 360], [350, 370], [360, 380], [370, 390], [370, 390], [380, 400], [390, 410],
+  [400, 420], [410, 430], [420, 440], [420, 440], [430, 450], [440, 460], [450, 470], [460, 480],
+  [460, 480], [470, 490], [480, 500], [490, 510], [490, 510], [500, 520], [510, 530], [520, 540],
+  [530, 550], [540, 560], [540, 560], [550, 570], [560, 580], [570, 590], [580, 600], [590, 610],
+  [590, 610], [600, 620], [610, 630], [620, 640], [630, 650], [630, 650], [640, 660], [650, 670],
+  [660, 680], [670, 690], [680, 700], [690, 710], [700, 720], [710, 730], [720, 740], [730, 750],
+  [750, 770], [770, 790], [790, 800],
+]; // index = raw score, 0..66 (full linear RW range)
 
-/** Map a section raw score (operational-correct across both modules) to a
- *  scaled 200–800, clamped into the route's reachable band, rounded to 10.
- *  `maxRaw` defaults to the real per-section operational total, but the runner
- *  passes the actual count for a given form (demo forms are shorter than a real
- *  test) so the curve scales to the questions the student actually answered. */
+const MATH_CONV: [number, number][] = [
+  [200, 200], [200, 200], [200, 200], [200, 200], [200, 200], [200, 200], [200, 200], [200, 220],
+  [200, 230], [220, 250], [250, 280], [280, 310], [290, 320], [300, 330], [310, 340], [320, 350],
+  [330, 360], [330, 360], [340, 370], [350, 380], [360, 390], [370, 400], [370, 400], [380, 410],
+  [390, 420], [400, 430], [420, 450], [430, 460], [440, 470], [460, 490], [470, 500], [480, 510],
+  [500, 530], [510, 540], [520, 550], [530, 560], [550, 580], [560, 590], [570, 600], [580, 610],
+  [590, 620], [600, 630], [620, 650], [630, 660], [650, 680], [670, 700], [690, 720], [710, 740],
+  [730, 760], [740, 770], [750, 780], [760, 790], [770, 800], [780, 800], [790, 800],
+]; // index = raw score, 0..54 (full linear Math range)
+
+/** Map a section raw score (operational-correct across both modules) → scaled
+ *  200–800 via the official conversion table, picking the LOWER or UPPER column
+ *  by the Module-2 route. `maxRaw` defaults to the real per-section operational
+ *  total; the runner passes the actual count for a given form (demo forms are
+ *  shorter), so the student's raw is normalised onto the official curve and a
+ *  perfect section maps to the top of the table (800 on the upper route). */
 export function scaleSection(
   section: SatSection,
   operationalCorrect: number,
   route: 'upper' | 'lower',
   maxRaw: number = SECTION_OPERATIONAL_MAX[section],
 ): number {
-  if (maxRaw <= 0) return ROUTE_BAND[route].min;
-  const raw = Math.max(0, Math.min(operationalCorrect, maxRaw));
-  const band = ROUTE_BAND[route];
-  const linear = 200 + (raw / maxRaw) * 600; // 0→200, max→800
-  const scaled = Math.max(band.min, Math.min(band.max, linear));
-  return Math.round(scaled / 10) * 10; // SAT reports in 10-point steps
+  const table = section === 'reading_writing' ? RW_CONV : MATH_CONV;
+  if (maxRaw <= 0) return table[0][route === 'upper' ? 1 : 0];
+  const frac = Math.max(0, Math.min(operationalCorrect / maxRaw, 1));
+  const idx = Math.round(frac * (table.length - 1)); // normalise onto the official curve
+  return table[idx][route === 'upper' ? 1 : 0];
 }
 
 export function scaleTotal(rwScaled: number, mathScaled: number): number {

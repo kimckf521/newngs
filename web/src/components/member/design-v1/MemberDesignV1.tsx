@@ -2,9 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState, type ReactNode } from 'react';
 import type { Locale } from '@/i18n/types';
 import { initials } from '@/lib/demoAuth';
+import { getCurrentUser, logout, type AuthUser } from '@/lib/auth';
 import { siteLinks } from '@/lib/siteLinks';
 import { memberContent } from '../memberContent';
 import { dv1, type SectionKey } from './data';
@@ -12,8 +14,8 @@ import { Card, Icon, ProgressRing, Bar, GradientButton, SoftButton } from './par
 import { MemberCourseCard } from './MemberCourseCard';
 
 /* ================================================================== *
- * Alternate member portal — modern light "app dashboard".
- * Standalone design showcase at /member/design-v1 (sample student data).
+ * Student portal — modern light "app dashboard" (the default at /student).
+ * Auth-gated with the real logged-in user; course/note data is still sample.
  * ================================================================== */
 
 const NAV_MAIN: { key: SectionKey; icon: string }[] = [
@@ -28,6 +30,22 @@ export function MemberDesignV1({ locale }: { locale: Locale }) {
   const m = memberContent[locale];
   const [section, setSection] = useState<SectionKey>('dashboard');
   const [dark, setDark] = useState(true);
+  const router = useRouter();
+  const [user, setUser] = useState<AuthUser | null>(null);
+  const [ready, setReady] = useState(false);
+  const loginHref = siteLinks[locale].login;
+
+  // Gate the portal: redirect to login when signed out, otherwise load the real user.
+  useEffect(() => {
+    let active = true;
+    void getCurrentUser().then((u) => {
+      if (!active) return;
+      if (!u) { router.replace(loginHref); return; }
+      setUser(u);
+      setReady(true);
+    });
+    return () => { active = false; };
+  }, [router, loginHref]);
 
   // This design ships its own palette (light + .dv1-dark); ignore the site's
   // global v1-light toggle so .text-white on gradient cards stays white here.
@@ -35,7 +53,17 @@ export function MemberDesignV1({ locale }: { locale: Locale }) {
     document.documentElement.classList.remove('v1-light');
   }, []);
 
-  const profile = { name: t.sampleName, email: t.sampleEmail };
+  function signOut() { void logout().then(() => router.push(loginHref)); }
+
+  if (!ready || !user) {
+    return (
+      <div className={`dv1 ${dark ? 'dv1-dark' : ''} grid min-h-screen place-items-center font-sans antialiased`}>
+        <div className="h-9 w-9 animate-spin rounded-full border-2 border-slate-300 border-t-ngs-violet" />
+      </div>
+    );
+  }
+
+  const profile = { name: user.name, email: user.email };
   const courses = m.progress.courses;
   const overall = Math.round(courses.reduce((a, c) => a + c.progress, 0) / Math.max(1, courses.length));
 
@@ -84,9 +112,9 @@ export function MemberDesignV1({ locale }: { locale: Locale }) {
               <p className="truncate text-sm font-semibold text-slate-900">{profile.name}</p>
               <p className="truncate text-[11px] text-slate-400">{t.role}</p>
             </div>
-            <Link href={siteLinks[locale].member} aria-label={t.logout} className="grid h-8 w-8 place-items-center rounded-lg text-slate-400 transition-colors hover:bg-white hover:text-slate-700">
+            <button type="button" onClick={signOut} aria-label={t.logout} className="grid h-8 w-8 place-items-center rounded-lg text-slate-400 transition-colors hover:bg-white hover:text-slate-700">
               <Icon name="logout" className="h-[18px] w-[18px]" />
-            </Link>
+            </button>
           </div>
         </aside>
 

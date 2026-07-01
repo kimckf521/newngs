@@ -257,11 +257,13 @@ export const MODULE_TIME_SEC: Record<SatSection, number> = {
   math: 35 * 60, // 2100
 };
 export const SECTION_BREAK_SEC = 10 * 60; // 600
-/** Operational (scored) questions per section — both modules, excluding the 2
- *  unscored "pretest" items per module. Used as the raw-score denominator. */
+/** Scored questions per section across both modules — the raw-score denominator.
+ *  Modelled as the full digital section (RW 27×2, Math 22×2); matches the
+ *  conversion-table raw ranges (RW 0–54, Math 0–44). We don't distinguish the
+ *  ~2 unscored pretest items/module, so all count. */
 export const SECTION_OPERATIONAL_MAX: Record<SatSection, number> = {
-  reading_writing: 50, // 25 + 25
-  math: 40, // 20 + 20
+  reading_writing: 54, // 27 + 27
+  math: 44, // 22 + 22
 };
 
 export type SatModule = {

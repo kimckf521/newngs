@@ -49,6 +49,8 @@ export function RwModule({
   const splitRef = useRef<HTMLDivElement>(null);
   const passRef = useRef<HTMLDivElement>(null);
   const [popover, setPopover] = useState<{ x: number; y: number; start: number; end: number; existing?: string } | null>(null);
+  const [noteDraft, setNoteDraft] = useState('');
+  const [noteOpen, setNoteOpen] = useState(false);
 
   function onDragDivider(e: React.PointerEvent) {
     (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
@@ -74,20 +76,33 @@ export function RwModule({
     if (end <= start) return;
     const rect = r.getBoundingClientRect();
     const box = splitRef.current?.getBoundingClientRect();
+    setNoteDraft(''); setNoteOpen(false);
     setPopover({ x: rect.left - (box?.left ?? 0) + rect.width / 2, y: rect.top - (box?.top ?? 0) - 8, start, end });
+  }
+
+  // open the editor for an existing highlight (loads its note)
+  function openExisting(h: Highlight) {
+    if (reveal) return;
+    setNoteDraft(h.note || ''); setNoteOpen(Boolean(h.note));
+    setPopover({ x: 0, y: 0, start: h.start, end: h.end, existing: h.id });
   }
 
   function applyHighlight(color: string, underline = false) {
     if (!popover) return;
-    // Drop overlapping highlights, then add the new one.
+    // Drop overlapping highlights, then add the new one (carrying any drafted note).
     const kept = highlights.filter((h) => h.end <= popover.start || h.start >= popover.end);
-    setHighlights([...kept, { id: `h${Date.now()}`, start: popover.start, end: popover.end, color, underline }]);
-    setPopover(null);
+    setHighlights([...kept, { id: `h${Date.now()}`, start: popover.start, end: popover.end, color, underline, note: noteDraft.trim() || undefined }]);
+    setPopover(null); setNoteDraft(''); setNoteOpen(false);
     window.getSelection()?.removeAllRanges();
+  }
+  function saveNote() {
+    if (!popover?.existing) return;
+    setHighlights(highlights.map((h) => (h.id === popover.existing ? { ...h, note: noteDraft.trim() || undefined } : h)));
+    setPopover(null); setNoteDraft(''); setNoteOpen(false);
   }
   function clearAt(start: number, end: number) {
     setHighlights(highlights.filter((h) => !(h.start === start && h.end === end)));
-    setPopover(null);
+    setPopover(null); setNoteDraft(''); setNoteOpen(false);
   }
 
   const text = question.passage;
@@ -103,9 +118,10 @@ export function RwModule({
         <div ref={passRef} onMouseUp={onMouseUp} className="whitespace-pre-wrap text-[17px] leading-[1.7]" style={{ fontFamily: SERIF, color: C.ink }}>
           {segments.map((s, i) =>
             s.hl ? (
-              <mark key={i} onClick={() => !reveal && setPopover({ x: 0, y: 0, start: s.hl!.start, end: s.hl!.end, existing: s.hl!.id })}
+              <mark key={i} onClick={() => openExisting(s.hl!)} title={s.hl.note || undefined}
                 style={{ background: s.hl.color, textDecoration: s.hl.underline ? 'underline' : undefined, cursor: 'pointer', padding: '1px 0' }}>
                 {s.text}
+                {s.hl.note ? <sup style={{ color: C.blue, fontSize: '0.7em' }} title={s.hl.note}> 📝</sup> : null}
               </mark>
             ) : (
               <span key={i}>{s.text}</span>
@@ -118,17 +134,33 @@ export function RwModule({
 
         {popover ? (
           <div className="absolute z-[76] -translate-x-1/2 -translate-y-full rounded-lg border p-1.5 shadow-xl"
-            style={{ left: popover.x, top: popover.y, borderColor: C.border, background: C.panel }} onMouseDown={(e) => e.preventDefault()}>
+            style={{ left: popover.x, top: popover.y, borderColor: C.border, background: C.panel, minWidth: noteOpen ? 220 : undefined }} onMouseDown={(e) => e.preventDefault()}>
             <div className="flex items-center gap-1.5">
               {HL_COLORS.map((col) => (
                 <button key={col} type="button" onClick={() => (popover.existing ? clearAt(popover.start, popover.end) : applyHighlight(col))}
                   className="h-6 w-6 rounded-full border" style={{ background: col, borderColor: C.border }} title={lang === 'zh' ? '高亮' : 'Highlight'} />
               ))}
-              <button type="button" onClick={() => applyHighlight(C.hl.yellow, true)} className="rounded px-2 py-1 text-[12px] font-semibold underline" style={{ color: C.ink }}>U</button>
+              <button type="button" onClick={() => applyHighlight(C.hl.yellow, true)} className="rounded px-2 py-1 text-[12px] font-semibold underline" style={{ color: C.ink }} title={lang === 'zh' ? '下划线' : 'Underline'}>U</button>
+              <button type="button" onClick={() => setNoteOpen((v) => !v)} className="rounded px-2 py-1 text-[12px] font-semibold" style={{ background: noteOpen ? C.tint : 'transparent', color: noteOpen ? C.blue : C.ink }} title={lang === 'zh' ? '笔记' : 'Note'}>
+                📝 {lang === 'zh' ? '笔记' : 'Note'}
+              </button>
               <button type="button" onClick={() => (popover.existing ? clearAt(popover.start, popover.end) : setPopover(null))} className="rounded px-2 py-1 text-[12px]" style={{ color: C.muted }}>
                 {popover.existing ? COMMON[lang].remove : COMMON[lang].cancel}
               </button>
             </div>
+            {noteOpen ? (
+              <div className="mt-1.5">
+                <textarea value={noteDraft} onChange={(e) => setNoteDraft(e.target.value)} rows={3}
+                  placeholder={lang === 'zh' ? '在此写笔记…' : 'Write a note…'} autoFocus
+                  className="w-full rounded border px-2 py-1.5 text-[13px] outline-none" style={{ borderColor: C.border, color: C.ink, background: C.panel, fontFamily: 'Inter, sans-serif' }} />
+                <div className="mt-1 flex justify-end">
+                  <button type="button" onClick={() => (popover.existing ? saveNote() : applyHighlight(HL_COLORS[0]))}
+                    className="rounded-full px-3 py-1 text-[12px] font-bold text-white" style={{ background: C.blue }}>
+                    {lang === 'zh' ? '保存笔记' : 'Save note'}
+                  </button>
+                </div>
+              </div>
+            ) : null}
           </div>
         ) : null}
       </section>

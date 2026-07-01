@@ -3456,30 +3456,30 @@
    "domain": "advanced_math",
    "skill": "nonlinear_equations_and_systems",
    "difficulty": "hard",
-   "stem": "In the xy-plane, the graph of y = x^2 - 4x + 7 intersects the graph of y = 2x + 2 at two points. What is the sum of the x-coordinates of these two points?",
-   "explanation": "At an intersection the y-values are equal, so x^2 - 4x + 7 = 2x + 2. Bring all terms to one side: x^2 - 6x + 5 = 0, which factors as (x - 1)(x - 5) = 0, giving x = 1 and x = 5. Their sum is 1 + 5 = 6. (Equivalently, the sum of roots of x^2 - 6x + 5 = 0 is -(-6)/1 = 6.)\n\n【中文】在交点处两个 y 值相等,所以 x^2 - 4x + 7 = 2x + 2。移项整理得 x^2 - 6x + 5 = 0,因式分解为 (x - 1)(x - 5) = 0,解得 x = 1 和 x = 5。它们的和为 1 + 5 = 6。(也可用韦达定理:方程 x^2 - 6x + 5 = 0 的根之和为 -(-6)/1 = 6。)",
+   "stem": "In the xy-plane, the graph of y = x² + bx + 10 intersects the line y = 4x + 6 at exactly one point. What is a possible value of b?",
+   "explanation": "Set the expressions equal: x² + bx + 10 = 4x + 6, so x² + (b−4)x + 4 = 0. \"Exactly one point\" means one real solution, so the discriminant is 0: (b−4)² − 4·1·4 = 0 → (b−4)² = 16 → b − 4 = ±4 → b = 0 or b = 8. Of the choices, 0 works.\n\n【中文】令两式相等：x² + bx + 10 = 4x + 6,即 x² + (b−4)x + 4 = 0。\"恰好一个交点\"意味着只有一个实数解,故判别式为 0:(b−4)² − 16 = 0 → b = 0 或 8。选项中 0 符合。",
    "source": "NGS original",
    "published": true,
    "format": "mc",
    "choices": [
     {
      "id": "A",
-     "text": "4"
+     "text": "0"
     },
     {
      "id": "B",
-     "text": "5"
+     "text": "2"
     },
     {
      "id": "C",
-     "text": "6"
+     "text": "4"
     },
     {
      "id": "D",
-     "text": "8"
+     "text": "10"
     }
    ],
-   "correct": "C"
+   "correct": "A"
   },
   {
    "id": "m-nonlinear-equations-and-systems-hard-112",
@@ -4254,8 +4254,8 @@
    "answer": {
     "accepted": [
      "17/32",
-     ".53",
-     "0.53"
+     ".5313",
+     ".5312"
     ],
     "tolerance": 0.001
    }
@@ -4274,8 +4274,8 @@
    "answer": {
     "accepted": [
      "5/18",
-     ".28",
-     "0.28"
+     ".2778",
+     ".2777"
     ],
     "tolerance": 0.001
    }
@@ -4805,7 +4805,7 @@
    "answer": {
     "accepted": [
      "16/3",
-     "5.33"
+     "5.333"
     ],
     "tolerance": 0.001
    }

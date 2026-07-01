@@ -96,7 +96,9 @@ export function SatMock({ formId, onBack }: { formId?: string; onBack?: () => vo
         onExit={() => { setResults([]); setPhase('home'); }}
         submitLabel={lang === 'zh' ? '下一模块' : 'Next Module'}
         onSubmit={(res) => {
-          const route = routeModule2(res.correctCount, resolve(mods.rwM1).length);
+          // Route to the harder/easier RW Module 2 by Module-1 performance
+          // (counts all M1 items the student saw, pretest included).
+          const route = routeModule2('reading_writing', res.correctCount, resolve(mods.rwM1).length);
           setRwRoute(route);
           finishModule('rw1', res, () => setPhase('rw2'));
         }}
@@ -138,7 +140,9 @@ export function SatMock({ formId, onBack }: { formId?: string; onBack?: () => vo
         onExit={() => { setResults([]); setPhase('home'); }}
         submitLabel={lang === 'zh' ? '下一模块' : 'Next Module'}
         onSubmit={(res) => {
-          const route = routeModule2(res.correctCount, resolve(mods.mathM1).length);
+          // Route to the harder/easier Math Module 2 by Module-1 performance
+          // (counts all M1 items the student saw, pretest included).
+          const route = routeModule2('math', res.correctCount, resolve(mods.mathM1).length);
           setMathRoute(route);
           finishModule('math1', res, () => setPhase('math2'));
         }}

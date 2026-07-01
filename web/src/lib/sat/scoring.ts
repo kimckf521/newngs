@@ -16,48 +16,55 @@ import { SECTION_OPERATIONAL_MAX } from './types';
 
 /* ---------------------------------------------------------------- routing */
 
-/** Route Module 2 from Module-1 performance. Threshold ≈ 60% correct → "up".
- *  Tunable; CB's exact cut is unpublished. All Module-1 items count for routing
- *  (including the unscored pretest items, which the student can't distinguish). */
-export const ROUTE_THRESHOLD = 0.6;
+/** Route Module 2 from Module-1 performance → the harder ("upper") or easier
+ *  ("lower") second module. The real cut is IRT-weighted by item difficulty and
+ *  unpublished; the well-corroborated practitioner heuristic is ~two-thirds
+ *  correct on Module 1 → harder Module 2 (≈15–17/27 RW, ≈12–14/22 Math). We use
+ *  a per-section fraction near two-thirds. Routing counts ALL Module-1 items the
+ *  student saw (pretest included — they're indistinguishable), which is why it
+ *  reads `correctCount`, not `operationalCorrect`. */
+export const ROUTE_THRESHOLD: Record<SatSection, number> = {
+  reading_writing: 0.63,
+  math: 0.62,
+};
 
-export function routeModule2(module1Correct: number, module1Total: number): 'upper' | 'lower' {
+export function routeModule2(section: SatSection, module1Correct: number, module1Total: number): 'upper' | 'lower' {
   if (module1Total <= 0) return 'lower';
-  return module1Correct / module1Total >= ROUTE_THRESHOLD ? 'upper' : 'lower';
+  return module1Correct / module1Total >= ROUTE_THRESHOLD[section] ? 'upper' : 'lower';
 }
 
 /* --------------------------------------------------------- raw → scaled */
 
 /**
- * Official raw → scaled-section-score conversion, from College Board's published
- * SAT Practice Test scoring guide (digital). Each entry is the [LOWER, UPPER]
- * section score (200–800) for that raw score; LOWER ≈ routed to the easier
- * Module 2, UPPER ≈ routed to the harder Module 2 — which is exactly how the
- * adaptive design caps/unlocks the top of the range. These are factual
- * conversion data (source: satsuite.collegeboard.org SAT practice-test scoring).
- * NOTE: the live exam re-equates per form, so platform scores remain an estimate.
+ * Raw → scaled section-score conversion (200–800), keyed to the DIGITAL raw
+ * ranges: RW 0–54, Math 0–44. Each entry is [LOWER, UPPER]:
+ *   - UPPER = routed to the HARDER Module 2 → the full range, up to 800.
+ *   - LOWER = routed to the EASIER Module 2 → HARD-CAPPED at ~650, because the
+ *     easier item pool can't demonstrate top ability under IRT scaling.
+ * That cap is the defining consequence of the adaptive design (Module-1
+ * performance sets your section ceiling). The curve SHAPE follows College
+ * Board's published practice-test conversion; the easier-route cap (~590–650,
+ * exact value unpublished → 650) is modelled by compressing the range. The live
+ * exam re-equates per form, so platform scores remain an ESTIMATE.
  */
 const RW_CONV: [number, number][] = [
-  [200, 200], [200, 200], [200, 200], [200, 200], [200, 200], [200, 200], [200, 200], [200, 210],
-  [200, 220], [210, 230], [230, 250], [240, 260], [250, 270], [260, 280], [280, 300], [290, 310],
-  [320, 340], [340, 360], [350, 370], [360, 380], [370, 390], [370, 390], [380, 400], [390, 410],
-  [400, 420], [410, 430], [420, 440], [420, 440], [430, 450], [440, 460], [450, 470], [460, 480],
-  [460, 480], [470, 490], [480, 500], [490, 510], [490, 510], [500, 520], [510, 530], [520, 540],
-  [530, 550], [540, 560], [540, 560], [550, 570], [560, 580], [570, 590], [580, 600], [590, 610],
-  [590, 610], [600, 620], [610, 630], [620, 640], [630, 650], [630, 650], [640, 660], [650, 670],
-  [660, 680], [670, 690], [680, 700], [690, 710], [700, 720], [710, 730], [720, 740], [730, 750],
-  [750, 770], [770, 790], [790, 800],
-]; // index = raw score, 0..66 (full linear RW range)
+  [200, 200], [200, 200], [200, 200], [200, 200], [200, 200], [200, 200], [210, 210], [220, 230],
+  [240, 250], [240, 260], [250, 270], [270, 290], [280, 310], [300, 340], [320, 360], [330, 370],
+  [340, 390], [340, 390], [350, 400], [360, 410], [360, 420], [380, 440], [380, 440], [390, 450],
+  [400, 460], [410, 480], [410, 480], [420, 490], [420, 500], [430, 510], [440, 520], [450, 530],
+  [460, 540], [460, 550], [470, 560], [480, 570], [480, 580], [490, 590], [500, 600], [510, 610],
+  [520, 620], [520, 630], [530, 640], [540, 650], [540, 660], [550, 670], [560, 680], [570, 690],
+  [580, 710], [590, 720], [600, 730], [600, 740], [620, 760], [640, 790], [650, 800],
+]; // index = raw score 0..54 (digital RW); [lower(easier M2, capped ~650), upper(harder M2, →800)]
 
 const MATH_CONV: [number, number][] = [
-  [200, 200], [200, 200], [200, 200], [200, 200], [200, 200], [200, 200], [200, 200], [200, 220],
-  [200, 230], [220, 250], [250, 280], [280, 310], [290, 320], [300, 330], [310, 340], [320, 350],
-  [330, 360], [330, 360], [340, 370], [350, 380], [360, 390], [370, 400], [370, 400], [380, 410],
-  [390, 420], [400, 430], [420, 450], [430, 460], [440, 470], [460, 490], [470, 500], [480, 510],
-  [500, 530], [510, 540], [520, 550], [530, 560], [550, 580], [560, 590], [570, 600], [580, 610],
-  [590, 620], [600, 630], [620, 650], [630, 660], [650, 680], [670, 700], [690, 720], [710, 740],
-  [730, 760], [740, 770], [750, 780], [760, 790], [770, 800], [780, 800], [790, 800],
-]; // index = raw score, 0..54 (full linear Math range)
+  [200, 200], [200, 200], [200, 200], [200, 200], [200, 200], [220, 220], [220, 230], [240, 260],
+  [250, 270], [270, 290], [280, 310], [310, 350], [330, 370], [340, 380], [340, 390], [350, 400],
+  [360, 420], [380, 440], [380, 440], [400, 460], [400, 470], [410, 480], [420, 490], [420, 500],
+  [430, 510], [440, 520], [460, 540], [470, 560], [470, 560], [480, 580], [490, 590], [500, 600],
+  [510, 610], [520, 620], [530, 640], [540, 650], [540, 660], [560, 680], [570, 690], [580, 700],
+  [590, 720], [600, 740], [610, 750], [640, 780], [650, 800],
+]; // index = raw score 0..44 (digital Math); [lower(easier M2, capped ~650), upper(harder M2, →800)]
 
 /** Map a section raw score (operational-correct across both modules) → scaled
  *  200–800 via the official conversion table, picking the LOWER or UPPER column

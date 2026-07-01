@@ -13,28 +13,28 @@
     "difficultyForm": "fixed",
     "timeLimitSec": 1920,
     "questionIds": [
-     "rw-boundaries-medium-59",
-     "rw-boundaries-medium-60",
-     "rw-central-ideas-and-details-medium-10",
-     "rw-central-ideas-and-details-medium-9",
-     "rw-command-of-evidence-quantitative-medium-15",
+     "rw-command-of-evidence-quantitative-easy-7",
      "rw-command-of-evidence-quantitative-medium-16",
+     "rw-command-of-evidence-textual-hard-22",
+     "rw-central-ideas-and-details-easy-1",
      "rw-command-of-evidence-textual-medium-13",
-     "rw-command-of-evidence-textual-medium-14",
-     "rw-cross-text-connections-medium-35",
+     "rw-command-of-evidence-quantitative-hard-24",
+     "rw-text-structure-and-purpose-easy-27",
      "rw-cross-text-connections-medium-36",
-     "rw-form-structure-and-sense-medium-61",
-     "rw-form-structure-and-sense-medium-62",
-     "rw-inferences-medium-11",
-     "rw-inferences-medium-12",
-     "rw-rhetorical-synthesis-medium-47",
-     "rw-rhetorical-synthesis-medium-48",
-     "rw-text-structure-and-purpose-medium-33",
-     "rw-text-structure-and-purpose-medium-34",
+     "rw-cross-text-connections-hard-42",
+     "rw-words-in-context-easy-25",
+     "rw-cross-text-connections-medium-35",
+     "rw-cross-text-connections-hard-41",
+     "rw-rhetorical-synthesis-easy-44",
      "rw-transitions-medium-49",
-     "rw-transitions-medium-50",
-     "rw-words-in-context-medium-31",
-     "rw-words-in-context-medium-32"
+     "rw-transitions-hard-53",
+     "rw-rhetorical-synthesis-easy-43",
+     "rw-form-structure-and-sense-easy-rb28",
+     "rw-form-structure-and-sense-medium-rb31",
+     "rw-boundaries-hard-63",
+     "rw-boundaries-easy-55",
+     "rw-boundaries-medium-60",
+     "rw-form-structure-and-sense-hard-65"
     ]
    },
    "rwM2Upper": {
@@ -44,28 +44,28 @@
     "difficultyForm": "upper",
     "timeLimitSec": 1920,
     "questionIds": [
-     "rw-boundaries-hard-63",
-     "rw-boundaries-hard-64",
-     "rw-central-ideas-and-details-hard-17",
-     "rw-central-ideas-and-details-hard-18",
-     "rw-command-of-evidence-quantitative-hard-23",
-     "rw-command-of-evidence-quantitative-hard-24",
-     "rw-command-of-evidence-textual-hard-21",
-     "rw-command-of-evidence-textual-hard-22",
-     "rw-cross-text-connections-hard-41",
-     "rw-cross-text-connections-hard-42",
-     "rw-form-structure-and-sense-hard-65",
-     "rw-form-structure-and-sense-hard-66",
+     "rw-command-of-evidence-textual-easy-5",
+     "rw-central-ideas-and-details-medium-10",
      "rw-inferences-hard-19",
      "rw-inferences-hard-20",
-     "rw-rhetorical-synthesis-hard-51",
-     "rw-rhetorical-synthesis-hard-52",
-     "rw-text-structure-and-purpose-hard-39",
-     "rw-text-structure-and-purpose-hard-40",
-     "rw-transitions-hard-53",
-     "rw-transitions-hard-54",
+     "rw-command-of-evidence-quantitative-hard-23",
+     "rw-inferences-medium-12",
+     "rw-text-structure-and-purpose-easy-28",
+     "rw-text-structure-and-purpose-medium-34",
      "rw-words-in-context-hard-37",
-     "rw-words-in-context-hard-38"
+     "rw-text-structure-and-purpose-hard-40",
+     "rw-text-structure-and-purpose-hard-39",
+     "rw-words-in-context-medium-31",
+     "rw-transitions-easy-45",
+     "rw-rhetorical-synthesis-medium-rb41",
+     "rw-rhetorical-synthesis-hard-51",
+     "rw-transitions-hard-54",
+     "rw-form-structure-and-sense-easy-rb27",
+     "rw-boundaries-medium-59",
+     "rw-form-structure-and-sense-hard-66",
+     "rw-boundaries-hard-64",
+     "rw-form-structure-and-sense-hard-rb36",
+     "rw-boundaries-medium-rb30"
     ]
    },
    "rwM2Lower": {
@@ -75,28 +75,28 @@
     "difficultyForm": "lower",
     "timeLimitSec": 1920,
     "questionIds": [
-     "rw-boundaries-easy-55",
-     "rw-boundaries-easy-56",
-     "rw-central-ideas-and-details-easy-1",
-     "rw-central-ideas-and-details-easy-2",
-     "rw-command-of-evidence-quantitative-easy-7",
-     "rw-command-of-evidence-quantitative-easy-8",
-     "rw-command-of-evidence-textual-easy-5",
-     "rw-command-of-evidence-textual-easy-6",
-     "rw-cross-text-connections-easy-29",
-     "rw-cross-text-connections-easy-30",
-     "rw-form-structure-and-sense-easy-57",
-     "rw-form-structure-and-sense-easy-58",
      "rw-inferences-easy-3",
+     "rw-central-ideas-and-details-medium-9",
+     "rw-command-of-evidence-textual-hard-21",
      "rw-inferences-easy-4",
-     "rw-rhetorical-synthesis-easy-43",
-     "rw-rhetorical-synthesis-easy-44",
-     "rw-text-structure-and-purpose-easy-27",
-     "rw-text-structure-and-purpose-easy-28",
-     "rw-transitions-easy-45",
+     "rw-command-of-evidence-textual-easy-6",
+     "rw-central-ideas-and-details-easy-2",
+     "rw-cross-text-connections-easy-30",
+     "rw-text-structure-and-purpose-medium-33",
+     "rw-words-in-context-hard-38",
+     "rw-cross-text-connections-easy-29",
+     "rw-words-in-context-easy-26",
+     "rw-words-in-context-medium-32",
      "rw-transitions-easy-46",
-     "rw-words-in-context-easy-25",
-     "rw-words-in-context-easy-26"
+     "rw-transitions-medium-rb38",
+     "rw-rhetorical-synthesis-hard-52",
+     "rw-rhetorical-synthesis-easy-rb40",
+     "rw-boundaries-easy-rb26",
+     "rw-form-structure-and-sense-medium-rb32",
+     "rw-form-structure-and-sense-easy-57",
+     "rw-boundaries-easy-56",
+     "rw-form-structure-and-sense-easy-58",
+     "rw-form-structure-and-sense-medium-61"
     ]
    },
    "mathM1": {
@@ -106,28 +106,28 @@
     "difficultyForm": "fixed",
     "timeLimitSec": 2100,
     "questionIds": [
-     "m-area-and-volume-medium-153",
-     "m-area-and-volume-medium-154",
-     "m-area-and-volume-hard-161",
-     "m-area-and-volume-hard-162",
-     "m-circles-medium-159",
-     "m-circles-medium-160",
-     "m-circles-hard-167",
-     "m-circles-hard-168",
-     "m-equivalent-expressions-medium-103",
+     "m-systems-of-two-linear-equations-in-two-variables-easy-74",
+     "m-linear-equations-in-two-variables-medium-79",
+     "m-linear-inequalities-in-one-or-two-variables-hard-95",
+     "m-linear-functions-easy-71",
+     "m-linear-functions-medium-81",
+     "m-linear-inequalities-in-one-or-two-variables-hard-rb19",
+     "m-linear-functions-easy-72",
+     "m-linear-equations-in-one-variable-medium-78",
+     "m-equivalent-expressions-easy-rb9",
+     "m-nonlinear-functions-medium-107",
+     "m-nonlinear-functions-hard-113",
+     "m-nonlinear-functions-easy-rb10",
      "m-equivalent-expressions-medium-104",
      "m-equivalent-expressions-hard-109",
-     "m-equivalent-expressions-hard-110",
-     "m-evaluating-statistical-claims-medium-133",
-     "m-evaluating-statistical-claims-medium-134",
+     "m-nonlinear-functions-easy-102",
+     "m-nonlinear-functions-medium-108",
+     "m-percentages-easy-118",
+     "m-ratios-rates-proportional-relationships-and-units-medium-125",
      "m-evaluating-statistical-claims-hard-143",
-     "m-evaluating-statistical-claims-hard-144",
-     "m-linear-equations-in-one-variable-medium-77",
-     "m-linear-equations-in-one-variable-medium-78",
-     "m-linear-equations-in-one-variable-hard-87",
-     "m-linear-equations-in-one-variable-hard-88",
-     "m-linear-equations-in-two-variables-medium-79",
-     "m-linear-equations-in-two-variables-medium-80"
+     "m-area-and-volume-easy-146",
+     "m-right-triangles-and-trigonometry-medium-157",
+     "m-area-and-volume-hard-161"
     ]
    },
    "mathM2Upper": {
@@ -137,28 +137,28 @@
     "difficultyForm": "upper",
     "timeLimitSec": 2100,
     "questionIds": [
-     "m-linear-functions-hard-91",
-     "m-linear-functions-hard-92",
-     "m-linear-inequalities-in-one-or-two-variables-hard-95",
-     "m-linear-inequalities-in-one-or-two-variables-hard-96",
-     "m-lines-angles-and-triangles-hard-163",
-     "m-lines-angles-and-triangles-hard-164",
-     "m-nonlinear-equations-and-systems-hard-111",
-     "m-nonlinear-equations-and-systems-hard-112",
-     "m-nonlinear-functions-hard-113",
+     "m-linear-inequalities-in-one-or-two-variables-easy-76",
+     "m-linear-inequalities-in-one-or-two-variables-medium-85",
+     "m-linear-equations-in-two-variables-hard-rb18",
+     "m-systems-of-two-linear-equations-in-two-variables-hard-94",
+     "m-linear-equations-in-two-variables-hard-89",
+     "m-systems-of-two-linear-equations-in-two-variables-medium-83",
+     "m-linear-equations-in-one-variable-hard-88",
+     "m-systems-of-two-linear-equations-in-two-variables-hard-rb17",
+     "m-equivalent-expressions-easy-97",
+     "m-nonlinear-equations-and-systems-medium-105",
+     "m-equivalent-expressions-hard-rb8",
      "m-nonlinear-functions-hard-114",
-     "m-one-variable-data-distributions-and-measures-hard-139",
-     "m-one-variable-data-distributions-and-measures-hard-140",
-     "m-percentages-hard-137",
-     "m-percentages-hard-138",
-     "m-probability-and-conditional-probability-hard-141",
-     "m-probability-and-conditional-probability-hard-142",
-     "m-ratios-rates-proportional-relationships-and-units-hard-135",
-     "m-ratios-rates-proportional-relationships-and-units-hard-136",
-     "m-right-triangles-and-trigonometry-hard-165",
-     "m-right-triangles-and-trigonometry-hard-166",
-     "m-systems-of-two-linear-equations-in-two-variables-hard-93",
-     "m-systems-of-two-linear-equations-in-two-variables-hard-94"
+     "m-nonlinear-equations-and-systems-hard-rb3",
+     "m-nonlinear-functions-medium-rb14",
+     "m-nonlinear-equations-and-systems-hard-111",
+     "m-nonlinear-equations-and-systems-hard-rb5",
+     "m-evaluating-statistical-claims-easy-124",
+     "m-evaluating-statistical-claims-medium-133",
+     "m-inference-from-sample-statistics-and-margin-of-error-hard-rb22",
+     "m-circles-easy-151",
+     "m-circles-medium-159",
+     "m-right-triangles-and-trigonometry-hard-165"
     ]
    },
    "mathM2Lower": {
@@ -168,28 +168,28 @@
     "difficultyForm": "lower",
     "timeLimitSec": 2100,
     "questionIds": [
-     "m-area-and-volume-easy-145",
-     "m-area-and-volume-easy-146",
-     "m-circles-easy-151",
-     "m-circles-easy-152",
-     "m-equivalent-expressions-easy-97",
-     "m-equivalent-expressions-easy-98",
-     "m-evaluating-statistical-claims-easy-123",
-     "m-evaluating-statistical-claims-easy-124",
      "m-linear-equations-in-one-variable-easy-67",
-     "m-linear-equations-in-one-variable-easy-68",
-     "m-linear-equations-in-two-variables-easy-69",
+     "m-linear-functions-medium-82",
+     "m-systems-of-two-linear-equations-in-two-variables-hard-93",
      "m-linear-equations-in-two-variables-easy-70",
-     "m-linear-functions-easy-71",
-     "m-linear-functions-easy-72",
      "m-linear-inequalities-in-one-or-two-variables-easy-75",
-     "m-linear-inequalities-in-one-or-two-variables-easy-76",
-     "m-lines-angles-and-triangles-easy-147",
-     "m-lines-angles-and-triangles-easy-148",
+     "m-linear-equations-in-one-variable-easy-68",
+     "m-linear-equations-in-one-variable-medium-77",
+     "m-systems-of-two-linear-equations-in-two-variables-easy-73",
+     "m-nonlinear-equations-and-systems-easy-rb12",
+     "m-nonlinear-equations-and-systems-medium-rb15",
+     "m-nonlinear-functions-hard-rb6",
      "m-nonlinear-equations-and-systems-easy-100",
+     "m-nonlinear-functions-easy-rb11",
      "m-nonlinear-equations-and-systems-easy-99",
-     "m-nonlinear-functions-easy-101",
-     "m-nonlinear-functions-easy-102"
+     "m-equivalent-expressions-medium-rb13",
+     "m-equivalent-expressions-medium-103",
+     "m-probability-and-conditional-probability-easy-122",
+     "m-one-variable-data-distributions-and-measures-medium-129",
+     "m-evaluating-statistical-claims-hard-144",
+     "m-circles-easy-152",
+     "m-lines-angles-and-triangles-medium-155",
+     "m-lines-angles-and-triangles-hard-163"
     ]
    }
   }
@@ -4956,6 +4956,1049 @@
     ],
     "tolerance": 0.001
    }
+  },
+  {
+   "id": "m-nonlinear-equations-and-systems-hard-rb3",
+   "section": "math",
+   "domain": "advanced_math",
+   "skill": "nonlinear_equations_and_systems",
+   "difficulty": "hard",
+   "stem": "The system of equations below has exactly two real solutions.\n\ny = x^2 + 6x + 10\ny = k\n\nWhich of the following describes all values of the constant k for which the system has exactly two real solutions?",
+   "explanation": "The parabola y = x^2 + 6x + 10 can be written in vertex form: x^2 + 6x + 10 = (x + 3)^2 + 1, so its minimum value is 1 at x = -3. A horizontal line y = k intersects the parabola twice when k is strictly greater than the minimum value, so k > 1.\n\n【中文】抛物线 y = x^2 + 6x + 10 可化为顶点式：x^2 + 6x + 10 = (x + 3)^2 + 1，故其最小值为 1（在 x = -3 处取得）。水平线 y = k 与抛物线有两个交点当且仅当 k 严格大于最小值，即 k > 1。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "choices": [
+    {
+     "id": "A",
+     "text": "k < 1"
+    },
+    {
+     "id": "B",
+     "text": "k > 1"
+    },
+    {
+     "id": "C",
+     "text": "k < 10"
+    },
+    {
+     "id": "D",
+     "text": "k > 10"
+    }
+   ],
+   "correct": "B"
+  },
+  {
+   "id": "m-nonlinear-equations-and-systems-hard-rb5",
+   "section": "math",
+   "domain": "advanced_math",
+   "skill": "nonlinear_equations_and_systems",
+   "difficulty": "hard",
+   "stem": "In the equation below, a is a constant.\n\n(6/(x - 2)) + 1 = (x + 1)/(x - 2)\n\nWhich of the following is true about the solutions to the equation?",
+   "explanation": "Multiply both sides by (x - 2): 6 + (x - 2) = x + 1, which simplifies to x + 4 = x + 1, giving 4 = 1, a contradiction. Alternatively, one might solve and obtain x = 2, but x = 2 makes the denominator zero, so it is extraneous. Either way there is no valid solution.\n\n【中文】两边同乘 (x - 2)：6 + (x - 2) = x + 1，化简得 x + 4 = x + 1，即 4 = 1，产生矛盾。另一种情形是解得 x = 2，但 x = 2 使分母为零，为增根。无论如何，方程无有效解。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "choices": [
+    {
+     "id": "A",
+     "text": "x = 2 is the only solution."
+    },
+    {
+     "id": "B",
+     "text": "x = -3 is the only solution."
+    },
+    {
+     "id": "C",
+     "text": "The equation has no solution."
+    },
+    {
+     "id": "D",
+     "text": "All real numbers except x = 2 are solutions."
+    }
+   ],
+   "correct": "C"
+  },
+  {
+   "id": "m-nonlinear-functions-hard-rb6",
+   "section": "math",
+   "domain": "advanced_math",
+   "skill": "nonlinear_functions",
+   "difficulty": "hard",
+   "stem": "The function f is defined by f(x) = (x - 4)^2. The function g is defined by g(x) = f(x + 3) - 5. For what value of x does g reach its minimum value?",
+   "explanation": "g(x) = f(x + 3) - 5 = ((x + 3) - 4)^2 - 5 = (x - 1)^2 - 5. This is a parabola opening upward with vertex at x = 1, where the minimum value -5 occurs. So g reaches its minimum at x = 1.\n\n【中文】g(x) = f(x + 3) - 5 = ((x + 3) - 4)^2 - 5 = (x - 1)^2 - 5。这是开口向上的抛物线，顶点在 x = 1 处，此处取得最小值 -5。故 g 在 x = 1 处达到最小值。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "choices": [
+    {
+     "id": "A",
+     "text": "-5"
+    },
+    {
+     "id": "B",
+     "text": "1"
+    },
+    {
+     "id": "C",
+     "text": "4"
+    },
+    {
+     "id": "D",
+     "text": "7"
+    }
+   ],
+   "correct": "B"
+  },
+  {
+   "id": "m-equivalent-expressions-hard-rb8",
+   "section": "math",
+   "domain": "advanced_math",
+   "skill": "equivalent_expressions",
+   "difficulty": "hard",
+   "stem": "The expression (4^(x+1) · 8^(x-2)) can be rewritten in the form 2^(ax+b), where a and b are constants. What is the value of a + b?",
+   "explanation": "Write in base 2: 4^(x+1) = (2^2)^(x+1) = 2^(2x+2), and 8^(x-2) = (2^3)^(x-2) = 2^(3x-6). Multiplying: 2^(2x+2) · 2^(3x-6) = 2^(5x-4). So a = 5 and b = -4, giving a + b = 1.\n\n【中文】化为以 2 为底：4^(x+1) = (2^2)^(x+1) = 2^(2x+2)，8^(x-2) = (2^3)^(x-2) = 2^(3x-6)。相乘：2^(2x+2) · 2^(3x-6) = 2^(5x-4)。故 a = 5，b = -4，a + b = 1。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "choices": [
+    {
+     "id": "A",
+     "text": "1"
+    },
+    {
+     "id": "B",
+     "text": "3"
+    },
+    {
+     "id": "C",
+     "text": "5"
+    },
+    {
+     "id": "D",
+     "text": "7"
+    }
+   ],
+   "correct": "A"
+  },
+  {
+   "id": "m-equivalent-expressions-easy-rb9",
+   "section": "math",
+   "domain": "advanced_math",
+   "skill": "equivalent_expressions",
+   "difficulty": "easy",
+   "stem": "Which of the following is equivalent to the expression (2x + 3)(x − 5)?",
+   "explanation": "Use the distributive property (FOIL): (2x)(x) = 2x², (2x)(−5) = −10x, (3)(x) = 3x, (3)(−5) = −15. Combining the middle terms gives −10x + 3x = −7x, so the product is 2x² − 7x − 15.\n\n【中文】用分配律（FOIL）展开：(2x)(x) = 2x²，(2x)(−5) = −10x，(3)(x) = 3x，(3)(−5) = −15。合并中间项 −10x + 3x = −7x，因此乘积为 2x² − 7x − 15。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "choices": [
+    {
+     "id": "A",
+     "text": "2x² − 7x − 15"
+    },
+    {
+     "id": "B",
+     "text": "2x² + 7x − 15"
+    },
+    {
+     "id": "C",
+     "text": "2x² − 13x − 15"
+    },
+    {
+     "id": "D",
+     "text": "2x² − 7x + 15"
+    }
+   ],
+   "correct": "A"
+  },
+  {
+   "id": "m-nonlinear-functions-easy-rb10",
+   "section": "math",
+   "domain": "advanced_math",
+   "skill": "nonlinear_functions",
+   "difficulty": "easy",
+   "stem": "The function f is defined by f(x) = x² − 4x + 7. What is the value of f(3)?",
+   "explanation": "Substitute x = 3: f(3) = (3)² − 4(3) + 7 = 9 − 12 + 7 = 4.\n\n【中文】代入 x = 3：f(3) = (3)² − 4(3) + 7 = 9 − 12 + 7 = 4。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "choices": [
+    {
+     "id": "A",
+     "text": "2"
+    },
+    {
+     "id": "B",
+     "text": "4"
+    },
+    {
+     "id": "C",
+     "text": "7"
+    },
+    {
+     "id": "D",
+     "text": "10"
+    }
+   ],
+   "correct": "B"
+  },
+  {
+   "id": "m-nonlinear-functions-easy-rb11",
+   "section": "math",
+   "domain": "advanced_math",
+   "skill": "nonlinear_functions",
+   "difficulty": "easy",
+   "stem": "For x > 0, which of the following is equivalent to (x⁸ / x³) · x²?",
+   "explanation": "When dividing powers with the same base, subtract exponents: x⁸ / x³ = x⁵. When multiplying powers with the same base, add exponents: x⁵ · x² = x⁷.\n\n【中文】同底数幂相除，指数相减：x⁸ / x³ = x⁵。同底数幂相乘，指数相加：x⁵ · x² = x⁷。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "choices": [
+    {
+     "id": "A",
+     "text": "x³"
+    },
+    {
+     "id": "B",
+     "text": "x⁷"
+    },
+    {
+     "id": "C",
+     "text": "x¹³"
+    },
+    {
+     "id": "D",
+     "text": "x⁴⁸"
+    }
+   ],
+   "correct": "B"
+  },
+  {
+   "id": "m-nonlinear-equations-and-systems-easy-rb12",
+   "section": "math",
+   "domain": "advanced_math",
+   "skill": "nonlinear_equations_and_systems",
+   "difficulty": "easy",
+   "stem": "What is the sum of the solutions to the equation x² − 9x + 20 = 0?",
+   "explanation": "Factor the quadratic: x² − 9x + 20 = (x − 4)(x − 5) = 0, so the solutions are x = 4 and x = 5. Their sum is 4 + 5 = 9.\n\n【中文】对二次式因式分解：x² − 9x + 20 = (x − 4)(x − 5) = 0，所以解为 x = 4 和 x = 5。它们的和为 4 + 5 = 9。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "choices": [
+    {
+     "id": "A",
+     "text": "5"
+    },
+    {
+     "id": "B",
+     "text": "9"
+    },
+    {
+     "id": "C",
+     "text": "20"
+    },
+    {
+     "id": "D",
+     "text": "−9"
+    }
+   ],
+   "correct": "B"
+  },
+  {
+   "id": "m-equivalent-expressions-medium-rb13",
+   "section": "math",
+   "domain": "advanced_math",
+   "skill": "equivalent_expressions",
+   "difficulty": "medium",
+   "stem": "The expression (2x² + 7x − 15) / (x + 5) is equivalent to which of the following, where x ≠ −5?",
+   "explanation": "Factor the numerator: 2x² + 7x − 15 = (2x − 3)(x + 5). Since x ≠ −5, the factor (x + 5) cancels, leaving 2x − 3.\n\n【中文】对分子因式分解：2x² + 7x − 15 = (2x − 3)(x + 5)。因为 x ≠ −5，公因式 (x + 5) 可以约去，剩下 2x − 3。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "choices": [
+    {
+     "id": "A",
+     "text": "2x − 3"
+    },
+    {
+     "id": "B",
+     "text": "2x + 3"
+    },
+    {
+     "id": "C",
+     "text": "2x − 15"
+    },
+    {
+     "id": "D",
+     "text": "x − 3"
+    }
+   ],
+   "correct": "A"
+  },
+  {
+   "id": "m-nonlinear-functions-medium-rb14",
+   "section": "math",
+   "domain": "advanced_math",
+   "skill": "nonlinear_functions",
+   "difficulty": "medium",
+   "stem": "The function f is defined by f(x) = x² − 6x + 11. What is the minimum value of f(x)?",
+   "explanation": "Complete the square: f(x) = x² − 6x + 11 = (x² − 6x + 9) + 2 = (x − 3)² + 2. Since (x − 3)² ≥ 0, the smallest value occurs when x = 3, giving a minimum value of 2.\n\n【中文】配方：f(x) = x² − 6x + 11 = (x² − 6x + 9) + 2 = (x − 3)² + 2。由于 (x − 3)² ≥ 0，当 x = 3 时取最小值，最小值为 2。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "choices": [
+    {
+     "id": "A",
+     "text": "2"
+    },
+    {
+     "id": "B",
+     "text": "3"
+    },
+    {
+     "id": "C",
+     "text": "11"
+    },
+    {
+     "id": "D",
+     "text": "−3"
+    }
+   ],
+   "correct": "A"
+  },
+  {
+   "id": "m-nonlinear-equations-and-systems-medium-rb15",
+   "section": "math",
+   "domain": "advanced_math",
+   "skill": "nonlinear_equations_and_systems",
+   "difficulty": "medium",
+   "stem": "In the xy-plane, the graph of the equation y = x² + kx + 36 intersects the x-axis at exactly one point. If k is a positive constant, what is the value of k?",
+   "explanation": "A parabola meets the x-axis at exactly one point when the quadratic has one repeated root, i.e., the discriminant equals 0. Here b² − 4ac = k² − 4(1)(36) = k² − 144 = 0, so k² = 144 and k = ±12. Since k is positive, k = 12.\n\n【中文】抛物线与 x 轴恰好交于一点时，二次方程有一个重根，即判别式等于 0。这里 b² − 4ac = k² − 4(1)(36) = k² − 144 = 0，所以 k² = 144，k = ±12。因为 k 为正数，所以 k = 12。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "choices": [
+    {
+     "id": "A",
+     "text": "6"
+    },
+    {
+     "id": "B",
+     "text": "12"
+    },
+    {
+     "id": "C",
+     "text": "18"
+    },
+    {
+     "id": "D",
+     "text": "36"
+    }
+   ],
+   "correct": "B"
+  },
+  {
+   "id": "m-nonlinear-equations-and-systems-medium-rb16",
+   "section": "math",
+   "domain": "advanced_math",
+   "skill": "nonlinear_equations_and_systems",
+   "difficulty": "medium",
+   "stem": "In the xy-plane, the graphs of y = x² − 2x − 3 and y = 2x − 3 intersect at two points. What is the sum of the x-coordinates of these two points?",
+   "explanation": "Set the two expressions for y equal: x² − 2x − 3 = 2x − 3. Subtract 2x − 3 from both sides: x² − 4x = 0, so x(x − 4) = 0, giving x = 0 and x = 4. The sum of the x-coordinates is 0 + 4 = 4.\n\n【中文】令两个 y 的表达式相等：x² − 2x − 3 = 2x − 3。两边同减 2x − 3：x² − 4x = 0，即 x(x − 4) = 0，得 x = 0 和 x = 4。两个交点横坐标之和为 0 + 4 = 4。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "spr",
+   "answer": {
+    "accepted": [
+     "4"
+    ],
+    "tolerance": 0.001
+   }
+  },
+  {
+   "id": "m-systems-of-two-linear-equations-in-two-variables-hard-rb17",
+   "section": "math",
+   "domain": "algebra",
+   "skill": "systems_of_two_linear_equations_in_two_variables",
+   "difficulty": "hard",
+   "stem": "In the system of equations above, k is a constant.\n\n4x + 6y = 12\nkx + 9y = 20\n\nFor what value of k does the given system of equations have no solution?",
+   "explanation": "A linear system has no solution when the two lines are parallel but not identical—the coefficients of x and y are proportional, but the constants are not in that same ratio. Matching the y-coefficients, the equations become proportional when 6/9 = 4/k, so 6k = 36 and k = 6. Check: with k = 6 the second equation is 6x + 9y = 20; multiplying the first equation by 3/2 gives 6x + 9y = 18, which contradicts 6x + 9y = 20. The lines are parallel and distinct, so there is no solution. (If instead 20 had been 18, the lines would coincide and there would be infinitely many solutions.)\n\n【中文】当两条直线平行但不重合时,方程组无解——即 x 与 y 的系数成比例,但常数项不满足同一比例。令 y 的系数对应成比例:6/9 = 4/k,得 6k = 36,所以 k = 6。验证:当 k = 6 时第二个方程为 6x + 9y = 20;将第一个方程乘以 3/2 得 6x + 9y = 18,与 6x + 9y = 20 矛盾,故两直线平行且不同,方程组无解。(若常数是 18 而非 20,两直线将重合,则有无穷多解。)",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "choices": [
+    {
+     "id": "A",
+     "text": "-6"
+    },
+    {
+     "id": "B",
+     "text": "6"
+    },
+    {
+     "id": "C",
+     "text": "\\frac{3}{2}"
+    },
+    {
+     "id": "D",
+     "text": "10"
+    }
+   ],
+   "correct": "B"
+  },
+  {
+   "id": "m-linear-equations-in-two-variables-hard-rb18",
+   "section": "math",
+   "domain": "algebra",
+   "skill": "linear_equations_in_two_variables",
+   "difficulty": "hard",
+   "stem": "The graph of the line y = mx + b in the xy-plane passes through the point (2, 7) and is perpendicular to the line defined by 3x + 4y = 12. What is the value of b?",
+   "explanation": "First find the slope of 3x + 4y = 12. Solving for y gives y = -3/4 x + 3, so its slope is -3/4. A line perpendicular to it has slope equal to the negative reciprocal, m = 4/3. Now use the point (2, 7): 7 = (4/3)(2) + b = 8/3 + b, so b = 7 - 8/3 = 21/3 - 8/3 = 13/3.\n\n【中文】先求 3x + 4y = 12 的斜率。解出 y 得 y = -3/4 x + 3,斜率为 -3/4。与之垂直的直线斜率为其负倒数,即 m = 4/3。代入点 (2, 7):7 = (4/3)(2) + b = 8/3 + b,所以 b = 7 - 8/3 = 21/3 - 8/3 = 13/3。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "choices": [
+    {
+     "id": "A",
+     "text": "\\frac{13}{3}"
+    },
+    {
+     "id": "B",
+     "text": "5"
+    },
+    {
+     "id": "C",
+     "text": "\\frac{29}{3}"
+    },
+    {
+     "id": "D",
+     "text": "\\frac{21}{4}"
+    }
+   ],
+   "correct": "A"
+  },
+  {
+   "id": "m-linear-inequalities-in-one-or-two-variables-hard-rb19",
+   "section": "math",
+   "domain": "algebra",
+   "skill": "linear_inequalities_in_one_or_two_variables",
+   "difficulty": "hard",
+   "stem": "A delivery drone can carry a combined cargo of small packages weighing 2 pounds each and large packages weighing 5 pounds each, up to a maximum total weight of 60 pounds. The drone must carry at least twice as many small packages as large packages. If the drone carries exactly 6 large packages, what is the maximum number of small packages it can carry?",
+   "explanation": "Let s be the number of small packages and L the number of large packages. The weight constraint is 2s + 5L ≤ 60. With L = 6, this gives 2s + 30 ≤ 60, so 2s ≤ 30 and s ≤ 15. The 'at least twice as many small as large' constraint requires s ≥ 2L = 12, which is satisfied by s = 15. The weight limit is the binding constraint, so the maximum number of small packages is 15.\n\n【中文】设 s 为小包裹数,L 为大包裹数。重量限制为 2s + 5L ≤ 60。当 L = 6 时,2s + 30 ≤ 60,即 2s ≤ 30,得 s ≤ 15。'小包裹至少是大包裹的两倍'要求 s ≥ 2L = 12,而 s = 15 满足此条件。因此起约束作用的是重量限制,小包裹的最大数量为 15。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "choices": [
+    {
+     "id": "A",
+     "text": "12"
+    },
+    {
+     "id": "B",
+     "text": "15"
+    },
+    {
+     "id": "C",
+     "text": "18"
+    },
+    {
+     "id": "D",
+     "text": "30"
+    }
+   ],
+   "correct": "B"
+  },
+  {
+   "id": "m-probability-and-conditional-probability-hard-rb21",
+   "section": "math",
+   "domain": "problem_solving_and_data_analysis",
+   "skill": "probability_and_conditional_probability",
+   "difficulty": "hard",
+   "stem": "A survey of 300 commuters recorded their primary mode of transportation and whether they were satisfied with their commute. Of the 180 commuters who drive, 108 were satisfied. Of the commuters who take public transit, 45 were satisfied and 75 were not satisfied. If one satisfied commuter is selected at random, what is the probability that this commuter takes public transit?",
+   "explanation": "First find the total number of satisfied commuters. Among drivers, 108 were satisfied. Among public-transit riders, 45 were satisfied (and 75 were not, accounting for all 120 transit riders since 180 + 120 = 300). Total satisfied = 108 + 45 = 153. The selection is made only from satisfied commuters, so the probability the chosen person takes public transit is (satisfied transit riders)/(all satisfied) = 45/153.\n\n【中文】先求满意的通勤者总数。开车者中有 108 人满意。乘公共交通者中有 45 人满意(75 人不满意,共 120 人乘公共交通,因为 180 + 120 = 300)。满意者总数 = 108 + 45 = 153。选取只在满意者中进行,故选到乘公共交通者的概率为(满意的公共交通乘客)/(所有满意者)= 45/153。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "choices": [
+    {
+     "id": "A",
+     "text": "\\frac{45}{300}"
+    },
+    {
+     "id": "B",
+     "text": "\\frac{45}{120}"
+    },
+    {
+     "id": "C",
+     "text": "\\frac{45}{153}"
+    },
+    {
+     "id": "D",
+     "text": "\\frac{45}{108}"
+    }
+   ],
+   "correct": "C"
+  },
+  {
+   "id": "m-inference-from-sample-statistics-and-margin-of-error-hard-rb22",
+   "section": "math",
+   "domain": "problem_solving_and_data_analysis",
+   "skill": "inference_from_sample_statistics_and_margin_of_error",
+   "difficulty": "hard",
+   "stem": "A researcher selected a random sample of residents from a large city and asked each how many hours per week they exercise. Based on the sample, the researcher estimated the mean to be 4.6 hours per week, with an associated margin of error of 0.5 hours at the 95% confidence level. Which of the following is the most appropriate conclusion?",
+   "explanation": "A margin of error creates a confidence interval for the population mean: estimate ± margin of error = 4.6 ± 0.5, i.e., from 4.1 to 5.1 hours. This interval gives a plausible range for the true mean of the entire population (all city residents), not for individual residents. Choice A and C incorrectly describe individual residents rather than the mean. Choice D describes the sample mean, which is already known exactly to be 4.6 (not an interval). Only choice B correctly states that the population mean plausibly lies within the interval.\n\n【中文】误差幅度为总体均值构建了一个置信区间:估计值 ± 误差幅度 = 4.6 ± 0.5,即 4.1 到 5.1 小时。此区间给出的是整个总体(全体居民)真实均值的合理范围,而非单个居民。选项 A 和 C 错误地描述了单个居民而非均值。选项 D 描述的是样本均值,而样本均值已精确已知为 4.6(不是区间)。只有选项 B 正确地表述了总体均值可能落在该区间内。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "choices": [
+    {
+     "id": "A",
+     "text": "All residents of the city exercise between 4.1 and 5.1 hours per week."
+    },
+    {
+     "id": "B",
+     "text": "It is plausible that the mean number of hours per week that residents of the city exercise is between 4.1 and 5.1 hours."
+    },
+    {
+     "id": "C",
+     "text": "Exactly 95% of the residents of the city exercise between 4.1 and 5.1 hours per week."
+    },
+    {
+     "id": "D",
+     "text": "The mean number of hours per week that the sampled residents exercise is between 4.1 and 5.1 hours."
+    }
+   ],
+   "correct": "B"
+  },
+  {
+   "id": "m-right-triangles-and-trigonometry-hard-rb23",
+   "section": "math",
+   "domain": "geometry_and_trigonometry",
+   "skill": "right_triangles_and_trigonometry",
+   "difficulty": "hard",
+   "stem": "In right triangle ABC, the right angle is at C. The length of the hypotenuse AB is 39, and sin A = 5/13. What is the area of triangle ABC?",
+   "explanation": "In right triangle ABC with the right angle at C, angle A has opposite side BC and hypotenuse AB. So sin A = BC/AB = 5/13. With AB = 39, BC = (5/13)(39) = 15. By the Pythagorean theorem, AC = √(39² - 15²) = √(1521 - 225) = √1296 = 36. The legs AC and BC are perpendicular, so the area is (1/2)(AC)(BC) = (1/2)(36)(15) = 270.\n\n【中文】在直角在 C 的直角三角形 ABC 中,角 A 的对边是 BC,斜边是 AB。所以 sin A = BC/AB = 5/13。由 AB = 39,得 BC = (5/13)(39) = 15。由勾股定理,AC = √(39² - 15²) = √(1521 - 225) = √1296 = 36。两条直角边 AC 与 BC 互相垂直,故面积为 (1/2)(AC)(BC) = (1/2)(36)(15) = 270。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "spr",
+   "answer": {
+    "accepted": [
+     "270"
+    ],
+    "tolerance": 0.001
+   }
+  },
+  {
+   "id": "m-circles-hard-rb24",
+   "section": "math",
+   "domain": "geometry_and_trigonometry",
+   "skill": "circles",
+   "difficulty": "hard",
+   "stem": "In the xy-plane, a circle is defined by the equation x² + y² - 6x + 8y - 11 = 0. A second circle has the same center and a radius that is 3 times the radius of the first circle. Which of the following is an equation of the second circle?",
+   "explanation": "Complete the square for the first circle. x² - 6x becomes (x - 3)² - 9, and y² + 8y becomes (y + 4)² - 16. The equation becomes (x - 3)² - 9 + (y + 4)² - 16 - 11 = 0, so (x - 3)² + (y + 4)² = 36. The center is (3, -4) and the radius is √36 = 6. The second circle has the same center and radius 3 × 6 = 18, so its squared radius is 18² = 324. Its equation is (x - 3)² + (y + 4)² = 324.\n\n【中文】对第一个圆配方。x² - 6x 变为 (x - 3)² - 9,y² + 8y 变为 (y + 4)² - 16。方程变为 (x - 3)² - 9 + (y + 4)² - 16 - 11 = 0,即 (x - 3)² + (y + 4)² = 36。圆心为 (3, -4),半径为 √36 = 6。第二个圆圆心相同,半径为 3 × 6 = 18,故半径平方为 18² = 324。其方程为 (x - 3)² + (y + 4)² = 324。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "choices": [
+    {
+     "id": "A",
+     "text": "(x - 3)² + (y + 4)² = 108"
+    },
+    {
+     "id": "B",
+     "text": "(x + 3)² + (y - 4)² = 108"
+    },
+    {
+     "id": "C",
+     "text": "(x - 3)² + (y + 4)² = 324"
+    },
+    {
+     "id": "D",
+     "text": "(x - 3)² + (y + 4)² = 36"
+    }
+   ],
+   "correct": "C"
+  },
+  {
+   "id": "rw-boundaries-easy-rb25",
+   "section": "reading_writing",
+   "domain": "standard_english_conventions",
+   "skill": "boundaries",
+   "difficulty": "easy",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "explanation": "A colon introduces the specific title that identifies the 'different subject' mentioned just before it. The clause before the blank is independent, and the material after it names and explains that subject, which is exactly what a colon does. A comma (A) or no punctuation (B) creates an incorrect break; a semicolon (C) requires an independent clause after it, but 'Silent Spring, her 1962 study...' is not a complete sentence.\n\n【中文】冒号用于引出前面提到的\"不同主题\"的具体内容——即书名。空格前是独立子句，其后的内容命名并解释了这个主题，这正是冒号的用法。逗号(A)或不加标点(B)会造成错误停顿；分号(C)后面必须是独立子句，但\"Silent Spring, her 1962 study...\"不是完整句子，所以正确答案是D。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "passage": "Marine biologist Rachel Carson wrote several influential books about the ocean, but she is best known for a work about a different subject ______ Silent Spring, her 1962 study of the effects of pesticides.",
+   "choices": [
+    {
+     "id": "A",
+     "text": "entirely,"
+    },
+    {
+     "id": "B",
+     "text": "entirely"
+    },
+    {
+     "id": "C",
+     "text": "entirely;"
+    },
+    {
+     "id": "D",
+     "text": "entirely:"
+    }
+   ],
+   "correct": "D"
+  },
+  {
+   "id": "rw-boundaries-easy-rb26",
+   "section": "reading_writing",
+   "domain": "standard_english_conventions",
+   "skill": "boundaries",
+   "difficulty": "easy",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "explanation": "The words before the blank form an independent clause ('The community garden...produces an impressive variety of vegetables each summer'), and what follows is a list that specifies that 'variety of vegetables.' A colon correctly introduces the list. A comma (B) or no punctuation (C) is too weak to signal the explanatory list, and a semicolon (D) must join two independent clauses, but a list of nouns is not an independent clause.\n\n【中文】空格前的部分构成独立子句（\"社区花园……每个夏天出产种类繁多的蔬菜\"），其后是一个列表，具体说明\"种类繁多的蔬菜\"。冒号正确地引出这个列表。逗号(B)或不加标点(C)太弱，无法引出这个解释性列表；分号(D)必须连接两个独立子句，但名词列表不是独立子句，所以正确答案是A。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "passage": "The community garden on Elm Street produces an impressive variety of vegetables each ______ tomatoes, peppers, squash, and several kinds of leafy greens.",
+   "choices": [
+    {
+     "id": "A",
+     "text": "summer:"
+    },
+    {
+     "id": "B",
+     "text": "summer,"
+    },
+    {
+     "id": "C",
+     "text": "summer"
+    },
+    {
+     "id": "D",
+     "text": "summer;"
+    }
+   ],
+   "correct": "A"
+  },
+  {
+   "id": "rw-form-structure-and-sense-easy-rb27",
+   "section": "reading_writing",
+   "domain": "standard_english_conventions",
+   "skill": "form_structure_and_sense",
+   "difficulty": "easy",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "explanation": "The subject is 'Each,' which is singular, so it takes a singular verb. The prepositional phrase 'of the museum's newly restored paintings' does not change the number of the subject. Only 'has' (B) is singular; 'have,' 'were having,' and 'have had' are all plural forms and disagree with 'Each.'\n\n【中文】主语是\"Each\"（每一个），为单数，所以要用单数动词。介词短语\"of the museum's newly restored paintings\"不改变主语的数。只有\"has\"(B)是单数；\"have\"、\"were having\"和\"have had\"都是复数形式，与\"Each\"不一致，所以正确答案是B。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "passage": "Each of the museum's newly restored paintings ______ a small plaque describing the conservation techniques that were used.",
+   "choices": [
+    {
+     "id": "A",
+     "text": "have"
+    },
+    {
+     "id": "B",
+     "text": "has"
+    },
+    {
+     "id": "C",
+     "text": "were having"
+    },
+    {
+     "id": "D",
+     "text": "have had"
+    }
+   ],
+   "correct": "B"
+  },
+  {
+   "id": "rw-form-structure-and-sense-easy-rb28",
+   "section": "reading_writing",
+   "domain": "standard_english_conventions",
+   "skill": "form_structure_and_sense",
+   "difficulty": "easy",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "explanation": "The phrase 'By the time...last night' establishes a completed past action, and the applauding happened before the director accepted the award. The past perfect 'had applauded' (C) correctly shows this earlier past action. Present tense 'applauds' (A) and future 'will applaud' (B) contradict the past context, and 'applauding' (D) is not a complete verb.\n\n【中文】短语\"By the time...last night\"确立了一个已完成的过去动作，鼓掌发生在导演领奖之前。过去完成时\"had applauded\"(C)正确地表示这个更早的过去动作。现在时\"applauds\"(A)和将来时\"will applaud\"(B)与过去语境矛盾，\"applauding\"(D)不是完整动词，所以正确答案是C。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "passage": "By the time the film's director accepted her award last night, the audience ______ for nearly two full minutes.",
+   "choices": [
+    {
+     "id": "A",
+     "text": "applauds"
+    },
+    {
+     "id": "B",
+     "text": "will applaud"
+    },
+    {
+     "id": "C",
+     "text": "had applauded"
+    },
+    {
+     "id": "D",
+     "text": "applauding"
+    }
+   ],
+   "correct": "C"
+  },
+  {
+   "id": "rw-boundaries-medium-rb29",
+   "section": "reading_writing",
+   "domain": "standard_english_conventions",
+   "skill": "boundaries",
+   "difficulty": "medium",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "explanation": "Both 'The physicist Lise Meitner...nuclear fission' and 'she was not, however, included...' are independent clauses. A semicolon (C) correctly joins two closely related independent clauses. A comma alone (A) creates a comma splice, no punctuation (B) creates a run-on, and 'and' (D) without a comma before it is not the standard way to join two independent clauses.\n\n【中文】\"The physicist Lise Meitner...nuclear fission\"和\"she was not, however, included...\"都是独立子句。分号(C)正确地连接两个密切相关的独立子句。仅用逗号(A)造成逗号拼接错误；不加标点(B)造成粘连句；\"and\"(D)前不加逗号不是连接两个独立子句的标准方式，所以正确答案是C。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "passage": "The physicist Lise Meitner made crucial contributions to the discovery of nuclear ______ she was not, however, included in the 1944 Nobel Prize awarded for that work.",
+   "choices": [
+    {
+     "id": "A",
+     "text": "fission,"
+    },
+    {
+     "id": "B",
+     "text": "fission"
+    },
+    {
+     "id": "C",
+     "text": "fission;"
+    },
+    {
+     "id": "D",
+     "text": "fission and"
+    }
+   ],
+   "correct": "C"
+  },
+  {
+   "id": "rw-boundaries-medium-rb30",
+   "section": "reading_writing",
+   "domain": "standard_english_conventions",
+   "skill": "boundaries",
+   "difficulty": "medium",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "explanation": "The nonrestrictive clause 'which documented the hardships of migrant farm workers' is set off by a comma at its end ('...workers,'), so it must be introduced by a matching comma. A comma before the clause (B) pairs correctly with the comma after it. A dash (A) cannot be paired with a comma, no punctuation (C) leaves the parenthetical clause unbounded on one side, and a semicolon (D) cannot introduce a dependent clause.\n\n【中文】非限定性从句\"which documented the hardships of migrant farm workers\"末尾用逗号收尾（\"...workers,\"），所以开头必须用对应的逗号引入。从句前用逗号(B)与其后的逗号正确配对。破折号(A)不能与逗号配对；不加标点(C)使插入从句一侧没有边界；分号(D)不能引出从属从句，所以正确答案是B。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "passage": "The 1930s photographs taken by Dorothea ______ which documented the hardships of migrant farm workers, remain some of the most recognizable images of the Great Depression.",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Lange—"
+    },
+    {
+     "id": "B",
+     "text": "Lange,"
+    },
+    {
+     "id": "C",
+     "text": "Lange"
+    },
+    {
+     "id": "D",
+     "text": "Lange;"
+    }
+   ],
+   "correct": "B"
+  },
+  {
+   "id": "rw-form-structure-and-sense-medium-rb31",
+   "section": "reading_writing",
+   "domain": "standard_english_conventions",
+   "skill": "form_structure_and_sense",
+   "difficulty": "medium",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "explanation": "In a 'neither...nor' construction, the verb agrees with the nearer subject. The subject closer to the verb is 'her two assistants,' which is plural, so the plural verb 'were' (C) is correct. The past context ('had failed') also rules out the present-tense 'is' (B) and 'has been' (D); 'was' (A) is singular and would agree only if the nearer subject were singular.\n\n【中文】在\"neither...nor\"结构中，动词与较近的主语一致。离动词较近的主语是\"her two assistants\"（复数），所以复数动词\"were\"(C)正确。过去语境（\"had failed\"）也排除了现在时\"is\"(B)和\"has been\"(D)；\"was\"(A)是单数，只有当较近主语是单数时才一致，所以正确答案是C。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "passage": "Neither the lead engineer nor her two assistants ______ able to explain why the prototype had failed during the second round of testing.",
+   "choices": [
+    {
+     "id": "A",
+     "text": "was"
+    },
+    {
+     "id": "B",
+     "text": "is"
+    },
+    {
+     "id": "C",
+     "text": "were"
+    },
+    {
+     "id": "D",
+     "text": "has been"
+    }
+   ],
+   "correct": "C"
+  },
+  {
+   "id": "rw-form-structure-and-sense-medium-rb32",
+   "section": "reading_writing",
+   "domain": "standard_english_conventions",
+   "skill": "form_structure_and_sense",
+   "difficulty": "medium",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "explanation": "The verb after the blank is 'raise,' a plural verb, and the pronoun 'them' refers to a group, so the subject must be plural and refer to more than one bee. 'The bees that remain' (A) is plural and agrees with 'raise.' The singular options (B and D) disagree with 'raise,' and (C) adds an unnecessary pronoun 'it' that has no clear singular antecedent.\n\n【中文】空格后的动词是\"raise\"（复数动词），代词\"them\"指代一个群体，所以主语必须是复数并指代多只蜜蜂。\"The bees that remain\"(A)是复数，与\"raise\"一致。单数选项(B和D)与\"raise\"不一致；(C)多了一个多余的代词\"it\"，没有明确的单数先行词，所以正确答案是A。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "passage": "When a colony of honeybees becomes too crowded, roughly half of the workers leave with the old queen to found a new hive; ______ then raise a new queen to lead them.",
+   "choices": [
+    {
+     "id": "A",
+     "text": "the bees that remain"
+    },
+    {
+     "id": "B",
+     "text": "the bee that remains"
+    },
+    {
+     "id": "C",
+     "text": "remaining bees, it"
+    },
+    {
+     "id": "D",
+     "text": "the remaining bee"
+    }
+   ],
+   "correct": "A"
+  },
+  {
+   "id": "rw-form-structure-and-sense-hard-rb36",
+   "section": "reading_writing",
+   "domain": "standard_english_conventions",
+   "skill": "form_structure_and_sense",
+   "difficulty": "hard",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "explanation": "The word is a simple plural object of the preposition 'of' — 'the originality of their designs' — not a possessive, so no apostrophe is needed; 'designs' takes just an 's.' A comma is needed after it to set off the following participial phrase 'noting that...' So 'designs,' (B) is correct. The apostrophe forms in A ('designs'') and C ('design's') wrongly make the noun possessive, and D omits the comma required before the modifying phrase.\n\n【中文】这个词是介词\"of\"的宾语的简单复数——\"the originality of their designs\"——不是所有格，所以不需要撇号；\"designs\"只加\"s\"。其后需要一个逗号来隔开后面的分词短语\"noting that...\"。所以\"designs,\"(B)正确。A（\"designs'\"）和C（\"design's\"）中的撇号形式错误地把名词变成所有格；D遗漏了修饰短语前所需的逗号，所以正确答案是B。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "passage": "The committee praised the two finalists for the originality of their ______ noting that the judges had rarely seen submissions so willing to challenge established conventions.",
+   "choices": [
+    {
+     "id": "A",
+     "text": "designs',"
+    },
+    {
+     "id": "B",
+     "text": "designs,"
+    },
+    {
+     "id": "C",
+     "text": "design's,"
+    },
+    {
+     "id": "D",
+     "text": "designs"
+    }
+   ],
+   "correct": "B"
+  },
+  {
+   "id": "rw-transitions-easy-rb37",
+   "section": "reading_writing",
+   "domain": "expression_of_ideas",
+   "skill": "transitions",
+   "difficulty": "easy",
+   "stem": "Which choice completes the text with the most logical transition?",
+   "explanation": "The prior sentence states that some species use light to attract prey. The sentence about anglerfish dangling a glowing lure to draw fish is a specific instance of that general claim, so the illustrative transition 'For example' is correct. 'Nevertheless' and 'In contrast' signal opposition, but there is no contrast. 'Consequently' signals a cause-effect result, but the anglerfish detail is an example, not a consequence, of the preceding statement.\n\n【中文】前一句指出有些物种用光来吸引猎物。关于鮟鱇鱼垂下发光诱饵引诱鱼靠近的句子是该概括说法的一个具体例子，因此表示举例的过渡词 'For example'（例如）正确。'Nevertheless'（然而）和 'In contrast'（相反）表示对立，但此处没有对比。'Consequently'（因此）表示因果结果，但鮟鱇鱼这一细节是前述说法的例子，而非其结果。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "passage": "Marine biologist Ayanna Okonkwo studies bioluminescence in deep-sea organisms. Because sunlight cannot penetrate to the ocean's deepest zones, many creatures there have evolved the ability to produce their own light. This adaptation serves multiple purposes: some species use light to attract prey, while others use it to confuse predators. ______ certain anglerfish dangle a glowing lure to draw smaller fish close enough to catch.",
+   "choices": [
+    {
+     "id": "A",
+     "text": "For example,"
+    },
+    {
+     "id": "B",
+     "text": "Nevertheless,"
+    },
+    {
+     "id": "C",
+     "text": "In contrast,"
+    },
+    {
+     "id": "D",
+     "text": "Consequently,"
+    }
+   ],
+   "correct": "A"
+  },
+  {
+   "id": "rw-transitions-medium-rb38",
+   "section": "reading_writing",
+   "domain": "expression_of_ideas",
+   "skill": "transitions",
+   "difficulty": "medium",
+   "stem": "Which choice completes the text with the most logical transition?",
+   "explanation": "The final sentence draws a practical implication from Farouk's findings: because order influences decisions, marketers can benefit from listing a product first. This is a logical result of the preceding claim, so the conclusive transition 'Thus' is correct. 'However' and 'Instead' signal contrast or replacement, but the sentence agrees with and extends the prior point. 'Similarly' signals a comparison between two parallel ideas, but the final sentence is a consequence, not a parallel case.\n\n【中文】最后一句从 Farouk 的研究结果推出一个实际含义：因为顺序会影响决策，营销者把产品列在前面会获益。这是前述观点的合乎逻辑的结果，因此表示结论的过渡词 'Thus'（因此）正确。'However'（然而）和 'Instead'（相反）表示对比或替代，但该句与前述观点一致并加以延伸。'Similarly'（同样地）表示两个并列观点之间的比较，但最后一句是一个结果，而非并列的情况。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "passage": "For decades, economists assumed that people make purchasing decisions by rationally weighing costs and benefits. Behavioral economist Nadia Farouk's research complicates this assumption. In her experiments, participants frequently chose options that offered no measurable advantage simply because those options were presented first. Farouk's findings suggest that the order in which choices appear can influence decisions as much as the choices' actual merits. ______ marketers who wish to promote a particular product may benefit from listing it before its competitors.",
+   "choices": [
+    {
+     "id": "A",
+     "text": "However,"
+    },
+    {
+     "id": "B",
+     "text": "Thus,"
+    },
+    {
+     "id": "C",
+     "text": "Similarly,"
+    },
+    {
+     "id": "D",
+     "text": "Instead,"
+    }
+   ],
+   "correct": "B"
+  },
+  {
+   "id": "rw-transitions-hard-rb39",
+   "section": "reading_writing",
+   "domain": "expression_of_ideas",
+   "skill": "transitions",
+   "difficulty": "hard",
+   "stem": "Which choice completes the text with the most logical transition?",
+   "explanation": "The sentence has two parts joined by a semicolon: an expectation ('the birds' size might seem to demand constant, strenuous effort') and a contrasting reality ('in practice...nearly effortless'). The transition must concede the plausible expectation before the 'in practice' reversal, so 'Admittedly' is correct—it grants a point that is then qualified. 'For instance' would introduce an example, but no example follows. 'Therefore' signals a conclusion, which contradicts the concessive setup. 'Likewise' signals similarity, but the two clauses are contrasting, not parallel.\n\n【中文】该句由分号连接两部分：一个预期（'鸟的体型似乎要求持续、费力的努力'）和一个相反的现实（'实际上……几乎毫不费力'）。过渡词必须先让步承认这个合理预期，再由 'in practice' 转折，因此 'Admittedly'（诚然）正确——它承认一个随后被限定的观点。'For instance'（例如）会引出例子，但后面没有例子。'Therefore'（因此）表示结论，与让步语境矛盾。'Likewise'（同样地）表示相似，但两个分句是对比而非并列。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "passage": "The Andean condor, one of the largest flying birds in the world, expends remarkably little energy to remain aloft. Rather than flapping continuously, the condor relies on thermals—columns of rising warm air—to gain altitude and glide for hours. Researchers tracking tagged condors found that the birds flapped their wings during only about one percent of their flight time. ______ the birds' size might seem to demand constant, strenuous effort; in practice, their soaring strategy makes sustained flight nearly effortless.",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Admittedly,"
+    },
+    {
+     "id": "B",
+     "text": "For instance,"
+    },
+    {
+     "id": "C",
+     "text": "Therefore,"
+    },
+    {
+     "id": "D",
+     "text": "Likewise,"
+    }
+   ],
+   "correct": "A"
+  },
+  {
+   "id": "rw-rhetorical-synthesis-easy-rb40",
+   "section": "reading_writing",
+   "domain": "expression_of_ideas",
+   "skill": "rhetorical_synthesis",
+   "difficulty": "easy",
+   "stem": "Which choice most effectively uses information from the notes to accomplish this goal?",
+   "explanation": "The goal is to introduce the kola nut to an unfamiliar audience, which calls for a broad, orienting overview. Choice A identifies what the kola nut is (a fruit from trees native to West Africa), a defining property (contains caffeine), and a familiar point of reference (its role in early cola drinks), giving newcomers the most complete basic picture. Choices B, C, and D each convey only one or two narrow details and do not clearly introduce what the kola nut fundamentally is.\n\n【中文】目标是向不熟悉的读者介绍可乐果，因此需要一个宽泛、起引导作用的概述。选项 A 说明了可乐果是什么（原产西非树木的果实）、一个定义性特征（含咖啡因），以及一个读者熟悉的参照点（在早期可乐饮料中的作用），为新读者提供了最完整的基本图景。选项 B、C、D 各只传达一两个狭窄细节，没有清楚地介绍可乐果的本质。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "passage": "While researching a topic, a student has taken the following notes:\n\nNotes:\n- The kola nut is a fruit of trees native to West Africa.\n- The nut contains caffeine and has a bitter taste.\n- In many West African cultures, kola nuts are offered to guests as a sign of hospitality.\n- Kola nuts were once a key flavoring ingredient in early cola soft drinks.\n\nThe student wants to introduce the kola nut to an audience unfamiliar with it.",
+   "choices": [
+    {
+     "id": "A",
+     "text": "The kola nut, a caffeine-containing fruit from trees native to West Africa, was once a key flavoring ingredient in early cola soft drinks."
+    },
+    {
+     "id": "B",
+     "text": "Offered to guests as a sign of hospitality, the bitter kola nut is a cultural staple."
+    },
+    {
+     "id": "C",
+     "text": "Kola nuts, which contain caffeine, have a notably bitter taste."
+    },
+    {
+     "id": "D",
+     "text": "In many West African cultures, kola nuts are offered to guests."
+    }
+   ],
+   "correct": "A"
+  },
+  {
+   "id": "rw-rhetorical-synthesis-medium-rb41",
+   "section": "reading_writing",
+   "domain": "expression_of_ideas",
+   "skill": "rhetorical_synthesis",
+   "difficulty": "medium",
+   "stem": "Which choice most effectively uses information from the notes to accomplish this goal?",
+   "explanation": "The goal is to emphasize Zamenhof's efforts to spread Esperanto—that is, actions she took to promote the language. Choice B cites two concrete promotional actions from the notes (traveling to teach classes and translating literary works into Esperanto), directly fulfilling the goal. Choice A emphasizes her birth and family, not her efforts. Choice C describes Esperanto itself rather than her actions. Choice D reports her belief or motivation, not her efforts to spread the language.\n\n【中文】目标是强调 Zamenhof 传播世界语的努力，即她为推广该语言所采取的行动。选项 B 引用了笔记中两项具体的推广行动（前往美国教学、把文学作品翻译成世界语），直接实现了目标。选项 A 强调她的出生和家庭，而非她的努力。选项 C 描述的是世界语本身，而非她的行动。选项 D 陈述的是她的信念或动机，而非她传播语言的努力。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "passage": "While researching a topic, a student has taken the following notes:\n\nNotes:\n- Lidia Zamenhof was a translator and teacher born in Poland in 1904.\n- She promoted Esperanto, a constructed international language created by her father.\n- She traveled to the United States in the 1930s to teach Esperanto classes.\n- She translated several major literary works into Esperanto.\n- Her goal was to use a shared language to foster understanding among people of different nations.\n\nThe student wants to emphasize Lidia Zamenhof's efforts to spread Esperanto.",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Lidia Zamenhof, born in Poland in 1904, was the daughter of the creator of Esperanto."
+    },
+    {
+     "id": "B",
+     "text": "To spread Esperanto, Zamenhof traveled to the United States in the 1930s to teach classes and translated several major literary works into the language."
+    },
+    {
+     "id": "C",
+     "text": "Esperanto is a constructed international language intended to foster understanding among nations."
+    },
+    {
+     "id": "D",
+     "text": "Zamenhof believed that a shared language could foster understanding among people of different nations."
+    }
+   ],
+   "correct": "B"
+  },
+  {
+   "id": "rw-rhetorical-synthesis-hard-rb42",
+   "section": "reading_writing",
+   "domain": "expression_of_ideas",
+   "skill": "rhetorical_synthesis",
+   "difficulty": "hard",
+   "stem": "Which choice most effectively uses information from the notes to accomplish this goal?",
+   "explanation": "The goal is to present a difference between the two bridge types. Choice B explicitly contrasts them on construction speed—steel builds quickly from prefabricated sections, while reinforced concrete takes longer because it must cure on-site—clearly presenting a difference. Choice A states only what the two materials have in common (both are common) and names no difference. Choice C describes only steel, so no comparison is drawn. Choice D emphasizes a similarity ('both...require') rather than a difference.\n\n【中文】目标是呈现两种桥梁类型之间的差异。选项 B 明确地在施工速度上对比二者——钢桥用预制构件建得快，而钢筋混凝土桥因需在现场养护而耗时更长——清楚地呈现了差异。选项 A 只说明两种材料的共同点（都很常见），没有指出差异。选项 C 只描述钢材，没有进行比较。选项 D 强调的是相似之处（'两者……都需要'），而非差异。",
+   "source": "NGS original (rebalance)",
+   "published": true,
+   "format": "mc",
+   "passage": "While researching a topic, a student has taken the following notes:\n\nNotes:\n- Two common building materials for bridges are steel and reinforced concrete.\n- Steel bridges can be built quickly because sections are prefabricated off-site.\n- Steel is prone to corrosion and requires regular painting and maintenance.\n- Reinforced concrete bridges resist corrosion and need less frequent maintenance.\n- Reinforced concrete bridges take longer to construct because concrete must cure on-site.\n\nThe student wants to present a difference between steel and reinforced concrete bridges.",
+   "choices": [
+    {
+     "id": "A",
+     "text": "Steel and reinforced concrete are two common building materials for bridges."
+    },
+    {
+     "id": "B",
+     "text": "Whereas steel bridges can be built quickly using prefabricated sections, reinforced concrete bridges take longer to construct because the concrete must cure on-site."
+    },
+    {
+     "id": "C",
+     "text": "Steel bridges are prone to corrosion and therefore require regular painting and maintenance."
+    },
+    {
+     "id": "D",
+     "text": "Both steel and reinforced concrete bridges require some degree of construction and maintenance."
+    }
+   ],
+   "correct": "B"
   }
  ]
 }

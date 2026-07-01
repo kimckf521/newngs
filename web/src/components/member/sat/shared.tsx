@@ -136,22 +136,35 @@ export function ThemeLangToggle() {
   const { dark, toggle } = useSatTheme();
   const { lang, setLang } = useSatLang();
   return (
-    <div className="flex items-center gap-1.5">
+    <div className="flex items-center gap-2">
+      {/* theme */}
       <button type="button" onClick={toggle} aria-label="Toggle light/dark theme" title="Light / dark"
-        className="grid h-8 w-8 place-items-center rounded-md border" style={{ borderColor: C.border, color: C.ink, background: C.panel }}>
+        className="grid h-8 w-8 place-items-center rounded-full border transition-colors hover:brightness-95"
+        style={{ borderColor: C.border, color: C.ink, background: C.panel }}>
         {dark ? (
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4" /></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4" /></svg>
         ) : (
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M20 14.5A8 8 0 0 1 9.5 4 7 7 0 1 0 20 14.5z" /></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M20 14.5A8 8 0 0 1 9.5 4 7 7 0 1 0 20 14.5z" /></svg>
         )}
       </button>
-      <div className="flex items-center rounded-md border p-0.5" style={{ borderColor: C.border, background: C.panel }}>
-        {(['en', 'zh'] as Lang[]).map((l) => (
-          <button key={l} type="button" onClick={() => setLang(l)} className="rounded px-2 py-0.5 text-[12px] font-bold"
-            style={lang === l ? { background: C.blue, color: '#fff' } : { color: C.muted }}>
-            {l === 'en' ? 'EN' : '中'}
-          </button>
-        ))}
+
+      {/* language — sliding-thumb segmented pill with a globe */}
+      <div role="group" aria-label="Language" className="relative flex h-8 items-center rounded-full border" style={{ borderColor: C.border, background: C.panel, paddingLeft: 8, paddingRight: 3 }}>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="mr-1.5 shrink-0" style={{ color: C.muted }}>
+          <circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18" />
+        </svg>
+        <div className="relative flex" style={{ padding: 0 }}>
+          {/* sliding thumb */}
+          <span aria-hidden className="pointer-events-none absolute rounded-full transition-[left,transform] duration-200 ease-out"
+            style={{ top: 0, bottom: 0, width: 34, left: lang === 'en' ? 0 : 34, background: C.blue, boxShadow: '0 2px 6px -1px color-mix(in srgb, var(--sat-blue) 55%, transparent)' }} />
+          {(['en', 'zh'] as Lang[]).map((l) => (
+            <button key={l} type="button" onClick={() => setLang(l)} aria-pressed={lang === l} aria-label={l === 'en' ? 'English' : '中文'}
+              className="relative z-10 grid h-[26px] w-[34px] place-items-center rounded-full text-[12px] font-bold transition-colors"
+              style={{ color: lang === l ? '#fff' : C.muted }}>
+              {l === 'en' ? 'EN' : '中'}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

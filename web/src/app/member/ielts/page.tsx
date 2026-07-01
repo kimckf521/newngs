@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { HtmlLang } from '@/components/layout/HtmlLang';
 import { IeltsMockTest } from '@/components/member/ielts/IeltsMockTest';
+import { BankGate } from '@/components/member/BankGate';
 
 export const metadata: Metadata = {
   title: 'IELTS 机考模拟 · Test 1',
@@ -11,7 +12,9 @@ export default function Page() {
   return (
     <>
       <HtmlLang lang="zh" />
-      <IeltsMockTest />
+      <BankGate bankId="ielts" locale="zh">
+        <IeltsMockTest />
+      </BankGate>
     </>
   );
 }

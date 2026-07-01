@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState, type FormEvent } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
 import { siteLinks } from '@/lib/siteLinks';
 import type { Locale } from '@/i18n/types';
 import { requestEmailSignup, loginWithProvider, isRealAuth, postLoginDest, type OtpSession } from '@/lib/auth';
@@ -51,6 +51,13 @@ const content = {
     verifying: 'Verifying…',
     changeEmail: 'Use a different email',
     codeError: 'Invalid or expired code. Please try again.',
+    noCode: "Didn't receive the code?",
+    resend: 'Resend code',
+    resending: 'Sending…',
+    resendIn: 'Resend in {s}s',
+    resent: 'A new code has been sent — check your inbox.',
+    alreadyRegistered: 'This email is already registered.',
+    goLogin: 'Sign in instead',
   },
   zh: {
     title: '创建你的账户',
@@ -90,8 +97,19 @@ const content = {
     verifying: '验证中…',
     changeEmail: '使用其他邮箱',
     codeError: '验证码无效或已过期，请重试。',
+    noCode: '没有收到验证码？',
+    resend: '重新发送验证码',
+    resending: '发送中…',
+    resendIn: '{s} 秒后可重新发送',
+    resent: '新的验证码已发送，请查收。',
+    alreadyRegistered: '该邮箱已注册。',
+    goLogin: '直接登录',
   },
 } as const;
+
+/** CloudBase reports a duplicate email/username as `already_exists` / `已注册`
+ *  (and localised variants); detect it to steer the user to sign in instead. */
+const ALREADY_REGISTERED = /already[\s_]*(exist|register)|already_exists|user[_\s]?already|已注册|已被注册|已存在|已被使用/i;
 
 export function RegisterPageV1({ locale }: { locale: Locale }) {
   const t = content[locale];
@@ -104,6 +122,18 @@ export function RegisterPageV1({ locale }: { locale: Locale }) {
   const [sentEmail, setSentEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'sending' | 'err'>('idle');
   const [error, setError] = useState('');
+  const [pending, setPending] = useState<{ name: string; email: string; password: string; role: SelectableRole } | null>(null);
+  const [cooldown, setCooldown] = useState(0);
+  const [resending, setResending] = useState(false);
+  const [resentMsg, setResentMsg] = useState(false);
+  const [duplicate, setDuplicate] = useState(false); // email already registered
+
+  // Count down the resend cooldown (a fresh code was just emailed).
+  useEffect(() => {
+    if (cooldown <= 0) return;
+    const id = setTimeout(() => setCooldown((c) => c - 1), 1000);
+    return () => clearTimeout(id);
+  }, [cooldown]);
 
   async function registerWithWeChat() {
     setStatus('sending');
@@ -141,14 +171,22 @@ export function RegisterPageV1({ locale }: { locale: Locale }) {
     }
     setStatus('sending');
     setError('');
+    setDuplicate(false);
     try {
       const s = await requestEmailSignup({ name, email, password, role });
       setSession(s);
+      setPending({ name, email, password, role });
       setSentEmail(email);
+      setCooldown(60);
       setPhase('code');
       setStatus('idle');
-    } catch {
-      setError(t.sendError);
+    } catch (err) {
+      if (err instanceof Error && ALREADY_REGISTERED.test(err.message)) {
+        setDuplicate(true);
+        setError(t.alreadyRegistered);
+      } else {
+        setError(t.sendError);
+      }
       setStatus('err');
     }
   }
@@ -162,17 +200,46 @@ export function RegisterPageV1({ locale }: { locale: Locale }) {
     try {
       const user = await session.verify(code);
       router.push(postLoginDest(user, links.member));
-    } catch {
-      setError(t.codeError);
+    } catch (err) {
+      if (err instanceof Error && ALREADY_REGISTERED.test(err.message)) {
+        setDuplicate(true);
+        setError(t.alreadyRegistered);
+      } else {
+        setError(t.codeError);
+      }
       setStatus('err');
+    }
+  }
+
+  async function resend() {
+    if (!pending || cooldown > 0 || resending) return;
+    setResending(true);
+    setError('');
+    setResentMsg(false);
+    setStatus('idle');
+    try {
+      const s = await requestEmailSignup(pending);
+      setSession(s); // fresh session for the newly-emailed code
+      setResentMsg(true);
+      setCooldown(60);
+    } catch {
+      setError(t.sendError);
+      setStatus('err');
+    } finally {
+      setResending(false);
     }
   }
 
   function changeEmail() {
     setPhase('details');
     setSession(null);
+    setPending(null);
     setStatus('idle');
     setError('');
+    setCooldown(0);
+    setResending(false);
+    setResentMsg(false);
+    setDuplicate(false);
   }
 
   if (phase === 'code') {
@@ -187,8 +254,32 @@ export function RegisterPageV1({ locale }: { locale: Locale }) {
         <form onSubmit={onVerify} className="space-y-5">
           <AuthField id="reg-code" name="code" label={t.code} placeholder={t.codePh} autoComplete="one-time-code" required />
           <SubmitButton loading={status === 'sending'} loadingLabel={t.verifying}>{t.verify}</SubmitButton>
-          {status === 'err' && <p className="text-sm text-rose-400">{error}</p>}
+          {status === 'err' && (
+            <p className="text-sm text-rose-400">
+              {error}
+              {duplicate && (
+                <>
+                  {' '}
+                  <Link href={links.login} className="font-semibold text-white underline underline-offset-2 transition-colors hover:text-ngs-cyan">
+                    {t.goLogin}
+                  </Link>
+                </>
+              )}
+            </p>
+          )}
         </form>
+        <div className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-white/55">
+          <span>{t.noCode}</span>
+          <button
+            type="button"
+            onClick={() => void resend()}
+            disabled={cooldown > 0 || resending}
+            className="font-semibold text-white underline-offset-4 transition-colors hover:underline disabled:cursor-not-allowed disabled:text-white/35 disabled:no-underline disabled:hover:no-underline"
+          >
+            {resending ? t.resending : cooldown > 0 ? t.resendIn.replace('{s}', String(cooldown)) : t.resend}
+          </button>
+        </div>
+        {resentMsg && <p className="mt-2 text-sm text-emerald-400">{t.resent}</p>}
         <button type="button" onClick={changeEmail} className="mt-6 text-sm font-medium text-white/55 transition-colors hover:text-white">
           {t.changeEmail}
         </button>
@@ -254,7 +345,19 @@ export function RegisterPageV1({ locale }: { locale: Locale }) {
         </label>
 
         <SubmitButton loading={status === 'sending'} loadingLabel={t.sendingCode}>{t.create}</SubmitButton>
-        {status === 'err' && <p className="text-sm text-rose-400">{error}</p>}
+        {status === 'err' && (
+          <p className="text-sm text-rose-400">
+            {error}
+            {duplicate && (
+              <>
+                {' '}
+                <Link href={links.login} className="font-semibold text-white underline underline-offset-2 transition-colors hover:text-ngs-cyan">
+                  {t.goLogin}
+                </Link>
+              </>
+            )}
+          </p>
+        )}
       </form>
 
       {!isRealAuth() && <DemoNote>{t.demo}</DemoNote>}

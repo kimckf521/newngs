@@ -5,12 +5,13 @@ import type {
   SatQuestion, SatForm, SatSection, SatDomain, SatSkill, SatDifficulty, SatChoiceKey, SatModule,
 } from '@/lib/sat/types';
 import {
-  SECTION_LABEL, DIFFICULTY_LABEL, DOMAIN_LABEL, SKILL_LABEL,
+  DIFFICULTY_LABEL, DOMAIN_LABEL, SKILL_LABEL,
   DOMAINS_BY_SECTION, SKILLS_BY_DOMAIN, slugify, uniqueSlug,
 } from '@/lib/sat/types';
 import {
   listQuestions, saveQuestion, deleteQuestion, listForms, saveForm, type SaveMode,
 } from '@/lib/sat/client';
+import { secLabel, domLabel, diffLabel } from '@/components/member/sat/i18n';
 import originalBundle from '@/components/member/sat/data/originalForm.json';
 
 const CHOICE_KEYS: SatChoiceKey[] = ['A', 'B', 'C', 'D'];
@@ -181,7 +182,7 @@ export function SatAdminPage() {
         </div>
 
         {tab === 'questions'
-          ? <QuestionsTab l={l} questions={questions} onSaved={refresh} flash={flash} />
+          ? <QuestionsTab l={l} lang={lang} questions={questions} onSaved={refresh} flash={flash} />
           : <FormsTab l={l} forms={forms} questions={questions} onSaved={refresh} flash={flash} />}
       </div>
 
@@ -192,26 +193,59 @@ export function SatAdminPage() {
 
 /* --------------------------------------------------------------- questions */
 
-function QuestionsTab({ l, questions, onSaved, flash }: { l: Dict; questions: SatQuestion[]; onSaved: () => Promise<void>; flash: (m: string) => void }) {
+// Compact, colour-coded section chip so Math vs Reading & Writing is obvious at
+// a glance. RW = indigo, Math = amber (distinct from the emerald "published" badge).
+function sectionChipClass(section: SatSection): string {
+  return section === 'math' ? 'bg-amber-100 text-amber-700' : 'bg-indigo-100 text-indigo-700';
+}
+function sectionShort(section: SatSection, lang: Lang): string {
+  if (lang === 'zh') return section === 'math' ? '数学' : '阅读写作';
+  return section === 'math' ? 'Math' : 'R&W';
+}
+
+function QuestionsTab({ l, lang, questions, onSaved, flash }: { l: Dict; lang: Lang; questions: SatQuestion[]; onSaved: () => Promise<void>; flash: (m: string) => void }) {
   const [editing, setEditing] = useState<SatQuestion | null>(null);
+  const [sec, setSec] = useState<SatSection | 'all'>('all');
+
+  const rwCount = useMemo(() => questions.filter((q) => q.section === 'reading_writing').length, [questions]);
+  const mathCount = useMemo(() => questions.filter((q) => q.section === 'math').length, [questions]);
+  const shown = sec === 'all' ? questions : questions.filter((q) => q.section === sec);
+
+  const filters: { key: SatSection | 'all'; label: string; n: number; active: string }[] = [
+    { key: 'all', label: lang === 'zh' ? '全部' : 'All', n: questions.length, active: 'bg-slate-900 text-white border-slate-900' },
+    { key: 'reading_writing', label: sectionShort('reading_writing', lang), n: rwCount, active: 'bg-indigo-600 text-white border-indigo-600' },
+    { key: 'math', label: sectionShort('math', lang), n: mathCount, active: 'bg-amber-500 text-white border-amber-500' },
+  ];
 
   return (
     <div className="grid gap-6 lg:grid-cols-[380px_1fr]">
       <div>
         <div className="mb-2 flex gap-2">
-          <button type="button" onClick={() => setEditing(blank('reading_writing'))} className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-[13px] font-semibold text-slate-700 hover:bg-slate-50">{l.newRW}</button>
-          <button type="button" onClick={() => setEditing(blank('math'))} className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-[13px] font-semibold text-slate-700 hover:bg-slate-50">{l.newMath}</button>
+          <button type="button" onClick={() => setEditing(blank('reading_writing'))} className="flex-1 rounded-lg border border-indigo-300 px-3 py-2 text-[13px] font-semibold text-indigo-700 hover:bg-indigo-50">{l.newRW}</button>
+          <button type="button" onClick={() => setEditing(blank('math'))} className="flex-1 rounded-lg border border-amber-300 px-3 py-2 text-[13px] font-semibold text-amber-700 hover:bg-amber-50">{l.newMath}</button>
         </div>
-        <div className="max-h-[70vh] divide-y divide-slate-100 overflow-y-auto rounded-xl border border-slate-200 bg-white">
-          {questions.length === 0 ? <div className="p-4 text-[13px] text-slate-500">{l.noQuestions}</div> : null}
-          {questions.map((q) => (
+        {/* section filter — makes the Math / R&W split explicit */}
+        <div className="mb-2 flex gap-1.5">
+          {filters.map((f) => (
+            <button key={f.key} type="button" onClick={() => setSec(f.key)}
+              className={`rounded-full border px-3 py-1 text-[12px] font-semibold ${sec === f.key ? f.active : 'border-slate-300 text-slate-600 hover:bg-slate-50'}`}>
+              {f.label} <span className="tabular-nums opacity-80">{f.n}</span>
+            </button>
+          ))}
+        </div>
+        <div className="max-h-[66vh] divide-y divide-slate-100 overflow-y-auto rounded-xl border border-slate-200 bg-white">
+          {shown.length === 0 ? <div className="p-4 text-[13px] text-slate-500">{l.noQuestions}</div> : null}
+          {shown.map((q) => (
             <button key={q.id} type="button" onClick={() => setEditing(q)}
               className={`block w-full px-4 py-2.5 text-left hover:bg-slate-50 ${editing?.id === q.id ? 'bg-blue-50' : ''}`}>
-              <div className="flex items-center justify-between">
-                <span className="text-[13px] font-semibold text-slate-900">{q.id}</span>
-                <span className={`rounded px-1.5 py-0.5 text-[10px] font-bold ${q.published ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-500'}`}>{q.published ? l.live : l.draft}</span>
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex min-w-0 items-center gap-2">
+                  <span className={`shrink-0 rounded px-1.5 py-0.5 text-[10px] font-bold ${sectionChipClass(q.section)}`}>{sectionShort(q.section, lang)}</span>
+                  <span className="truncate text-[13px] font-semibold text-slate-900">{q.id}</span>
+                </div>
+                <span className={`shrink-0 rounded px-1.5 py-0.5 text-[10px] font-bold ${q.published ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-500'}`}>{q.published ? l.live : l.draft}</span>
               </div>
-              <div className="mt-0.5 truncate text-[12px] text-slate-500">{SECTION_LABEL[q.section]} · {DOMAIN_LABEL[q.domain]} · {q.difficulty}</div>
+              <div className="mt-0.5 truncate text-[12px] text-slate-500">{domLabel(q.domain, lang)} · {diffLabel(q.difficulty, lang)}</div>
               <div className="truncate text-[12px] text-slate-400">{q.stem || l.noStem}</div>
             </button>
           ))}

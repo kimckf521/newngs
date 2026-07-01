@@ -7,6 +7,7 @@ import type { Locale } from '@/i18n/types';
 import { initials } from '@/lib/demoAuth';
 import { siteLinks } from '@/lib/siteLinks';
 import { memberContent } from '../memberContent';
+import { useAdminGuard } from '@/components/auth/useAdminGuard';
 import { dv2, type NodeState } from './data';
 import { Card, Icon, Ring, Bar, GradientButton } from './parts';
 
@@ -26,6 +27,7 @@ function lessonStates(state: NodeState): NodeState[] {
 }
 
 export function MemberDesignV2({ locale }: { locale: Locale }) {
+  useAdminGuard(); // admins belong in /admin, not the student portal
   const t = dv2[locale];
   const m = memberContent[locale];
   const courses = m.progress.courses;

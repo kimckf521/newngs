@@ -7,6 +7,7 @@ import type { Locale } from '@/i18n/types';
 import { Card, Icon, ProgressRing, Bar, GradientButton, SoftButton } from '@/components/member/design-v1/parts';
 import { siteLinks } from '@/lib/siteLinks';
 import { logout } from '@/lib/auth';
+import { useAdminGuard } from '@/components/auth/useAdminGuard';
 import { parentData, type Child } from '@/lib/parent/sample';
 
 /**
@@ -101,6 +102,7 @@ function WeekChart({ week, days7 }: { week: number[]; days7: readonly string[] }
 }
 
 export function ParentPortal({ locale }: { locale: Locale }) {
+  useAdminGuard(); // admins belong in /admin, not the parent portal
   const [lang, setLang] = useState<Locale>(locale);
   useEffect(() => {
     try {

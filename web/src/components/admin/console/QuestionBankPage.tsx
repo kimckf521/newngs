@@ -8,6 +8,7 @@ import { fetchBankSummary, type BankSummary } from '@/lib/questionBank/client';
 import { CoverPreview } from './CoverPreview';
 import { QuestionBankPanel } from './QuestionBankPanel';
 import { BankAccessPanel } from './BankAccessPanel';
+import { AudioUploadPanel } from './AudioUploadPanel';
 
 const L = {
   zh: { back: '题库', loading: '加载中…', notFound: '找不到这个题库。', books: '本', published: '已发布', draft: '草稿', updated: '更新时间', info: '题库信息', id: '题库 ID', bookCount: '书目数量', descTitle: '简介', modulesTitle: '模块', previewAsStudent: '学生视角预览' },
@@ -121,6 +122,7 @@ export function QuestionBankPage({ id, locale }: { id: string; locale: Locale })
           {SKILLS[lang].map((s) => (
             <QuestionBankPanel key={s.key} courseId={id} locale={lang} title={s.label} skill={s.key} />
           ))}
+          {id === 'ielts' && <AudioUploadPanel bankId={id} locale={lang} />}
         </div>
         <div className="space-y-6">
           <BankAccessPanel bankId={bank.id} locale={lang} />

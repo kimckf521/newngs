@@ -39,6 +39,29 @@ export function ListeningSection({
   const [reviewMode, setReviewMode] = useState(false);
   const recordedRef = useRef(false);
 
+  // Prefer audio uploaded to the bank (signed CloudBase URLs) over the bundled
+  // sample; fall back silently when it isn't configured or not yet uploaded.
+  const [dbAudio, setDbAudio] = useState<string[] | null>(null);
+  useEffect(() => {
+    let active = true;
+    const bookNum = String(test.book).match(/\d+/)?.[0];
+    if (!bookNum) return;
+    void (async () => {
+      try {
+        const res = await fetch(`/api/ielts/audio?book=${bookNum}&test=${test.test}`);
+        const d = (await res.json().catch(() => null)) as { ok?: boolean; parts?: Record<string, string> } | null;
+        if (!active || !d?.ok || !d.parts) return;
+        const parts = d.parts;
+        const keys = Object.keys(parts);
+        const ordered = keys.includes('whole') ? ['whole'] : keys.filter((k) => parts[k]).sort((a, b) => Number(a) - Number(b));
+        const urls = ordered.map((k) => parts[k]).filter(Boolean);
+        if (urls.length) setDbAudio(urls);
+      } catch { /* keep bundled fallback */ }
+    })();
+    return () => { active = false; };
+  }, []);
+  const audios = dbAudio ?? test.audio;
+
   // Persist the attempt (band + per-question mistakes) once on first submit.
   useEffect(() => {
     if (!submitted || recordedRef.current) return;
@@ -93,7 +116,7 @@ export function ListeningSection({
     <div className="fixed inset-0 z-[60] flex flex-col bg-white text-[#1a1a1a]" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
       <TopBar label="IELTS Listening" secs={secs} hidden={timerHidden} toggleHidden={() => setTimerHidden((v) => !v)} onSettings={() => setSettingsOpen(true)} onExit={onExit} />
 
-      <ListeningAudio audios={test.audio} started={started} practice={practice} vol={vol} setVol={setVol} reviewMode={reviewMode} onAllEnded={onAllAudioEnded} />
+      <ListeningAudio audios={audios} started={started} practice={practice} vol={vol} setVol={setVol} reviewMode={reviewMode} onAllEnded={onAllAudioEnded} />
       {reviewMode ? (
         <div className="shrink-0 bg-[#fff3cd] px-4 py-1.5 text-center text-[12px] font-bold text-[#8a6d00]">
           The recording has ended. You now have 2 minutes to check your answers.

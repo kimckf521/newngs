@@ -90,16 +90,6 @@ CREATE TABLE IF NOT EXISTS account_links (
   created_at  timestamptz NOT NULL DEFAULT now()
 );
 CREATE INDEX IF NOT EXISTS account_links_primary_idx ON account_links (primary_uid);
--- Member invites (pre-authorization). CloudBase forbids admin-minting a login
--- (username signup is OTP-gated at the SDK), so instead the admin pre-authorizes
--- an email + role; the person signs up their own way and the role is applied on
--- first login (see applyInvite / api/profile). Email-keyed; consumed on use.
-CREATE TABLE IF NOT EXISTS member_invites (
-  email      text PRIMARY KEY,
-  name       text,
-  role       text NOT NULL DEFAULT 'student',
-  created_at timestamptz NOT NULL DEFAULT now()
-);
 CREATE TABLE IF NOT EXISTS courses (
   id         text PRIMARY KEY,
   data       jsonb NOT NULL,

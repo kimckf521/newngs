@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { dbConfigured, query, queryOne } from '@/lib/db/pg';
 import { canonicalUid } from '@/lib/admin/accountLinks';
-import { applyInvite } from '@/lib/admin/invites';
 import { DEFAULT_ROLE, normalizeRole, SELECTABLE_ROLES, type SelectableRole } from '@/lib/roles';
 
 export const runtime = 'nodejs';
@@ -86,9 +85,6 @@ export async function POST(req: NextRequest) {
              updated_at = now()`,
       [uid, email, name, role],
     );
-    // Apply a pending admin invite for this email (upgrades a default student to
-    // parent, then consumes it). Best-effort — never blocks sign-in.
-    if (email) await applyInvite(uid, email);
     return NextResponse.json({ ok: true });
   } catch {
     return NextResponse.json({ ok: false, error: 'unavailable' }, { status: 503 });

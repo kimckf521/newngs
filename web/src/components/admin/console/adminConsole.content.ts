@@ -113,22 +113,6 @@ type Strings = {
       unlink: string;
       unlinkDone: string;
     };
-    invite: {
-      button: string;
-      title: string;
-      emailLabel: string;
-      emailHint: string;
-      nameLabel: string;
-      roleLabel: string;
-      submit: string;
-      cancel: string;
-      done: (email: string) => string;
-      failedEmail: string;
-      failed: string;
-      pending: string;
-      pendingEmpty: string;
-      cancelInvite: string;
-    };
   };
 };
 
@@ -227,22 +211,6 @@ export const adminConsoleContent: Record<Locale, Strings> = {
         unlink: 'Un-merge this login',
         unlinkDone: 'Un-merged ✓',
       },
-      invite: {
-        button: 'Invite member',
-        title: 'Pre-authorize a member',
-        emailLabel: 'Email',
-        emailHint: 'No email is sent. When someone signs up with this email, they automatically get the role below on first login. (WeChat/phone sign-ins: set their role from the list after they log in.)',
-        nameLabel: 'Name (optional)',
-        roleLabel: 'Role',
-        submit: 'Save',
-        cancel: 'Cancel',
-        done: (e) => `Pre-authorized ${e} ✓`,
-        failedEmail: 'Enter a valid email address.',
-        failed: 'Could not save the invite.',
-        pending: 'Pending invites',
-        pendingEmpty: 'No pending invites.',
-        cancelInvite: 'Cancel invite',
-      },
     },
   },
   zh: {
@@ -337,22 +305,6 @@ export const adminConsoleContent: Record<Locale, Strings> = {
         failed: '合并失败',
         unlink: '拆分此登录',
         unlinkDone: '已拆分 ✓',
-      },
-      invite: {
-        button: '邀请成员',
-        title: '预授权成员',
-        emailLabel: '邮箱',
-        emailHint: '不会发邮件。用这个邮箱注册的人首次登录即自动获得下面的角色。（微信/手机登录的用户，请首次登录后在列表里改角色。）',
-        nameLabel: '姓名（可选）',
-        roleLabel: '角色',
-        submit: '保存',
-        cancel: '取消',
-        done: (e) => `已预授权 ${e} ✓`,
-        failedEmail: '请输入有效的邮箱地址。',
-        failed: '保存邀请失败。',
-        pending: '待处理的邀请',
-        pendingEmpty: '暂无待处理邀请。',
-        cancelInvite: '取消邀请',
       },
     },
   },

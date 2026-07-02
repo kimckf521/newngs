@@ -34,10 +34,19 @@ export function PracticeQuestion({
     <div className="mx-auto w-full max-w-[820px]">
       <div className="mb-3 flex flex-wrap items-center gap-2">
         {number ? <QuestionChip n={number} /> : null}
+        {question.origin === 'official' ? (
+          <span className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-bold text-white" style={{ background: C.blueDeep }}
+            title={lang === 'zh' ? '真实历年 SAT 考题' : 'Real question from a past SAT exam'}>
+            ★ {lang === 'zh' ? '真题' : 'Real SAT'}
+          </span>
+        ) : null}
         <span className="rounded-full px-2 py-0.5 text-[11px] font-semibold" style={{ background: C.tint, color: C.blue }}>
           {domLabel(question.domain, lang)}
         </span>
         <span className="text-[11px]" style={{ color: C.muted }}>{skillLabel(question.skill, lang)} · {diffLabel(question.difficulty, lang)}</span>
+        {question.origin === 'official' && question.source ? (
+          <span className="text-[11px]" style={{ color: C.muted }}>· {question.source}</span>
+        ) : null}
         <div className="ml-auto">{extra}</div>
       </div>
 

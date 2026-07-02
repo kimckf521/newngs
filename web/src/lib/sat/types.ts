@@ -216,6 +216,7 @@ export type SatQuestionBase = {
   figureAlt?: string;
   explanation?: string; // rationale, shown in review/results
   source?: string; // e.g. '2025年3月亚太A', 'NGS original'
+  origin?: 'official' | 'original'; // 'official' = real past SAT exam (licensed); 'original' = NGS-authored. Absent ⇒ treated as 'original'.
   published: boolean;
   createdAt?: number;
   updatedAt?: number;

@@ -71,7 +71,7 @@ export function SatApp({ formId }: { formId?: string }) {
   if (mode === 'setup') return <PracticeSetup pool={pool || []} onBack={toHub} onStart={(qs, title) => { setDrill({ qs, title }); setMode('practice'); }} />;
   if (mode === 'practice') return <PracticeRunner questions={drill?.qs || []} title={drill?.title || 'Practice'} onExit={toHub} />;
   if (mode === 'notebook') return <MistakeNotebook pool={pool || []} onBack={toHub} onPractice={(qs, title) => { setDrill({ qs, title }); setMode('practice'); }} />;
-  if (mode === 'dashboard') return <ProgressDashboard onBack={toHub} onPracticeSkill={drillSkill} />;
+  if (mode === 'dashboard') return <ProgressDashboard onBack={toHub} onPracticeSkill={drillSkill} onOpenNotebook={() => setMode('notebook')} onOpenVocab={() => setMode('vocab')} />;
   if (mode === 'vocab') return <VocabBook onBack={toHub} />;
 
   // ---- hub ----

@@ -76,6 +76,7 @@ type Store = {
   log: AnswerEvent[];
   vocab: VocabEntry[];
   mocks: MockScore[];
+  goal?: number; // student's target total score (400–1600), for the dashboard goal/milestone view
 };
 
 const EMPTY: Store = { v: 1, mistakes: {}, log: [], vocab: [], mocks: [] };
@@ -85,7 +86,7 @@ function read(): Store {
     const raw = typeof window !== 'undefined' ? window.localStorage.getItem(KEY) : null;
     if (!raw) return { ...EMPTY };
     const s = JSON.parse(raw) as Partial<Store>;
-    return { v: 1, mistakes: s.mistakes || {}, log: s.log || [], vocab: s.vocab || [], mocks: s.mocks || [] };
+    return { v: 1, mistakes: s.mistakes || {}, log: s.log || [], vocab: s.vocab || [], mocks: s.mocks || [], goal: s.goal };
   } catch {
     return { ...EMPTY };
   }
@@ -175,6 +176,11 @@ export function bestMockScore(): MockScore | null {
   return mocks.reduce((best, m) => (m.total > best.total ? m : best));
 }
 
+/** Completed mocks in chronological order — powers the score-trajectory chart. */
+export function listMocks(): MockScore[] {
+  return [...read().mocks].sort((a, b) => a.at - b.at);
+}
+
 /* --------------------------------------------------------------- mistakes */
 
 export type MistakeFilter = { section?: SatSection; domain?: SatDomain; skill?: SatSkill; difficulty?: SatDifficulty; includeMastered?: boolean };
@@ -253,7 +259,7 @@ export function setVocabDef(word: string, def: VocabDef): void {
 /* --------------------------------------------------------------- stats */
 
 export type SkillStat = { skill: SatSkill; section: SatSection; attempted: number; correct: number };
-export type SectionStat = { section: SatSection; attempted: number; correct: number; avgMs: number };
+export type SectionStat = { section: SatSection; attempted: number; correct: number; avgMs: number; msN: number };
 export type DayStat = { day: string; attempted: number; correct: number };
 
 export type ProgressStats = {
@@ -305,7 +311,7 @@ export function getStats(): ProgressStats {
     masteredCount: mistakes.filter((m) => m.mastered).length,
     vocabCount: s.vocab.length,
     bySection: Array.from(bySectionMap.entries()).map(([section, v]) => ({
-      section, attempted: v.attempted, correct: v.correct, avgMs: v.msN ? Math.round(v.ms / v.msN) : 0,
+      section, attempted: v.attempted, correct: v.correct, avgMs: v.msN ? Math.round(v.ms / v.msN) : 0, msN: v.msN,
     })),
     bySkill: Array.from(bySkillMap.values()).sort((a, b) => a.attempted - b.attempted),
     byDay,
@@ -353,6 +359,89 @@ export function quickCounts(): { mistakes: number; due: number; vocab: number } 
   const now = Date.now();
   const active = Object.values(s.mistakes).filter((m) => !m.mastered);
   return { mistakes: active.length, due: active.filter((m) => m.dueAt <= now).length, vocab: s.vocab.length };
+}
+
+/* ----------------------------------------------------- learning analytics
+ * Derived views over the raw log/mistakes — power the dashboard's intelligence
+ * layer (error diagnosis, pace, trajectory, study plan, goal). All read-only. */
+
+/** Official standard pace per question (seconds) — the pacing benchmark. */
+const STD_SEC: Record<SatSection, number> = { reading_writing: 71, math: 95 };
+
+export type ErrorKind = 'careless' | 'knowledge' | 'shaky' | 'solid';
+export type ErrorProfile = {
+  timed: number; careless: number; knowledge: number; shaky: number; solid: number;
+  wrong: number; carelessPct: number; knowledgePct: number;
+  recent: Array<{ kind: ErrorKind; section: SatSection; correct: boolean; sec: number }>;
+};
+
+/** Classify a timed answer: wrong+fast = careless, wrong+slow = knowledge gap,
+ *  correct+slow = shaky (knows it but laboured), correct+on-pace = solid. */
+function classifyAnswer(e: AnswerEvent): ErrorKind {
+  const std = STD_SEC[e.section] * 1000;
+  const fast = (e.ms as number) < std * 0.75;
+  if (!e.correct) return fast ? 'careless' : 'knowledge';
+  return (e.ms as number) > std ? 'shaky' : 'solid';
+}
+
+/** Split answers by the careless/knowledge/shaky/solid quadrants, using per-
+ *  question timing. Only timed answers count; `recent` is the last `recentN`
+ *  (newest last) for the pace strip. */
+export function errorProfile(recentN = 24): ErrorProfile {
+  const timed = read().log.filter((e) => typeof e.ms === 'number' && (e.ms as number) > 0);
+  let careless = 0, knowledge = 0, shaky = 0, solid = 0;
+  for (const e of timed) {
+    const k = classifyAnswer(e);
+    if (k === 'careless') careless += 1; else if (k === 'knowledge') knowledge += 1; else if (k === 'shaky') shaky += 1; else solid += 1;
+  }
+  const wrong = careless + knowledge;
+  const recent = timed.slice(-recentN).map((e) => ({ kind: classifyAnswer(e), section: e.section, correct: e.correct, sec: Math.round((e.ms as number) / 1000) }));
+  return { timed: timed.length, careless, knowledge, shaky, solid, wrong, carelessPct: wrong ? Math.round((careless / wrong) * 100) : 0, knowledgePct: wrong ? Math.round((knowledge / wrong) * 100) : 0, recent };
+}
+
+/** Confidence half-width (± points) for a predicted score from N samples —
+ *  fewer answers → wider band. Bounded to [20, 120]. */
+export function predictionBand(samples: number): number {
+  if (samples <= 0) return 120;
+  return Math.min(120, Math.max(20, Math.round(400 / Math.sqrt(samples))));
+}
+
+export type TrapProfile = { repeatMisses: MistakeEntry[]; topSkill?: { skill: SatSkill; wrongCount: number } };
+/** Coarse "traps" view from the mistake store: questions missed ≥2× (persistent
+ *  traps) + the skill you lose the most points to. (Semantic distractor-type
+ *  labelling would need per-choice tags in the bank or an AI pass.) */
+export function distractorProfile(): TrapProfile {
+  const active = Object.values(read().mistakes).filter((m) => !m.mastered);
+  const repeatMisses = active.filter((m) => m.wrongCount >= 2).sort((a, b) => b.wrongCount - a.wrongCount);
+  const bySkill = new Map<SatSkill, number>();
+  for (const m of active) bySkill.set(m.skill, (bySkill.get(m.skill) || 0) + m.wrongCount);
+  let topSkill: { skill: SatSkill; wrongCount: number } | undefined;
+  for (const [skill, w] of bySkill) if (!topSkill || w > topSkill.wrongCount) topSkill = { skill, wrongCount: w };
+  return { repeatMisses, topSkill };
+}
+
+export type PlanItem = { type: 'review' | 'skill' | 'vocab'; count: number; skill?: SatSkill };
+/** Today's interleaved study plan: due spaced-repetition mistakes + fresh
+ *  questions on the weakest skill + vocab self-quiz, budgeted to `dailyTarget`. */
+export function studyPlan(dailyTarget = 20): PlanItem[] {
+  const s = read();
+  const now = Date.now();
+  const items: PlanItem[] = [];
+  let budget = dailyTarget;
+  const due = Object.values(s.mistakes).filter((m) => !m.mastered && m.dueAt <= now);
+  if (due.length) { const n = Math.min(due.length, Math.max(3, Math.round(dailyTarget * 0.4))); items.push({ type: 'review', count: n }); budget -= n; }
+  const weak = getStats().bySkill.filter((x) => x.attempted >= 2).map((x) => ({ skill: x.skill, pct: x.correct / x.attempted })).sort((a, b) => a.pct - b.pct)[0];
+  if (weak && budget > 0) { const n = Math.min(budget, 10); items.push({ type: 'skill', count: n, skill: weak.skill }); budget -= n; }
+  if (s.vocab.length) items.push({ type: 'vocab', count: Math.min(s.vocab.length, 8) });
+  return items;
+}
+
+/** The student's target total score (400–1600), or null if unset. */
+export function getGoal(): number | null { return read().goal ?? null; }
+export function setGoal(total: number | null): void {
+  const s = read();
+  if (total == null) delete s.goal; else s.goal = total;
+  write(s);
 }
 
 /* ------------------------------------------------------- cross-device sync
@@ -419,6 +508,7 @@ function mergeStores(a: Store, b: Store): Store {
     log: log.slice(-LOG_CAP),
     vocab: Array.from(vocabByWord.values()).sort((x, y) => y.addedAt - x.addedAt),
     mocks: mocks.slice(-MOCK_CAP),
+    goal: a.goal ?? b.goal, // preserve the target score across a sync merge
   };
 }
 
@@ -444,8 +534,10 @@ export async function configureSync(uid: string): Promise<void> {
   try { window.dispatchEvent(new Event('ngs-sat-sync')); } catch { /* noop */ }
   try {
     const remote = (await fetchProgress(uid)) as Partial<Store> | null;
-    if (remote && (remote.mistakes || remote.log || remote.vocab || remote.mocks)) {
-      const merged = mergeStores(read(), { v: 1, mistakes: remote.mistakes || {}, log: remote.log || [], vocab: remote.vocab || [], mocks: remote.mocks || [] });
+    if (remote && (remote.mistakes || remote.log || remote.vocab || remote.mocks || remote.goal != null)) {
+      // Carry EVERY field into the merge — goal included — so a cloud-stored goal
+      // is honoured and the post-merge push doesn't overwrite it with a blank.
+      const merged = mergeStores(read(), { v: 1, mistakes: remote.mistakes || {}, log: remote.log || [], vocab: remote.vocab || [], mocks: remote.mocks || [], goal: remote.goal });
       write(merged); // persists locally, notifies UI, and schedules a push
     }
     await flushPush(); // ensure remote has the merged/seeded state

@@ -5,11 +5,12 @@ import type { Locale } from '@/i18n/types';
 import { Card } from '@/components/member/design-v1/parts';
 import { initials } from '@/lib/demoAuth';
 import { getCurrentUser } from '@/lib/auth';
-import { ROLE_LABELS, ROLES, type Role } from '@/lib/roles';
+import { ROLE_LABELS, ROLES, SELECTABLE_ROLES, type Role } from '@/lib/roles';
 import { adminConsoleContent } from './adminConsole.content';
 
 type LoginVia = 'wechat' | 'email' | 'phone' | 'account' | 'other';
 type LinkedAccount = { uid: string; email: string; phone: string; loginVia: LoginVia };
+type Invite = { email: string; name: string; role: Role; createdAt: string };
 type MemberRow = {
   uid: string;
   email: string;
@@ -39,7 +40,8 @@ export function MembersSection({ locale }: { locale: Locale }) {
   // chosen primary uid).
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [merge, setMerge] = useState<{ primaryUid: string } | null>(null);
-  const [createOpen, setCreateOpen] = useState(false);
+  const [inviteOpen, setInviteOpen] = useState(false);
+  const [invites, setInvites] = useState<Invite[]>([]);
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
@@ -55,21 +57,36 @@ export function MembersSection({ locale }: { locale: Locale }) {
     });
   }, []);
 
-  const load = useCallback(async (k: string) => {
-    setState('loading');
+  const loadInvites = useCallback(async (k: string) => {
     try {
-      const res = await fetch('/api/admin/members', { headers: k ? { 'x-admin-key': k } : {} });
-      if (res.status === 401) return setState('unauthorized');
+      const res = await fetch('/api/admin/members/invite', { headers: k ? { 'x-admin-key': k } : {} });
       const data = await res.json().catch(() => ({}));
-      if (data?.ok) {
-        setMembers(data.members || []);
-        return setState('ok');
-      }
-      return setState('not_configured');
+      setInvites(data?.ok ? data.invites || [] : []);
     } catch {
-      setState('not_configured');
+      setInvites([]);
     }
   }, []);
+
+  const load = useCallback(
+    async (k: string) => {
+      setState('loading');
+      try {
+        const res = await fetch('/api/admin/members', { headers: k ? { 'x-admin-key': k } : {} });
+        if (res.status === 401) return setState('unauthorized');
+        const data = await res.json().catch(() => ({}));
+        if (data?.ok) {
+          setMembers(data.members || []);
+          setState('ok');
+          void loadInvites(k);
+          return;
+        }
+        return setState('not_configured');
+      } catch {
+        setState('not_configured');
+      }
+    },
+    [loadInvites],
+  );
 
   useEffect(() => {
     void load(key);
@@ -151,40 +168,49 @@ export function MembersSection({ locale }: { locale: Locale }) {
     }
   }
 
-  async function submitCreate(e: FormEvent<HTMLFormElement>) {
+  async function submitInvite(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    const username = String(data.get('username') || '').trim().toLowerCase();
-    const password = String(data.get('password') || '');
+    const email = String(data.get('email') || '').trim().toLowerCase();
     const name = String(data.get('name') || '').trim();
     const role = String(data.get('role') || 'student') as Role;
-    if (!/^[a-z][0-9a-z_-]{5,24}$/.test(username)) return flash(t.members.create.failedUsername, false);
-    if (password.length < 8 || password.length > 64) return flash(t.members.create.failedPassword, false);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return flash(t.members.invite.failedEmail, false);
     setBusy(true);
     let ok = false;
-    let msg = t.members.create.failedTaken;
     try {
-      const res = await fetch('/api/admin/members/create', {
+      const res = await fetch('/api/admin/members/invite', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', ...(key ? { 'x-admin-key': key } : {}) },
-        body: JSON.stringify({ username, password, name, role }),
+        body: JSON.stringify({ email, name, role }),
       });
-      const d = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
-      if (d?.ok) {
-        ok = true;
-        msg = t.members.create.done(username);
-      } else if (d?.error === 'not_configured') {
-        msg = t.members.create.notConfigured;
-      }
+      ok = !!(await res.json().catch(() => ({})))?.ok;
     } catch {
-      /* msg stays failedTaken */
+      /* ok stays false */
     }
     setBusy(false);
-    flash(msg, ok);
+    flash(ok ? t.members.invite.done(email) : t.members.invite.failed, ok);
     if (ok) {
-      setCreateOpen(false);
-      await load(key);
+      setInviteOpen(false);
+      await loadInvites(key);
     }
+  }
+
+  async function cancelInviteFn(email: string) {
+    setBusy(true);
+    let ok = false;
+    try {
+      const res = await fetch('/api/admin/members/invite', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json', ...(key ? { 'x-admin-key': key } : {}) },
+        body: JSON.stringify({ email }),
+      });
+      ok = !!(await res.json().catch(() => ({})))?.ok;
+    } catch {
+      /* ok stays false */
+    }
+    setBusy(false);
+    if (ok) await loadInvites(key);
+    else flash(t.members.invite.failed, false);
   }
 
   async function unlink(uid: string) {
@@ -240,10 +266,10 @@ export function MembersSection({ locale }: { locale: Locale }) {
           {state === 'ok' && (
             <button
               type="button"
-              onClick={() => setCreateOpen(true)}
+              onClick={() => setInviteOpen(true)}
               className="rounded-xl bg-ngs-gradient px-3.5 py-2 text-sm font-semibold text-white shadow-[0_8px_20px_-8px_rgba(236,28,139,0.7)] transition-opacity hover:opacity-90"
             >
-              + {t.members.create.button}
+              + {t.members.invite.button}
             </button>
           )}
         </div>
@@ -377,6 +403,38 @@ export function MembersSection({ locale }: { locale: Locale }) {
           </tbody>
         </table>
       </Card>
+
+      {/* Pending invites (pre-authorized emails not yet signed up). */}
+      {state === 'ok' && (
+        <Card className="p-5">
+          <p className="font-grotesk text-sm font-bold text-slate-900">{t.members.invite.pending}</p>
+          {invites.length === 0 ? (
+            <p className="mt-1.5 text-sm text-slate-400">{t.members.invite.pendingEmpty}</p>
+          ) : (
+            <ul className="mt-3 space-y-2">
+              {invites.map((inv) => (
+                <li key={inv.email} className="flex items-center gap-3 rounded-xl border border-slate-100 px-3.5 py-2">
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate text-sm font-medium text-slate-800">{inv.email}</span>
+                    {inv.name && <span className="block truncate text-[12px] text-slate-400">{inv.name}</span>}
+                  </span>
+                  <span className="rounded-full bg-ngs-gradient-soft px-2.5 py-0.5 text-[11px] font-semibold text-ngs-violet">{ROLE_LABELS[locale][inv.role]}</span>
+                  <button
+                    type="button"
+                    disabled={busy}
+                    onClick={() => cancelInviteFn(inv.email)}
+                    title={t.members.invite.cancelInvite}
+                    className="grid h-7 w-7 shrink-0 place-items-center rounded-lg text-slate-400 transition-colors hover:bg-slate-100 hover:text-rose-500 disabled:opacity-50"
+                  >
+                    ×
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </Card>
+      )}
+
       {toast && <p className={`text-sm font-medium ${toast.ok ? 'text-emerald-600' : 'text-rose-500'}`}>{toast.msg}</p>}
 
       {/* Role-change confirmation. */}
@@ -461,29 +519,25 @@ export function MembersSection({ locale }: { locale: Locale }) {
         </div>
       )}
 
-      {/* Create a username + password account. */}
-      {createOpen && (
-        <div className="fixed inset-0 z-50 grid place-items-center bg-black/50 p-4" onClick={() => !busy && setCreateOpen(false)}>
-          <form onSubmit={submitCreate} className="w-full max-w-md rounded-2xl border border-slate-200/70 bg-white p-6 shadow-2xl" onClick={(e) => e.stopPropagation()}>
-            <h2 className="font-grotesk text-lg font-bold text-slate-900">{t.members.create.title}</h2>
+      {/* Pre-authorize (invite) a member by email. */}
+      {inviteOpen && (
+        <div className="fixed inset-0 z-50 grid place-items-center bg-black/50 p-4" onClick={() => !busy && setInviteOpen(false)}>
+          <form onSubmit={submitInvite} className="w-full max-w-md rounded-2xl border border-slate-200/70 bg-white p-6 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <h2 className="font-grotesk text-lg font-bold text-slate-900">{t.members.invite.title}</h2>
             <div className="mt-4 space-y-3.5">
               <label className="block">
-                <span className="text-sm font-medium text-slate-700">{t.members.create.usernameLabel}</span>
-                <input name="username" required autoComplete="off" className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 outline-none focus:border-ngs-violet/60" />
-                <span className="mt-1 block text-[12px] text-slate-400">{t.members.create.usernameHint}</span>
+                <span className="text-sm font-medium text-slate-700">{t.members.invite.emailLabel}</span>
+                <input name="email" type="email" required autoComplete="off" className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 outline-none focus:border-ngs-violet/60" />
+                <span className="mt-1 block text-[12px] text-slate-400">{t.members.invite.emailHint}</span>
               </label>
               <label className="block">
-                <span className="text-sm font-medium text-slate-700">{t.members.create.passwordLabel}</span>
-                <input name="password" type="text" required autoComplete="off" className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 outline-none focus:border-ngs-violet/60" />
-              </label>
-              <label className="block">
-                <span className="text-sm font-medium text-slate-700">{t.members.create.nameLabel}</span>
+                <span className="text-sm font-medium text-slate-700">{t.members.invite.nameLabel}</span>
                 <input name="name" autoComplete="off" className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 outline-none focus:border-ngs-violet/60" />
               </label>
               <label className="block">
-                <span className="text-sm font-medium text-slate-700">{t.members.create.roleLabel}</span>
+                <span className="text-sm font-medium text-slate-700">{t.members.invite.roleLabel}</span>
                 <select name="role" defaultValue="student" className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 outline-none focus:border-ngs-violet/60">
-                  {ROLES.map((r) => (
+                  {SELECTABLE_ROLES.map((r) => (
                     <option key={r} value={r}>
                       {ROLE_LABELS[locale][r]}
                     </option>
@@ -492,11 +546,11 @@ export function MembersSection({ locale }: { locale: Locale }) {
               </label>
             </div>
             <div className="mt-6 flex items-center justify-end gap-3">
-              <button type="button" onClick={() => setCreateOpen(false)} className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-50">
-                {t.members.create.cancel}
+              <button type="button" onClick={() => setInviteOpen(false)} className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-50">
+                {t.members.invite.cancel}
               </button>
               <button type="submit" disabled={busy} className="rounded-xl bg-ngs-gradient px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-50">
-                {t.members.create.submit}
+                {t.members.invite.submit}
               </button>
             </div>
           </form>

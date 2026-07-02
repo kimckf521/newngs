@@ -153,37 +153,6 @@ export async function login({
 }
 
 /**
- * Username + password sign-in — for accounts an admin created via the console
- * (CloudBase `createEndUser`; see lib/admin/authAdmin). Mirrors login() but keys
- * on `username` instead of `email` (the account has no email). The demo fallback
- * signs in any username so the preview keeps working.
- */
-export async function loginWithUsername({
-  username,
-  password,
-  remember = true,
-}: {
-  username: string;
-  password: string;
-  remember?: boolean;
-}): Promise<AuthUser> {
-  setSessionRemember(remember);
-  const auth = await getCloudBaseAuth();
-  if (!auth) {
-    const user: AuthUser = { name: username, email: '', role: normalizeRole(getDemoUser()?.role) };
-    setDemoUser(user);
-    return user;
-  }
-  const res = await auth.signInWithPassword({ username, password });
-  const err = readError(res);
-  if (err) throw new Error(err);
-  const state = await auth.getLoginState();
-  const user = toAuthUser(state?.user, '');
-  if (!user) throw new Error('login_failed');
-  return (await syncRole(user)) ?? user;
-}
-
-/**
  * Email sign-up with a verification CODE (邮箱验证码注册) — step 1: collect the
  * details and email the code. Returns a session whose verify(code) completes
  * the sign-up and signs the user in (step 2). This matches the CloudBase

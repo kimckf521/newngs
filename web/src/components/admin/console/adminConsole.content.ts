@@ -113,21 +113,21 @@ type Strings = {
       unlink: string;
       unlinkDone: string;
     };
-    create: {
+    invite: {
       button: string;
       title: string;
-      usernameLabel: string;
-      usernameHint: string;
-      passwordLabel: string;
+      emailLabel: string;
+      emailHint: string;
       nameLabel: string;
       roleLabel: string;
       submit: string;
       cancel: string;
-      done: (username: string) => string;
-      failedUsername: string;
-      failedPassword: string;
-      failedTaken: string;
-      notConfigured: string;
+      done: (email: string) => string;
+      failedEmail: string;
+      failed: string;
+      pending: string;
+      pendingEmpty: string;
+      cancelInvite: string;
     };
   };
 };
@@ -227,21 +227,21 @@ export const adminConsoleContent: Record<Locale, Strings> = {
         unlink: 'Un-merge this login',
         unlinkDone: 'Un-merged ✓',
       },
-      create: {
-        button: 'Create account',
-        title: 'Create a member account',
-        usernameLabel: 'Username',
-        usernameHint: 'Lowercase, starts with a letter, 6–25 chars (letters, digits, _ or -). They sign in with this + the password.',
-        passwordLabel: 'Temporary password',
-        nameLabel: 'Display name (optional)',
+      invite: {
+        button: 'Invite member',
+        title: 'Pre-authorize a member',
+        emailLabel: 'Email',
+        emailHint: 'No email is sent. When someone signs up with this email, they automatically get the role below on first login. (WeChat/phone sign-ins: set their role from the list after they log in.)',
+        nameLabel: 'Name (optional)',
         roleLabel: 'Role',
-        submit: 'Create account',
+        submit: 'Save',
         cancel: 'Cancel',
-        done: (u) => `Account "${u}" created ✓`,
-        failedUsername: 'Username must be lowercase, start with a letter, 6–25 chars.',
-        failedPassword: 'Password must be 8–64 characters.',
-        failedTaken: 'Could not create the account (the username may already be taken).',
-        notConfigured: 'Account creation needs the CloudBase service key set on the server.',
+        done: (e) => `Pre-authorized ${e} ✓`,
+        failedEmail: 'Enter a valid email address.',
+        failed: 'Could not save the invite.',
+        pending: 'Pending invites',
+        pendingEmpty: 'No pending invites.',
+        cancelInvite: 'Cancel invite',
       },
     },
   },
@@ -338,21 +338,21 @@ export const adminConsoleContent: Record<Locale, Strings> = {
         unlink: '拆分此登录',
         unlinkDone: '已拆分 ✓',
       },
-      create: {
-        button: '创建账号',
-        title: '创建成员账号',
-        usernameLabel: '账号（用户名）',
-        usernameHint: '小写字母开头，6–25 位（字母、数字、_ 或 -）。学生用它 + 密码登录。',
-        passwordLabel: '初始密码',
-        nameLabel: '显示名称（可选）',
+      invite: {
+        button: '邀请成员',
+        title: '预授权成员',
+        emailLabel: '邮箱',
+        emailHint: '不会发邮件。用这个邮箱注册的人首次登录即自动获得下面的角色。（微信/手机登录的用户，请首次登录后在列表里改角色。）',
+        nameLabel: '姓名（可选）',
         roleLabel: '角色',
-        submit: '创建账号',
+        submit: '保存',
         cancel: '取消',
-        done: (u) => `账号「${u}」已创建 ✓`,
-        failedUsername: '账号需小写字母开头，6–25 位（字母、数字、_ 或 -）。',
-        failedPassword: '密码需为 8–64 位。',
-        failedTaken: '创建失败（该账号可能已存在）。',
-        notConfigured: '创建账号需要在服务器配置 CloudBase 服务密钥。',
+        done: (e) => `已预授权 ${e} ✓`,
+        failedEmail: '请输入有效的邮箱地址。',
+        failed: '保存邀请失败。',
+        pending: '待处理的邀请',
+        pendingEmpty: '暂无待处理邀请。',
+        cancelInvite: '取消邀请',
       },
     },
   },

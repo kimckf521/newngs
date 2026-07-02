@@ -1,5 +1,6 @@
 import 'server-only';
 import { query } from '@/lib/db/pg';
+import { canonicalUid } from '@/lib/admin/accountLinks';
 
 /**
  * Per-question-bank access control — which students may use a bank.
@@ -70,7 +71,12 @@ export async function setBankAccess(bankId: string, mode: BankAccessMode, studen
 export async function studentCanAccess(bankId: string, uid: string): Promise<boolean> {
   try {
     const a = await getBankAccess(bankId);
-    return a.mode === 'all' || a.students.includes(uid);
+    if (a.mode === 'all') return true;
+    if (a.students.includes(uid)) return true;
+    // Merged accounts: a student authorised under their primary uid should pass
+    // when logging in via a linked (secondary) login too.
+    const cuid = await canonicalUid(uid);
+    return cuid !== uid && a.students.includes(cuid);
   } catch {
     return true;
   }

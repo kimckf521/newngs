@@ -1,5 +1,5 @@
 import 'server-only';
-import { Pool, type PoolConfig } from 'pg';
+import { Pool, type PoolConfig, type PoolClient } from 'pg';
 
 /**
  * PostgreSQL data layer — the app's real backend (server-only).
@@ -78,6 +78,18 @@ CREATE TABLE IF NOT EXISTS admins (
   email      text PRIMARY KEY,
   created_at timestamptz NOT NULL DEFAULT now()
 );
+-- Account links: one person may register via WeChat, phone AND email (3 auth
+-- users, same human). We DON'T delete the duplicates (auth.users is managed by
+-- CloudBase) — instead a row here maps a SECONDARY uid -> the PRIMARY (canonical)
+-- uid. Role resolution, the members list, and access checks resolve any uid to
+-- its primary, so the app treats all the person's logins as one identity. A
+-- primary uid never appears as a key here (no chains). Fully reversible (delete).
+CREATE TABLE IF NOT EXISTS account_links (
+  uid         text PRIMARY KEY,
+  primary_uid text NOT NULL,
+  created_at  timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS account_links_primary_idx ON account_links (primary_uid);
 CREATE TABLE IF NOT EXISTS courses (
   id         text PRIMARY KEY,
   data       jsonb NOT NULL,
@@ -173,6 +185,28 @@ export async function queryOne<T = Record<string, unknown>>(
 ): Promise<T | null> {
   const rows = await query<T>(text, params);
   return rows[0] ?? null;
+}
+
+/**
+ * Run `fn` inside a single transaction (BEGIN/COMMIT, ROLLBACK on throw). Use for
+ * multi-statement mutations that must be atomic — e.g. re-pointing account links.
+ * The callback gets a dedicated client; use `client.query(text, params)`.
+ */
+export async function withTransaction<T>(fn: (client: PoolClient) => Promise<T>): Promise<T> {
+  if (!DATABASE_URL) throw new Error('DATABASE_URL not set');
+  await ensureSchema();
+  const client = await getPool().connect();
+  try {
+    await client.query('BEGIN');
+    const out = await fn(client);
+    await client.query('COMMIT');
+    return out;
+  } catch (e) {
+    await client.query('ROLLBACK').catch(() => {});
+    throw e;
+  } finally {
+    client.release();
+  }
 }
 
 /** Lightweight connectivity probe used by /api setup checks. */

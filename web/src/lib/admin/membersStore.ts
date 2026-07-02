@@ -1,5 +1,6 @@
 import 'server-only';
 import { dbConfigured, query } from '@/lib/db/pg';
+import { canonicalUid, getLinkMap } from '@/lib/admin/accountLinks';
 import { normalizeRole, type Role } from '@/lib/roles';
 
 /**
@@ -21,6 +22,8 @@ export function membersConfigured(): boolean {
 }
 
 export type LoginVia = 'wechat' | 'email' | 'phone' | 'account' | 'other';
+/** A secondary account merged into this member (see account_links). */
+export type LinkedAccount = { uid: string; email: string; phone: string; loginVia: LoginVia };
 export type MemberRow = {
   uid: string;
   email: string;
@@ -29,6 +32,9 @@ export type MemberRow = {
   role: Role;
   loginVia: LoginVia;
   lastLogin: string;
+  /** Other login accounts merged into this one (WeChat/phone/email of the same
+   *  person). Present only on the primary row; the secondaries are folded in. */
+  linked?: LinkedAccount[];
 };
 
 /** CloudBase stores a placeholder like "+86 -" for non-phone accounts. */
@@ -40,6 +46,7 @@ function realPhone(p: string | null): string {
 type AuthRow = {
   uid: string;
   name: string | null;
+  stored_name: string | null;
   email: string | null;
   phone: string | null;
   providers: Array<{ id?: string }> | null;
@@ -76,7 +83,7 @@ export async function listMembers(): Promise<MemberRow[]> {
   let rows: AuthRow[];
   try {
     rows = await query<AuthRow>(
-      `SELECT u.id::text AS uid, u.name, u.email, u.phone_number AS phone, u.providers,
+      `SELECT u.id::text AS uid, u.name, au.name AS stored_name, u.email, u.phone_number AS phone, u.providers,
               au.role AS stored_role,
               (a.email IS NOT NULL) AS in_allowlist,
               to_char(u.last_login, 'YYYY-MM-DD HH24:MI') AS last_login
@@ -89,16 +96,34 @@ export async function listMembers(): Promise<MemberRow[]> {
   } catch {
     return listFromAppUsers(); // auth schema unavailable → our table only
   }
-  return rows.map((u) => ({
+  const all: MemberRow[] = rows.map((u) => ({
     uid: u.uid,
     email: u.email || '',
-    name: u.name || '',
+    name: u.name || u.stored_name || '',
     phone: realPhone(u.phone),
     // The email allowlist wins; otherwise the per-uid stored role (default student).
     role: u.in_allowlist ? 'admin' : normalizeRole(u.stored_role),
     loginVia: deriveLoginVia(u),
     lastLogin: u.last_login || '',
   }));
+
+  // Merged accounts: fold every secondary into its primary's `linked` array so
+  // one person shows as ONE row with all their login methods. Best-effort — if
+  // there are no links (or the table is unavailable) the list is returned as-is.
+  const linkMap = await getLinkMap();
+  if (Object.keys(linkMap).length === 0) return all;
+  const byUid = new Map(all.map((m) => [m.uid, m]));
+  const result: MemberRow[] = [];
+  for (const m of all) {
+    const primaryUid = linkMap[m.uid];
+    const primary = primaryUid ? byUid.get(primaryUid) : undefined;
+    if (primary) {
+      (primary.linked ??= []).push({ uid: m.uid, email: m.email, phone: m.phone, loginVia: m.loginVia });
+    } else {
+      result.push(m); // a primary, or an orphan link (keep visible)
+    }
+  }
+  return result;
 }
 
 /**
@@ -108,7 +133,10 @@ export async function listMembers(): Promise<MemberRow[]> {
  * users that have an email (WeChat users have none — their admin status lives on
  * `app_users.role`, which the gate also honours).
  */
-export async function setMemberRole(uid: string, role: Role): Promise<void> {
+export async function setMemberRole(rawUid: string, role: Role): Promise<void> {
+  // Write the role to the PRIMARY (canonical) account, so a merged person's role
+  // is consistent across all their logins. No-op for un-linked accounts.
+  const uid = await canonicalUid(rawUid);
   try {
     await query(
       `INSERT INTO app_users (uid, email, name, role)

@@ -100,6 +100,35 @@ type Strings = {
       confirm: string;
       cancel: string;
     };
+    merge: {
+      action: (n: number) => string;
+      hint: string;
+      title: string;
+      body: string;
+      primary: string;
+      confirm: string;
+      cancel: string;
+      done: string;
+      failed: string;
+      unlink: string;
+      unlinkDone: string;
+    };
+    create: {
+      button: string;
+      title: string;
+      usernameLabel: string;
+      usernameHint: string;
+      passwordLabel: string;
+      nameLabel: string;
+      roleLabel: string;
+      submit: string;
+      cancel: string;
+      done: (username: string) => string;
+      failedUsername: string;
+      failedPassword: string;
+      failedTaken: string;
+      notConfigured: string;
+    };
   };
 };
 
@@ -185,6 +214,35 @@ export const adminConsoleContent: Record<Locale, Strings> = {
         confirm: 'Yes, change role',
         cancel: 'Cancel',
       },
+      merge: {
+        action: (n) => `Merge ${n} accounts`,
+        hint: 'Same person signed up more than once (WeChat / phone / email)? Tick 2+ rows to merge them.',
+        title: 'Merge into one person',
+        body: 'Pick which login to keep as the primary. Every selected account resolves to it — one shared role, one row in this list. Nothing is deleted; you can un-merge anytime.',
+        primary: 'Primary',
+        confirm: 'Merge accounts',
+        cancel: 'Cancel',
+        done: 'Accounts merged ✓',
+        failed: 'Merge failed',
+        unlink: 'Un-merge this login',
+        unlinkDone: 'Un-merged ✓',
+      },
+      create: {
+        button: 'Create account',
+        title: 'Create a member account',
+        usernameLabel: 'Username',
+        usernameHint: 'Lowercase, starts with a letter, 6–25 chars (letters, digits, _ or -). They sign in with this + the password.',
+        passwordLabel: 'Temporary password',
+        nameLabel: 'Display name (optional)',
+        roleLabel: 'Role',
+        submit: 'Create account',
+        cancel: 'Cancel',
+        done: (u) => `Account "${u}" created ✓`,
+        failedUsername: 'Username must be lowercase, start with a letter, 6–25 chars.',
+        failedPassword: 'Password must be 8–64 characters.',
+        failedTaken: 'Could not create the account (the username may already be taken).',
+        notConfigured: 'Account creation needs the CloudBase service key set on the server.',
+      },
     },
   },
   zh: {
@@ -266,6 +324,35 @@ export const adminConsoleContent: Record<Locale, Strings> = {
         adminWarn: '管理员拥有后台的完整权限——课程、成员、网站编辑器都能操作。请只授予你信任的人。',
         confirm: '确认修改',
         cancel: '取消',
+      },
+      merge: {
+        action: (n) => `合并 ${n} 个账号`,
+        hint: '同一个人注册了多个账号（微信 / 手机 / 邮箱）？勾选 2 个及以上的行即可合并。',
+        title: '合并为同一个人',
+        body: '选择保留哪个登录作为「主账号」。所选账号都会归并到它——共用同一角色，列表只显示一行。不会删除任何账号，可随时拆分。',
+        primary: '主账号',
+        confirm: '合并账号',
+        cancel: '取消',
+        done: '已合并 ✓',
+        failed: '合并失败',
+        unlink: '拆分此登录',
+        unlinkDone: '已拆分 ✓',
+      },
+      create: {
+        button: '创建账号',
+        title: '创建成员账号',
+        usernameLabel: '账号（用户名）',
+        usernameHint: '小写字母开头，6–25 位（字母、数字、_ 或 -）。学生用它 + 密码登录。',
+        passwordLabel: '初始密码',
+        nameLabel: '显示名称（可选）',
+        roleLabel: '角色',
+        submit: '创建账号',
+        cancel: '取消',
+        done: (u) => `账号「${u}」已创建 ✓`,
+        failedUsername: '账号需小写字母开头，6–25 位（字母、数字、_ 或 -）。',
+        failedPassword: '密码需为 8–64 位。',
+        failedTaken: '创建失败（该账号可能已存在）。',
+        notConfigured: '创建账号需要在服务器配置 CloudBase 服务密钥。',
       },
     },
   },

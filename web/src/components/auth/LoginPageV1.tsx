@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useState, type FormEvent } from 'react';
 import { siteLinks } from '@/lib/siteLinks';
 import type { Locale } from '@/i18n/types';
-import { login, loginWithProvider, isRealAuth, postLoginDest } from '@/lib/auth';
+import { login, loginWithUsername, loginWithProvider, isRealAuth, postLoginDest } from '@/lib/auth';
 import { AuthShell } from './AuthShell';
 import { AuthField, PasswordField } from './fields';
 import { OrDivider, WeChatButton, SubmitButton, DemoNote } from './parts';
@@ -29,6 +29,9 @@ const content = {
     forgot: 'Forgot password?',
     signIn: 'Sign in',
     signingIn: 'Signing in…',
+    orAccount: 'or with an account',
+    username: 'Username',
+    usernamePh: 'your username',
     error: 'Unable to sign in. Please try again.',
     network: 'Network error. Please try again.',
     demo: 'Demo only — this is a front-end design. Any email and password (or a social button) will sign you in.',
@@ -50,6 +53,9 @@ const content = {
     forgot: '忘记密码？',
     signIn: '登录',
     signingIn: '登录中…',
+    orAccount: '或使用账号登录',
+    username: '账号',
+    usernamePh: '你的账号',
     error: '登录失败，请重试。',
     network: '网络错误，请重试。',
     demo: '仅为演示 —— 这是前端设计，任意邮箱与密码（或社交登录按钮）均可登录。',
@@ -63,6 +69,10 @@ export function LoginPageV1({ locale }: { locale: Locale }) {
   const router = useRouter();
   const [status, setStatus] = useState<'idle' | 'sending' | 'err'>('idle');
   const [error, setError] = useState('');
+  // Separate state for the username (account) login form so its button/error
+  // don't bleed into the email form above.
+  const [uStatus, setUStatus] = useState<'idle' | 'sending' | 'err'>('idle');
+  const [uError, setUError] = useState('');
 
   async function signIn(email: string, password: string, remember: boolean) {
     setStatus('sending');
@@ -95,6 +105,24 @@ export function LoginPageV1({ locale }: { locale: Locale }) {
     const password = String(data.get('password') || '');
     const remember = data.get('remember') === 'on';
     void signIn(email, password, remember);
+  }
+
+  async function signInAccount(username: string, password: string) {
+    setUStatus('sending');
+    setUError('');
+    try {
+      const user = await loginWithUsername({ username, password });
+      router.push(postLoginDest(user, links.member));
+    } catch {
+      setUError(t.error);
+      setUStatus('err');
+    }
+  }
+
+  function onSubmitAccount(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    void signInAccount(String(data.get('username') || ''), String(data.get('password') || ''));
   }
 
   return (
@@ -130,6 +158,14 @@ export function LoginPageV1({ locale }: { locale: Locale }) {
 
         <SubmitButton loading={status === 'sending'} loadingLabel={t.signingIn}>{t.signIn}</SubmitButton>
         {status === 'err' && <p className="text-sm text-rose-400">{error}</p>}
+      </form>
+
+      <OrDivider label={t.orAccount} />
+      <form onSubmit={onSubmitAccount} className="space-y-5">
+        <AuthField id="login-username" name="username" type="text" label={t.username} placeholder={t.usernamePh} autoComplete="username" required />
+        <PasswordField id="login-username-password" name="password" label={t.password} placeholder={t.passwordPh} autoComplete="current-password" required showLabel={t.show} hideLabel={t.hide} />
+        <SubmitButton loading={uStatus === 'sending'} loadingLabel={t.signingIn}>{t.signIn}</SubmitButton>
+        {uStatus === 'err' && <p className="text-sm text-rose-400">{uError}</p>}
       </form>
 
       {!isRealAuth() && <DemoNote>{t.demo}</DemoNote>}

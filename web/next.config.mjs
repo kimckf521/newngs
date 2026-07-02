@@ -33,7 +33,12 @@ const nextConfig = {
       { protocol: 'https', hostname: '**.tcloudbaseapp.com' },
     ],
   },
-  experimental: {},
+  experimental: {
+    // @cloudbase/manager-node is a heavy Node-only SDK (used server-side to
+    // create end-user accounts). Keep it external so webpack doesn't try to
+    // bundle it into the server output.
+    serverComponentsExternalPackages: ['@cloudbase/manager-node'],
+  },
 };
 
 export default nextConfig;

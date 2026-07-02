@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@cloudbase/js-sdk": "^3.4.8",
+    "@cloudbase/manager-node": "^5.5.7",
     "@cloudbase/node-sdk": "^3.18.3",
     "@measured/puck": "^0.20.2",
     "next": "14.2.15",

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { dbConfigured, query, queryOne } from '@/lib/db/pg';
+import { canonicalUid } from '@/lib/admin/accountLinks';
 import { DEFAULT_ROLE, normalizeRole, SELECTABLE_ROLES, type SelectableRole } from '@/lib/roles';
 
 export const runtime = 'nodejs';
@@ -21,10 +22,14 @@ export const dynamic = 'force-dynamic';
  */
 export async function GET(req: NextRequest) {
   if (!dbConfigured()) return NextResponse.json({ ok: false, error: 'not_configured' });
-  const uid = req.nextUrl.searchParams.get('uid') || '';
+  const rawUid = req.nextUrl.searchParams.get('uid') || '';
   const email = req.nextUrl.searchParams.get('email') || '';
-  if (!uid && !email) return NextResponse.json({ ok: false, error: 'bad_request' }, { status: 400 });
+  if (!rawUid && !email) return NextResponse.json({ ok: false, error: 'bad_request' }, { status: 400 });
   try {
+    // Merged accounts: resolve any linked (secondary) uid to its canonical
+    // (primary) uid, so every one of a person's logins — WeChat / phone / email —
+    // reads the SAME role. No-op for un-linked accounts.
+    const uid = rawUid ? await canonicalUid(rawUid) : '';
     // The admins allowlist (email-keyed) is the source of truth for admin status.
     if (email) {
       const a = await queryOne<{ x: number }>('SELECT 1 AS x FROM admins WHERE lower(email) = lower($1)', [email]);

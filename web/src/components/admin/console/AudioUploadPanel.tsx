@@ -87,7 +87,11 @@ const L = {
     needFolder: '未找到可识别的 MP3（文件名需包含 test1–4，文件夹名含 IELTS N）。',
     play: '试听', stop: '停止', part: '部分', upload: '上传', replace: '替换', onlyMp3: '仅支持 MP3', notMp3: '不是 MP3，已跳过', singleHint: '也可点表格里某套的 ↑ 单独上传一个 MP3。',
     dropHere: '把文件夹拖到这里上传', dropCell: '拖放 MP3 到此', processing: '上传至云端…',
-    confirmTitle: '删除听力音频', confirmBody: (book: number, tt: number) => `确定删除 IELTS ${book} · Test ${tt} 的听力音频吗？此操作无法撤销。`, cancel: '取消', deleting: '删除中…',
+    confirmTitle: '删除听力音频',
+    confirmBodyOne: (book: number, tt: number) => `确定删除 IELTS ${book} · Test ${tt} 的听力音频吗？此操作无法撤销。`,
+    confirmBodyMany: (n: number) => `确定删除选中的 ${n} 套听力音频吗？此操作无法撤销。`,
+    cancel: '取消', deleting: '删除中…',
+    select: '选择', selectAll: '全选', clearSelection: '取消选择', selectedCount: (n: number) => `已选 ${n} 项`, deleteSelected: '删除所选',
   },
   en: {
     title: 'Listening audio', desc: 'Upload each book’s four listening recordings (one "IELTS N" folder with 4 whole-test files → 4 Tests). Wired straight into student listening practice.',
@@ -96,7 +100,11 @@ const L = {
     needFolder: 'No MP3s found (files must contain test1–4, folders named IELTS N).',
     play: 'Play', stop: 'Stop', part: 'Part', upload: 'Upload', replace: 'Replace', onlyMp3: 'MP3 only', notMp3: 'not an MP3, skipped', singleHint: 'Or click a test’s ↑ in the table to upload one MP3.',
     dropHere: 'Drag a folder here to upload', dropCell: 'Drop MP3 here', processing: 'Uploading to cloud…',
-    confirmTitle: 'Delete listening audio', confirmBody: (book: number, tt: number) => `Delete the listening audio for IELTS ${book} · Test ${tt}? This can’t be undone.`, cancel: 'Cancel', deleting: 'Deleting…',
+    confirmTitle: 'Delete listening audio',
+    confirmBodyOne: (book: number, tt: number) => `Delete the listening audio for IELTS ${book} · Test ${tt}? This can’t be undone.`,
+    confirmBodyMany: (n: number) => `Delete the ${n} selected listening audio files? This can’t be undone.`,
+    cancel: 'Cancel', deleting: 'Deleting…',
+    select: 'Select', selectAll: 'Select all', clearSelection: 'Clear selection', selectedCount: (n: number) => `${n} selected`, deleteSelected: 'Delete selected',
   },
 } as const;
 
@@ -203,27 +211,63 @@ export function AudioUploadPanel({ locale }: { bankId: string; locale: Locale })
     setQueue((q) => q.filter((it) => it.id !== id));
   }, []);
 
-  const [confirmTarget, setConfirmTarget] = useState<{ book: number; test: number } | null>(null);
+  const [confirmTargets, setConfirmTargets] = useState<{ book: number; test: number }[] | null>(null);
   const [deleting, setDeleting] = useState(false);
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const cellKey = (book: number, test: number) => `${book}|${test}`;
 
-  const doDelete = useCallback(async (book: number, test: number) => {
+  const toggleCell = useCallback((book: number, test: number) => {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      const k = cellKey(book, test);
+      if (next.has(k)) next.delete(k); else next.add(k);
+      return next;
+    });
+  }, []);
+
+  const toggleBookRow = useCallback((book: number) => {
+    const keys = TESTS.filter((tt) => status[String(book)]?.[String(tt)]).map((tt) => cellKey(book, tt));
+    if (!keys.length) return;
+    setSelected((prev) => {
+      const allSelected = keys.every((k) => prev.has(k));
+      const next = new Set(prev);
+      for (const k of keys) { if (allSelected) next.delete(k); else next.add(k); }
+      return next;
+    });
+  }, [status]);
+
+  const selectAll = useCallback(() => {
+    const keys: string[] = [];
+    for (const book of BOOKS) for (const tt of TESTS) if (status[String(book)]?.[String(tt)]) keys.push(cellKey(book, tt));
+    setSelected(new Set(keys));
+  }, [status]);
+  const clearSelection = useCallback(() => setSelected(new Set()), []);
+
+  const doDelete = useCallback(async (targets: { book: number; test: number }[]) => {
     setDeleting(true);
-    try {
-      await fetch('/api/ielts/audio/delete', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', ...(adminKey() ? { 'x-admin-key': adminKey() } : {}) },
-        body: JSON.stringify({ book, test }),
-      });
-      // Reflect the removal immediately, same reasoning as the upload path.
-      setStatus((prev) => {
-        const bookEntry = { ...(prev[String(book)] || {}) };
-        delete bookEntry[String(test)];
-        return { ...prev, [String(book)]: bookEntry };
-      });
-      if (player && player.book === book && player.test === test) setPlayer(null);
-    } catch { /* ignore */ }
+    await Promise.all(targets.map(async ({ book, test }) => {
+      try {
+        await fetch('/api/ielts/audio/delete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', ...(adminKey() ? { 'x-admin-key': adminKey() } : {}) },
+          body: JSON.stringify({ book, test }),
+        });
+        // Reflect the removal immediately, same reasoning as the upload path.
+        setStatus((prev) => {
+          const bookEntry = { ...(prev[String(book)] || {}) };
+          delete bookEntry[String(test)];
+          return { ...prev, [String(book)]: bookEntry };
+        });
+        if (player && player.book === book && player.test === test) setPlayer(null);
+      } catch { /* ignore — loadStatus() below reconciles */ }
+    }));
     setDeleting(false);
-    setConfirmTarget(null);
+    setConfirmTargets(null);
+    setSelected((prev) => {
+      const next = new Set(prev);
+      for (const { book, test } of targets) next.delete(cellKey(book, test));
+      return next;
+    });
     void loadStatus();
   }, [loadStatus, player]);
 
@@ -377,9 +421,26 @@ export function AudioUploadPanel({ locale }: { bankId: string; locale: Locale })
         </div>
       )}
 
-      {/* uploaded overview grid — preview or delete any stored test */}
+      {/* uploaded overview grid — preview, delete, or multi-select any stored test */}
       <div className="mt-5">
-        <p className="mb-2 text-xs font-bold text-slate-700">{t.uploaded}</p>
+        <div className="mb-2 flex flex-wrap items-center gap-2">
+          <p className="text-xs font-bold text-slate-700">{t.uploaded}</p>
+          <button type="button" onClick={selected.size ? clearSelection : selectAll} className="text-[11px] font-semibold text-ngs-violet hover:underline">
+            {selected.size ? t.clearSelection : t.selectAll}
+          </button>
+          {selected.size > 0 && (
+            <span className="ml-auto flex items-center gap-2">
+              <span className="text-[11px] font-semibold text-slate-500">{t.selectedCount(selected.size)}</span>
+              <button
+                type="button"
+                onClick={() => setConfirmTargets([...selected].map((k) => { const [b, tt] = k.split('|').map(Number); return { book: b, test: tt }; }))}
+                className="rounded-lg bg-rose-600 px-2.5 py-1 text-[11px] font-bold text-white hover:bg-rose-700"
+              >
+                {t.deleteSelected}
+              </button>
+            </span>
+          )}
+        </div>
         {player && (
           <div className="mb-3 flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 p-2">
             <span className="shrink-0 text-[12px] font-bold text-slate-700">
@@ -405,12 +466,28 @@ export function AudioUploadPanel({ locale }: { bankId: string; locale: Locale })
               </tr>
             </thead>
             <tbody>
-              {BOOKS.map((book) => (
+              {BOOKS.map((book) => {
+                const rowHasAudio = TESTS.some((tt) => status[String(book)]?.[String(tt)]);
+                return (
                 <tr key={book} className="border-t border-slate-100">
-                  <td className="p-1 font-semibold text-slate-600">IELTS {book}</td>
+                  <td className="p-1 font-semibold text-slate-600">
+                    <span className="inline-flex items-center gap-1.5">
+                      {rowHasAudio && (
+                        <input
+                          type="checkbox"
+                          checked={TESTS.filter((tt) => status[String(book)]?.[String(tt)]).every((tt) => selected.has(cellKey(book, tt)))}
+                          onChange={() => toggleBookRow(book)}
+                          aria-label={`${t.select} IELTS ${book}`}
+                          className="h-3 w-3 accent-rose-600"
+                        />
+                      )}
+                      IELTS {book}
+                    </span>
+                  </td>
                   {TESTS.map((tt) => {
                     const has = status[String(book)]?.[String(tt)];
-                    const cellId = `${book}|${tt}`;
+                    const cellId = cellKey(book, tt);
+                    const isSelected = selected.has(cellId);
                     return (
                       <td
                         key={tt}
@@ -418,10 +495,17 @@ export function AudioUploadPanel({ locale }: { bankId: string; locale: Locale })
                         onDragLeave={() => setDragCell((c) => (c === cellId ? null : c))}
                         onDrop={(e) => void onCellDrop(book, tt, e)}
                         title={t.dropCell}
-                        className={`p-1 text-center ${dragCell === cellId ? 'rounded bg-ngs-violet/10 ring-1 ring-ngs-violet/40' : ''}`}
+                        className={`p-1 text-center ${dragCell === cellId ? 'rounded bg-ngs-violet/10 ring-1 ring-ngs-violet/40' : isSelected ? 'rounded bg-rose-50' : ''}`}
                       >
                         {has ? (
                           <span className="inline-flex items-center gap-1.5">
+                            <input
+                              type="checkbox"
+                              checked={isSelected}
+                              onChange={() => toggleCell(book, tt)}
+                              aria-label={`${t.select} IELTS ${book} Test ${tt}`}
+                              className="h-3 w-3 accent-rose-600"
+                            />
                             <button
                               type="button"
                               onClick={() => void playTest(book, tt)}
@@ -432,7 +516,7 @@ export function AudioUploadPanel({ locale }: { bankId: string; locale: Locale })
                               {player?.book === book && player?.test === tt ? '❚❚' : '▶'}
                             </button>
                             <button type="button" onClick={() => pickSingle(book, tt)} aria-label={t.replace} title={t.replace} className="text-slate-300 hover:text-ngs-violet">↑</button>
-                            <button type="button" onClick={() => setConfirmTarget({ book, test: tt })} aria-label={t.del} title={t.del} className="text-slate-300 hover:text-rose-600">🗑</button>
+                            <button type="button" onClick={() => setConfirmTargets([{ book, test: tt }])} aria-label={t.del} title={t.del} className="text-slate-300 hover:text-rose-600">🗑</button>
                           </span>
                         ) : (
                           <button type="button" onClick={() => pickSingle(book, tt)} aria-label={t.upload} title={t.upload} className="text-slate-300 hover:text-ngs-violet">↑</button>
@@ -441,7 +525,8 @@ export function AudioUploadPanel({ locale }: { bankId: string; locale: Locale })
                     );
                   })}
                 </tr>
-              ))}
+                );
+              })}
             </tbody>
           </table>
         </div>
@@ -449,16 +534,23 @@ export function AudioUploadPanel({ locale }: { bankId: string; locale: Locale })
       </div>
       )}
 
-      {confirmTarget && (
-        <div className="fixed inset-0 z-[90] flex items-center justify-center bg-black/40 p-4" onClick={() => !deleting && setConfirmTarget(null)}>
+      {confirmTargets && (
+        <div className="fixed inset-0 z-[90] flex items-center justify-center bg-black/40 p-4" onClick={() => !deleting && setConfirmTargets(null)}>
           <div className="w-[360px] rounded-xl bg-white p-5 shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <p className="font-grotesk text-sm font-bold text-slate-900">{t.confirmTitle}</p>
-            <p className="mt-2 text-[13px] leading-relaxed text-slate-500">{t.confirmBody(confirmTarget.book, confirmTarget.test)}</p>
+            <p className="mt-2 text-[13px] leading-relaxed text-slate-500">
+              {confirmTargets.length === 1 ? t.confirmBodyOne(confirmTargets[0].book, confirmTargets[0].test) : t.confirmBodyMany(confirmTargets.length)}
+            </p>
+            {confirmTargets.length > 1 && confirmTargets.length <= 12 && (
+              <div className="mt-2 max-h-32 space-y-0.5 overflow-y-auto rounded-lg bg-slate-50 p-2 text-[11px] text-slate-500">
+                {confirmTargets.map((x) => <div key={cellKey(x.book, x.test)}>IELTS {x.book} · Test {x.test}</div>)}
+              </div>
+            )}
             <div className="mt-5 flex justify-end gap-2">
               <button
                 type="button"
                 disabled={deleting}
-                onClick={() => setConfirmTarget(null)}
+                onClick={() => setConfirmTargets(null)}
                 className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 disabled:opacity-40"
               >
                 {t.cancel}
@@ -466,7 +558,7 @@ export function AudioUploadPanel({ locale }: { bankId: string; locale: Locale })
               <button
                 type="button"
                 disabled={deleting}
-                onClick={() => void doDelete(confirmTarget.book, confirmTarget.test)}
+                onClick={() => void doDelete(confirmTargets)}
                 className="rounded-lg bg-rose-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-rose-700 disabled:opacity-60"
               >
                 {deleting ? t.deleting : t.del}
